@@ -10,16 +10,16 @@ const numberInputs = [...document.querySelectorAll('input[type="number"][name^="
 const output = document.querySelector('.color-output');
 
 function updateColor() {
-	output.style.backgroundColor = `rgb(${rangeInputs[0].value}, ${rangeInputs[1].value}, ${rangeInputs[2].value})`;
+    output.style.backgroundColor = `rgb(${rangeInputs[0].value}, ${rangeInputs[1].value}, ${rangeInputs[2].value})`;
 }
 
 function updateInputField(event) {
-	numberInputs[rangeInputs.indexOf(event.currentTarget)].value = event.currentTarget.value;
+    numberInputs[rangeInputs.indexOf(event.currentTarget)].value = event.currentTarget.value;
 }
 
 for (const input of rangeInputs) {
-	input.addEventListener('input', updateColor);
-	input.addEventListener('input', updateInputField);
+    input.addEventListener('input', updateColor);
+    input.addEventListener('input', updateInputField);
 }
 
 window.addEventListener('load', updateColor);
