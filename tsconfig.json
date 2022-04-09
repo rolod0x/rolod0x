@@ -1,31 +1,10 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "target": "esnext",
-    "removeComments": true,
-    "allowSyntheticDefaultImports": true,
-    "jsx": "react",
-    "allowJs": true,
-    "baseUrl": "src",
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "downlevelIteration": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "isolatedModules": true,
-    "paths": {
-      "*": ["src/*"]
+    "extends": "@sindresorhus/tsconfig/tsconfig.json",
+    "compilerOptions": {
+        "outDir": "dist"
     },
-    "lib": ["esnext", "dom", "dom.iterable"],
-    "noEmit": true,
-    "sourceMap": true,
-    "noImplicitAny": true
-  },
-  "exclude": ["node_modules", "build", "distribution"],
-  "include": [
-    "source",
-  ]
+    "exclude": ["node_modules", "build", "distribution"],
+    "include": [
+        "source"
+    ]
 }
