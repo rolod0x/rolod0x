@@ -24,7 +24,7 @@
                 "https://github.com/fregante/browser-extension-template/*"
             ],
             "js": [
-                "content.js"
+                "content.ts"
             ],
             "css": [
                 "content.css"
@@ -39,7 +39,7 @@
     "background": {
         "persistent": false,
         "scripts": [
-            "background.js"
+            "background.ts"
         ]
     }
 }
