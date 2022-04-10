@@ -1,8 +1,8 @@
 {
-    "name": "Awesome Extension",
+    "name": "etherlabel",
     "version": "0.0.0",
-    "description": "An awesome new browser extension",
-    "homepage_url": "https://github.com/fregante/browser-extension-template",
+    "description": "Replace blockchain addresses with labels",
+    "homepage_url": "https://github.com/aspiers/etherlabel",
     "manifest_version": 2,
     "minimum_chrome_version": "80",
     "browser_specific_settings": {
