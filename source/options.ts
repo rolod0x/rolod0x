@@ -1,25 +1,48 @@
 // Don't forget to import this wherever you use it
-// import browser from 'webextension-polyfill';
+import browser from 'webextension-polyfill';
 
 import optionsStorage from './options-storage.ts';
+import {parseLabels} from './parser.ts';
 
 optionsStorage.syncForm('#options-form');
 
-const rangeInputs = [...document.querySelectorAll('input[type="range"][name^="color"]')];
-const numberInputs = [...document.querySelectorAll('input[type="number"][name^="color"]')];
-const output = document.querySelector('.color-output');
+const bg = browser.extension.getBackgroundPage();
 
-function updateColor() {
-    output.style.backgroundColor = `rgb(${rangeInputs[0].value}, ${rangeInputs[1].value}, ${rangeInputs[2].value})`;
+function getLabelsTextarea(): Element {
+    return document.querySelector('textarea#labels');
 }
 
-function updateInputField(event) {
-    numberInputs[rangeInputs.indexOf(event.currentTarget)].value = event.currentTarget.value;
+const IN_SEPARATE_TAB = true;  // options_ui.open_in_tab from manifest.json
+const cons = IN_SEPARATE_TAB ? console : bg.console;
+
+function getLabels(): string {
+    const textarea = getLabelsTextarea();
+    return textarea.value;
+
+    // const options = await optionsStorage.getAll();
+    // return options.labels;
 }
 
-for (const input of rangeInputs) {
-    input.addEventListener('input', updateColor);
-    input.addEventListener('input', updateInputField);
+async function validate(): Promise<void> {
+    const labels = getLabels();
+
+    if (!labels) {
+        return;
+    }
+
+    const errorDiv = document.querySelector('div#parser-error');
+    try {
+        cons.log('parsing:', labels.slice(0, 30));
+        const labelMap = parseLabels(labels);
+        cons.log('parsed', Object.keys(labelMap).length, 'entries');
+        errorDiv.style.display = 'none';
+    } catch (error: any) {
+        cons.error(error);
+        errorDiv.innerText = error;
+        errorDiv.style.display = 'block';
+        cons.log('set error');
+    }
 }
 
-window.addEventListener('load', updateColor);
+window.addEventListener('load', validate);
+getLabelsTextarea().addEventListener('input', validate);
