@@ -1,0 +1,17 @@
+{
+    "envs": [
+        "webextensions"
+    ],
+    "space": 4,
+    "semicolon": true,
+    "prettier": true,
+    "rules": {
+        "capitalized-comments": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            {
+                "varsIgnorePattern": "_.*"
+            }
+        ]
+    }
+}
