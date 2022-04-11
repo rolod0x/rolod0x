@@ -4,3 +4,4 @@ rules:
     indentation:
         - 4
         - baseIndentLevel: 1
+    color-named: null
