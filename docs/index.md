@@ -1,37 +1,24 @@
-## Welcome to GitHub Pages
+## Fed up of seeing addresses like 0x6542Ef04e... ?
 
-You can use the [editor on GitHub](https://github.com/aspiers/ethernick/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+If trying to keep track of a bunch of different wallet / smart
+contract addresses is giving you a headache, use this browser
+extension to label them!  Make the pain vanish.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## How do I use it?
 
-### Markdown
+FIXME
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## FAQ
 
-```markdown
-Syntax highlighted code block
+### How is this different to etherscan private addresses?
 
-# Header 1
-## Header 2
-### Header 3
+- It works on any site, not just etherscan.
+- That means you can have wallet addresses labelled across
+  multiple networks.
+- You never share
 
-- Bulleted
-- List
+### How is this different to ENS?
 
-1. Numbered
-2. List
+Registering entries in ENS costs gas, and is public.
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/aspiers/ethernick/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Labelling addresses in this extension is totally free and private.
