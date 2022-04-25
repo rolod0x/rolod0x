@@ -23,6 +23,7 @@
         "last 1 Firefox version"
     ],
     "dependencies": {
+        "ethers": "^5.6.4",
         "webext-options-sync": "^3.0.1",
         "webextension-polyfill": "^0.8.0"
     },
@@ -32,6 +33,7 @@
         "@sindresorhus/tsconfig": "^2.0.0",
         "npm-run-all": "^4.1.5",
         "parcel": "^2.3.2",
+        "process": "^0.11.10",
         "stylelint": "^14.6.0",
         "stylelint-config-xo": "^0.21.0",
         "xo": "^0.48.0"
