@@ -32,8 +32,8 @@ Screenshot of extension options:
 ### 🛠 Build locally
 
 1. Checkout the copied repository to your local machine eg. with `git clone https://github.com/my-username/my-awesome-extension/`
-1. Run `npm install` to install all required dependencies
-1. Run `npm run build`
+1. Run `yarn install` to install all required dependencies
+1. Run `yarn build`
 
 The build step will create the `distribution` folder, this folder will contain the generated extension.
 
@@ -41,7 +41,7 @@ The build step will create the `distribution` folder, this folder will contain t
 
 Using [web-ext](https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/) is recommened for automatic reloading and running in a dedicated browser instance. Alternatively you can load the extension manually (see below).
 
-1. Run `npm run watch` to watch for file changes and build continuously
+1. Run `yarn watch` to watch for file changes and build continuously
 1. Run `npm install --global web-ext` (only only for the first time)
 1. In another terminal, run `web-ext run` for Firefox or `web-ext run -t chromium`
 1. Check that the extension is loaded by opening the extension options ([in Firefox](media/extension_options_firefox.png) or [in Chrome](media/extension_options_chrome.png)).

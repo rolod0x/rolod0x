@@ -1,3 +1,5 @@
-node_modules
-distribution
-.parcel-cache
+node_modules/
+distribution/
+.log/
+.parcel-cache/
+.yarn/
