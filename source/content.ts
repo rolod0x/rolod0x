@@ -9,7 +9,7 @@ async function init(): Promise<void> {
     try {
         labelMap = parseLabels(options.labels);
     } catch (err: any) {
-        console.error('etherlabel:', err);
+        console.error('rolod0x:', err);
     }
 
     if (labelMap) {

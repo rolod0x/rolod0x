@@ -1,8 +1,8 @@
 {
-    "name": "etherlabel",
-    "version": "0.0.0",
+    "name": "rolod0x",
+    "version": "0.0.1",
     "description": "Replace blockchain addresses with labels",
-    "homepage_url": "https://github.com/aspiers/etherlabel",
+    "homepage_url": "https://github.com/aspiers/rolod0x",
     "manifest_version": 2,
     "minimum_chrome_version": "80",
     "browser_specific_settings": {
