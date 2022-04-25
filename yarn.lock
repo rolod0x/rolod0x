@@ -5876,7 +5876,7 @@ __metadata:
     process: ^0.11.10
     stylelint: ^14.6.0
     stylelint-config-xo: ^0.21.0
-    webext-options-sync: ^3.0.1
+    webext-options-sync: ^3.1.0
     webextension-polyfill: ^0.8.0
     xo: ^0.48.0
   languageName: unknown
@@ -6712,12 +6712,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webext-options-sync@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "webext-options-sync@npm:3.0.1"
+"webext-options-sync@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "webext-options-sync@npm:3.1.0"
   dependencies:
     webext-detect-page: ^4.0.0
-  checksum: 82b1975fe8a6470ccf64adda9c1890e7080f7641abb73203328ee128dbc2108a1feede5e5b3417bdc4db5217f64da29028f9c2679da40852655033b0ac3c6970
+  checksum: 03af7aa82025270578f24dfc8166394dc8d75b1ce91a4221b3e602f11d0a350a683b3dd99b4f2de2134c2cda71844b76cbaac3b6141efe07b5271c9ba715148e
   languageName: node
   linkType: hard
 

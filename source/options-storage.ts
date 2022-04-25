@@ -6,4 +6,5 @@ export default new OptionsSync({
     },
     migrations: [OptionsSync.migrations.removeUnused],
     logging: true,
+    storageType: 'local',
 });
