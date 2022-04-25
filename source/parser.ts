@@ -18,7 +18,9 @@ function addLabel(labelMap: LabelMap, i: number, line: string, address: string, 
         }
         throw err;
     }
-    if (address != canonical) {
+    if (address === canonical) {
+        addresses.push(canonical.toLowerCase());
+    } else {
         addresses.push(canonical);
     }
 
