@@ -16,7 +16,7 @@
         "lint:css": "stylelint source/**/*.css",
         "lint:js": "xo",
         "test": "run-p lint:* build",
-        "watch": "parcel watch source/manifest.json --target webext-dev --dist-dir distribution --no-cache --no-hmr"
+        "watch": "parcel watch source/manifest.json --target webext-dev --host localhost --dist-dir distribution --no-cache"
     },
     "browserslist": [
         "last 1 Chrome version",
