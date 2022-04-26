@@ -1,5 +1,19 @@
 import {LabelMap} from './types.ts';
 
+function isInputNode(node: Node): boolean {
+    if (! node.parentNode) {
+        return false;
+    }
+    if (node.parentNode.nodeName === 'TEXTAREA') {
+        return true;
+    }
+    if (node.parentNode.getAttribute('contenteditable')) {
+        return true;
+    }
+
+    return false;
+}
+
 /**
  * Performs substitutions in text nodes.
  * If the node contains more than just text (ex: it has child nodes),
@@ -19,7 +33,7 @@ export function replaceText(node: Node, labelMap: LabelMap): void {
 
         // Skip textarea nodes due to the potential for accidental submission
         // of substituted emoji where none was intended.
-        if (node.parentNode && node.parentNode.nodeName === 'TEXTAREA') {
+        if (isInputNode(node)) {
             return;
         }
 
@@ -32,22 +46,9 @@ export function replaceText(node: Node, labelMap: LabelMap): void {
             return;
         }
 
-        // Replace every occurrence of 'word' in 'content' with its emoji.
-        // Use the emojiMap for replacements.
-        // for (let [word, emoji] of emojiMap) {
-        //   // Grab the search regex for this word.
-        //   const regex = regexs.get(word);
-        //
-        //   // Actually do the replacement / substitution.
-        //   // Note: if 'word' does not appear in 'content', nothing happens.
-        //   content = content.replace(regex, emoji);
-        // }
         if (labelMap[content]) {
-            content = labelMap[content].label;
+            node.textContent = labelMap[content].label;
         }
-
-        // Now that all the replacements are done, perform the DOM manipulation.
-        node.textContent = content;
     } else {
         // This node contains more than just text, call replaceText() on each
         // of its children.
