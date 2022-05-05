@@ -38,6 +38,9 @@
         "stylelint-config-xo": "^0.21.0",
         "xo": "^0.48.0"
     },
+    "alias": {
+        "process": false
+    },
     "webExt": {
         "sourceDir": "distribution",
         "run": {
