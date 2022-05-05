@@ -23,6 +23,7 @@
         "last 1 Firefox version"
     ],
     "dependencies": {
+        "@parcel/core": "^2.5.0",
         "ethers": "^5.6.4",
         "webext-options-sync": "^3.1.0",
         "webextension-polyfill": "^0.8.0"
@@ -48,5 +49,8 @@
                 "https://github.com/fregante/browser-extension-template"
             ]
         }
+    },
+    "peerDependencies": {
+        "webpack": "*"
     }
 }
