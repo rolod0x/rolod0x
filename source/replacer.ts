@@ -34,6 +34,7 @@ export function replaceText(node: Node, labelMap: LabelMap): void {
         // Skip textarea nodes due to the potential for accidental submission
         // of substituted emoji where none was intended.
         if (isInputNode(node)) {
+            // console.debug('skipping input node', node);
             return;
         }
 
@@ -43,10 +44,12 @@ export function replaceText(node: Node, labelMap: LabelMap): void {
         // once, at the end.
         let content = node.textContent;
         if (!content) {
+            // console.debug('no content under', node.parentNode);
             return;
         }
 
         if (labelMap[content]) {
+            // console.debug('replacing', node, 'containing textContent', content, 'with', labelMap[content].label);
             node.textContent = labelMap[content].label;
         }
     } else {
