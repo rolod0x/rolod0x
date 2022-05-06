@@ -25,15 +25,17 @@ function addLabel(labelMap: LabelMap, i: number, line: string, address: string, 
     }
 
     for (const a of addresses) {
-        labelMap[a] = labelMap[tenderlyAddress(a)] = {
+        const newVal = {
             label,
             comment,
         };
+        labelMap.set(a, newVal);
+        labelMap.set(tenderlyAddress(a), newVal);
     }
 }
 
 export function parseLabels(labels: string): LabelMap {
-    const labelMap: LabelMap = {};
+    const labelMap: LabelMap = new Map<string, AddressData>();
     const labelLineRe = /^s*(0x[\da-f]{40})\s+(.+?)(?:\s+\/\/\s*(.*?)\s*)?$/i;
     const lines = labels.split('\n');
     for (const [i, line] of lines.entries()) {

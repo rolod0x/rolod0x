@@ -1,6 +1,7 @@
 {
     "extends": "@sindresorhus/tsconfig/tsconfig.json",
     "compilerOptions": {
+        "target": "es6",
         "outDir": "dist"
     },
     "exclude": ["node_modules", "build", "distribution"],

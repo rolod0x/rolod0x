@@ -48,9 +48,10 @@ export function replaceText(node: Node, labelMap: LabelMap): void {
             return;
         }
 
-        if (labelMap[content]) {
-            // console.debug('replacing', node, 'containing textContent', content, 'with', labelMap[content].label);
-            node.textContent = labelMap[content].label;
+        if (labelMap.has(content)) {
+            const replacement = labelMap.get(content).label;
+            // console.debug('replacing', node, 'containing textContent', content, 'with', replacement);
+            node.textContent = replacement;
         }
     } else {
         // This node contains more than just text, call replaceText() on each

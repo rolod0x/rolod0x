@@ -3,4 +3,4 @@ export interface AddressData {
     comment?: string;
 }
 
-export type LabelMap = Record<string, AddressData>;
+export type LabelMap = Map<string, AddressData>;
