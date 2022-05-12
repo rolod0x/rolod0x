@@ -275,9 +275,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ethersproject/providers@npm:5.6.4":
-  version: 5.6.4
-  resolution: "@ethersproject/providers@npm:5.6.4"
+"@ethersproject/providers@npm:5.6.5":
+  version: 5.6.5
+  resolution: "@ethersproject/providers@npm:5.6.5"
   dependencies:
     "@ethersproject/abstract-provider": ^5.6.0
     "@ethersproject/abstract-signer": ^5.6.0
@@ -298,7 +298,7 @@ __metadata:
     "@ethersproject/web": ^5.6.0
     bech32: 1.1.4
     ws: 7.4.6
-  checksum: 75ec09bbff5c7b8b9372fd7e35b11da1262ae5b16601beb27a028e3ac9332502765540fd9a07971b843aafb54a145e0a7c6a2f28ed97a5707be83d144a97e0f7
+  checksum: f8b37d72068e845f447f922cceddda73508ad539bb035e3f094b6feb7de2a8c6dde87ecd7ee2ec00712e7135145f7e9a902f0b845a0cb604313caf7cb6b440a7
   languageName: node
   linkType: hard
 
@@ -333,9 +333,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ethersproject/signing-key@npm:5.6.0, @ethersproject/signing-key@npm:^5.6.0":
-  version: 5.6.0
-  resolution: "@ethersproject/signing-key@npm:5.6.0"
+"@ethersproject/signing-key@npm:5.6.1, @ethersproject/signing-key@npm:^5.6.0":
+  version: 5.6.1
+  resolution: "@ethersproject/signing-key@npm:5.6.1"
   dependencies:
     "@ethersproject/bytes": ^5.6.0
     "@ethersproject/logger": ^5.6.0
@@ -343,7 +343,7 @@ __metadata:
     bn.js: ^4.11.9
     elliptic: 6.5.4
     hash.js: 1.1.7
-  checksum: c61118ff1ff89560da59cf77ca6553762e94b9d2757542be15dcf7eb4962327faede941d8461272afb8550cc2e28d38e7e89d199650ebae07a596df3c2059e08
+  checksum: 9292611a2206b9b160a6e7b8ecaf95090efa66e0fb09c4069f6adcceac678b8be59340c623f61a2ffcc57af814745b0fefc1381b0208eda0a62e84234fa85455
   languageName: node
   linkType: hard
 
@@ -1180,7 +1180,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@parcel/transformer-image@npm:2.5.0, @parcel/transformer-image@npm:^2.5.0":
+"@parcel/transformer-image@npm:2.5.0":
   version: 2.5.0
   resolution: "@parcel/transformer-image@npm:2.5.0"
   dependencies:
@@ -1358,13 +1358,6 @@ __metadata:
   peerDependencies:
     "@parcel/core": ^2.5.0
   checksum: 82a1cf1c56e6ba0475721887fe2548edeb4adf2ee6f1b3ed0bc6d70fb37ffd5b55107b064170d00e771c576058ff89786cd2b2d26753cb96eff12151d96df18a
-  languageName: node
-  linkType: hard
-
-"@sindresorhus/tsconfig@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@sindresorhus/tsconfig@npm:2.0.0"
-  checksum: fea48f9b1e139e532b400c9efd8db10ac1c9fd6d750edce04b3f7f17c1f9ae868afe496d9937ebcf8bc5ecbeb83263166b5b5fa1ad699249424f2e2704d5bfe0
   languageName: node
   linkType: hard
 
@@ -2981,9 +2974,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ethers@npm:^5.6.4":
-  version: 5.6.4
-  resolution: "ethers@npm:5.6.4"
+"ethers@npm:^5.6.5":
+  version: 5.6.5
+  resolution: "ethers@npm:5.6.5"
   dependencies:
     "@ethersproject/abi": 5.6.1
     "@ethersproject/abstract-provider": 5.6.0
@@ -3003,11 +2996,11 @@ __metadata:
     "@ethersproject/networks": 5.6.2
     "@ethersproject/pbkdf2": 5.6.0
     "@ethersproject/properties": 5.6.0
-    "@ethersproject/providers": 5.6.4
+    "@ethersproject/providers": 5.6.5
     "@ethersproject/random": 5.6.0
     "@ethersproject/rlp": 5.6.0
     "@ethersproject/sha2": 5.6.0
-    "@ethersproject/signing-key": 5.6.0
+    "@ethersproject/signing-key": 5.6.1
     "@ethersproject/solidity": 5.6.0
     "@ethersproject/strings": 5.6.0
     "@ethersproject/transactions": 5.6.0
@@ -3015,7 +3008,7 @@ __metadata:
     "@ethersproject/wallet": 5.6.0
     "@ethersproject/web": 5.6.0
     "@ethersproject/wordlists": 5.6.0
-  checksum: 2d3a10823a0e83c692f59ad513572fb17f0924941c18d512929dae3bfe1e3aa1d4c77d7547eb993fb4363a73c0d06195580d109a38382e802b96264e7b21f583
+  checksum: f2c2528452eea1fa3c6e735ea9acf8162555b681d712e770a2e11560a71f9c9ef4abbe686e68c4e2cfa4c51eda35fe06f1bac7dc030daf00747c229b8cab5812
   languageName: node
   linkType: hard
 
@@ -5595,15 +5588,14 @@ __metadata:
   dependencies:
     "@parcel/config-webextension": ^2.5.0
     "@parcel/core": ^2.5.0
-    "@parcel/transformer-image": ^2.5.0
-    "@sindresorhus/tsconfig": ^2.0.0
-    ethers: ^5.6.4
+    ethers: ^5.6.5
     npm-run-all: ^4.1.5
     parcel: ^2.5.0
     process: ^0.11.10
     stylelint: ^14.6.0
     stylelint-config-xo: ^0.21.0
-    webext-options-sync: ^3.1.0
+    webext-base-css: ^1.4.0
+    webext-options-sync: ^3.0.1
     webextension-polyfill: ^0.8.0
     xo: ^0.48.0
   peerDependencies:
@@ -6429,6 +6421,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"webext-base-css@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "webext-base-css@npm:1.4.0"
+  checksum: 4dacc724f7aaddac16b33f740ff17e61758432293e9a9f93646795bedeef59313faa860515973cd290826b8fafe075e9dffc416249a099af98d0392ebcbcf2d1
+  languageName: node
+  linkType: hard
+
 "webext-detect-page@npm:^4.0.0":
   version: 4.0.1
   resolution: "webext-detect-page@npm:4.0.1"
@@ -6436,7 +6435,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webext-options-sync@npm:^3.1.0":
+"webext-options-sync@npm:^3.0.1":
   version: 3.1.0
   resolution: "webext-options-sync@npm:3.1.0"
   dependencies:
