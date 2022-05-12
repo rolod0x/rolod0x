@@ -64,7 +64,7 @@ export function replaceText(node: Node, labelMap: LabelMap): void {
     }
 }
 
-// Now monitor the DOM for additions and substitute emoji into new nodes.
+// Now monitor the DOM for additions and substitute labels into new nodes.
 // @see https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver.
 export function startObserver(node: Node, labelMap: LabelMap) {
     const observer = new MutationObserver(mutations => {
