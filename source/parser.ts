@@ -1,7 +1,9 @@
 import {utils} from 'ethers';
 import {AddressData, LabelMap} from './types.ts';
 
-function tenderlyAddress(address: string): string {
+// On many sites (e.g. Tenderly, defender.openzeppelin.com, Gnosis Safe),
+// we see the abbreviated form of addresses.
+function abbreviatedAddress(address: string): string {
     return address.slice(0, 10) + '...' + address.slice(-4);
 }
 
@@ -30,7 +32,11 @@ function addLabel(labelMap: LabelMap, i: number, line: string, address: string, 
             comment,
         };
         labelMap.set(a, newVal);
-        labelMap.set(tenderlyAddress(a), newVal);
+
+        // The abbreviated form has a small risk of collisions,
+        // so technically this is "just" a well-educated guess,
+        // and we append a suffix to indicate the uncertainty.
+        labelMap.set(abbreviatedAddress(a), newVal + ' ?');
     }
 }
 
