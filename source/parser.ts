@@ -1,5 +1,5 @@
 import {utils} from 'ethers';
-import {LabelMap} from './types.ts';
+import {AddressData, LabelMap} from './types.ts';
 
 function tenderlyAddress(address: string): string {
     return address.slice(0, 10) + '...' + address.slice(-4);
