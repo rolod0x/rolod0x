@@ -45,10 +45,10 @@ export function parseLabels(labels: string): LabelMap {
     const labelMap: LabelMap = new Map<string, AddressData>();
     const labelLineRe = /^s*(0x[\da-f]{40})\s+(.+?)(?:\s+\/\/\s*(.*?)\s*)?$/i;
     const lines = labels.split('\n');
-    for (const [i, line] of lines.entries()) {
+    lines.forEach((line, i) => {
         if (/^\s*(\/\/|$)/.test(line)) {
             // Comment or blank line; ignore
-            continue;
+            return;
         }
 
         const m = labelLineRe.exec(line);
@@ -56,7 +56,7 @@ export function parseLabels(labels: string): LabelMap {
             const [_all, address, label, comment] = m;
             if (address && label) {
                 addLabel(labelMap, i, line, address, label, comment);
-                continue;
+                return;
             }
 
             throw new Error(
@@ -68,7 +68,7 @@ export function parseLabels(labels: string): LabelMap {
         }
 
         throw new Error(`Failed to parse line ${i + 1}:\n` + line);
-    }
+    });
 
     return labelMap;
 }
