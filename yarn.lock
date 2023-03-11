@@ -1361,6 +1361,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sindresorhus/tsconfig@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "@sindresorhus/tsconfig@npm:3.0.1"
+  checksum: 8b1ae329b2aadeddcae9dc7446e2622eb305524d4007b432e0939a603a33fe118dc28fc660c504e21a98b153c1d00145a7ad44894e45d76ac16e70049d80a341
+  languageName: node
+  linkType: hard
+
 "@swc/helpers@npm:^0.3.6":
   version: 0.3.8
   resolution: "@swc/helpers@npm:0.3.8"
@@ -5546,7 +5553,7 @@ __metadata:
 
 "resolve@patch:resolve@^1.10.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.10.1#~builtin<compat/resolve>, resolve@patch:resolve@^1.20.0#~builtin<compat/resolve>":
   version: 1.22.0
-  resolution: "resolve@patch:resolve@npm%3A1.22.0#~builtin<compat/resolve>::version=1.22.0&hash=07638b"
+  resolution: "resolve@patch:resolve@npm%3A1.22.0#~builtin<compat/resolve>::version=1.22.0&hash=c3c19d"
   dependencies:
     is-core-module: ^2.8.1
     path-parse: ^1.0.7
@@ -5588,6 +5595,7 @@ __metadata:
   dependencies:
     "@parcel/config-webextension": ^2.5.0
     "@parcel/core": ^2.5.0
+    "@sindresorhus/tsconfig": ^3.0.1
     ethers: ^5.6.5
     npm-run-all: ^4.1.5
     parcel: ^2.5.0
@@ -6329,7 +6337,7 @@ __metadata:
 
 "typescript@patch:typescript@^4.5.5#~builtin<compat/typescript>":
   version: 4.6.2
-  resolution: "typescript@patch:typescript@npm%3A4.6.2#~builtin<compat/typescript>::version=4.6.2&hash=701156"
+  resolution: "typescript@patch:typescript@npm%3A4.6.2#~builtin<compat/typescript>::version=4.6.2&hash=5d3a66"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
