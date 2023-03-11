@@ -1,4 +1,4 @@
-import {LabelMap} from './types.ts';
+import {LabelMap} from './types';
 
 function isInputNode(node: Node): boolean {
     if (! node.parentNode) {

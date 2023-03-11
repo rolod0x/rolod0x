@@ -1,5 +1,6 @@
 import {utils} from 'ethers';
-import {AddressData, LabelMap} from './types.ts';
+
+import {AddressData, LabelMap} from './types';
 
 // On many sites (e.g. Tenderly, defender.openzeppelin.com, Gnosis Safe),
 // we see the abbreviated form of addresses.

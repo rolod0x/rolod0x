@@ -1,7 +1,7 @@
-import optionsStorage from './options-storage.ts';
-import {parseLabels} from './parser.ts';
-import {replaceText, startObserver} from './replacer.ts';
-import {LabelMap} from './types.ts';
+import optionsStorage from './options-storage';
+import {parseLabels} from './parser';
+import {replaceText, startObserver} from './replacer';
+import {LabelMap} from './types';
 
 async function init(): Promise<void> {
     const options = await optionsStorage.getAll();
