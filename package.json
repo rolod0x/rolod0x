@@ -15,6 +15,7 @@
         "lint-fix": "run-p 'lint:* -- --fix'",
         "lint:css": "stylelint source/**/*.css",
         "lint:js": "xo",
+        "lint:ts": "tsc --noEmit",
         "test": "run-p lint:* build",
         "watch": "parcel watch source/manifest.json --target webext-dev --host localhost --dist-dir distribution --no-cache"
     },
