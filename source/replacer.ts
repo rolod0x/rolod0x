@@ -1,13 +1,13 @@
 import {LabelMap} from './types';
 
 function isInputNode(node: Node): boolean {
-    if (! node.parentNode) {
+    if (! node.parentElement) {
         return false;
     }
-    if (node.parentNode.nodeName === 'TEXTAREA') {
+    if (node.parentElement.tagName === 'TEXTAREA') {
         return true;
     }
-    if (node.parentNode.getAttribute('contenteditable')) {
+    if (node.parentElement.getAttribute('contenteditable')) {
         return true;
     }
 
@@ -48,8 +48,9 @@ export function replaceText(node: Node, labelMap: LabelMap): void {
             return;
         }
 
-        if (labelMap.has(content)) {
-            const replacement = labelMap.get(content).label;
+        const data = labelMap.get(content);
+        if (data) {
+            const replacement = data.label;
             // console.debug('replacing', node, 'containing textContent', content, 'with', replacement);
             node.textContent = replacement;
         }

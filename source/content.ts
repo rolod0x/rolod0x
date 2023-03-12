@@ -5,7 +5,7 @@ import {LabelMap} from './types';
 
 async function init(): Promise<void> {
     const options = await optionsStorage.getAll();
-    let labelMap: LabelMap;
+    let labelMap: LabelMap | undefined;
     try {
         labelMap = parseLabels(options.labels);
     } catch (err: any) {
@@ -13,7 +13,7 @@ async function init(): Promise<void> {
     }
 
     if (labelMap) {
-        console.log('got map');
+        console.log('rolod0x: got label map');
         replaceText(document.body, labelMap);
         startObserver(document.body, labelMap);
     }
