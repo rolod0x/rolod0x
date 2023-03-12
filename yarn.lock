@@ -5911,13 +5911,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"process@npm:^0.11.10":
-  version: 0.11.10
-  resolution: "process@npm:0.11.10"
-  checksum: bfcce49814f7d172a6e6a14d5fa3ac92cc3d0c3b9feb1279774708a719e19acd673995226351a082a9ae99978254e320ccda4240ddc474ba31a76c79491ca7c3
-  languageName: node
-  linkType: hard
-
 "promise-inflight@npm:^1.0.1":
   version: 1.0.1
   resolution: "promise-inflight@npm:1.0.1"
@@ -6173,7 +6166,6 @@ __metadata:
     ethers: ^5.6.5
     npm-run-all: ^4.1.5
     parcel: ^2.5.0
-    process: ^0.11.10
     stylelint: ^14.6.0
     stylelint-config-xo: ^0.21.0
     typescript: ^4.9.5
@@ -6194,6 +6186,7 @@ __metadata:
     https-browserify: "*"
     os-browserify: "*"
     path-browserify: "*"
+    process: "*"
     punycode: "*"
     querystring-es3: "*"
     stream-browserify: "*"
