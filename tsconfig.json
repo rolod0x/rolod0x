@@ -2,6 +2,7 @@
     "extends": "@sindresorhus/tsconfig",
     "compilerOptions": {
         "target": "es6",
+        "moduleResolution": "node",
         "outDir": "dist"
     },
     "exclude": ["node_modules", "build", "distribution"],
