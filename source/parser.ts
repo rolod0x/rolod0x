@@ -3,14 +3,19 @@ import {utils} from 'ethers';
 import {AddressData, LabelMap} from './types';
 
 // On many sites (e.g. Tenderly, defender.openzeppelin.com, Gnosis Safe),
-// we see the abbreviated form of addresses.
-function abbreviatedAddress(address: string): string {
+// we see this abbreviated form of addresses.
+function abbreviatedAddress1(address: string): string {
     return address.slice(0, 10) + '...' + address.slice(-4);
+}
+
+// On etherscan, we see a different form of abbreviation:
+function abbreviatedAddress2(address: string): string {
+    return address.slice(0, 8) + '...' + address.slice(-8);
 }
 
 function addLabel(labelMap: LabelMap, i: number, line: string, address: string, label: string, comment?: string) {
     const addresses = [address];
-    let canonical;
+    let canonical: string;
     try {
         canonical = utils.getAddress(address);
     }
@@ -28,16 +33,14 @@ function addLabel(labelMap: LabelMap, i: number, line: string, address: string, 
     }
 
     for (const a of addresses) {
-        const newVal = {
-            label,
-            comment,
-        };
-        labelMap.set(a, newVal);
+        labelMap.set(a, {label, comment});
 
         // The abbreviated form has a small risk of collisions,
         // so technically this is "just" a well-educated guess,
         // and we append a suffix to indicate the uncertainty.
-        labelMap.set(abbreviatedAddress(a), newVal + ' ?');
+        const guess = {label: label + '?', comment};
+        labelMap.set(abbreviatedAddress1(a), guess);
+        labelMap.set(abbreviatedAddress2(a), guess);
     }
 }
 
