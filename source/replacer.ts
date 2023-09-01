@@ -48,9 +48,13 @@ export function replaceText(node: Node, labelMap: LabelMap): void {
             return;
         }
 
-        const data = labelMap.get(content);
+        let match = content.match(/^(?<before>\s*)(?<body>.+?)(?<after>\s*?)$/);
+
+        const data = labelMap.get(match ? match.groups.body : content);
         if (data) {
-            const replacement = data.label;
+            const replacement = match ?
+                match.groups.before + data.label + match.groups.after
+                : data.label;
             // console.debug('replacing', node, 'containing textContent', content, 'with', replacement);
             node.textContent = replacement;
         }
