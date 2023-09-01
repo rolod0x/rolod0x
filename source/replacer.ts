@@ -56,6 +56,7 @@ export function replaceText(node: Node, labelMap: LabelMap): void {
                 match.groups.before + data.label + match.groups.after
                 : data.label;
             // console.debug('replacing', node, 'containing textContent', content, 'with', replacement);
+            node.parentElement.setAttribute('data-rolod0x-original', content);
             node.textContent = replacement;
         }
     } else {
