@@ -1,0 +1,9 @@
+{
+    "name": "rolod0x",
+    "eslintConfig": {
+        "extends": [
+            "xo",
+            "xo-typescript/space"
+        ]
+    }
+}
