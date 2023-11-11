@@ -3,15 +3,26 @@ import {utils} from 'ethers';
 import {AddressData, LabelMap} from './types';
 
 // On many sites (e.g. Tenderly, defender.openzeppelin.com, Gnosis Safe),
-// we see this abbreviated form of addresses.
+// we see addresses abbreviated in the form 0x12345678...1234
 function abbreviatedAddress1(address: string): string {
     return address.slice(0, 10) + '...' + address.slice(-4);
 }
 
-// On etherscan, we see a different form of abbreviation:
+// On etherscan, we see addresses abbreviated in the form 0x123456...12345678
 function abbreviatedAddress2(address: string): string {
     return address.slice(0, 8) + '...' + address.slice(-8);
 }
+
+// On Coinbase, we see addresses abbreviated in the form 0x123...12345
+function abbreviatedAddress3(address: string): string {
+    return address.slice(0, 5) + '...' + address.slice(-5);
+}
+
+const ABBREVIATION_FUNCTIONS = [
+    abbreviatedAddress1,
+    abbreviatedAddress2,
+    abbreviatedAddress3,
+];
 
 function addLabel(labelMap: LabelMap, i: number, line: string, address: string, label: string, comment?: string) {
     const addresses = [address];
@@ -39,8 +50,9 @@ function addLabel(labelMap: LabelMap, i: number, line: string, address: string, 
         // so technically this is "just" a well-educated guess,
         // and we append a suffix to indicate the uncertainty.
         const guess = {label: label + '?', comment};
-        labelMap.set(abbreviatedAddress1(a), guess);
-        labelMap.set(abbreviatedAddress2(a), guess);
+        for (const func of ABBREVIATION_FUNCTIONS) {
+            labelMap.set(func(a), guess);
+        }
     }
 }
 
