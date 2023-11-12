@@ -1,11 +1,18 @@
-node_modules/
-distribution/
-.log/
-.parcel-cache/
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# build
+/dist
+
+# etc
+.DS_Store
+.env.local
+.idea
+
+# compiled
+utils/reload/*.js
+utils/reload/injections/*.js
+public/manifest.json

@@ -1,4 +1,4 @@
-name: Test
+name: Build And Upload Extension Zip Via Artifact
 
 on:
   push:
@@ -6,7 +6,8 @@ on:
   pull_request:
 
 jobs:
-  test:
+  build:
+
     runs-on: ubuntu-latest
 
     steps:
@@ -26,4 +27,8 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - run: pnpm test
+      - run: pnpm build
+
+      - uses: actions/upload-artifact@v3
+        with:
+          path: dist/*
