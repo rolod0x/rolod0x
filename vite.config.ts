@@ -21,6 +21,7 @@ const isProduction = !isDev;
 
 // ENABLE HMR IN BACKGROUND SCRIPT
 const enableHmrInBackgroundScript = true;
+let cacheInvalidationKey: string = generateKey();
 
 const warningsToIgnore = [
   ['SOURCEMAP_ERROR', "Can't resolve original location of error"],
@@ -39,18 +40,18 @@ export default defineConfig({
   },
   plugins: [
     makeManifest({
-      contentScriptCssKey: regenerateCacheInvalidationKey(),
+      contentScriptCssKey: cacheInvalidationKey,
     }),
     react(),
     customDynamicImport(),
     addHmr({ background: enableHmrInBackgroundScript, view: true }),
-    isDev && watchRebuild(),
+    isDev && watchRebuild({ whenWriteBundle: regenerateCacheInvalidationKey }),
     muteWarningsPlugin(warningsToIgnore),
   ],
   publicDir,
   build: {
     outDir,
-    /** Can slowDown build speed. */
+    /** Can slow down build speed. */
     sourcemap: isDev,
     minify: isProduction,
     modulePreload: false,
@@ -69,30 +70,20 @@ export default defineConfig({
         entryFileNames: 'src/pages/[name]/index.js',
         chunkFileNames: isDev ? 'assets/js/[name].js' : 'assets/js/[name].[hash].js',
         assetFileNames: assetInfo => {
-          const { dir, name: _name } = path.parse(assetInfo.name);
-          const assetFolder = dir.split('/').at(-1);
-          const name = assetFolder + firstUpperCase(_name);
-          if (name === 'contentStyle') {
-            return `assets/css/contentStyle${cacheInvalidationKey}.chunk.css`;
-          }
-          return `assets/[ext]/${name}.chunk.[ext]`;
+          const { name } = path.parse(assetInfo.name);
+          const assetFileName = name === 'contentStyle' ? `${name}${cacheInvalidationKey}` : name;
+          return `assets/[ext]/${assetFileName}.chunk.[ext]`;
         },
       },
     },
   },
 });
 
-function firstUpperCase(str: string) {
-  const firstAlphabet = new RegExp(/( |^)[a-z]/, 'g');
-  return str.toLowerCase().replace(firstAlphabet, L => L.toUpperCase());
-}
-
-let cacheInvalidationKey: string = generateKey();
 function regenerateCacheInvalidationKey() {
   cacheInvalidationKey = generateKey();
   return cacheInvalidationKey;
 }
 
 function generateKey(): string {
-  return `${(Date.now() / 100).toFixed()}`;
+  return `${Date.now().toFixed()}`;
 }
