@@ -21,7 +21,7 @@ const isProduction = !isDev;
 
 // ENABLE HMR IN BACKGROUND SCRIPT
 const enableHmrInBackgroundScript = true;
-let cacheInvalidationKey: string = generateKey();
+const cacheInvalidationKeyRef = { current: generateKey() };
 
 const warningsToIgnore = [
   ['SOURCEMAP_ERROR', "Can't resolve original location of error"],
@@ -40,12 +40,12 @@ export default defineConfig({
   },
   plugins: [
     makeManifest({
-      contentScriptCssKey: cacheInvalidationKey,
+      getCacheInvalidationKey,
     }),
     react(),
     customDynamicImport(),
     addHmr({ background: enableHmrInBackgroundScript, view: true }),
-    isDev && watchRebuild({ whenWriteBundle: regenerateCacheInvalidationKey }),
+    isDev && watchRebuild({ afterWriteBundle: regenerateCacheInvalidationKey }),
     muteWarningsPlugin(warningsToIgnore),
   ],
   publicDir,
@@ -71,7 +71,8 @@ export default defineConfig({
         chunkFileNames: isDev ? 'assets/js/[name].js' : 'assets/js/[name].[hash].js',
         assetFileNames: assetInfo => {
           const { name } = path.parse(assetInfo.name);
-          const assetFileName = name === 'contentStyle' ? `${name}${cacheInvalidationKey}` : name;
+          const assetFileName =
+            name === 'contentStyle' ? `${name}${getCacheInvalidationKey()}` : name;
           return `assets/[ext]/${assetFileName}.chunk.[ext]`;
         },
       },
@@ -79,9 +80,12 @@ export default defineConfig({
   },
 });
 
+function getCacheInvalidationKey() {
+  return cacheInvalidationKeyRef.current;
+}
 function regenerateCacheInvalidationKey() {
-  cacheInvalidationKey = generateKey();
-  return cacheInvalidationKey;
+  cacheInvalidationKeyRef.current = generateKey();
+  return cacheInvalidationKeyRef;
 }
 
 function generateKey(): string {
