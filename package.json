@@ -27,8 +27,10 @@
   "dependencies": {
     "@types/webextension-polyfill": "^0.10.7",
     "construct-style-sheets-polyfill": "3.1.0",
+    "ethers": "^6.9.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "webext-options-sync": "^4.2.1",
     "webextension-polyfill": "0.10.0"
   },
   "devDependencies": {
