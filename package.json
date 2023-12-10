@@ -1,11 +1,11 @@
 {
-  "name": "chrome-extension-boilerplate-react-vite",
-  "version": "0.0.1",
-  "description": "chrome extension boilerplate",
+  "name": "rolod0x",
+  "version": "0.1.0",
+  "description": "Your private web3 address book",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite.git"
+    "url": "https://github.com/aspiers/rolod0x.git"
   },
   "scripts": {
     "build": "tsc --noEmit && vite build",
