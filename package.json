@@ -25,6 +25,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@types/webextension-polyfill": "^0.10.7",
     "construct-style-sheets-polyfill": "3.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
