@@ -6,6 +6,7 @@
 
 # build
 /dist
+/distribution
 
 # etc
 .DS_Store
