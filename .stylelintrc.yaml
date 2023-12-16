@@ -1,7 +1,6 @@
-extends:
-    stylelint-config-xo
+extends: stylelint-config-xo
 rules:
-    indentation:
-        - 4
-        - baseIndentLevel: 1
-    color-named: null
+  indentation:
+    - 4
+    - baseIndentLevel: 1
+  color-named: null

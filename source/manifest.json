@@ -1,7 +1,7 @@
 {
     "name": "rolod0x",
     "version": "0.0.1",
-    "description": "Replace blockchain addresses with labels",
+    "description": "Your private web3 address book",
     "homepage_url": "https://github.com/aspiers/rolod0x",
     "manifest_version": 3,
     "minimum_chrome_version": "100",
