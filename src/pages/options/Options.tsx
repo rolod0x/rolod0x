@@ -48,8 +48,7 @@ function OptionsForm() {
           <code>0xaddress Label for address</code>
         </pre>
         <p>
-          You can optionally add <code>{'// a comment'}</code>
-          after the address to provide more information.
+          You can optionally add <code>{'// a comment'}</code> after the address to provide more information.
         </p>
         <div id="parser-error" style={{ display: error ? 'block' : 'none' }}>
           {error}
