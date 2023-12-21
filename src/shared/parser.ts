@@ -2,23 +2,29 @@ import { getAddress } from 'ethers';
 
 import { AddressData, LabelMap } from './types';
 
-// On many sites (e.g. Tenderly, defender.openzeppelin.com, Gnosis Safe),
-// we see addresses abbreviated in the form 0x12345678...1234
-function abbreviatedAddress1(address: string): string {
-  return address.slice(0, 10) + '...' + address.slice(-4);
+const ABBREVIATION_LENGTHS = [
+  // On many sites (e.g. Tenderly, defender.openzeppelin.com, Gnosis Safe),
+  // we see addresses abbreviated in the form 0x12345678...1234
+  [8, 4],
+
+  // On app.safe.global, we see signer addresses in confirmations
+  // abbreviated in the form 0x1234...1234
+  [4, 4],
+
+  // On etherscan, we see addresses abbreviated in the form 0x123456...12345678
+  [6, 8],
+
+  // On Coinbase, we see addresses abbreviated in the form 0x123...12345
+  [3, 5],
+];
+
+function abbreviatedAddresses(address: string): string[] {
+  return ABBREVIATION_LENGTHS.map(
+    ([left, right]: [number, number]) => address.slice(0, left + 2) + '...' + address.slice(-right),
+  );
 }
 
-// On etherscan, we see addresses abbreviated in the form 0x123456...12345678
-function abbreviatedAddress2(address: string): string {
-  return address.slice(0, 8) + '...' + address.slice(-8);
-}
-
-// On Coinbase, we see addresses abbreviated in the form 0x123...12345
-function abbreviatedAddress3(address: string): string {
-  return address.slice(0, 5) + '...' + address.slice(-5);
-}
-
-const ABBREVIATION_FUNCTIONS = [abbreviatedAddress1, abbreviatedAddress2, abbreviatedAddress3];
+const ABBREVIATION_FUNCTIONS = [abbreviatedAddresses];
 
 function addLabel(labelMap: LabelMap, i: number, line: string, address: string, label: string, comment?: string) {
   const addresses = [address];
@@ -45,7 +51,9 @@ function addLabel(labelMap: LabelMap, i: number, line: string, address: string, 
     // and we append a suffix to indicate the uncertainty.
     const guess = { label: label + '?', comment };
     for (const func of ABBREVIATION_FUNCTIONS) {
-      labelMap.set(func(a), guess);
+      for (const abbrev of func(a)) {
+        labelMap.set(abbrev, guess);
+      }
     }
   }
 }
