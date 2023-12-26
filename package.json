@@ -30,7 +30,7 @@
     "@fontsource/roboto": "^5.0.8",
     "@mui/icons-material": "^5.15.0",
     "@mui/material": "^5.15.0",
-    "@mui/system": "^5.15.0",
+    "@mui/system": "^5.15.2",
     "@types/webextension-polyfill": "^0.10.7",
     "construct-style-sheets-polyfill": "3.1.0",
     "ethers": "^6.9.0",
