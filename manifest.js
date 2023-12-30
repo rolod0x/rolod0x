@@ -10,6 +10,16 @@ const manifest = {
   version: packageJson.version,
   description: packageJson.description,
   permissions: ['storage', 'sidePanel'],
+  content_security_policy: {
+    extension_pages: [
+      // Allow react-devtools <script> tag.
+      "script-src http://localhost:8097 'self'",
+      "object-src 'self'",
+
+      // Not sure if this is needed
+      // "connect-src ws://localhost:8081 ws://localhost:8097 'self'",
+    ].join(';'),
+  },
   side_panel: {
     default_path: 'src/pages/sidepanel/index.html',
   },

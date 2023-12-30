@@ -1,4 +1,26 @@
-import React from 'react';
+//// This import should act in lieu of a header
+////
+////   <script src="http://localhost:8097"></script>
+////
+//// according to
+////
+////   https://github.com/facebook/react/blob/main/packages/react-devtools/README.md#usage-with-react-dom
+////
+//// but for some reason it doesn't work:
+//
+// import 'react-devtools';
+//
+//// Standalone devtools does successfully communicate over ws://localhost:8097
+//// but it gets stuck at the "Loading React Element Tree" screen.
+////
+//// It might be due to the way rollup+vite order the compilation.
+//// dist/src/pages/options/index.js shows the React DOM stuff appearing
+//// before the devtools code, and this is explicitly prohibited by
+//// the above link.
+////
+//// So instead unfortunately we have to include the <script> element
+//// to get devtools working.
+
 import { createRoot } from 'react-dom/client';
 
 import '../../shared/fonts';
