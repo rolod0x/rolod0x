@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import { ThemeProvider } from '@mui/material/styles';
 
 import { theme } from '../../shared/theme';
+
 import OptionsAccordion from './OptionsAccordion';
 
 export default function Options() {

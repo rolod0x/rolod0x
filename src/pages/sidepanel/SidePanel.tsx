@@ -1,4 +1,5 @@
 import React from 'react';
+
 import logo from '@assets/img/logo.svg';
 import '@pages/sidepanel/SidePanel.css';
 import useStorage from '@src/shared/hooks/useStorage';
