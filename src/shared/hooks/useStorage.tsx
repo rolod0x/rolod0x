@@ -1,4 +1,5 @@
 import { useSyncExternalStore } from 'react';
+
 import { BaseStorage } from '@src/shared/storages/base';
 
 type WrappedPromise = ReturnType<typeof wrapPromise>;

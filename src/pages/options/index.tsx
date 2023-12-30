@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client';
 
 import '../../shared/fonts';
 import Options from '@pages/options/Options';
-
 import refreshOnUpdate from 'virtual:reload-on-update-in-view';
 
 refreshOnUpdate('pages/options');
