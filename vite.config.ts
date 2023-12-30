@@ -68,6 +68,12 @@ export default defineConfig({
           return `assets/[ext]/${name}.chunk.[ext]`;
         },
       },
+      onwarn(warning, warn) {
+        if (warning.code === 'MODULE_LEVEL_DIRECTIVE') {
+          return;
+        }
+        warn(warning);
+      },
     },
   },
 });
