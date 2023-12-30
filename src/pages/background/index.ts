@@ -1,3 +1,5 @@
+import 'webext-dynamic-content-scripts';
+
 import reloadOnUpdate from 'virtual:reload-on-update-in-background-script';
 
 reloadOnUpdate('pages/background');

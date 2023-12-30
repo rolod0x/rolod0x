@@ -50,6 +50,9 @@ dependencies:
   react-dom:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
+  webext-dynamic-content-scripts:
+    specifier: ^10.0.0
+    version: 10.0.0
   webext-options-sync:
     specifier: ^4.2.1
     version: 4.2.1
@@ -3136,6 +3139,14 @@ packages:
     resolution: {integrity: sha512-HBLKP0chz8BAY6rBdzda11c3wAZeCZ+kIG4weVC2NM3AXzxx09nhe8t0SQNdloAvg5GLuHwq/0SPOOSPvtCcKw==}
     dev: false
 
+  /content-scripts-register-polyfill@4.0.2:
+    resolution: {integrity: sha512-8hDm+tu3BkxHZP7EUIIIo/495F6QNXF7cI9Lwr4PQaiohw2wWmi9k2SE4W4kNrAaLnFw6RZ2ev8EmrQb+sCoGQ==}
+    dependencies:
+      webext-content-scripts: 2.6.0
+      webext-patterns: 1.3.0
+      webext-polyfill-kinda: 1.0.2
+    dev: false
+
   /conventional-changelog-angular@6.0.0:
     resolution: {integrity: sha512-6qLgrBF4gueoC7AFVHu51nHL9pF9FRjXrH+ceVf7WmAfH3gs+gEYOkvxhjMPjZu57I4AGUGoNTY8V7Hrgf1uqg==}
     engines: {node: '>=14'}
@@ -3945,6 +3956,11 @@ packages:
   /escape-string-regexp@4.0.0:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
+
+  /escape-string-regexp@5.0.0:
+    resolution: {integrity: sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw==}
+    engines: {node: '>=12'}
+    dev: false
 
   /escodegen@2.1.0:
     resolution: {integrity: sha512-2NlIDTwUWJN0mRPQOdtQBzbUHvdGY2P1VXSyU83Q3xKxM7WHX2Ql8dKq782Q9TgQUNOLEzEYu9bzLNj1q88I5w==}
@@ -8065,8 +8081,33 @@ packages:
       graceful-fs: 4.2.11
     dev: true
 
+  /webext-additional-permissions@2.4.0:
+    resolution: {integrity: sha512-u4g2taAPJZiwVftQek6pd7LfV6zuhMRRpsy/6SyAn2KBylbXKpY8KVVX7tOpJuuS6DMTLL5Fr49+p5e3SIX9YA==}
+    dependencies:
+      webext-patterns: 1.3.0
+    dev: false
+
+  /webext-content-scripts@2.6.0:
+    resolution: {integrity: sha512-RZzstGZ+opdFbfUaTp3dYQPH5dsEvbT8AJMIJv0uGptBYQgjGgHzQbF/oIgZ7SYuI7915vQlNfzxhO9+PIfcKg==}
+    engines: {node: '>=16'}
+    dependencies:
+      webext-patterns: 1.3.0
+      webext-polyfill-kinda: 1.0.2
+    dev: false
+
   /webext-detect-page@4.1.1:
     resolution: {integrity: sha512-s8DIJESB8Hv1YRT7Yrv42C5P/NJrnD7V/Es0UopWmaww5Ugc8qqkYXh9SYdAbxiNmsXWaHwwvjYEJopQ3cMfcg==}
+    dev: false
+
+  /webext-dynamic-content-scripts@10.0.0:
+    resolution: {integrity: sha512-E0dip26tG893IkcNJRbFCeVa1bUzlbVrTRUCJyfwMcPXX3op94JXVl/pY2qAYwqx78OfN/BK6dCWn7U4TkWukg==}
+    dependencies:
+      content-scripts-register-polyfill: 4.0.2
+      webext-additional-permissions: 2.4.0
+      webext-content-scripts: 2.6.0
+      webext-detect-page: 4.1.1
+      webext-patterns: 1.3.0
+      webext-polyfill-kinda: 1.0.2
     dev: false
 
   /webext-events@2.0.0:
@@ -8084,6 +8125,12 @@ packages:
       webext-detect-page: 4.1.1
       webext-events: 2.0.0
       webext-polyfill-kinda: 1.0.2
+    dev: false
+
+  /webext-patterns@1.3.0:
+    resolution: {integrity: sha512-X9HMnic9ZtvSFKi2cdh0l+sxyj7f9oLedaa2JfxjnyEqGBz8OJjaHQ40jmraX1DJLTHOpqr+rCz1r3MW2+doUg==}
+    dependencies:
+      escape-string-regexp: 5.0.0
     dev: false
 
   /webext-polyfill-kinda@1.0.2:
