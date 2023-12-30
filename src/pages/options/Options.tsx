@@ -12,7 +12,9 @@ export default function Options() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container>
-        <Typography variant="h2">rolod0x settings</Typography>
+        <Typography variant="h3" component="h1">
+          rolod0x settings
+        </Typography>
         <OptionsAccordion />
       </Container>
     </ThemeProvider>

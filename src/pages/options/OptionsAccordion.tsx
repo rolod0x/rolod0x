@@ -12,7 +12,9 @@ export default function BasicAccordion() {
     <div>
       <Accordion defaultExpanded={true}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-          <Typography variant="h4">Local addressbook</Typography>
+          <Typography variant="h4" component="h2">
+            Local addressbook
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <LocalAddressBook />
