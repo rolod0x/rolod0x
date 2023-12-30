@@ -17,10 +17,10 @@ export default function LocalAddressBook() {
       const [linesParsed, _labelMap] = parseLabels(labels);
       console.log(`Parsed ${linesParsed} lines`);
       setError(null);
-    } catch (error: unknown) {
-      console.error(error);
-      if (error instanceof Error) {
-        setError(error.message);
+    } catch (err: unknown) {
+      console.error(err);
+      if (err instanceof Error) {
+        setError(err.message);
       }
     }
   };
