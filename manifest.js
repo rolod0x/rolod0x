@@ -9,7 +9,8 @@ const manifest = {
   name: packageJson.name,
   version: packageJson.version,
   description: packageJson.description,
-  permissions: ['storage', 'sidePanel'],
+  permissions: ['activeTab', 'contextMenus', 'scripting', 'sidePanel', 'storage'],
+  optional_permissions: [],
   optional_host_permissions: ['*://*/*'],
   content_security_policy: {
     extension_pages: [

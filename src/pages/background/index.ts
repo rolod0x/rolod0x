@@ -1,6 +1,10 @@
+import addDomainPermissionToggle from 'webext-domain-permission-toggle';
+
 import 'webext-dynamic-content-scripts';
 
 import reloadOnUpdate from 'virtual:reload-on-update-in-background-script';
+
+addDomainPermissionToggle();
 
 reloadOnUpdate('pages/background');
 

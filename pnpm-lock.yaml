@@ -50,6 +50,9 @@ dependencies:
   react-dom:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
+  webext-domain-permission-toggle:
+    specifier: github:aspiers/webext-domain-permission-toggle#mv3
+    version: github.com/aspiers/webext-domain-permission-toggle/9f8d5d2988583e2d74001883044cba7167fc4d2f
   webext-dynamic-content-scripts:
     specifier: ^10.0.0
     version: 10.0.0
@@ -8137,6 +8140,15 @@ packages:
     resolution: {integrity: sha512-rqQUKeBTOicej0tjDJWDQlOTnDcm9yYJTzgI+7rMdyYV4QHmYMRm+yjkcVgECkg/Wu9MboZ4lYeBPdp1Ep9WgQ==}
     dev: false
 
+  /webext-tools@1.2.3:
+    resolution: {integrity: sha512-GQZrqxyOUqku1GjRNsnv47Cd5CyIMRhtwXl23+LO7yJ/jydsQ6U7j2eWmcSZ3jkqDqL3fXMJxxHxyy97qkVmcA==}
+    engines: {node: '>=18'}
+    dependencies:
+      webext-content-scripts: 2.6.0
+      webext-detect-page: 4.1.1
+      webext-polyfill-kinda: 1.0.2
+    dev: false
+
   /webextension-polyfill@0.10.0:
     resolution: {integrity: sha512-c5s35LgVa5tFaHhrZDnr3FpQpjj1BB+RXhLTYUxGqBVN460HkbM8TBtEqdXWbpTKfzwCcjAZVF7zXCYSKtcp9g==}
     dev: false
@@ -8433,3 +8445,16 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  github.com/aspiers/webext-domain-permission-toggle/9f8d5d2988583e2d74001883044cba7167fc4d2f:
+    resolution: {tarball: https://codeload.github.com/aspiers/webext-domain-permission-toggle/tar.gz/9f8d5d2988583e2d74001883044cba7167fc4d2f}
+    name: webext-domain-permission-toggle
+    version: 4.0.1
+    dependencies:
+      webext-additional-permissions: 2.4.0
+      webext-content-scripts: 2.6.0
+      webext-detect-page: 4.1.1
+      webext-patterns: 1.3.0
+      webext-polyfill-kinda: 1.0.2
+      webext-tools: 1.2.3
+    dev: false
