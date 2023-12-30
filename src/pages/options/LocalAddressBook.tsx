@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 import { parseLabels } from '../../shared/parser';
 import { optionsStorage } from '../../shared/options-storage';
 
+import CodeMirrorTextAddresses from './CodeMirrorTextAddresses';
+
 export default function LocalAddressBook() {
   const [labels, setLabels] = useState('');
   const [error, setError] = useState<string | null>();
@@ -60,14 +62,7 @@ export default function LocalAddressBook() {
       <div id="parser-error" style={{ display: error ? 'block' : 'none' }}>
         {error}
       </div>
-      <textarea
-        name="labels"
-        rows={40}
-        cols={120}
-        value={labels}
-        onChange={handleLabelsChange}
-        spellCheck="false"
-        placeholder="0x6B175474E89094C44Da98b954EedeAC495271d0F DAI    // Dai Stablecoin"></textarea>
+      <CodeMirrorTextAddresses value={labels} onChange={handleLabelsChange} />
     </form>
   );
 }
