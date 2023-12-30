@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Box } from '@mui/system';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 import { parseLabels } from '../../shared/parser';
@@ -31,20 +33,23 @@ export default function LocalAddressBook() {
   );
 
   const handleLabelsChange = useCallback(
-    async event => {
-      setLabels(event.target.value);
-      await optionsStorage.set({ labels: event.target.value });
-      validate(event.target.value);
+    async newValue => {
+      setLabels(newValue);
     },
-    [setLabels, validate],
+    [setLabels],
   );
+
+  const handleSave = useCallback(async () => {
+    await optionsStorage.set({ labels });
+    validate(labels);
+  }, [labels, validate]);
 
   const getOptions = useCallback(async () => {
     const options = await optionsStorage.getAll();
     console.log('Hydrated options from storage');
     setLabels(options.labels);
-    validate(labels);
-  }, [labels, setLabels, validate]);
+    validate(options.labels);
+  }, [setLabels, validate]);
 
   useEffect(() => {
     getOptions();
@@ -52,13 +57,24 @@ export default function LocalAddressBook() {
 
   return (
     <form className="detail-view-container">
-      <Typography>Enter your address labels here, one on each line. Each entry should look something like:</Typography>
-      <Box sx={{ p: 2, fontFamily: 'Monospace' }}>
-        <code>0xaddress Label for address</code>
-      </Box>
-      <Typography>
-        You can optionally add <code>{'// a comment'}</code> after the address to provide more information.
-      </Typography>
+      <Stack direction="row" justifyContent="space-between" alignItems="flex-end" sx={{ pb: 1 }}>
+        <Box>
+          <Typography>
+            Enter your address labels here, one on each line. Each entry should look something like:
+          </Typography>
+          <Box sx={{ p: 2, fontFamily: 'Monospace' }}>
+            <code>0xaddress Label for address</code>
+          </Box>
+          <Typography>
+            You can optionally add <code>{'// a comment'}</code> after the address to provide more information.
+          </Typography>
+        </Box>
+        <Box>
+          <Button variant="contained" onClick={handleSave}>
+            Save
+          </Button>
+        </Box>
+      </Stack>
       <div id="parser-error" style={{ display: error ? 'block' : 'none' }}>
         {error}
       </div>
