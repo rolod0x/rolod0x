@@ -23,9 +23,11 @@ export default function LocalAddressBook() {
         console.log(`Parsed ${linesParsed} lines`);
         setError(null);
       } catch (err: unknown) {
-        console.error(err);
         if (err instanceof Error) {
+          console.error(err.message);
           setError(err.message);
+        } else {
+          console.error(err);
         }
       }
     },
