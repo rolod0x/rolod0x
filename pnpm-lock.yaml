@@ -37,7 +37,7 @@ dependencies:
     version: 4.21.21(@codemirror/language@6.10.0)(@codemirror/state@6.4.0)(@codemirror/view@6.23.0)
   '@uiw/react-codemirror':
     specifier: ^4.21.21
-    version: 4.21.21(@babel/runtime@7.23.6)(@codemirror/autocomplete@6.11.1)(@codemirror/language@6.10.0)(@codemirror/lint@6.4.2)(@codemirror/search@6.5.5)(@codemirror/state@6.4.0)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.23.0)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0)
+    version: 4.21.21(@babel/runtime@7.23.7)(@codemirror/autocomplete@6.11.1)(@codemirror/language@6.10.0)(@codemirror/lint@6.4.2)(@codemirror/search@6.5.5)(@codemirror/state@6.4.0)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.23.0)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0)
   construct-style-sheets-polyfill:
     specifier: 3.1.0
     version: 3.1.0
@@ -50,6 +50,12 @@ dependencies:
   react-dom:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
+  webext-domain-permission-toggle:
+    specifier: github:aspiers/webext-domain-permission-toggle#mv3
+    version: github.com/aspiers/webext-domain-permission-toggle/9f8d5d2988583e2d74001883044cba7167fc4d2f
+  webext-dynamic-content-scripts:
+    specifier: ^10.0.0
+    version: 10.0.0
   webext-options-sync:
     specifier: ^4.2.1
     version: 4.2.1
@@ -58,6 +64,9 @@ dependencies:
     version: 0.10.0
 
 devDependencies:
+  '@codemirror/view':
+    specifier: ^6.23.0
+    version: 6.23.0
   '@commitlint/cli':
     specifier: 18.2.0
     version: 18.2.0(typescript@5.2.2)
@@ -175,6 +184,9 @@ devDependencies:
   vite:
     specifier: 3.2.7
     version: 3.2.7(@types/node@20.8.10)(sass@1.69.5)
+  webpack:
+    specifier: ^5.0.0
+    version: 5.89.0
   ws:
     specifier: 8.15.1
     version: 8.15.1
@@ -545,6 +557,13 @@ packages:
     dependencies:
       regenerator-runtime: 0.14.0
 
+  /@babel/runtime@7.23.7:
+    resolution: {integrity: sha512-w06OXVOFso7LcbzMiDGt+3X7Rh7Ho8MmgPoWU3rarH+8upf+wSU/grlGbWzQyr3DkdN6ZeuMFjpdwW0Q+HxobA==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.14.1
+    dev: false
+
   /@babel/template@7.22.15:
     resolution: {integrity: sha512-QPErUVm4uyJa60rkI73qneDacvdvzxshT3kksGqlGWYdOTIUOwJ7RDUL8sGqslY1uXWSL6xMFKEXDS3ox2uF0w==}
     engines: {node: '>=6.9.0'}
@@ -648,7 +667,6 @@ packages:
 
   /@codemirror/state@6.4.0:
     resolution: {integrity: sha512-hm8XshYj5Fo30Bb922QX9hXB/bxOAVH+qaqHBzw5TKa72vOeslyGwd4X8M0c1dJ9JqxlaMceOQ8RsL9tC7gU0A==}
-    dev: false
 
   /@codemirror/theme-one-dark@6.1.2:
     resolution: {integrity: sha512-F+sH0X16j/qFLMAfbciKTxVOwkdAS336b7AXTKOZhy8BR3eH/RelsnLgLFINrpST63mmN2OuwUt0W2ndUgYwUA==}
@@ -665,7 +683,6 @@ packages:
       '@codemirror/state': 6.4.0
       style-mod: 4.1.0
       w3c-keyname: 2.2.8
-    dev: false
 
   /@commitlint/cli@18.2.0(typescript@5.2.2):
     resolution: {integrity: sha512-F/DCG791kMFmWg5eIdogakuGeg4OiI2kD430ed1a1Hh3epvrJdeIAgcGADAMIOmF+m0S1+VlIYUKG2dvQQ1Izw==}
@@ -1867,12 +1884,12 @@ packages:
   /@types/eslint-scope@3.7.7:
     resolution: {integrity: sha512-MzMFlSLBqNF2gcHWO0G1vP/YQyfvrxZ0bF+u7mzUdZ1/xK4A4sru+nraZz5i3iEIk1l1uyicaDVTB4QbbEkAYg==}
     dependencies:
-      '@types/eslint': 8.44.8
+      '@types/eslint': 8.56.0
       '@types/estree': 1.0.3
     dev: true
 
-  /@types/eslint@8.44.8:
-    resolution: {integrity: sha512-4K8GavROwhrYl2QXDXm0Rv9epkA8GBFu0EI+XrrnnuCl7u8CWBRusX7fXJfanhZTDWSAL24gDI/UqXyUM0Injw==}
+  /@types/eslint@8.56.0:
+    resolution: {integrity: sha512-FlsN0p4FhuYRjIxpbdXovvHQhtlG05O1GG/RNWvdAxTboR438IOTwmrY/vLA+Xfgg06BTkP045M3vpFwTMv1dg==}
     dependencies:
       '@types/estree': 1.0.3
       '@types/json-schema': 7.0.14
@@ -2256,7 +2273,7 @@ packages:
       '@codemirror/view': 6.23.0
     dev: false
 
-  /@uiw/react-codemirror@4.21.21(@babel/runtime@7.23.6)(@codemirror/autocomplete@6.11.1)(@codemirror/language@6.10.0)(@codemirror/lint@6.4.2)(@codemirror/search@6.5.5)(@codemirror/state@6.4.0)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.23.0)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0):
+  /@uiw/react-codemirror@4.21.21(@babel/runtime@7.23.7)(@codemirror/autocomplete@6.11.1)(@codemirror/language@6.10.0)(@codemirror/lint@6.4.2)(@codemirror/search@6.5.5)(@codemirror/state@6.4.0)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.23.0)(codemirror@6.0.1)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-PaxBMarufMWoR0qc5zuvBSt76rJ9POm9qoOaJbqRmnNL2viaF+d+Paf2blPSlm1JSnqn7hlRjio+40nZJ9TKzw==}
     peerDependencies:
       '@babel/runtime': '>=7.11.0'
@@ -2267,7 +2284,7 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
-      '@babel/runtime': 7.23.6
+      '@babel/runtime': 7.23.7
       '@codemirror/commands': 6.3.3
       '@codemirror/state': 6.4.0
       '@codemirror/theme-one-dark': 6.1.2
@@ -3136,6 +3153,14 @@ packages:
     resolution: {integrity: sha512-HBLKP0chz8BAY6rBdzda11c3wAZeCZ+kIG4weVC2NM3AXzxx09nhe8t0SQNdloAvg5GLuHwq/0SPOOSPvtCcKw==}
     dev: false
 
+  /content-scripts-register-polyfill@4.0.2:
+    resolution: {integrity: sha512-8hDm+tu3BkxHZP7EUIIIo/495F6QNXF7cI9Lwr4PQaiohw2wWmi9k2SE4W4kNrAaLnFw6RZ2ev8EmrQb+sCoGQ==}
+    dependencies:
+      webext-content-scripts: 2.6.0
+      webext-patterns: 1.3.0
+      webext-polyfill-kinda: 1.0.2
+    dev: false
+
   /conventional-changelog-angular@6.0.0:
     resolution: {integrity: sha512-6qLgrBF4gueoC7AFVHu51nHL9pF9FRjXrH+ceVf7WmAfH3gs+gEYOkvxhjMPjZu57I4AGUGoNTY8V7Hrgf1uqg==}
     engines: {node: '>=14'}
@@ -3945,6 +3970,11 @@ packages:
   /escape-string-regexp@4.0.0:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
+
+  /escape-string-regexp@5.0.0:
+    resolution: {integrity: sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw==}
+    engines: {node: '>=12'}
+    dev: false
 
   /escodegen@2.1.0:
     resolution: {integrity: sha512-2NlIDTwUWJN0mRPQOdtQBzbUHvdGY2P1VXSyU83Q3xKxM7WHX2Ql8dKq782Q9TgQUNOLEzEYu9bzLNj1q88I5w==}
@@ -6942,6 +6972,10 @@ packages:
   /regenerator-runtime@0.14.0:
     resolution: {integrity: sha512-srw17NI0TUWHuGa5CFGGmhfNIeja30WMBfbslPNhf6JrqQlLN5gcrvig1oqPxiVaXb0oW0XRKtH6Nngs5lKCIA==}
 
+  /regenerator-runtime@0.14.1:
+    resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==}
+    dev: false
+
   /regexp.prototype.flags@1.5.1:
     resolution: {integrity: sha512-sy6TXMN+hnP/wMy+ISxg3krXx7BAtWVO4UouuCN/ziM9UEne0euamVNafDfvC83bRNr95y0V5iijeDQFUNpvrg==}
     engines: {node: '>= 0.4'}
@@ -7546,7 +7580,6 @@ packages:
 
   /style-mod@4.1.0:
     resolution: {integrity: sha512-Ca5ib8HrFn+f+0n4N4ScTIA9iTOQ7MaGS1ylHcoVqW9J7w2w8PzN6g9gKmTYgGEBH8e120+RCmhpje6jC5uGWA==}
-    dev: false
 
   /stylis@4.2.0:
     resolution: {integrity: sha512-Orov6g6BB1sDfYgzWfTHDOxamtX1bE/zo104Dh9e6fqJ3PooipYyfJ0pUmrZO2wAvO8YbEyeFrkV91XTsGMSrw==}
@@ -7609,8 +7642,8 @@ packages:
       execa: 0.7.0
     dev: true
 
-  /terser-webpack-plugin@5.3.9(webpack@5.89.0):
-    resolution: {integrity: sha512-ZuXsqE07EcggTWQjXUj+Aot/OMcD0bMKGgF63f7UxYcu5/AJF53aIpK1YoP5xR9l6s/Hy2b+t1AM0bLNPRuhwA==}
+  /terser-webpack-plugin@5.3.10(webpack@5.89.0):
+    resolution: {integrity: sha512-BKFPWlPDndPs+NGGCr1U59t0XScL5317Y0UReNrHaw9/FwhPENlq6bfgs+4yPfyP51vqC1bQ4rp1EfXW5ZSH9w==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
       '@swc/core': '*'
@@ -8042,7 +8075,6 @@ packages:
 
   /w3c-keyname@2.2.8:
     resolution: {integrity: sha512-dpojBhNsCNN7T82Tm7k26A6G9ML3NkhDsnw9n/eoxSRlVBB4CEtIQ/KTCLI2Fwf3ataSXRhYFkQi3SlnFwPvPQ==}
-    dev: false
 
   /w3c-xmlserializer@4.0.0:
     resolution: {integrity: sha512-d+BFHzbiCx6zGfz0HyQ6Rg69w9k19nviJspaj4yNscGjrHu94sVP+aRm75yEbCh+r2/yR+7q6hux9LVtbuTGBw==}
@@ -8065,8 +8097,33 @@ packages:
       graceful-fs: 4.2.11
     dev: true
 
+  /webext-additional-permissions@2.4.0:
+    resolution: {integrity: sha512-u4g2taAPJZiwVftQek6pd7LfV6zuhMRRpsy/6SyAn2KBylbXKpY8KVVX7tOpJuuS6DMTLL5Fr49+p5e3SIX9YA==}
+    dependencies:
+      webext-patterns: 1.3.0
+    dev: false
+
+  /webext-content-scripts@2.6.0:
+    resolution: {integrity: sha512-RZzstGZ+opdFbfUaTp3dYQPH5dsEvbT8AJMIJv0uGptBYQgjGgHzQbF/oIgZ7SYuI7915vQlNfzxhO9+PIfcKg==}
+    engines: {node: '>=16'}
+    dependencies:
+      webext-patterns: 1.3.0
+      webext-polyfill-kinda: 1.0.2
+    dev: false
+
   /webext-detect-page@4.1.1:
     resolution: {integrity: sha512-s8DIJESB8Hv1YRT7Yrv42C5P/NJrnD7V/Es0UopWmaww5Ugc8qqkYXh9SYdAbxiNmsXWaHwwvjYEJopQ3cMfcg==}
+    dev: false
+
+  /webext-dynamic-content-scripts@10.0.0:
+    resolution: {integrity: sha512-E0dip26tG893IkcNJRbFCeVa1bUzlbVrTRUCJyfwMcPXX3op94JXVl/pY2qAYwqx78OfN/BK6dCWn7U4TkWukg==}
+    dependencies:
+      content-scripts-register-polyfill: 4.0.2
+      webext-additional-permissions: 2.4.0
+      webext-content-scripts: 2.6.0
+      webext-detect-page: 4.1.1
+      webext-patterns: 1.3.0
+      webext-polyfill-kinda: 1.0.2
     dev: false
 
   /webext-events@2.0.0:
@@ -8086,8 +8143,23 @@ packages:
       webext-polyfill-kinda: 1.0.2
     dev: false
 
+  /webext-patterns@1.3.0:
+    resolution: {integrity: sha512-X9HMnic9ZtvSFKi2cdh0l+sxyj7f9oLedaa2JfxjnyEqGBz8OJjaHQ40jmraX1DJLTHOpqr+rCz1r3MW2+doUg==}
+    dependencies:
+      escape-string-regexp: 5.0.0
+    dev: false
+
   /webext-polyfill-kinda@1.0.2:
     resolution: {integrity: sha512-rqQUKeBTOicej0tjDJWDQlOTnDcm9yYJTzgI+7rMdyYV4QHmYMRm+yjkcVgECkg/Wu9MboZ4lYeBPdp1Ep9WgQ==}
+    dev: false
+
+  /webext-tools@1.2.3:
+    resolution: {integrity: sha512-GQZrqxyOUqku1GjRNsnv47Cd5CyIMRhtwXl23+LO7yJ/jydsQ6U7j2eWmcSZ3jkqDqL3fXMJxxHxyy97qkVmcA==}
+    engines: {node: '>=18'}
+    dependencies:
+      webext-content-scripts: 2.6.0
+      webext-detect-page: 4.1.1
+      webext-polyfill-kinda: 1.0.2
     dev: false
 
   /webextension-polyfill@0.10.0:
@@ -8135,7 +8207,7 @@ packages:
       neo-async: 2.6.2
       schema-utils: 3.3.0
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.9(webpack@5.89.0)
+      terser-webpack-plugin: 5.3.10(webpack@5.89.0)
       watchpack: 2.4.0
       webpack-sources: 3.2.3
     transitivePeerDependencies:
@@ -8386,3 +8458,16 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  github.com/aspiers/webext-domain-permission-toggle/9f8d5d2988583e2d74001883044cba7167fc4d2f:
+    resolution: {tarball: https://codeload.github.com/aspiers/webext-domain-permission-toggle/tar.gz/9f8d5d2988583e2d74001883044cba7167fc4d2f}
+    name: webext-domain-permission-toggle
+    version: 4.0.1
+    dependencies:
+      webext-additional-permissions: 2.4.0
+      webext-content-scripts: 2.6.0
+      webext-detect-page: 4.1.1
+      webext-patterns: 1.3.0
+      webext-polyfill-kinda: 1.0.2
+      webext-tools: 1.2.3
+    dev: false

@@ -9,7 +9,9 @@ const manifest = {
   name: packageJson.name,
   version: packageJson.version,
   description: packageJson.description,
-  permissions: ['storage', 'sidePanel'],
+  permissions: ['activeTab', 'contextMenus', 'scripting', 'sidePanel', 'storage'],
+  optional_permissions: [],
+  optional_host_permissions: ['*://*/*'],
   content_security_policy: {
     extension_pages: [
       // Allow react-devtools <script> tag.
@@ -37,7 +39,31 @@ const manifest = {
   },
   content_scripts: [
     {
-      matches: ['http://*/*', 'https://*/*', '<all_urls>'],
+      matches: [
+        // Block explorers
+        'https://blockscan.com/',
+        'https://explorer.bitquery.io/',
+        'https://etherscan.io/',
+        'https://*.etherscan.io/',
+        'https://polygonscan.com/',
+        'https://*.polygonscan.com/',
+        'https://explorer.celo.org/',
+        'https://celoscan.io/',
+        'https://*.celoscan.io/',
+
+        // Multisig management services
+        'https://app.safe.global/',
+        'https://safe.celo.org/',
+
+        // Developer services
+        'https://bugs.immunefi.com/',
+        'https://dashboard.tenderly.co/',
+        'https://defender.openzeppelin.com/',
+
+        // Other services
+        'https://app.disco.xyz/',
+        'https://dashboard.redefine.net/',
+      ],
       all_frames: true,
       js: ['src/pages/content/index.js'],
       // KEY for cache invalidation

@@ -1,4 +1,10 @@
+import addDomainPermissionToggle from 'webext-domain-permission-toggle';
+
+import 'webext-dynamic-content-scripts';
+
 import reloadOnUpdate from 'virtual:reload-on-update-in-background-script';
+
+addDomainPermissionToggle();
 
 reloadOnUpdate('pages/background');
 
@@ -8,4 +14,4 @@ reloadOnUpdate('pages/background');
  */
 reloadOnUpdate('pages/content/style.scss');
 
-console.log('background loaded');
+console.log('rolod0x: background loaded');

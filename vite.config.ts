@@ -1,6 +1,8 @@
+import path, { resolve } from 'path';
+
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import path, { resolve } from 'path';
+
 import makeManifest from './utils/plugins/make-manifest';
 import customDynamicImport from './utils/plugins/custom-dynamic-import';
 import addHmr from './utils/plugins/add-hmr';
@@ -41,7 +43,7 @@ export default defineConfig({
   build: {
     outDir,
     /** Can slowDown build speed. */
-    // sourcemap: isDev,
+    sourcemap: isDev,
     minify: isProduction,
     modulePreload: false,
     reportCompressedSize: isProduction,
