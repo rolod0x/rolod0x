@@ -13,7 +13,7 @@ export default function Options() {
       <CssBaseline />
       <Container>
         <Typography variant="h3" component="h1">
-          rolod0x settings
+          rolod<span style={{ color: theme.palette.primary.main }}>0x</span> settings
         </Typography>
         <OptionsAccordion />
       </Container>
