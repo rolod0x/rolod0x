@@ -1,4 +1,3 @@
-import React from 'react';
 import { Container } from '@mui/system';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
