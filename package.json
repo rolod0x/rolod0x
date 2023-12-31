@@ -19,9 +19,12 @@
     "dev:firefox": "pnpm build:hmr && (run-p wss build:firefox:watch)",
     "test": "jest",
     "commitlint": "commitlint --edit",
-    "lint": "eslint src --ext .ts,.js,.tsx,.jsx",
-    "lint:fix": "pnpm lint --fix",
-    "prettier": "prettier . --write",
+    "lint": "run-p -c lint:eslint lint:prettier",
+    "lint:fix": "run-p lint:eslint:fix lint:prettier:fix",
+    "lint:eslint": "eslint src --max-warnings 0 --ext .ts,.js,.tsx,.jsx",
+    "lint:eslint:fix": "pnpm eslint --fix",
+    "lint:prettier": "prettier --check .",
+    "lint:prettier:fix": "prettier --write .",
     "prepare": "husky install"
   },
   "type": "module",
@@ -93,7 +96,7 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "prettier --write",
-      "eslint --fix"
+      "eslint --fix --max-warnings 0"
     ]
   },
   "packageManager": "pnpm@8.9.2",
