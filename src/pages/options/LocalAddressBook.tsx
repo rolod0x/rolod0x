@@ -44,7 +44,7 @@ export default function LocalAddressBook() {
       setLabels(newValue);
       validate(newValue);
     },
-    [setLabels],
+    [setLabels, validate],
   );
 
   const handleSave = useCallback(async () => {
