@@ -58,6 +58,8 @@ function addLabel(labelMap: LabelMap, i: number, line: string, address: string, 
   }
 }
 
+export class ParseError extends Error {}
+
 export function parseLabels(labels: string): [number, LabelMap] {
   const labelMap: LabelMap = new Map<string, AddressData>();
   const labelLineRe = /^s*(0x[\da-f]{40})\s+(.+?)(?:\s+\/\/\s*(.*?)\s*)?$/i;
@@ -86,7 +88,7 @@ export function parseLabels(labels: string): [number, LabelMap] {
       );
     }
 
-    throw new Error(`Failed to parse line ${i + 1}:\n` + line);
+    throw new ParseError(`Failed to parse line ${i + 1}:\n` + line);
   });
 
   return [linesParsed, labelMap];

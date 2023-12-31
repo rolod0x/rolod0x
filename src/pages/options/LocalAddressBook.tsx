@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Box } from '@mui/system';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { parseLabels } from '../../shared/parser';
+import { parseLabels, ParseError } from '../../shared/parser';
 import { optionsStorage } from '../../shared/options-storage';
 
 import CodeMirrorTextAddresses from './CodeMirrorTextAddresses';
@@ -23,7 +25,10 @@ export default function LocalAddressBook() {
         console.log(`Parsed ${linesParsed} lines`);
         setError(null);
       } catch (err: unknown) {
-        if (err instanceof Error) {
+        if (err instanceof ParseError) {
+          console.log(err.message);
+          setError(err.message);
+        } else if (err instanceof Error) {
           console.error(err.message);
           setError(err.message);
         } else {
@@ -37,6 +42,7 @@ export default function LocalAddressBook() {
   const handleLabelsChange = useCallback(
     async newValue => {
       setLabels(newValue);
+      validate(newValue);
     },
     [setLabels],
   );
@@ -72,14 +78,17 @@ export default function LocalAddressBook() {
           </Typography>
         </Box>
         <Box>
-          <Button variant="contained" onClick={handleSave}>
+          <Button variant="contained" onClick={handleSave} disabled={!!error}>
             Save
           </Button>
         </Box>
       </Stack>
-      <div id="parser-error" style={{ display: error ? 'block' : 'none' }}>
-        {error}
-      </div>
+      <Stack sx={{ width: '100%' }} spacing={2}>
+        <Alert severity="error" style={{ display: !error && 'none' }}>
+          <AlertTitle>Error parsing address book</AlertTitle>
+          {error}
+        </Alert>
+      </Stack>
       <CodeMirrorTextAddresses value={labels} onChange={handleLabelsChange} />
     </form>
   );
