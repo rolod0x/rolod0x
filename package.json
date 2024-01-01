@@ -20,6 +20,7 @@
     "test": "jest",
     "commitlint": "commitlint --edit",
     "lint": "run-p -c lint:eslint lint:prettier",
+    "lint:watch": "while true; do fd -e ts -e tsx -e js | entr -d pnpm lint; done",
     "lint:fix": "run-p lint:eslint:fix lint:prettier:fix",
     "lint:eslint": "eslint src --max-warnings 0 --ext .ts,.js,.tsx,.jsx",
     "lint:eslint:fix": "pnpm eslint --fix",
