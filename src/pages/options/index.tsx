@@ -21,6 +21,7 @@
 //// So instead unfortunately we have to include the <script> element
 //// to get devtools working.
 
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import '../../shared/fonts';
@@ -35,7 +36,11 @@ function init() {
     throw new Error('Can not find #app-container');
   }
   const root = createRoot(appContainer);
-  root.render(<Options />);
+  root.render(
+    <StrictMode>
+      <Options />
+    </StrictMode>,
+  );
 }
 
 init();
