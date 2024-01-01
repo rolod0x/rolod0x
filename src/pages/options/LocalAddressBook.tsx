@@ -64,7 +64,7 @@ export default function LocalAddressBook() {
   }, [getOptions]);
 
   return (
-    <form className="detail-view-container">
+    <Box>
       <Stack direction="row" justifyContent="space-between" alignItems="flex-end" sx={{ pb: 1 }}>
         <Box>
           <Typography>
@@ -90,6 +90,6 @@ export default function LocalAddressBook() {
         </Alert>
       </Stack>
       <CodeMirrorTextAddresses value={labels} onChange={handleLabelsChange} />
-    </form>
+    </Box>
   );
 }
