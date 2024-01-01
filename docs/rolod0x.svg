@@ -1,0 +1,34 @@
+<svg fill="none" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <foreignObject width="100%" height="100%">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <style>
+        #main {
+          text-align: center;
+          background-color: #ffffff00;
+          border: solid 1px red;
+        }
+
+        h1 {
+          font-family:
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            "Noto Sans",
+            Helvetica,
+            Arial,
+            sans-serif,
+            "Apple Color Emoji",
+            "Segoe UI Emoji";
+
+          font-size: 50px;
+          margin: 0;
+          color: black;
+        }
+      </style>
+
+      <div align="center" id="#main">
+        <h1>rolod<span style="color: #00e300">0x</span></h1>
+      </div>
+    </div>
+  </foreignObject>
+</svg>
