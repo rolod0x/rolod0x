@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Box } from '@mui/system';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';

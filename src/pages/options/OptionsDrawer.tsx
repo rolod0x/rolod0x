@@ -33,14 +33,17 @@ const OptionsDrawer = ({ currentPage, setPage }: DrawerProps) => {
   );
 
   const DrawerItem = useCallback(
-    ({ page, children }: DrawerItemProps) => (
-      <ListItem key={page} disablePadding selected={page == currentPage}>
-        <ListItemButton onClick={clickHandler(page)}>
-          <ListItemIcon>{children}</ListItemIcon>
-          <ListItemText primary={page} />
-        </ListItemButton>
-      </ListItem>
-    ),
+    ({ page, children }: DrawerItemProps) => {
+      const selected = page === currentPage;
+      return (
+        <ListItem key={page} disablePadding sx={{ bgcolor: selected && 'primary.dark' }}>
+          <ListItemButton onClick={clickHandler(page)}>
+            <ListItemIcon>{children}</ListItemIcon>
+            <ListItemText primary={page} />
+          </ListItemButton>
+        </ListItem>
+      );
+    },
     [clickHandler, currentPage],
   );
 

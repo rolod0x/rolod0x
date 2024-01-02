@@ -1,38 +1,18 @@
+import { useMemo } from 'react';
+// darken is from:
+// https://github.com/mui/material-ui/blob/48251abb01cac73ee9924feb804286f97c2e45ff/apps/zero-runtime-vite-app/src/utils/colorManipulator.js#L270
+// as documented in:
+// https://mui.com/material-ui/customization/palette/#provide-tokens-manually
+import { darken, useTheme } from '@mui/material/styles';
 import CodeMirror from '@uiw/react-codemirror';
 import { createTheme } from '@uiw/codemirror-themes';
+// For some weird reason this interface needs to be imported via 'import type':
+import type { CreateThemeOptions } from '@uiw/codemirror-themes';
 import { javascript } from '@codemirror/lang-javascript';
 import { tags as t } from '@lezer/highlight';
 
-const myTheme = createTheme({
-  theme: 'light',
-  settings: {
-    background: '#ffffff',
-    backgroundImage: '',
-    foreground: '#75baff',
-    caret: '#5d00ff',
-    selection: '#036dd626',
-    selectionMatch: '#036dd626',
-    lineHighlight: '#8a91991a',
-    gutterBackground: '#fff',
-    gutterForeground: '#8a919966',
-  },
-  styles: [
-    { tag: t.comment, color: '#787b8099' },
-    { tag: t.variableName, color: '#0080ff' },
-    { tag: [t.string, t.special(t.brace)], color: '#5c6166' },
-    { tag: t.number, color: '#5c6166' },
-    { tag: t.bool, color: '#5c6166' },
-    { tag: t.null, color: '#5c6166' },
-    { tag: t.keyword, color: '#5c6166' },
-    { tag: t.operator, color: '#5c6166' },
-    { tag: t.className, color: '#5c6166' },
-    { tag: t.definition(t.typeName), color: '#5c6166' },
-    { tag: t.typeName, color: '#5c6166' },
-    { tag: t.angleBracket, color: '#5c6166' },
-    { tag: t.tagName, color: '#5c6166' },
-    { tag: t.attributeName, color: '#5c6166' },
-  ],
-});
+// import { themeOptions } from '../../shared/theme';
+
 const extensions = [javascript({ jsx: true })];
 
 interface Props {
@@ -41,6 +21,59 @@ interface Props {
 }
 
 export default function CodeMirrorTextAddresses(props: Props) {
+  const theme = useTheme();
+
+  const palette = useMemo(() => theme.palette, [theme]);
+
+  // Taken from abcdef theme
+  // https://uiwjs.github.io/react-codemirror/#/theme/data/abcdef
+  // https://github.com/uiwjs/react-codemirror/blob/master/themes/abcdef/src/index.ts
+  const settings: CreateThemeOptions['settings'] = useMemo(() => {
+    console.log('palette.background.default', palette.background.default);
+    return {
+      background: palette.background.default, // was '#0f0f0f'
+      foreground: palette.primary.main, // was '#defdef'
+      caret: palette.primary.main, // was '#00FF00'
+      selection: '#515151', // could be something related to palette.text.secondary
+      selectionMatch: '#515151',
+      gutterBackground: '#555',
+      gutterForeground: palette.text.primary, // was '#FFFFFF'
+      lineHighlight: darken(palette.info.dark, 0.6), // was '#0a6bcb3d'
+    };
+  }, [palette]);
+
+  const myTheme = useMemo(() => {
+    return createTheme({
+      theme: 'dark',
+      settings,
+      styles: [
+        { tag: t.keyword, color: 'darkgoldenrod', fontWeight: 'bold' },
+        { tag: t.atom, color: '#77F' },
+        { tag: t.comment, color: '#7a7b7c', fontStyle: 'italic' },
+        {
+          tag: t.number,
+          color: palette.secondary.main, // was 'violet'
+        },
+        { tag: t.definition(t.variableName), color: '#fffabc' },
+        {
+          tag: t.variableName,
+          color: palette.text.primary, // was '#abcdef'
+        },
+        { tag: t.function(t.variableName), color: '#fffabc' },
+        { tag: t.typeName, color: '#FFDD44' },
+        { tag: t.tagName, color: '#def' },
+        { tag: t.string, color: '#2b4' },
+        { tag: t.meta, color: '#C9F' },
+        // { tag: t.qualifier, color: '#FFF700' },
+        // { tag: t.builtin, color: '#30aabc' },
+        { tag: t.bracket, color: '#8a8a8a' },
+        { tag: t.attributeName, color: '#DDFF00' },
+        { tag: t.heading, color: 'aquamarine', fontWeight: 'bold' },
+        { tag: t.link, color: 'blueviolet', fontWeight: 'bold' },
+      ],
+    });
+  }, [palette, settings]);
+
   return (
     <CodeMirror
       value={props.value}

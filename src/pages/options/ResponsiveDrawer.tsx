@@ -9,7 +9,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
 
-import Addresses from './Addresses';
+import AddressesSettings from './AddressesSettings';
 import DisplaySettings from './DisplaySettings';
 import SiteSettings from './SiteSettings';
 import OptionsDrawer from './OptionsDrawer';
@@ -83,7 +83,7 @@ export default function ResponsiveDrawer() {
       <Box component="main" sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}>
         <Toolbar />
         <PageComponent page="Addresses">
-          <Addresses />
+          <AddressesSettings />
         </PageComponent>
         <PageComponent page="Display">
           <DisplaySettings />

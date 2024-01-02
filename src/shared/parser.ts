@@ -18,7 +18,7 @@ const ABBREVIATION_LENGTHS = [
   [3, 5],
 ];
 
-function abbreviatedAddresses(address: string): string[] {
+export function abbreviatedAddresses(address: string): string[] {
   return ABBREVIATION_LENGTHS.map(
     ([left, right]: [number, number]) => address.slice(0, left + 2) + '...' + address.slice(-right),
   );

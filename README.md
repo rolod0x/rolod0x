@@ -29,10 +29,13 @@
   - [Download](#download)
   - [Chrome](#chrome)
   - [Firefox](#firefox)
+- [Usage](#usage)
 - [Support](#support)
 - [Development](#development)
 - [Star History](#star-history)
 - [Thanks](#thanks)
+- [Security](#security)
+- [Privacy](#privacy)
 - [License](#license)
 
 ## Intro <a name="intro"></a>
@@ -190,6 +193,42 @@ planned - see <https://github.com/aspiers/rolod0x/issues/19>.
 means it will disappear after closing the browser, so you have to do it
 again on next launch.**
 
+## Usage <a name="usage"></a>
+
+> N.B. The following instructions are for browsers in the Chrome family.
+> Other browsers such as Firefox will have similar usage, but these
+> instructions will need to be augmented accordingly when they are
+> officially supported.
+
+### Usage in Chrome
+
+- Once the extension is installed, it is recommended to pin it to the
+  toolbar.  This can done either from <chrome://extensions>, or by clicking
+  the jigsaw icon, finding the extension in the list, and then clicking the
+  pin icon.
+
+- Open the extension options (e.g. by clicking on the extension icon if
+  it's pinned, or from <chrome://extensions>, or again via the jigsaw icon
+  and then clicking the icon with the three vertical dots to the right of
+  the extension).
+
+- Add some addresses to your address book, as directed by the help text on
+  the options page.
+
+- Click the `Save` button.
+
+- Visit a web page where those addresses are displayed.
+
+- You will now need to make sure that rolod0x is enabled for that website.
+  If you have pinned the extension to the toolbar, you can right-click the
+  extension icon and make sure that `Enable rolod0x on this domain` is
+  selected.  Otherwise, you can reach the same context menu by clicking the
+  three dots icon mentioned above.
+
+- At this point, you should see that the addresses on the web page have been
+  replaced with the labels you provided in the extension options.  If not,
+  try simply reloading the web page.
+
 ## Support <a name="support"></a>
 
 Please see [`CONTRIBUTING.md`](./CONTRIBUTING.md).
@@ -216,6 +255,14 @@ Thanks to all contributors.  Some special mentions:
 
 - The awesome team at my startup [Toucan](https://toucan.earth) for being
   early beta testers and encouraging me to keep working on this project.
+
+## Security <a name="security"></a>
+
+Please see [the `SECURITY.md` file](./SECURITY.md).
+
+## Privacy policy <a name="privacy"></a>
+
+Please see [the `privacy-policy.md` file](./privacy-policy.md).
 
 ## License <a name="license"></a>
 

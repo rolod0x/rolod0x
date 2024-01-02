@@ -18,6 +18,7 @@
     "devtools": "pnpm react-devtools",
     "dev:firefox": "pnpm build:hmr && (run-p wss build:firefox:watch)",
     "test": "jest",
+    "test:watch": "jest --watch",
     "commitlint": "commitlint --edit",
     "lint": "run-p -c lint:eslint lint:prettier",
     "lint:watch": "while true; do fd -e ts -e tsx -e js | entr -d pnpm lint; done",
