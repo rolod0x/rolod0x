@@ -33,6 +33,7 @@
 - [Development](#development)
 - [Star History](#star-history)
 - [Thanks](#thanks)
+- [Privacy](#privacy)
 - [License](#license)
 
 ## Intro <a name="intro"></a>
