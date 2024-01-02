@@ -31,7 +31,7 @@ extremely welcome!
 
 However my spare time to work on this project is limited, so please
 follow these [guidelines on contributing][7 principles] so that you
-can help me to help you ;-
+can help me to help you ;-)
 
 Thanks in advance!
 
