@@ -1,10 +1,14 @@
 import { ThemeOptions, createTheme } from '@mui/material/styles';
 
 export const themeOptions: ThemeOptions = {
+  // Generate this palette with https://zenoo.github.io/mui-theme-creator/
   palette: {
     mode: 'dark',
     primary: {
-      main: '#0f0',
+      main: '#79de0d',
+    },
+    secondary: {
+      main: '#d584e7',
     },
     background: {
       default: '#111111',
