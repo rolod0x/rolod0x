@@ -33,6 +33,7 @@
 - [Development](#development)
 - [Star History](#star-history)
 - [Thanks](#thanks)
+- [Security](#security)
 - [Privacy](#privacy)
 - [License](#license)
 
@@ -217,6 +218,10 @@ Thanks to all contributors.  Some special mentions:
 
 - The awesome team at my startup [Toucan](https://toucan.earth) for being
   early beta testers and encouraging me to keep working on this project.
+
+## Security <a name="security"></a>
+
+Please see [the `SECURITY.md` file](./SECURITY.md).
 
 ## Privacy policy <a name="privacy"></a>
 
