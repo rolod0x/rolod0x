@@ -217,6 +217,10 @@ Thanks to all contributors.  Some special mentions:
 - The awesome team at my startup [Toucan](https://toucan.earth) for being
   early beta testers and encouraging me to keep working on this project.
 
+## Privacy policy <a name="privacy"></a>
+
+Please see [the `privacy-policy.md` file](./privacy-policy.md).
+
 ## License <a name="license"></a>
 
 Except where otherwise stated, this extension is licensed under the GNU
