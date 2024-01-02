@@ -8,7 +8,8 @@ export const themeOptions: ThemeOptions = {
       main: '#79de0d',
     },
     secondary: {
-      main: '#d584e7',
+      // main: '#d584e7', // purpley
+      main: '#7067cf', // slate blue
     },
     background: {
       default: '#111111',

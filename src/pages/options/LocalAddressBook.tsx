@@ -5,15 +5,19 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { useTheme } from '@mui/material/styles';
 
 import { parseLabels, ParseError } from '../../shared/parser';
 import { optionsStorage } from '../../shared/options-storage';
 
 import CodeMirrorTextAddresses from './CodeMirrorTextAddresses';
 
+import '@pages/options/LocalAddressBook.css';
+
 export default function LocalAddressBook() {
   const [labels, setLabels] = useState('');
   const [error, setError] = useState<string | null>();
+  const theme = useTheme();
 
   const validate = useCallback(
     (labels: string): void => {
@@ -74,7 +78,11 @@ export default function LocalAddressBook() {
             <code>0xaddress Label for address</code>
           </Box>
           <Typography>
-            You can optionally add <code>{'// a comment'}</code> after the address to provide more information.
+            You can optionally add{' '}
+            <code className="example-comment" style={{ borderColor: theme.palette.secondary.dark }}>
+              {'//'} a comment
+            </code>{' '}
+            after the address to provide more information.
           </Typography>
         </Box>
         <Box>
