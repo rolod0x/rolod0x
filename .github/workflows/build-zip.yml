@@ -33,13 +33,23 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: rolod0x
+          name: rolod0x.zip
           path: dist/*
+
+      - name: Create zip file
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          RELEASE_NAME="rolod0x-${{github.ref_name}}"
+          echo "RELEASE_NAME=$RELEASE_NAME"
+          echo "RELEASE_NAME=$RELEASE_NAME" >> $GITHUB_ENV
+
+          mv dist $RELEASE_NAME
+          zip -r $RELEASE_NAME.zip $RELEASE_NAME/
 
       - uses: ncipollo/release-action@v1
         if: startsWith(github.ref, 'refs/tags/v')
         with:
-          artifacts: "rolod0x.tar.gz"
+          artifacts: "${{env.RELEASE_NAME}}.zip"
           draft: true
           generateReleaseNotes: true
 

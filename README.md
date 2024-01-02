@@ -159,8 +159,23 @@ Name services in web3 typically come in two forms:
 
 ### Download <a name="download"></a>
 
-Firstly download a `.zip` file from [a recent release][releases] or
-a build of a PR or the `main` branch via the [zip workflow][].
+In the (hopefully near) future, rolod0x will be available from the Chrome
+Web Store (for which you can track progress in [#14][]) and Firefox Add-ons
+directory (see [#19][] and [#15][]).  This will greatly simplify installation.
+
+[#14]: https://github.com/aspiers/rolod0x/issues/14
+[#15]: https://github.com/aspiers/rolod0x/issues/15
+[#19]: https://github.com/aspiers/rolod0x/issues/19
+
+However for now, you can download a `.zip` file from one of two places:
+
+1. Go to [the releases page][releases], pick a recent release, and then look
+   for an asset named something like `rolod0x-v0.1.0.zip` at the Assets
+   section at the bottom of the release page.
+
+2. Go to the [zip workflow][] page, and pick a build of a PR or branch such
+   as `main`.  In this case you will need to download an artifact called
+   `rolod0x.zip`.
 
 [releases]: https://github.com/aspiers/rolod0x/releases
 [zip workflow]: https://github.com/aspiers/rolod0x/actions/workflows/build-zip.yml
