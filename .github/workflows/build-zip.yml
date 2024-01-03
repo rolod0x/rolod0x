@@ -1,4 +1,4 @@
-name: Build And Upload Extension Zip Via Artifact
+name: Build and upload zip
 
 on:
   push:
@@ -31,23 +31,42 @@ jobs:
 
       - run: pnpm build
 
-      - uses: actions/upload-artifact@v4
-        with:
-          name: rolod0x.zip
-          path: dist/*
-
-      - name: Create zip file
-        if: startsWith(github.ref, 'refs/tags/v')
+      - name: Prepare to build archive
         run: |
-          RELEASE_NAME="rolod0x-${{github.ref_name}}"
+          mv dist rolod0x
+
+          if [[ ${{github.ref}} == refs/pull/* ]]; then
+              echo "Detected PR; github.ref=${{github.ref}}"
+              RELEASE_NAME="rolod0x-${{github.head_ref}}"
+          else
+              echo "Detected non-PR; github.ref=${{github.ref}}"
+              RELEASE_NAME="rolod0x-${{github.ref_name}}"
+          fi
           echo "RELEASE_NAME=$RELEASE_NAME"
           echo "RELEASE_NAME=$RELEASE_NAME" >> $GITHUB_ENV
 
-          mv dist $RELEASE_NAME
-          zip -r $RELEASE_NAME.zip $RELEASE_NAME/
+      - name: Upload development build artifact
+        uses: actions/upload-artifact@v4
+        if: ${{ github.ref_type != 'tag' }}
+        with:
+          # .zip suffix gets appended automatically
+          name: "${{env.RELEASE_NAME}}"
 
-      - uses: ncipollo/release-action@v1
+          # Ugly wildcard hack to include containing directory in the .zip file;
+          # this makes the .zip file structure consistent with release .zip files
+          # which are constructed below.
+          # See https://github.com/actions/upload-artifact#upload-using-multiple-paths-and-exclusions
+          path: rolod0x*
+
+      - name: Create release zip file
         if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+
+          zip -r $RELEASE_NAME.zip rolod0x/
+
+      - name: Create a draft release from a tag
+        uses: ncipollo/release-action@v1
+        if: ${{ github.ref_type == 'tag' }}
         with:
           artifacts: "${{env.RELEASE_NAME}}.zip"
           draft: true

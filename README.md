@@ -195,6 +195,17 @@ Chromium and Brave.
 3. Click `Load unpacked` at the top left.
 4. Select the folder you just unpacked.
 
+### Upgrading an existing installation in Chrome
+
+Obviously you can uninstall the existing installation and do a fresh
+install, but that may lose all your config.  So the following is probably
+better:
+
+1. Download and unpack the new version in exactly the same place.
+2. Open `chrome://extensions` in your browser.
+3. Click the reload icon near the bottom right of the rolod0x extension
+   card.
+
 ### Installing in Firefox: <a name="firefox"></a>
 
 **N.B. Firefox support has not been tested yet!**  However it is
