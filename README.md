@@ -5,7 +5,7 @@
   <!-- rolod<span style="color: #00e300">0x</span> -->
   <img src="./docs/rolod0x.svg" width="200" alt="rolod0x" />
 </h1>
-<h2> Your private web3 addressbook </h2>
+<h2> Your free, private web3 addressbook </h2>
 
 [![](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
 [![](https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
