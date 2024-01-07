@@ -1,4 +1,4 @@
-import { abbreviatedAddresses, zeroPaddedAddress } from './parser';
+import { abbreviatedAddresses, zeroPaddedAddress } from './abbreviators';
 
 describe('parser', () => {
   describe('abbreviatedAddresses', () => {
