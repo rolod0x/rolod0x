@@ -222,13 +222,14 @@ again on next launch.**
   the jigsaw icon, finding the extension in the list, and then clicking the
   pin icon.
 
-- Open the extension options (e.g. by clicking on the extension icon if
-  it's pinned, or from <chrome://extensions>, or again via the jigsaw icon
-  and then clicking the icon with the three vertical dots to the right of
-  the extension).
+- On install, the extension's options page will automatically open,
+  but you can re-open it later in the normal way, e.g. by clicking on
+  the extension icon if it's pinned, or from <chrome://extensions>, or
+  again via the jigsaw icon and then clicking the icon with the three
+  vertical dots to the right of the extension.
 
-- Add some addresses to your address book, as directed by the help text on
-  the options page.
+- From the options page, add some addresses to your address book as
+  directed by the help text.
 
 - Click the `Save` button.
 
