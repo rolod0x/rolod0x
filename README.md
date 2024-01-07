@@ -4,6 +4,9 @@
   <img src="./public/logo-440x280.png" alt="rolod0x: Your free private onchain address book" />
 </h1>
 
+[![GitHub release](https://img.shields.io/github/release/aspiers/rolod0x.svg)](https://github.com/aspiers/rolod0x/releases/)
+[![GitHub commits](https://img.shields.io/github/commits-since/aspiers/rolod0x/latest.svg)](https://github.com/aspiers/rolod0x/commit/)
+![GitHub last commit](https://img.shields.io/github/last-commit/aspiers/rolod0x)
 [![](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
 [![](https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![](https://badges.aleen42.com/src/vitejs.svg)](https://vitejs.dev/)
