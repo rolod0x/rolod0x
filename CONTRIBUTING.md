@@ -1,4 +1,4 @@
-# Contributing to `rolod0x`
+# Support and contributing to rolod0x
 
 ## Feedback
 
@@ -8,8 +8,8 @@ Please first check that your bug / issue / enhancement request is not
 already listed in [the issue tracker][issues] or discussed in [the
 Discussions forum][discussions].
 
-[discussions]: https://github.com/aspiers/rolod0x/discussions
 [issues]: https://github.com/aspiers/rolod0x/issues
+[discussions]: https://github.com/aspiers/rolod0x/discussions
 
 If it isn't in either place:
 

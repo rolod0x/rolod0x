@@ -15,7 +15,10 @@ any risk caused by using rolod0x.  Its design is inherently low risk since:
   installed, the extension doesn't rely on internet access *at all*;
   it just inspects and alters web pages locally in the browser.
 
-However, there are two main risks which need to be considered:
+- The data is stored locally within an isolated storage area in the
+  browser reserved for the extension.
+
+However, there are still some minor risks which need to be considered:
 
 1. There is a theoretical but extremely unlikely possibility that the
    extension could label addresses incorrectly, confusing the user into
@@ -28,7 +31,12 @@ However, there are two main risks which need to be considered:
    or other malware.  However this risk applies to all browser extensions,
    and can be mitigated much more easily by virtue of the fact that the code
    is Free and Open Source and can be easily audited and rebuilt from
-   source.
+   source.  If this makes you nervous, you should consider that web3 wallet
+   extensions are in general a far more lucrative target for this type of attack.
+
+3. The browser could be compromised via a bug, which could allow attackers
+   access to the extension's local storage.  Again, this risk applies to
+   all browser extensions, including web3 wallet extensions.
 
 This is work in progress, and any suggestions for improvements are very welcome -
 please see [`CONTRIBUTING.md`](CONTRIBUTING.md).
