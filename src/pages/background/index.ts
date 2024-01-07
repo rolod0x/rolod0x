@@ -14,4 +14,10 @@ reloadOnUpdate('pages/background');
  */
 reloadOnUpdate('pages/content/style.scss');
 
+chrome.runtime.onInstalled.addListener(details => {
+  if (details.reason === chrome.runtime.OnInstalledReason.INSTALL) {
+    chrome.tabs.create({ url: chrome.runtime.getURL('src/pages/options/index.html') });
+  }
+});
+
 console.log('rolod0x: background loaded');
