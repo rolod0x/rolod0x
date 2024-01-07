@@ -1,16 +1,18 @@
 const ABBREVIATION_LENGTHS = [
-  // On many sites (e.g. Tenderly, defender.openzeppelin.com, Gnosis Safe),
-  // we see addresses abbreviated in the form 0x12345678...1234
+  // On many sites (e.g. Tenderly, defender.openzeppelin.com, Gnosis
+  // Safe), addresses are abbreviated in the form 0x12345678...1234
   [8, 4],
 
-  // On app.safe.global, we see signer addresses in confirmations
+  // On app.safe.global, signer addresses in confirmations are
   // abbreviated in the form 0x1234...1234
   [4, 4],
 
-  // On etherscan, we see addresses abbreviated in the form 0x123456...12345678
+  // On etherscan, addresses are abbreviated in the form
+  // 0x123456...12345678
   [6, 8],
 
-  // On Coinbase, we see addresses abbreviated in the form 0x123...12345
+  // On Coinbase and app.ens.domains, addresses are abbreviated in the
+  // form 0x123...12345
   [3, 5],
 ];
 
