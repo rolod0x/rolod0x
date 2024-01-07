@@ -25,6 +25,7 @@
 - [Why is it called rolod0x?](#name)
 - [Why does web3 need private address books?](#why)
   - [But what's wrong with existing name services?](#name-services)
+- [Donations](#donations)
 - [Installation](#installation)
   - [Download](#download)
   - [Chrome](#chrome)
@@ -154,6 +155,22 @@ Name services in web3 typically come in two forms:
    - It requires you to trust the centralized block explorer services with
      your private addresses.  This is in direct opposition to the web3
      values of trust minimization and decentralization!
+
+## Donations <a name="donations"></a>
+
+If you find this project helpful and would like to support its
+development, you can make a donation using the following
+cryptocurrency addresses:
+
+- Send **Bitcoin** to: `bc1quuspvrjepx63k5hpydwqkf6nmtt9eqm86y8w8a`
+
+- Send **ETH** / tokens on any Ethereum network to: `rolod0x.eth` (N.B. that's a zero before the `x`, not an uppercase `O` -- the address should resolve to `0x06357397d8078C19195f4555db7A407b1b1f5FB3`)
+
+Your contribution will go directly towards enhancing the project, covering development costs, and supporting ongoing maintenance.
+
+We appreciate every donation, no matter the size.  It helps to ensure the project's sustainability and motivates us to continue delivering valuable updates and improvements.
+
+Thank you for considering a donation to support our work!
 
 ## Installation <a name="installation"></a>
 
