@@ -1,8 +1,27 @@
 # rolod0x developer guide
 
-Please also see [`CONTRIBUTING.md`](../CONTRIBUTING.md).
+- [How to contribute](#workflows)
+- [Building from source](#build)
+- [Linting](#lint)
+- [Unit tests](#test)
 
-## Building from source
+## How to contribute <a name="workflows"></a>
+
+Please first see [`CONTRIBUTING.md`](../CONTRIBUTING.md).
+
+Any [pull request][using PRs] providing an enhancement or bugfix is
+extremely welcome!
+
+My spare time to work on this project is limited, so please follow
+these [guidelines on contributing][7 principles] so that you can help
+me to help you ;-)
+
+Thanks in advance!
+
+[using PRs]: https://help.github.com/articles/using-pull-requests/
+[7 principles]: http://blog.adamspiers.org/2012/11/10/7-principles-for-contributing-patches-to-software-projects/
+
+## Building from source <a name="build"></a>
 
 1. Install pnpm globally: `npm install -g pnpm` (check your node version >=
    16.6, recommended >= 18)
@@ -26,10 +45,11 @@ Run:
 
 ### Installation
 
-Once you have built the extension, installation is the same as documented
-in [the `README.md` file](../README.md).
+Once you have built the extension, installation is the same as
+documented in the installation guide for [Chrome](./install.md#chrome)
+or [Firefox](./install.md#firefox).
 
-## Linting
+## Linting <a name="lint"></a>
 
 Run `pnpm lint` to run the codebase through `eslint` and `prettier` in
 parallel, or `pnpm lint:eslint` and `pnpm lint:prettier` to do them
@@ -47,7 +67,7 @@ To automatically apply linting fixes, run `pnpm lint:eslint:fix`
 and `pnpm lint:prettier:fix`, or just run `pnpm lint:fix` which
 does both of the other two in parallel.
 
-## Unit tests
+## Unit tests <a name="test"></a>
 
 You can run the test suite once via `pnpm test`; however as with linting
 it is recommended instead to run `pnpm test:watch` which will automatically
