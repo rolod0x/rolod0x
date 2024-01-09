@@ -42,9 +42,9 @@ they have to pick one of two unsatisfactory options:
 Name services in web3 typically come in two forms:
 
 1. Public name services, most notably [ENS](https://ens.domains/).
-   ENS is an awesome service for labelling *public* addresses, but
-   it does not work as a *private* address book since all ENS
-   domains are public to the whole world.  Furthermore:
+   ENS is an awesome service for labelling _public_ addresses, but
+   it does not work as a _private_ address book since all ENS
+   domains are public to the whole world. Furthermore:
 
    - It costs gas every time you want to set up a domain.
 
