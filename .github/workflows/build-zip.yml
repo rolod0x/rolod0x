@@ -42,6 +42,7 @@ jobs:
               echo "Detected non-PR; github.ref=${{github.ref}}"
               RELEASE_NAME="rolod0x-${{github.ref_name}}"
           fi
+          RELEASE_NAME="${RELEASE_NAME//\//_}"
           echo "RELEASE_NAME=$RELEASE_NAME"
           echo "RELEASE_NAME=$RELEASE_NAME" >> $GITHUB_ENV
 
