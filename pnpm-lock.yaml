@@ -42,8 +42,8 @@ dependencies:
     specifier: 3.1.0
     version: 3.1.0
   ethers:
-    specifier: ^6.9.0
-    version: 6.9.0
+    specifier: ^6.9.2
+    version: 6.9.2
   react:
     specifier: 18.2.0
     version: 18.2.0
@@ -4285,8 +4285,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /ethers@6.9.0:
-    resolution: {integrity: sha512-pmfNyQzc2mseLe91FnT2vmNaTt8dDzhxZ/xItAV7uGsF4dI4ek2ufMu3rAkgQETL/TIs0GS5A+U05g9QyWnv3Q==}
+  /ethers@6.9.2:
+    resolution: {integrity: sha512-YpkrtILnMQz5jSEsJQRTpduaGT/CXuLnUIuOYzHA0v/7c8IX91m2J48wSKjzGL5L9J/Us3tLoUdb+OwE3U+FFQ==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@adraffy/ens-normalize': 1.10.0
