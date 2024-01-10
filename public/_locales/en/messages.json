@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "description": "Extension name",
+    "message": "rolod0x"
+  },
+  "extensionDescription": {
+    "description": "Extension description",
+    "message": "Your private web3 address book"
+  }
+}

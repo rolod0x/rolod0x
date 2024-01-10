@@ -41,9 +41,16 @@ const defaultSites = [
 
 const manifest = {
   manifest_version: 3,
+  default_locale: 'en',
   name: packageJson.name,
   version: packageJson.version,
   description: packageJson.description,
+  /**
+   * if you want to support multiple languages, you can use the following reference
+   * https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Internationalization
+   */
+  // name: '__MSG_extensionName__',
+  // description: '__MSG_extensionDescription__',
   permissions: [
     // Needed so that the extension context menu toggle from webext-permission-toggle
     // knows which tab it's on.
