@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
+import * as murmurhash from 'murmurhash';
 
 import { parseLabels, ParseError } from '../../shared/parser';
 import { optionsStorage } from '../../shared/options-storage';
@@ -16,6 +17,8 @@ import '@pages/options/LocalAddressBook.css';
 
 export default function LocalAddressBook() {
   const [labels, setLabels] = useState('');
+  const [currentLabelsHash, setCurrentLabelsHash] = useState(murmurhash.v3(''));
+  const [savedLabelsHash, setSavedLabelsHash] = useState(murmurhash.v3(''));
   const [error, setError] = useState<string | null>();
   const theme = useTheme();
 
@@ -46,6 +49,8 @@ export default function LocalAddressBook() {
   const handleLabelsChange = useCallback(
     async newValue => {
       setLabels(newValue);
+      const hash = murmurhash.v3(newValue);
+      setCurrentLabelsHash(hash);
       validate(newValue);
     },
     [setLabels, validate],
@@ -53,19 +58,27 @@ export default function LocalAddressBook() {
 
   const handleSave = useCallback(async () => {
     await optionsStorage.set({ labels });
+    const hash = murmurhash.v3(labels);
+    setSavedLabelsHash(hash);
     validate(labels);
   }, [labels, validate]);
 
   const getOptions = useCallback(async () => {
     const options = await optionsStorage.getAll();
-    console.log('Hydrated options from storage');
     setLabels(options.labels);
+    const hash = murmurhash.v3(options.labels);
+    console.log(`Hydrated options from storage (hash ${hash})`);
+    setCurrentLabelsHash(hash);
+    setSavedLabelsHash(hash);
     validate(options.labels);
   }, [setLabels, validate]);
 
   useEffect(() => {
     getOptions();
   }, [getOptions]);
+
+  const labelsChanged = currentLabelsHash !== savedLabelsHash;
+  const canSave = !error && labelsChanged;
 
   return (
     <Box>
@@ -86,7 +99,7 @@ export default function LocalAddressBook() {
           </Typography>
         </Box>
         <Box>
-          <Button variant="contained" onClick={handleSave} disabled={!!error}>
+          <Button variant="contained" onClick={handleSave} disabled={!canSave}>
             Save
           </Button>
         </Box>
