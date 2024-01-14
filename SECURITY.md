@@ -11,8 +11,8 @@ any risk caused by using rolod0x.  Its design is inherently low risk since:
 - It only alters web pages by replacing addresses with labels supplied by
   the user.
 
-- It doesn't interact directly with the blockchain.  Indeed, once
-  installed, the extension doesn't rely on internet access *at all*;
+- It doesn't interact directly with the blockchain. Indeed, once
+  installed, the extension doesn't rely on internet access _at all_;
   it just inspects and alters web pages locally in the browser.
 
 - The data is stored locally within an isolated storage area in the

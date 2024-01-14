@@ -40,8 +40,8 @@ Run:
 ### For Firefox: <a name="firefox"></a>
 
 1. Run:
-    - Dev: `pnpm dev:firefox` or `npm run dev:firefox`
-    - Prod: `pnpm build:firefox` or `npm run build:firefox`
+   - Dev: `pnpm dev:firefox` or `npm run dev:firefox`
+   - Prod: `pnpm build:firefox` or `npm run build:firefox`
 
 ### Installation
 

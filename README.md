@@ -1,4 +1,3 @@
-
 <div align="center">
 <img src="public/icon-128.png" alt="logo"/>
 <h1>
@@ -62,7 +61,7 @@ After labelling the From and To addresses in rolod0x, it now looks like this:
 
 ![etherscan transaction with rolod0x](docs/images/etherscan-example-after.png)
 
-Not only that, but whenever these addresses appear on *any other website*,
+Not only that, but whenever these addresses appear on _any other website_,
 they will now be labelled in this human-readable way!
 
 [random-tx]: https://etherscan.io/tx/0x1e2a4312f7d48efd29ed5dbcca6cabae30214ea895ab54c9b789860cbe8d31dd
@@ -76,7 +75,7 @@ they will now be labelled in this human-readable way!
 - Works on any EVM-based blockchain (and could easily support other
   chains in the future).
 - Should work on Chrome, Chromium, Brave, or any other browser in the Chrome family.
-- *May* work on Firefox - not yet tested, but planned (see https://github.com/aspiers/rolod0x/issues/19).
+- _May_ work on Firefox - not yet tested, but planned (see https://github.com/aspiers/rolod0x/issues/19).
 - Named using [a triple pun](./docs/FAQ.md#name).
 
 ## Installation <a name="installation"></a>
@@ -95,11 +94,16 @@ cryptocurrency addresses:
 
 - Send **Bitcoin** to: `bc1quuspvrjepx63k5hpydwqkf6nmtt9eqm86y8w8a`
 
-- Send **ETH** / tokens on any Ethereum network to: `rolod0x.eth` (N.B. that's a zero before the `x`, not an uppercase `O` -- the address should resolve to `0x06357397d8078C19195f4555db7A407b1b1f5FB3`)
+- Send **ETH** / tokens on any Ethereum network to: `rolod0x.eth`
+  (N.B. that's a zero before the `x`, not an uppercase `O` -- the
+  address should resolve to `0x06357397d8078C19195f4555db7A407b1b1f5FB3`)
 
-Your contribution will go directly towards enhancing the project, covering development costs, and supporting ongoing maintenance.
+Your contribution will go directly towards enhancing the project,
+covering development costs, and supporting ongoing maintenance.
 
-We appreciate every donation, no matter the size.  It helps to ensure the project's sustainability and motivates us to continue delivering valuable updates and improvements.
+We appreciate every donation, no matter the size.  It helps to ensure
+the project's sustainability and motivates us to continue delivering
+valuable updates and improvements.
 
 Thank you for considering a donation to support our work!
 

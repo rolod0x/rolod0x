@@ -5,7 +5,6 @@
 - [Upgrading a Chrome installation](#chrome-upgrade)
 - [Installation in Firefox](#firefox)
 
-
 ## Downloads <a name="downloads"></a>
 
 In the (hopefully near) future, rolod0x will be available from the Chrome
@@ -70,8 +69,7 @@ again on next launch.**
 
 ## Installation from source <a name="source"></a>
 
-
-the [developer guide][].
+See the [developer guide][].
 
 Any [pull request][using PRs] providing an enhancement or bugfix is
 extremely welcome!
