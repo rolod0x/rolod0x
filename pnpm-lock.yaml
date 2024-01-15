@@ -41,6 +41,9 @@ dependencies:
   construct-style-sheets-polyfill:
     specifier: 3.1.0
     version: 3.1.0
+  dedent:
+    specifier: ^1.5.1
+    version: 1.5.1
   ethers:
     specifier: ^6.9.2
     version: 6.9.2
@@ -3367,7 +3370,6 @@ packages:
     peerDependenciesMeta:
       babel-plugin-macros:
         optional: true
-    dev: true
 
   /deep-equal@2.2.2:
     resolution: {integrity: sha512-xjVyBf0w5vH0I42jdAZzOKVldmPgSulmiyPRywoyq7HXC9qdgo17kxJE+rdnif5Tz6+pIrpJI8dCpMNLIGkUiA==}

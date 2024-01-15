@@ -1,24 +1,28 @@
 import { Rolod0xOptions, optionsStorage } from '../../shared/options-storage';
-import { parseLabels } from '../../shared/parser';
-import { LabelMap } from '../../shared/types';
+import { Parser, ParseError } from '../../shared/parser';
+import { Mapper } from '../../shared/mapper';
 
 import { replaceText, startObserver } from './replacer';
 
 async function init(): Promise<void> {
   const options: Rolod0xOptions = await optionsStorage.getAll();
-  let labelMap: LabelMap | undefined;
-  let linesParsed: number;
+  const parser = new Parser();
   try {
-    [linesParsed, labelMap] = parseLabels(options.labels);
+    parser.parseMultiline(options.labels);
   } catch (err: unknown) {
-    console.error('rolod0x:', err);
+    if (err instanceof ParseError) {
+      console.log('rolod0x:', err);
+    } else {
+      console.error('rolod0x:', err);
+    }
   }
 
-  if (labelMap) {
-    console.log(`rolod0x: got label map from ${linesParsed} parseable lines`);
-    replaceText(document.body, labelMap);
-    startObserver(document.body, labelMap);
-  }
+  console.log(`rolod0x: extracted ${parser.parsedEntries.length} parseable lines`);
+  const mapper = new Mapper();
+  mapper.importParsed(parser.parsedEntries);
+
+  replaceText(document.body, mapper.labelMap);
+  startObserver(document.body, mapper.labelMap);
 }
 
 void init();

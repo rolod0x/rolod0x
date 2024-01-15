@@ -1,72 +1,73 @@
 import { getAddress } from 'ethers';
 
-import { AddressData, LabelMap } from './types';
-import { ABBREVIATION_FUNCTIONS } from './abbreviators';
+import { ParsedEntries } from './types';
 
-function addLabel(labelMap: LabelMap, i: number, line: string, address: string, label: string, comment?: string) {
-  const addresses = [address];
-  let canonical: string;
-  try {
-    canonical = getAddress(address);
-  } catch (err: unknown) {
-    if (err instanceof Error && err.message.match(/bad address checksum/)) {
-      throw new Error(`Bad address checksum on line ${i + 1}:\n` + line);
-    }
-    throw err;
-  }
-  if (address === canonical) {
-    addresses.push(canonical.toLowerCase());
-  } else {
-    addresses.push(canonical);
-  }
+export class ParseError extends Error {
+  lineNumber: number;
+  message: string;
 
-  for (const a of addresses) {
-    labelMap.set(a, { label, comment });
-
-    // The abbreviated form has a small risk of collisions,
-    // so technically this is "just" a well-educated guess,
-    // and we append a suffix to indicate the uncertainty.
-    const guess = { label: label + '?', comment };
-    for (const func of ABBREVIATION_FUNCTIONS) {
-      for (const abbrev of func(a)) {
-        labelMap.set(abbrev, guess);
-      }
-    }
+  constructor(
+    public readonly _lineNumber: number,
+    public readonly _message?: string,
+  ) {
+    const m = (_message || 'Parsing failed') + ` on line ${_lineNumber}`;
+    super(m);
+    this.message = m;
+    Object.setPrototypeOf(this, new.target.prototype);
+    this.lineNumber = _lineNumber;
   }
 }
 
-export class ParseError extends Error {}
+export class Parser {
+  parsedEntries: ParsedEntries = [];
 
-export function parseLabels(labels: string): [number, LabelMap] {
-  const labelMap: LabelMap = new Map<string, AddressData>();
-  const labelLineRe = /^s*(0x[\da-f]{40})\s+(.+?)(?:\s+\/\/\s*(.*?)\s*)?$/i;
-  const lines = labels.split('\n');
-  let linesParsed = 0;
-  lines.forEach((line, i) => {
-    if (/^\s*(\/\/|$)/.test(line)) {
-      // Comment or blank line; ignore
-      return;
+  constructor(unparsedLabels?: string) {
+    if (unparsedLabels) {
+      this.parseMultiline(unparsedLabels);
     }
+  }
 
-    const m = labelLineRe.exec(line);
-    if (m) {
-      const [_all, address, label, comment] = m;
-      if (address && label) {
-        addLabel(labelMap, i, line, address, label, comment);
-        linesParsed++;
+  parseMultiline(unparsedLabels: string): ParsedEntries {
+    const labelLineRe = /^s*(0x[\da-f]{40})\s+(.+?)(?:\s+\/\/\s*(.*?)\s*)?$/i;
+    const lines = unparsedLabels.split('\n');
+    lines.forEach((line, i) => {
+      if (/^\s*(\/\/|$)/.test(line)) {
+        // Comment or blank line; ignore
         return;
       }
 
-      throw new Error(
-        `BUG: parsing issue with line ${i + 1}; ` +
-          `address=${address ?? 'undefined'}, ` +
-          `label=${label ?? 'undefined'}:\n` +
-          line,
-      );
-    }
+      const m = labelLineRe.exec(line);
+      if (m) {
+        const [_all, address, label, comment] = m;
+        if (address && label) {
+          let canonical: string;
+          try {
+            canonical = getAddress(address);
+          } catch (err: unknown) {
+            if (err instanceof Error && err.message.match(/bad address checksum/)) {
+              throw new ParseError(i + 1, `Bad address checksum`);
+            }
+            throw err;
+          }
+          this.parsedEntries.push({
+            address: canonical,
+            label,
+            comment,
+          });
+          return;
+        }
 
-    throw new ParseError(`Failed to parse line ${i + 1}:\n` + line);
-  });
+        throw new Error(
+          `BUG: parsing issue with line ${i + 1}; ` +
+            `address=${address ?? 'undefined'}, ` +
+            `label=${label ?? 'undefined'}:\n` +
+            line,
+        );
+      }
 
-  return [linesParsed, labelMap];
+      throw new ParseError(i + 1);
+    });
+
+    return this.parsedEntries;
+  }
 }

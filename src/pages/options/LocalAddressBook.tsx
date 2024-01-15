@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
 import * as murmurhash from 'murmurhash';
 
-import { parseLabels, ParseError } from '../../shared/parser';
+import { Parser, ParseError } from '../../shared/parser';
 import { optionsStorage } from '../../shared/options-storage';
 
 import CodeMirrorTextAddresses from './CodeMirrorTextAddresses';
@@ -28,8 +28,8 @@ export default function LocalAddressBook() {
 
       try {
         console.log(`Parsing: ${labels.slice(0, 30)}...`);
-        const [linesParsed, _labelMap] = parseLabels(labels);
-        console.log(`Parsed ${linesParsed} lines`);
+        const parser = new Parser(labels);
+        console.log(`Parsed ${parser.parsedEntries.length} entries`);
         setError(null);
       } catch (err: unknown) {
         if (err instanceof ParseError) {
