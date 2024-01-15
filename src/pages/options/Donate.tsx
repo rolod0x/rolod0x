@@ -1,4 +1,6 @@
 import { Fragment } from 'react';
+import styled from '@emotion/styled';
+import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 // import { List, ListItem, ListItemText } from '@mui/material';
 
@@ -7,6 +9,10 @@ import Rolod0xText from '../../components/Rolod0xText';
 import './Donate.css';
 
 export default function Donate() {
+  const theme = useTheme();
+  const StyledCode = styled('code')`
+    color: ${theme.palette.secondary.light};
+  `;
   return (
     <Fragment>
       <Typography variant="h4" component="h2">
@@ -18,13 +24,16 @@ export default function Donate() {
       </Typography>
       <ul>
         <li>
-          Send <strong>Bitcoin</strong> to: <code>bc1quuspvrjepx63k5hpydwqkf6nmtt9eqm86y8w8a</code>
+          Send <strong>Bitcoin</strong> to:{' '}
+          <StyledCode>bc1quuspvrjepx63k5hpydwqkf6nmtt9eqm86y8w8a</StyledCode>
         </li>
         <li>
-          Send <strong>ETH</strong> or tokens on any Ethereum network to: <code>rolod0x.eth</code>
+          Send <strong>ETH</strong> or tokens on any Ethereum network to:{' '}
+          <StyledCode>rolod0x.eth</StyledCode>
           <br />
-          (N.B. that's a zero before the <code>x</code>, not an uppercase <code>O</code> &emdash;
-          the address should resolve to <code>0x06357397d8078C19195f4555db7A407b1b1f5FB3</code>.)
+          (N.B. that's a zero before the <StyledCode>x</StyledCode>, not an uppercase{' '}
+          <StyledCode>O</StyledCode> &mdash; the address should resolve to{' '}
+          <StyledCode>0x06357397d8078C19195f4555db7A407b1b1f5FB3</StyledCode>.)
         </li>
       </ul>
       <Typography paragraph>
