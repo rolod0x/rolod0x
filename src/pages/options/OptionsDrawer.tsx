@@ -23,7 +23,6 @@ interface DrawerItemProps {
 const OptionsDrawer = ({ currentPage, setPage }: DrawerProps) => {
   const clickHandler = useCallback(
     (newPage: string) => {
-      console.log(`Returning click handler for ${newPage}`);
       return () => {
         console.log(`Switching page to ${newPage}`);
         setPage(newPage);

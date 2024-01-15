@@ -42,4 +42,7 @@ const SidePanel = () => {
   );
 };
 
-export default withErrorBoundary(withSuspense(SidePanel, <div> Loading ... </div>), <div> Error Occur </div>);
+export default withErrorBoundary(
+  withSuspense(SidePanel, <div> Loading ... </div>),
+  <div> Error Occur </div>,
+);
