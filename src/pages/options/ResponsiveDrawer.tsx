@@ -6,7 +6,8 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { useTheme } from '@mui/material/styles';
+
+import Rolod0xText from '../../components/Rolod0xText';
 
 import AddressesSettings from './AddressesSettings';
 import DisplaySettings from './DisplaySettings';
@@ -22,7 +23,6 @@ const drawerWidth = 200;
 export default function ResponsiveDrawer() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [currentPage, setPage] = useState('Addresses');
-  const theme = useTheme();
 
   const handleDrawerToggle = useCallback(() => {
     setMobileOpen(!mobileOpen);
@@ -50,7 +50,7 @@ export default function ResponsiveDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h3" component="h1">
-            rolod<span style={{ color: theme.palette.primary.main }}>0x</span> settings
+            <Rolod0xText /> settings
           </Typography>
         </Toolbar>
       </AppBar>

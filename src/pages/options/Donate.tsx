@@ -2,13 +2,15 @@ import { Fragment } from 'react';
 import Typography from '@mui/material/Typography';
 // import { List, ListItem, ListItemText } from '@mui/material';
 
+import Rolod0xText from '../../components/Rolod0xText';
+
 import './Donate.css';
 
 export default function Donate() {
   return (
     <Fragment>
       <Typography variant="h4" component="h2">
-        Donate
+        Support <Rolod0xText />!
       </Typography>
       <Typography paragraph>
         If you find this project helpful and would like to support its development, you can make a
