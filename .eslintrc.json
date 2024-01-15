@@ -45,7 +45,8 @@
       {
         "newlines-between": "always"
       }
-    ]
+    ],
+    "react/no-unescaped-entities": ["error", { "forbid": [">", "}"] }]
   },
   "globals": {
     "chrome": "readonly"

@@ -1,5 +1,6 @@
 import { useCallback, ReactNode } from 'react';
 import ContactsIcon from '@mui/icons-material/Contacts';
+import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import DisplaySettingsIcon from '@mui/icons-material/DisplaySettings';
 import DomainVerificationIcon from '@mui/icons-material/DomainVerification';
 import Divider from '@mui/material/Divider';
@@ -59,6 +60,9 @@ const OptionsDrawer = ({ currentPage, setPage }: DrawerProps) => {
         </DrawerItem>
         <DrawerItem page="Site">
           <DomainVerificationIcon />
+        </DrawerItem>
+        <DrawerItem page="Donate">
+          <CardGiftcardIcon />
         </DrawerItem>
       </List>
     </div>
