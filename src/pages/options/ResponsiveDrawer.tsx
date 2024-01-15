@@ -10,6 +10,7 @@ import { useTheme } from '@mui/material/styles';
 
 import AddressesSettings from './AddressesSettings';
 import DisplaySettings from './DisplaySettings';
+import Donate from './Donate';
 import SiteSettings from './SiteSettings';
 import OptionsDrawer from './OptionsDrawer';
 
@@ -93,6 +94,9 @@ export default function ResponsiveDrawer() {
         </PageComponent>
         <PageComponent page="Site">
           <SiteSettings />
+        </PageComponent>
+        <PageComponent page="Donate">
+          <Donate />
         </PageComponent>
       </Box>
     </Box>
