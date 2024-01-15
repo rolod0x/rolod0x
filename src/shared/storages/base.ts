@@ -14,14 +14,20 @@ export type BaseStorage<D> = {
   subscribe: (listener: () => void) => () => void;
 };
 
-export function createStorage<D>(key: string, fallback: D, config?: { storageType?: StorageType }): BaseStorage<D> {
+export function createStorage<D>(
+  key: string,
+  fallback: D,
+  config?: { storageType?: StorageType },
+): BaseStorage<D> {
   let cache: D | null = null;
   let listeners: Array<() => void> = [];
   const storageType = config?.storageType ?? StorageType.Local;
 
   const _getDataFromStorage = async (): Promise<D> => {
     if (chrome.storage[storageType] === undefined) {
-      throw new Error(`Check your storage permission into manifest.json: ${storageType} is not defined`);
+      throw new Error(
+        `Check your storage permission into manifest.json: ${storageType} is not defined`,
+      );
     }
     const value = await chrome.storage[storageType].get([key]);
     return value[key] ?? fallback;

@@ -12,10 +12,14 @@ export default function AddressesSettings() {
   return (
     <Box>
       <Alert severity="warning" variant="outlined">
-        After changing entries in the address book, you may have to reload pages for the changes to take effect.
+        After changing entries in the address book, you may have to reload pages for the changes to
+        take effect.
       </Alert>
       <Accordion defaultExpanded={true}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header">
           <Typography variant="h4" component="h2">
             Local addressbook
           </Typography>

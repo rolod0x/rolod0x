@@ -3,7 +3,7 @@
   "semi": true,
   "singleQuote": true,
   "arrowParens": "avoid",
-  "printWidth": 120,
+  "printWidth": 100,
   "bracketSameLine": true,
   "htmlWhitespaceSensitivity": "strict"
 }
