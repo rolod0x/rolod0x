@@ -43,21 +43,15 @@ const manifest = {
     {
       matches: [
         // Block explorers
-        'https://blockscan.com/*',
-        'https://explorer.bitquery.io/*',
-        'https://etherscan.io/*',
         'https://*.etherscan.io/*',
-        'https://polygonscan.com/*',
+        'https://blockscan.com/*',
         'https://*.polygonscan.com/*',
-        'https://arbiscan.io/*',
         'https://*.arbiscan.io/*',
-        'https://gnosisscan.io/*',
         'https://*.gnosisscan.io/*',
-        'https://explorer.zksync.io/*',
         'https://*.explorer.zksync.io/*',
         'https://explorer.celo.org/*',
-        'https://celoscan.io/*',
         'https://*.celoscan.io/*',
+        'https://explorer.bitquery.io/*',
 
         // Multisig management services
         'https://app.safe.global/*',
