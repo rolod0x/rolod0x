@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 // https://github.com/mui/material-ui/blob/48251abb01cac73ee9924feb804286f97c2e45ff/apps/zero-runtime-vite-app/src/utils/colorManipulator.js#L270
 // as documented in:
 // https://mui.com/material-ui/customization/palette/#provide-tokens-manually
-import { darken, useTheme } from '@mui/material/styles';
+import { alpha, darken, useTheme } from '@mui/material/styles';
 import CodeMirror from '@uiw/react-codemirror';
 import { createTheme } from '@uiw/codemirror-themes';
 // For some weird reason this interface needs to be imported via 'import type':
@@ -34,11 +34,11 @@ export default function CodeMirrorTextAddresses(props: Props) {
       background: palette.background.default, // was '#0f0f0f'
       foreground: palette.primary.main, // was '#defdef'
       caret: palette.primary.main, // was '#00FF00'
-      selection: '#515151', // could be something related to palette.text.secondary
-      selectionMatch: '#515151',
+      selection: palette.secondary.main,
+      selectionMatch: palette.secondary.main,
       gutterBackground: '#555',
       gutterForeground: palette.text.primary, // was '#FFFFFF'
-      lineHighlight: darken(palette.info.dark, 0.6), // was '#0a6bcb3d'
+      lineHighlight: alpha(darken(palette.info.dark, 0.6), 0.5), // was '#0a6bcb3d'
     };
   }, [palette]);
 
