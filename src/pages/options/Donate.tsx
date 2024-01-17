@@ -2,7 +2,6 @@ import { Fragment } from 'react';
 import styled from '@emotion/styled';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-// import { List, ListItem, ListItemText } from '@mui/material';
 
 import Rolod0xText from '../../components/Rolod0xText';
 
