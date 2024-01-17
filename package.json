@@ -51,6 +51,7 @@
     "webext-domain-permission-toggle": "^4.1.0",
     "webext-dynamic-content-scripts": "^10.0.0",
     "webext-options-sync": "^4.2.1",
+    "webext-permissions": "^3.1.2",
     "webextension-polyfill": "0.10.0"
   },
   "devDependencies": {

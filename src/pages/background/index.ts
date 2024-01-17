@@ -2,8 +2,16 @@ import addDomainPermissionToggle from 'webext-domain-permission-toggle';
 
 import 'webext-dynamic-content-scripts';
 
+import { checkPermissions } from '../../shared/permissions';
+
 import reloadOnUpdate from 'virtual:reload-on-update-in-background-script';
 
+chrome.permissions.onAdded.addListener(() => checkPermissions('onAdded'));
+chrome.permissions.onRemoved.addListener(() => checkPermissions('onRemoved'));
+chrome.tabs.onActivated.addListener(() => checkPermissions('tab activated'));
+// chrome.tabs.onUpdated.addListener(() => checkPermissions('tab updated'));
+
+checkPermissions('init');
 addDomainPermissionToggle();
 
 reloadOnUpdate('pages/background');
