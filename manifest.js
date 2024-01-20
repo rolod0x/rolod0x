@@ -62,6 +62,13 @@ const manifest = {
         'https://dashboard.tenderly.co/*',
         'https://defender.openzeppelin.com/*',
 
+        // Portfolio trackers
+        'https://coinshift.xyz/*',
+        'https://koinly.com/*',
+        'https://cointracker.io/*',
+        'https://coinstats.app/*',
+        'https://accointing.com/*',
+
         // Other services
         'https://app.disco.xyz/*',
         'https://dashboard.redefine.net/*',
