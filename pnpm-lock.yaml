@@ -57,8 +57,8 @@ dependencies:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
   webext-domain-permission-toggle:
-    specifier: github:fregante/webext-domain-permission-toggle#refactor
-    version: github.com/fregante/webext-domain-permission-toggle/2e9038fde42794cf368a701cd672e02de0bb1fe5
+    specifier: github:fregante/webext-domain-permission-toggle#main
+    version: github.com/fregante/webext-domain-permission-toggle/e5e46b8b4020cb834e981c7cbe59822fca9d8606
   webext-dynamic-content-scripts:
     specifier: ^10.0.0
     version: 10.0.0
@@ -8197,12 +8197,16 @@ packages:
     resolution: {integrity: sha512-418gnJGVzKBLMyF/+9fX9pMrp/p7yFKfX9bhe8Qe2oHDjaLqUJNP2WF9kVZ9E/p7lmiBC+f96dkEgwK/yu0QRA==}
     engines: {node: '>=16'}
     dependencies:
-      webext-patterns: 1.3.0
+      webext-patterns: 1.4.0
       webext-polyfill-kinda: 1.0.2
     dev: false
 
   /webext-detect-page@4.1.1:
     resolution: {integrity: sha512-s8DIJESB8Hv1YRT7Yrv42C5P/NJrnD7V/Es0UopWmaww5Ugc8qqkYXh9SYdAbxiNmsXWaHwwvjYEJopQ3cMfcg==}
+    dev: false
+
+  /webext-detect-page@4.2.1:
+    resolution: {integrity: sha512-saiMkdwrjR5WIoW+clqFCZiGLqbe5Bp3udnPpsaFj6gL3uYTYhpkSjc7givG6gwE3g0oXLPIKOhhP52MrHdK+w==}
     dev: false
 
   /webext-detect-page@5.0.0:
@@ -8244,6 +8248,13 @@ packages:
       escape-string-regexp: 5.0.0
     dev: false
 
+  /webext-patterns@1.4.0:
+    resolution: {integrity: sha512-ntzTWnsRuus0hZdHlbjNUFSA9mZz+sYU37KxkU5Et5TggkxqMienQBeGP2At4TMzeXpUvC3fafCr2Oiy7YDsBw==}
+    engines: {node: '>=18'}
+    dependencies:
+      escape-string-regexp: 5.0.0
+    dev: false
+
   /webext-permissions@3.1.2:
     resolution: {integrity: sha512-/eE5ggBROQx7/mN3AqDjDhOtswFlhu2jAsaQBBc2aCLlsmQbGW/aGwg0w9/AlXtYlhYYVpB79oYp829A2HViKg==}
     engines: {node: '>=18'}
@@ -8260,7 +8271,7 @@ packages:
     engines: {node: '>=18'}
     dependencies:
       webext-content-scripts: 2.6.1
-      webext-detect-page: 4.1.1
+      webext-detect-page: 4.2.1
       webext-polyfill-kinda: 1.0.2
     dev: false
 
@@ -8561,8 +8572,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/fregante/webext-domain-permission-toggle/2e9038fde42794cf368a701cd672e02de0bb1fe5:
-    resolution: {tarball: https://codeload.github.com/fregante/webext-domain-permission-toggle/tar.gz/2e9038fde42794cf368a701cd672e02de0bb1fe5}
+  github.com/fregante/webext-domain-permission-toggle/e5e46b8b4020cb834e981c7cbe59822fca9d8606:
+    resolution: {tarball: https://codeload.github.com/fregante/webext-domain-permission-toggle/tar.gz/e5e46b8b4020cb834e981c7cbe59822fca9d8606}
     name: webext-domain-permission-toggle
     version: 4.1.0
     engines: {node: '>=16'}
