@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 
 import Rolod0xText from '../../components/Rolod0xText';
 
+import SettingsPageHeader from './SettingsPageHeader';
+
 import './Donate.css';
 
 export default function Donate() {
@@ -14,9 +16,9 @@ export default function Donate() {
   `;
   return (
     <Fragment>
-      <Typography variant="h4" component="h2">
+      <SettingsPageHeader>
         Support <Rolod0xText />!
-      </Typography>
+      </SettingsPageHeader>
       <Typography paragraph>
         If you find this project helpful and would like to support its development, you can make a
         donation using the following cryptocurrency addresses:

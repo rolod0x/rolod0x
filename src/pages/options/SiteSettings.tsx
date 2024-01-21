@@ -20,6 +20,7 @@ import { queryAdditionalPermissions, normalizeManifestPermissions } from 'webext
 import Rolod0xText from '../../components/Rolod0xText';
 
 import SettingsSection from './SettingsSection';
+import SettingsPageHeader from './SettingsPageHeader';
 
 export function Loading() {
   return (
@@ -132,9 +133,8 @@ export default function SiteSettings() {
 
   return (
     <Fragment>
-      <Typography variant="h4" component="h2" sx={{ pb: 2 }}>
-        Allowed sites
-      </Typography>
+      <SettingsPageHeader title="Allowed sites" />
+
       <Typography paragraph>
         <Rolod0xText /> will only activate on the sites listed below.
       </Typography>
