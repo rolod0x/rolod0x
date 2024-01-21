@@ -23,6 +23,7 @@
 
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { HashRouter } from 'react-router-dom';
 
 import '../../shared/fonts';
 import Options from '@pages/options/Options';
@@ -35,10 +36,13 @@ function init() {
   if (!appContainer) {
     throw new Error('Can not find #app-container');
   }
+
   const root = createRoot(appContainer);
   root.render(
     <StrictMode>
-      <Options />
+      <HashRouter>
+        <Options />
+      </HashRouter>
     </StrictMode>,
   );
 }

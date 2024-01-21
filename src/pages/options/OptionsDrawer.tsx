@@ -1,4 +1,5 @@
 import { useCallback, ReactNode } from 'react';
+import { useLocation, NavLink } from 'react-router-dom';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import DisplaySettingsIcon from '@mui/icons-material/DisplaySettings';
@@ -11,40 +12,32 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Toolbar from '@mui/material/Toolbar';
 
-interface DrawerProps {
-  currentPage: string;
-  setPage: (string) => void;
-}
-
 interface DrawerItemProps {
   page: string;
   children: ReactNode;
 }
 
-const OptionsDrawer = ({ currentPage, setPage }: DrawerProps) => {
-  const clickHandler = useCallback(
-    (newPage: string) => {
-      return () => {
-        console.log(`Switching page to ${newPage}`);
-        setPage(newPage);
-      };
-    },
-    [setPage],
-  );
+const OptionsDrawer = () => {
+  const location = useLocation();
 
   const DrawerItem = useCallback(
     ({ page, children }: DrawerItemProps) => {
-      const selected = page === currentPage;
+      const path = '/' + page;
+      const selected =
+        location.pathname === path || (location.key === 'default' && page === 'Addresses');
+      // console.log('OptionsDrawer page', page, 'selected', selected);
       return (
-        <ListItem key={page} disablePadding sx={{ bgcolor: selected && 'primary.dark' }}>
-          <ListItemButton onClick={clickHandler(page)}>
-            <ListItemIcon>{children}</ListItemIcon>
-            <ListItemText primary={page} />
-          </ListItemButton>
-        </ListItem>
+        <NavLink to={path} style={{ textDecoration: 'none' }}>
+          <ListItem key={page} disablePadding sx={{ bgcolor: selected && 'primary.dark' }}>
+            <ListItemButton>
+              <ListItemIcon>{children}</ListItemIcon>
+              <ListItemText primary={page} sx={{ color: 'text.primary' }} />
+            </ListItemButton>
+          </ListItem>
+        </NavLink>
       );
     },
-    [clickHandler, currentPage],
+    [location],
   );
 
   return (
