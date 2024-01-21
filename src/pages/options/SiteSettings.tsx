@@ -139,17 +139,11 @@ export default function SiteSettings() {
         <Rolod0xText /> will only activate on the sites listed below.
       </Typography>
 
-      <SettingsSection>
-        <Typography variant="h5" component="h3" sx={{ pb: 1 }}>
-          Your sites
-        </Typography>
+      <SettingsSection title="Your sites">
         <AdditionalSites />
       </SettingsSection>
 
-      <SettingsSection>
-        <Typography variant="h5" component="h3" sx={{ pb: 1 }}>
-          Built-in sites
-        </Typography>
+      <SettingsSection title="Built-in sites">
         <Typography paragraph>
           These are automatically enabled by rolod0x and cannot be disabled (yet, but{' '}
           <a
