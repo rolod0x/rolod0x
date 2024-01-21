@@ -74,6 +74,7 @@ export function replaceText(node: Node, labelMap: LabelMap): void {
 // @see https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver.
 export function startObserver(node: Node, labelMap: LabelMap) {
   const observer = new MutationObserver(mutations => {
+    // console.time("rolod0x: observer");
     for (const mutation of mutations) {
       if (mutation.addedNodes && mutation.addedNodes.length > 0) {
         // This DOM change was new nodes being added. Run our substitution
@@ -85,6 +86,7 @@ export function startObserver(node: Node, labelMap: LabelMap) {
         }
       }
     }
+    // console.timeEnd("rolod0x: observer");
   });
 
   observer.observe(node, {
