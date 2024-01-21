@@ -9,6 +9,7 @@ import ListItem from '@mui/material/ListItem';
 // import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 // import ListItemText from '@mui/material/ListItemText';
+import Paper from '@mui/material/Paper';
 // import PublicIcon from '@mui/icons-material/Public';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
@@ -35,7 +36,24 @@ const StyledTextField = styled(TextField)(`
   }
 `);
 
-function SiteItem(url: string, handleDelete: (string) => Promise<void>) {
+function ManifestSiteItem(url: string) {
+  const dummyAction = <DeleteIcon sx={{ color: '#0000' }} />;
+  return (
+    <ListItem key={url} sx={{ pl: 0 }}>
+      <ListItemIcon sx={{ minWidth: 45 }}>{dummyAction}</ListItemIcon>
+      <StyledTextField
+        variant="outlined"
+        disabled
+        defaultValue={url}
+        InputProps={{
+          readOnly: true,
+        }}
+      />
+    </ListItem>
+  );
+}
+
+function AdditionalSiteItem(url: string, handleDelete: (string) => Promise<void>) {
   const primaryAction = (
     <Tooltip title="Delete this site from the allow list">
       <IconButton edge="end" aria-label="delete" onClick={() => handleDelete(url)}>
@@ -44,7 +62,7 @@ function SiteItem(url: string, handleDelete: (string) => Promise<void>) {
     </Tooltip>
   );
   return (
-    <ListItem key={url}>
+    <ListItem key={url} sx={{ pl: 0 }}>
       <ListItemIcon sx={{ minWidth: 45 }}>{primaryAction}</ListItemIcon>
       <StyledTextField
         variant="outlined"
@@ -58,17 +76,20 @@ function SiteItem(url: string, handleDelete: (string) => Promise<void>) {
 }
 
 export default function SiteSettings() {
-  const [sites, setSites] = useState<string[]>([]);
+  const [manifestSites, setManifestSites] = useState<string[] | null>(null);
+  const [additionalSites, setAdditionalSites] = useState<string[] | null>(null);
 
   const fetchSites = useCallback(async () => {
     const manifestPermissions = await normalizeManifestPermissions();
+    setManifestSites([...manifestPermissions.origins]);
+
     const newPermissions = await queryAdditionalPermissions();
-    setSites([...manifestPermissions.origins, ...newPermissions.origins]);
-  }, [setSites]);
+    setAdditionalSites([...newPermissions.origins]);
+  }, [setManifestSites, setAdditionalSites]);
 
   useEffect(() => {
     fetchSites();
-  });
+  }, [fetchSites]);
 
   const handleDelete = useCallback(
     async (url: string) => {
@@ -79,7 +100,8 @@ export default function SiteSettings() {
     [fetchSites],
   );
 
-  const siteItems = sites.map(url => SiteItem(url, handleDelete));
+  const manifestSiteItems = manifestSites?.map(url => ManifestSiteItem(url));
+  const additionalSiteItems = additionalSites?.map(url => AdditionalSiteItem(url, handleDelete));
 
   return (
     <Fragment>
@@ -87,17 +109,52 @@ export default function SiteSettings() {
         Allowed sites
       </Typography>
       <Typography paragraph>
-        <Rolod0xText /> will only activate on the sites listed below:
+        <Rolod0xText /> will only activate on the sites listed below.
       </Typography>
-      <Typography>
-        {sites.length > 0 ? (
+
+      <Paper elevation={2} variant="outlined" sx={{ p: 1, mb: 2 }}>
+        <Typography variant="h5" component="h3" sx={{ pb: 1 }}>
+          Your sites
+        </Typography>
+        <Typography paragraph>
+          You can enable a site by right-clicking on the extension icon, and selecting the option
+          "Enable rolod0x on this domain".
+        </Typography>
+        {additionalSites ? (
+          additionalSites.length > 0 ? (
+            <List dense sx={{ maxWidth: 500 }}>
+              {additionalSiteItems}
+            </List>
+          ) : (
+            <Typography paragraph>No additional sites yet</Typography>
+          )
+        ) : (
+          <Loading />
+        )}
+      </Paper>
+
+      <Paper elevation={2} variant="outlined" sx={{ p: 1, mb: 2 }}>
+        <Typography variant="h5" component="h3" sx={{ pb: 1 }}>
+          Built-in sites
+        </Typography>
+        <Typography paragraph>
+          These are automatically enabled by rolod0x and cannot be disabled (yet, but{' '}
+          <a
+            href="https://github.com/aspiers/rolod0x/blob/main/CONTRIBUTING.md"
+            target="_noblank"
+            rel="noreferrer noopener">
+            let us know
+          </a>{' '}
+          if this is an issue for you).
+        </Typography>
+        {manifestSites ? (
           <List dense sx={{ maxWidth: 500 }}>
-            {siteItems}
+            {manifestSiteItems}
           </List>
         ) : (
           <Loading />
         )}
-      </Typography>
+      </Paper>
     </Fragment>
   );
 }
