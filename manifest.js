@@ -6,12 +6,46 @@ const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
  * After changing, please reload the extension at `chrome://extensions`
  * @type {chrome.runtime.ManifestV3}
  */
+const defaultSites = [
+  // Block explorers
+  'https://*.etherscan.io/*',
+  'https://blockscan.com/*',
+  'https://*.polygonscan.com/*',
+  'https://*.arbiscan.io/*',
+  'https://*.gnosisscan.io/*',
+  'https://*.explorer.zksync.io/*',
+  'https://explorer.celo.org/*',
+  'https://*.celoscan.io/*',
+  'https://explorer.bitquery.io/*',
+
+  // Multisig management services
+  'https://app.safe.global/*',
+  'https://safe.celo.org/*',
+
+  // Developer services
+  'https://bugs.immunefi.com/*',
+  'https://dashboard.tenderly.co/*',
+  'https://defender.openzeppelin.com/*',
+
+  // Portfolio trackers
+  'https://coinshift.xyz/*',
+  'https://koinly.com/*',
+  'https://cointracker.io/*',
+  'https://coinstats.app/*',
+  'https://accointing.com/*',
+
+  // Other services
+  'https://app.disco.xyz/*',
+  'https://dashboard.redefine.net/*',
+];
+
 const manifest = {
   manifest_version: 3,
   name: packageJson.name,
   version: packageJson.version,
   description: packageJson.description,
   permissions: ['activeTab', 'contextMenus', 'scripting', 'sidePanel', 'storage'],
+  host_permissions: [],
   optional_permissions: [],
   optional_host_permissions: ['*://*/*'],
   content_security_policy: {
@@ -42,36 +76,8 @@ const manifest = {
   content_scripts: [
     {
       matches: [
-        // Block explorers
-        'https://*.etherscan.io/*',
-        'https://blockscan.com/*',
-        'https://*.polygonscan.com/*',
-        'https://*.arbiscan.io/*',
-        'https://*.gnosisscan.io/*',
-        'https://*.explorer.zksync.io/*',
-        'https://explorer.celo.org/*',
-        'https://*.celoscan.io/*',
-        'https://explorer.bitquery.io/*',
-
-        // Multisig management services
-        'https://app.safe.global/*',
-        'https://safe.celo.org/*',
-
-        // Developer services
-        'https://bugs.immunefi.com/*',
-        'https://dashboard.tenderly.co/*',
-        'https://defender.openzeppelin.com/*',
-
-        // Portfolio trackers
-        'https://coinshift.xyz/*',
-        'https://koinly.com/*',
-        'https://cointracker.io/*',
-        'https://coinstats.app/*',
-        'https://accointing.com/*',
-
-        // Other services
-        'https://app.disco.xyz/*',
-        'https://dashboard.redefine.net/*',
+        // 'https://*.example.com/*',
+        ...defaultSites,
       ],
       all_frames: true,
       js: ['src/pages/content/index.js'],
