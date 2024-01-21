@@ -57,8 +57,8 @@ dependencies:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
   webext-domain-permission-toggle:
-    specifier: github:aspiers/webext-domain-permission-toggle#toggle-fix
-    version: github.com/aspiers/webext-domain-permission-toggle/080de751c53d1d898b01b501853faed21b3072ae
+    specifier: github:fregante/webext-domain-permission-toggle#refactor
+    version: github.com/fregante/webext-domain-permission-toggle/2e9038fde42794cf368a701cd672e02de0bb1fe5
   webext-dynamic-content-scripts:
     specifier: ^10.0.0
     version: 10.0.0
@@ -8177,6 +8177,14 @@ packages:
       webext-patterns: 1.3.0
     dev: false
 
+  /webext-alert@0.9.0:
+    resolution: {integrity: sha512-/aWI4MlJWxO4pH7NVRZ+McXomQUAJIMOE7dqpTOc7UDPV44HlZth/VH3CLm5O9y+u0h6mYbIja2GFWa0og5CGw==}
+    engines: {node: '>=20'}
+    dependencies:
+      webext-detect-page: 5.0.0
+      webext-events: 2.0.0
+    dev: false
+
   /webext-content-scripts@2.6.0:
     resolution: {integrity: sha512-RZzstGZ+opdFbfUaTp3dYQPH5dsEvbT8AJMIJv0uGptBYQgjGgHzQbF/oIgZ7SYuI7915vQlNfzxhO9+PIfcKg==}
     engines: {node: '>=16'}
@@ -8553,12 +8561,13 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/aspiers/webext-domain-permission-toggle/080de751c53d1d898b01b501853faed21b3072ae:
-    resolution: {tarball: https://codeload.github.com/aspiers/webext-domain-permission-toggle/tar.gz/080de751c53d1d898b01b501853faed21b3072ae}
+  github.com/fregante/webext-domain-permission-toggle/2e9038fde42794cf368a701cd672e02de0bb1fe5:
+    resolution: {tarball: https://codeload.github.com/fregante/webext-domain-permission-toggle/tar.gz/2e9038fde42794cf368a701cd672e02de0bb1fe5}
     name: webext-domain-permission-toggle
     version: 4.1.0
     engines: {node: '>=16'}
     dependencies:
+      webext-alert: 0.9.0
       webext-content-scripts: 2.6.1
       webext-detect-page: 5.0.0
       webext-permissions: 3.1.2
