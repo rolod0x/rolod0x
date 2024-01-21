@@ -1,4 +1,5 @@
-import { useCallback, useState, ReactNode } from 'react';
+import { useCallback, useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -9,10 +10,6 @@ import Typography from '@mui/material/Typography';
 
 import Rolod0xText from '../../components/Rolod0xText';
 
-import AddressesSettings from './AddressesSettings';
-import DisplaySettings from './DisplaySettings';
-import Donate from './Donate';
-import SiteSettings from './SiteSettings';
 import OptionsDrawer from './OptionsDrawer';
 
 const drawerWidth = 200;
@@ -22,15 +19,10 @@ const drawerWidth = 200;
 
 export default function ResponsiveDrawer() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [currentPage, setPage] = useState('Addresses');
 
   const handleDrawerToggle = useCallback(() => {
     setMobileOpen(!mobileOpen);
   }, [mobileOpen, setMobileOpen]);
-
-  const PageComponent = ({ page, children }: { page: string; children: ReactNode }) => (
-    <Box style={{ display: currentPage !== page && 'none' }}>{children}</Box>
-  );
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -70,7 +62,7 @@ export default function ResponsiveDrawer() {
             display: { xs: 'block', sm: 'none' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}>
-          <OptionsDrawer {...{ currentPage, setPage }} />
+          <OptionsDrawer />
         </Drawer>
         <Drawer
           variant="permanent"
@@ -79,25 +71,14 @@ export default function ResponsiveDrawer() {
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
           open>
-          <OptionsDrawer {...{ currentPage, setPage }} />
+          <OptionsDrawer />
         </Drawer>
       </Box>
       <Box
         component="main"
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}>
         <Toolbar />
-        <PageComponent page="Addresses">
-          <AddressesSettings />
-        </PageComponent>
-        <PageComponent page="Display">
-          <DisplaySettings />
-        </PageComponent>
-        <PageComponent page="Sites">
-          <SiteSettings />
-        </PageComponent>
-        <PageComponent page="Donate">
-          <Donate />
-        </PageComponent>
+        <Outlet />
       </Box>
     </Box>
   );

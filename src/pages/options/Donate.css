@@ -1,8 +1,0 @@
-code {
-  /* border-color needs to be set in React since it gets the
-     color from the theme dynamically */
-  border-width: 1px;
-  border-radius: 4px;
-  border-style: solid;
-  padding: 2px;
-}
