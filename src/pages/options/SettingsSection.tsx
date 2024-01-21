@@ -11,7 +11,7 @@ export default function SettingsSection({
 }): ReactNode {
   return (
     <Paper elevation={2} variant="outlined" sx={{ p: 1, mb: 2, maxWidth: 1000 }}>
-      <Typography variant="h5" component="h3" sx={{ pb: 1 }}>
+      <Typography variant="h5" component="h3" sx={{ pb: 2 }}>
         {title}
       </Typography>
       {children}
