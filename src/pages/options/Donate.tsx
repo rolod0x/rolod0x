@@ -1,22 +1,17 @@
 import { Fragment } from 'react';
-import styled from '@emotion/styled';
-import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
 import Rolod0xText from '../../components/Rolod0xText';
 
-import './Donate.css';
+import SettingsPageHeader from './SettingsPageHeader';
+import StyledCode from './StyledCode';
 
 export default function Donate() {
-  const theme = useTheme();
-  const StyledCode = styled('code')`
-    color: ${theme.palette.secondary.light};
-  `;
   return (
     <Fragment>
-      <Typography variant="h4" component="h2">
+      <SettingsPageHeader>
         Support <Rolod0xText />!
-      </Typography>
+      </SettingsPageHeader>
       <Typography paragraph>
         If you find this project helpful and would like to support its development, you can make a
         donation using the following cryptocurrency addresses:

@@ -3,14 +3,18 @@ import OptionsSync from 'webext-options-sync';
 
 export interface Rolod0xOptions extends Options {
   labels: string;
+  displayLabelFormat: string;
+  displayGuessFormat: string;
 }
 
-const defaults: Rolod0xOptions = {
+export const DEFAULT_OPTIONS: Rolod0xOptions = {
   labels: '',
+  displayLabelFormat: '%n (0x%4l…%4r)',
+  displayGuessFormat: '[0x%4l…%n?…%4r]',
 };
 
 export const optionsStorage = new OptionsSync<Rolod0xOptions>({
-  defaults,
+  defaults: DEFAULT_OPTIONS,
   migrations: [OptionsSync.migrations.removeUnused],
   logging: true,
   storageType: 'local',

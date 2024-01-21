@@ -9,7 +9,6 @@ import ListItem from '@mui/material/ListItem';
 // import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 // import ListItemText from '@mui/material/ListItemText';
-import Paper from '@mui/material/Paper';
 // import PublicIcon from '@mui/icons-material/Public';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
@@ -19,6 +18,9 @@ import 'webextension-polyfill';
 import { queryAdditionalPermissions, normalizeManifestPermissions } from 'webext-permissions';
 
 import Rolod0xText from '../../components/Rolod0xText';
+
+import SettingsSection from './SettingsSection';
+import SettingsPageHeader from './SettingsPageHeader';
 
 export function Loading() {
   return (
@@ -105,40 +107,43 @@ export default function SiteSettings() {
   const manifestSiteItems = manifestSites?.map(url => ManifestSiteItem(url));
   const additionalSiteItems = additionalSites?.map(url => AdditionalSiteItem(url, handleDelete));
 
-  return (
-    <Fragment>
-      <Typography variant="h4" component="h2" sx={{ pb: 2 }}>
-        Allowed sites
-      </Typography>
-      <Typography paragraph>
-        <Rolod0xText /> will only activate on the sites listed below.
-      </Typography>
+  const AdditionalSites = () => {
+    if (!additionalSites) {
+      return <Loading />;
+    }
 
-      <Paper elevation={2} variant="outlined" sx={{ p: 1, mb: 2 }}>
-        <Typography variant="h5" component="h3" sx={{ pb: 1 }}>
-          Your sites
-        </Typography>
+    return (
+      <Fragment>
+        {additionalSites.length == 0 && (
+          <Typography paragraph>No additional sites are allowed yet.</Typography>
+        )}
+
         <Typography paragraph>
           You can enable a site by right-clicking on the extension icon, and selecting the option
           "Enable rolod0x on this domain".
         </Typography>
-        {additionalSites ? (
-          additionalSites.length > 0 ? (
-            <List dense sx={{ maxWidth: 500 }}>
-              {additionalSiteItems}
-            </List>
-          ) : (
-            <Typography paragraph>No additional sites yet</Typography>
-          )
-        ) : (
-          <Loading />
+        {additionalSites.length > 0 && (
+          <List dense sx={{ maxWidth: 500 }}>
+            {additionalSiteItems}
+          </List>
         )}
-      </Paper>
+      </Fragment>
+    );
+  };
 
-      <Paper elevation={2} variant="outlined" sx={{ p: 1, mb: 2 }}>
-        <Typography variant="h5" component="h3" sx={{ pb: 1 }}>
-          Built-in sites
-        </Typography>
+  return (
+    <Fragment>
+      <SettingsPageHeader title="Allowed sites" />
+
+      <Typography paragraph>
+        <Rolod0xText /> will only activate on the sites listed below.
+      </Typography>
+
+      <SettingsSection title="Your sites">
+        <AdditionalSites />
+      </SettingsSection>
+
+      <SettingsSection title="Built-in sites">
         <Typography paragraph>
           These are automatically enabled by rolod0x and cannot be disabled (yet, but{' '}
           <a
@@ -156,7 +161,7 @@ export default function SiteSettings() {
         ) : (
           <Loading />
         )}
-      </Paper>
+      </SettingsSection>
     </Fragment>
   );
 }
