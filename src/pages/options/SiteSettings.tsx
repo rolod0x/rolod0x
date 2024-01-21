@@ -106,6 +106,30 @@ export default function SiteSettings() {
   const manifestSiteItems = manifestSites?.map(url => ManifestSiteItem(url));
   const additionalSiteItems = additionalSites?.map(url => AdditionalSiteItem(url, handleDelete));
 
+  const AdditionalSites = () => {
+    if (!additionalSites) {
+      return <Loading />;
+    }
+
+    return (
+      <Fragment>
+        {additionalSites.length == 0 && (
+          <Typography paragraph>No additional sites are allowed yet.</Typography>
+        )}
+
+        <Typography paragraph>
+          You can enable a site by right-clicking on the extension icon, and selecting the option
+          "Enable rolod0x on this domain".
+        </Typography>
+        {additionalSites.length > 0 && (
+          <List dense sx={{ maxWidth: 500 }}>
+            {additionalSiteItems}
+          </List>
+        )}
+      </Fragment>
+    );
+  };
+
   return (
     <Fragment>
       <Typography variant="h4" component="h2" sx={{ pb: 2 }}>
@@ -119,21 +143,7 @@ export default function SiteSettings() {
         <Typography variant="h5" component="h3" sx={{ pb: 1 }}>
           Your sites
         </Typography>
-        <Typography paragraph>
-          You can enable a site by right-clicking on the extension icon, and selecting the option
-          "Enable rolod0x on this domain".
-        </Typography>
-        {additionalSites ? (
-          additionalSites.length > 0 ? (
-            <List dense sx={{ maxWidth: 500 }}>
-              {additionalSiteItems}
-            </List>
-          ) : (
-            <Typography paragraph>No additional sites yet</Typography>
-          )
-        ) : (
-          <Loading />
-        )}
+        <AdditionalSites />
       </SettingsSection>
 
       <SettingsSection>
