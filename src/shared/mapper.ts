@@ -1,12 +1,17 @@
 import { ABBREVIATION_FUNCTIONS } from './abbreviators';
+import { Formatter } from './formatter';
 import { Address, AddressLabelComment, LabelComment, LabelMap, ParsedEntries } from './types';
 
 export class Mapper {
+  exactFormatter: Formatter;
+  guessFormatter: Formatter;
   labelMap: LabelMap;
   //  [key: string]: LabelComment;
 
-  constructor() {
+  constructor(exact: Formatter, guess: Formatter) {
     this.labelMap = new Map<Address, LabelComment>();
+    this.exactFormatter = exact;
+    this.guessFormatter = guess;
   }
 
   importParsed(parsed: ParsedEntries) {
@@ -17,7 +22,8 @@ export class Mapper {
 
   addEntry(data: AddressLabelComment) {
     const { address, label, comment } = data;
-    const value: LabelComment = { label, comment };
+
+    const value: LabelComment = { label: this.exactFormatter.format(label, address), comment };
 
     // data.address is guaranteed to be ERC-55 checksummed
     this.labelMap.set(address, value);
@@ -26,7 +32,7 @@ export class Mapper {
     // The abbreviated form has a small risk of collisions,
     // so technically this is "just" a well-educated guess,
     // and we append a suffix to indicate the uncertainty.
-    const guess = { label: label + '?', comment };
+    const guess = { label: this.guessFormatter.format(label, address), comment };
     for (const func of ABBREVIATION_FUNCTIONS) {
       for (const abbrev of func(address)) {
         this.labelMap.set(abbrev, guess);

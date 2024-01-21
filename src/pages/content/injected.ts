@@ -1,4 +1,5 @@
-import { Rolod0xOptions, optionsStorage } from '../../shared/options-storage';
+import { Formatter } from '../../shared/formatter';
+import { DEFAULT_OPTIONS, Rolod0xOptions, optionsStorage } from '../../shared/options-storage';
 import { Parser, ParseError } from '../../shared/parser';
 import { Mapper } from '../../shared/mapper';
 
@@ -18,7 +19,14 @@ async function init(): Promise<void> {
   }
 
   console.log(`rolod0x: extracted ${parser.parsedEntries.length} parseable lines`);
-  const mapper = new Mapper();
+
+  const exactFormatter = new Formatter(
+    options.displayLabelFormat || DEFAULT_OPTIONS.displayLabelFormat,
+  );
+  const guessFormatter = new Formatter(
+    options.displayGuessFormat || DEFAULT_OPTIONS.displayGuessFormat,
+  );
+  const mapper = new Mapper(exactFormatter, guessFormatter);
   mapper.importParsed(parser.parsedEntries);
 
   replaceText(document.body, mapper.labelMap);
