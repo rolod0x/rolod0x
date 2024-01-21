@@ -52,12 +52,7 @@ export function replaceInNode(node: Node, labelMap: LabelMap): void {
 
     const data = labelMap.get(match ? match.groups.body : content);
     if (data) {
-      const replacement = match
-        ? match.groups.before + data.label + match.groups.after
-        : data.label;
-      // console.debug('replacing', node, 'containing textContent', content, 'with', replacement);
-      node.parentElement.setAttribute('data-rolod0x-original', content);
-      node.textContent = replacement;
+      replaceText(node, content, data.label, match?.groups.before, match?.groups.after);
     }
   } else {
     // This node contains more than just text, call replaceInNode() on each
@@ -68,6 +63,13 @@ export function replaceInNode(node: Node, labelMap: LabelMap): void {
       }
     }
   }
+}
+
+function replaceText(node: Node, original: string, label: string, before = '', after = ''): 0 | 1 {
+  const replacement = before + label + after;
+  // console.debug('replacing', node, 'containing textContent', original, 'with', replacement);
+  node.parentElement.setAttribute('data-rolod0x-original', original);
+  node.textContent = replacement;
 }
 
 // Now monitor the DOM for additions and substitute labels into new nodes.
