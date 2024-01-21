@@ -3,7 +3,7 @@ import { DEFAULT_OPTIONS, Rolod0xOptions, optionsStorage } from '../../shared/op
 import { Parser, ParseError } from '../../shared/parser';
 import { Mapper } from '../../shared/mapper';
 
-import { replaceText, startObserver } from './replacer';
+import { replaceInNode, startObserver } from './replacer';
 
 async function init(): Promise<void> {
   const options: Rolod0xOptions = await optionsStorage.getAll();
@@ -30,7 +30,7 @@ async function init(): Promise<void> {
   mapper.importParsed(parser.parsedEntries);
 
   // console.time('rolod0x: initial replacement');
-  replaceText(document.body, mapper.labelMap);
+  replaceInNode(document.body, mapper.labelMap);
   // console.timeEnd('rolod0x: initial replacement');
 
   startObserver(document.body, mapper.labelMap);

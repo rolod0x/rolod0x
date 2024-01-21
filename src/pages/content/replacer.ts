@@ -17,12 +17,12 @@ function isInputNode(node: Node): boolean {
 /**
  * Performs substitutions in text nodes.
  * If the node contains more than just text (ex: it has child nodes),
- * call replaceText() on each of its children.
+ * call replaceInNode() on each of its children.
  *
  * @param  {Node} node    - The target DOM Node.
  * @return {void}         - Note: the substitution is done inline.
  */
-export function replaceText(node: Node, labelMap: LabelMap): void {
+export function replaceInNode(node: Node, labelMap: LabelMap): void {
   // Setting textContent on a node removes all of its children and replaces
   // them with a single text node. Since we don't want to alter the DOM aside
   // from substituting text, we only substitute on single text nodes.
@@ -60,11 +60,11 @@ export function replaceText(node: Node, labelMap: LabelMap): void {
       node.textContent = replacement;
     }
   } else {
-    // This node contains more than just text, call replaceText() on each
+    // This node contains more than just text, call replaceInNode() on each
     // of its children.
     for (const child of node.childNodes) {
       if (child) {
-        replaceText(child, labelMap);
+        replaceInNode(child, labelMap);
       }
     }
   }
@@ -81,7 +81,7 @@ export function startObserver(node: Node, labelMap: LabelMap) {
         // algorithm on each newly added node.
         for (const newNode of mutation.addedNodes) {
           if (newNode) {
-            replaceText(newNode, labelMap);
+            replaceInNode(newNode, labelMap);
           }
         }
       }
