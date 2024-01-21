@@ -6,14 +6,56 @@ const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
  * After changing, please reload the extension at `chrome://extensions`
  * @type {chrome.runtime.ManifestV3}
  */
+const defaultSites = [
+  // Block explorers
+  'https://*.etherscan.io/*',
+  'https://blockscan.com/*',
+  'https://*.polygonscan.com/*',
+  'https://*.arbiscan.io/*',
+  'https://*.gnosisscan.io/*',
+  'https://*.explorer.zksync.io/*',
+  'https://explorer.celo.org/*',
+  'https://*.celoscan.io/*',
+  'https://explorer.bitquery.io/*',
+
+  // Multisig management services
+  'https://app.safe.global/*',
+  'https://safe.celo.org/*',
+
+  // Developer services
+  'https://bugs.immunefi.com/*',
+  'https://dashboard.tenderly.co/*',
+  'https://defender.openzeppelin.com/*',
+
+  // Portfolio trackers
+  'https://coinshift.xyz/*',
+  'https://koinly.com/*',
+  'https://cointracker.io/*',
+  'https://coinstats.app/*',
+  'https://accointing.com/*',
+
+  // Other services
+  'https://app.disco.xyz/*',
+  'https://dashboard.redefine.net/*',
+];
+
 const manifest = {
   manifest_version: 3,
   name: packageJson.name,
   version: packageJson.version,
   description: packageJson.description,
   permissions: ['activeTab', 'contextMenus', 'scripting', 'sidePanel', 'storage'],
+
+  // Anything in content_scripts.matches must also be in host_permissions:
+  // https://github.com/fregante/webext-permissions/issues/22#issuecomment-1902184704
+  host_permissions: defaultSites,
+
   optional_permissions: [],
+
+  // This allows webext-dynamic-content-scripts and webext-domain-permission-toggle
+  // to add new hosts:
   optional_host_permissions: ['*://*/*'],
+
   content_security_policy: {
     extension_pages: [
       // Allow react-devtools <script> tag.
@@ -42,35 +84,12 @@ const manifest = {
   content_scripts: [
     {
       matches: [
-        // Block explorers
-        'https://blockscan.com/',
-        'https://explorer.bitquery.io/',
-        'https://etherscan.io/',
-        'https://*.etherscan.io/',
-        'https://polygonscan.com/',
-        'https://*.polygonscan.com/',
-        'https://arbiscan.io/',
-        'https://*.arbiscan.io/',
-        'https://gnosisscan.io/',
-        'https://*.gnosisscan.io/',
-        'https://explorer.zksync.io/',
-        'https://*.explorer.zksync.io/',
-        'https://explorer.celo.org/',
-        'https://celoscan.io/',
-        'https://*.celoscan.io/',
+        // We need at least one host here otherwise the extension won't load,
+        // as per https://github.com/fregante/webext-dynamic-content-scripts#usage
+        'https://*.etherscan.io/*',
 
-        // Multisig management services
-        'https://app.safe.global/',
-        'https://safe.celo.org/',
-
-        // Developer services
-        'https://bugs.immunefi.com/',
-        'https://dashboard.tenderly.co/',
-        'https://defender.openzeppelin.com/',
-
-        // Other services
-        'https://app.disco.xyz/',
-        'https://dashboard.redefine.net/',
+        // But we don't need the rest:
+        // ...defaultSites,
       ],
       all_frames: true,
       js: ['src/pages/content/index.js'],

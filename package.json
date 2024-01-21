@@ -48,9 +48,10 @@
     "murmurhash": "^2.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "webext-domain-permission-toggle": "github:aspiers/webext-domain-permission-toggle#mv3",
+    "webext-domain-permission-toggle": "github:fregante/webext-domain-permission-toggle#refactor",
     "webext-dynamic-content-scripts": "^10.0.0",
     "webext-options-sync": "^4.2.1",
+    "webext-permissions": "^3.1.2",
     "webextension-polyfill": "0.10.0"
   },
   "devDependencies": {

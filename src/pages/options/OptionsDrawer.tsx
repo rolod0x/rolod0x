@@ -58,7 +58,7 @@ const OptionsDrawer = ({ currentPage, setPage }: DrawerProps) => {
         <DrawerItem page="Display">
           <DisplaySettingsIcon />
         </DrawerItem>
-        <DrawerItem page="Site">
+        <DrawerItem page="Sites">
           <DomainVerificationIcon />
         </DrawerItem>
         <DrawerItem page="Donate">

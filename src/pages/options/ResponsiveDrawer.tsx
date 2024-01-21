@@ -92,7 +92,7 @@ export default function ResponsiveDrawer() {
         <PageComponent page="Display">
           <DisplaySettings />
         </PageComponent>
-        <PageComponent page="Site">
+        <PageComponent page="Sites">
           <SiteSettings />
         </PageComponent>
         <PageComponent page="Donate">
