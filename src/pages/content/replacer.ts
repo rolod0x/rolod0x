@@ -74,7 +74,7 @@ function replaceText(node: Node, original: string, label: string, before = '', a
 
 // Now monitor the DOM for additions and substitute labels into new nodes.
 // @see https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver.
-export function startObserver(node: Node, labelMap: LabelMap) {
+export function startObserver(node: Node, labelMap: LabelMap): void {
   const observer = new MutationObserver(mutations => {
     // console.time("rolod0x: observer");
     for (const mutation of mutations) {
