@@ -44,7 +44,17 @@ const manifest = {
   name: packageJson.name,
   version: packageJson.version,
   description: packageJson.description,
-  permissions: ['activeTab', 'contextMenus', 'scripting', 'sidePanel', 'storage'],
+  permissions: [
+    // Needed so that the extension context menu toggle from webext-permission-toggle
+    // knows which tab it's on.
+    'activeTab',
+
+    'contextMenus', // Also needed for webext-permission-toggle
+
+    'scripting',
+    // 'sidePanel',
+    'storage',
+  ],
 
   // Anything in content_scripts.matches must also be in host_permissions:
   // https://github.com/fregante/webext-permissions/issues/22#issuecomment-1902184704
@@ -66,9 +76,9 @@ const manifest = {
       // "connect-src ws://localhost:8081 ws://localhost:8097 'self'",
     ].join(';'),
   },
-  side_panel: {
-    default_path: 'src/pages/sidepanel/index.html',
-  },
+  // side_panel: {
+  //   default_path: 'src/pages/sidepanel/index.html',
+  // },
   options_page: 'src/pages/options/index.html',
   background: {
     service_worker: 'src/pages/background/index.js',
