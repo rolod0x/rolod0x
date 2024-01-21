@@ -1,19 +1,12 @@
 import { Fragment } from 'react';
-import styled from '@emotion/styled';
-import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
 import Rolod0xText from '../../components/Rolod0xText';
 
 import SettingsPageHeader from './SettingsPageHeader';
-
-import './Donate.css';
+import StyledCode from './StyledCode';
 
 export default function Donate() {
-  const theme = useTheme();
-  const StyledCode = styled('code')`
-    color: ${theme.palette.secondary.light};
-  `;
   return (
     <Fragment>
       <SettingsPageHeader>
