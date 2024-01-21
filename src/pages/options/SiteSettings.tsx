@@ -9,7 +9,6 @@ import ListItem from '@mui/material/ListItem';
 // import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 // import ListItemText from '@mui/material/ListItemText';
-import Paper from '@mui/material/Paper';
 // import PublicIcon from '@mui/icons-material/Public';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
@@ -19,6 +18,8 @@ import 'webextension-polyfill';
 import { queryAdditionalPermissions, normalizeManifestPermissions } from 'webext-permissions';
 
 import Rolod0xText from '../../components/Rolod0xText';
+
+import SettingsSection from './SettingsSection';
 
 export function Loading() {
   return (
@@ -114,7 +115,7 @@ export default function SiteSettings() {
         <Rolod0xText /> will only activate on the sites listed below.
       </Typography>
 
-      <Paper elevation={2} variant="outlined" sx={{ p: 1, mb: 2 }}>
+      <SettingsSection>
         <Typography variant="h5" component="h3" sx={{ pb: 1 }}>
           Your sites
         </Typography>
@@ -133,9 +134,9 @@ export default function SiteSettings() {
         ) : (
           <Loading />
         )}
-      </Paper>
+      </SettingsSection>
 
-      <Paper elevation={2} variant="outlined" sx={{ p: 1, mb: 2 }}>
+      <SettingsSection>
         <Typography variant="h5" component="h3" sx={{ pb: 1 }}>
           Built-in sites
         </Typography>
@@ -156,7 +157,7 @@ export default function SiteSettings() {
         ) : (
           <Loading />
         )}
-      </Paper>
+      </SettingsSection>
     </Fragment>
   );
 }
