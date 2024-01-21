@@ -89,6 +89,8 @@ export default function SiteSettings() {
 
   useEffect(() => {
     fetchSites();
+    chrome.permissions.onAdded.addListener(() => fetchSites());
+    chrome.permissions.onRemoved.addListener(() => fetchSites());
   }, [fetchSites]);
 
   const handleDelete = useCallback(
