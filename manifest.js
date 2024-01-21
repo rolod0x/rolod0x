@@ -45,9 +45,17 @@ const manifest = {
   version: packageJson.version,
   description: packageJson.description,
   permissions: ['activeTab', 'contextMenus', 'scripting', 'sidePanel', 'storage'],
-  host_permissions: [],
+
+  // Anything in content_scripts.matches must also be in host_permissions:
+  // https://github.com/fregante/webext-permissions/issues/22#issuecomment-1902184704
+  host_permissions: defaultSites,
+
   optional_permissions: [],
+
+  // This allows webext-dynamic-content-scripts and webext-domain-permission-toggle
+  // to add new hosts:
   optional_host_permissions: ['*://*/*'],
+
   content_security_policy: {
     extension_pages: [
       // Allow react-devtools <script> tag.
@@ -76,8 +84,12 @@ const manifest = {
   content_scripts: [
     {
       matches: [
-        // 'https://*.example.com/*',
-        ...defaultSites,
+        // We need at least one host here otherwise the extension won't load,
+        // as per https://github.com/fregante/webext-dynamic-content-scripts#usage
+        'https://*.etherscan.io/*',
+
+        // But we don't need the rest:
+        // ...defaultSites,
       ],
       all_frames: true,
       js: ['src/pages/content/index.js'],
