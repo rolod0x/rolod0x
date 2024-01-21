@@ -29,7 +29,10 @@ async function init(): Promise<void> {
   const mapper = new Mapper(exactFormatter, guessFormatter);
   mapper.importParsed(parser.parsedEntries);
 
+  // console.time('rolod0x: initial replacement');
   replaceText(document.body, mapper.labelMap);
+  // console.timeEnd('rolod0x: initial replacement');
+
   startObserver(document.body, mapper.labelMap);
 }
 

@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
+import Link from '@mui/material/Link';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 // import ListItemButton from '@mui/material/ListItemButton';
@@ -146,12 +147,12 @@ export default function SiteSettings() {
       <SettingsSection title="Built-in sites">
         <Typography paragraph>
           These are automatically enabled by rolod0x and cannot be disabled (yet, but{' '}
-          <a
+          <Link
             href="https://github.com/aspiers/rolod0x/blob/main/CONTRIBUTING.md"
             target="_noblank"
             rel="noreferrer noopener">
             let us know
-          </a>{' '}
+          </Link>{' '}
           if this is an issue for you).
         </Typography>
         {manifestSites ? (
