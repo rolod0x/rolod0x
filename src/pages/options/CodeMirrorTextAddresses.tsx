@@ -29,7 +29,6 @@ export default function CodeMirrorTextAddresses(props: Props) {
   // https://uiwjs.github.io/react-codemirror/#/theme/data/abcdef
   // https://github.com/uiwjs/react-codemirror/blob/master/themes/abcdef/src/index.ts
   const settings: CreateThemeOptions['settings'] = useMemo(() => {
-    console.log('palette', palette);
     return {
       background: palette.background.default, // was '#0f0f0f'
       foreground: palette.primary.main, // was '#defdef'
