@@ -48,8 +48,8 @@ dependencies:
     specifier: ^1.5.1
     version: 1.5.1
   ethers:
-    specifier: ^6.9.2
-    version: 6.9.2
+    specifier: ^6.10.0
+    version: 6.10.0
   murmurhash:
     specifier: ^2.0.1
     version: 2.0.1
@@ -4375,8 +4375,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /ethers@6.9.2:
-    resolution: {integrity: sha512-YpkrtILnMQz5jSEsJQRTpduaGT/CXuLnUIuOYzHA0v/7c8IX91m2J48wSKjzGL5L9J/Us3tLoUdb+OwE3U+FFQ==}
+  /ethers@6.10.0:
+    resolution: {integrity: sha512-nMNwYHzs6V1FR3Y4cdfxSQmNgZsRj1RiTU25JwvnJLmyzw9z3SKxNc2XKDuiXXo/v9ds5Mp9m6HBabgYQQ26tA==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@adraffy/ens-normalize': 1.10.0
