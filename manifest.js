@@ -118,10 +118,25 @@ const manifest = {
   ],
   web_accessible_resources: [
     {
-      resources: ['assets/js/*.js', 'assets/css/*.css', 'icon-128.png', 'icon-34.png'],
+      resources: [
+        'src/pages/lookup/ui/index.html',
+        'assets/js/*.js',
+        'assets/css/*.css',
+        'icon-128.png',
+        'icon-34.png',
+      ],
       matches: ['*://*/*'],
     },
   ],
+  commands: {
+    lookupAddress: {
+      suggested_key: {
+        default: 'Shift+Alt+Space',
+        mac: 'Shift+Command+Space',
+      },
+      description: 'Look up an address',
+    },
+  },
 };
 
 export default manifest;

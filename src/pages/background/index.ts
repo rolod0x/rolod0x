@@ -44,4 +44,12 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
   }
 });
 
+chrome.commands.onCommand.addListener((command, tab) => {
+  console.log(`Command "${command}" called`);
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    files: ['src/pages/lookup/index.js'],
+  });
+});
+
 console.log('rolod0x: background loaded');
