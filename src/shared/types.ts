@@ -13,3 +13,7 @@ export interface AddressLabelComment extends LabelComment {
 }
 
 export type ParsedEntries = AddressLabelComment[];
+
+export interface Counter {
+  count: number;
+}

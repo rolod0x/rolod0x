@@ -30,10 +30,12 @@ async function init(): Promise<void> {
   mapper.importParsed(parser.parsedEntries);
 
   // console.time('rolod0x: initial replacement');
-  replaceInNode(document.body, mapper.labelMap);
+  const count = replaceInNode(document.body, mapper.labelMap);
+  // console.debug('initial replacements: ', count);
+  const counter = { count };
   // console.timeEnd('rolod0x: initial replacement');
 
-  startObserver(document.body, mapper.labelMap);
+  startObserver(document.body, mapper.labelMap, counter);
 }
 
 void init();
