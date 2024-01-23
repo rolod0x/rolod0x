@@ -1,5 +1,7 @@
 import { LabelMap } from '../../shared/types';
 
+const ORIGINAL_ATTRIBUTE = 'data-rolod0x-original';
+
 function isInputNode(node: Node): boolean {
   if (!node.parentElement) {
     return false;
@@ -68,7 +70,7 @@ export function replaceInNode(node: Node, labelMap: LabelMap): void {
 function replaceText(node: Node, original: string, label: string, before = '', after = ''): 0 | 1 {
   const replacement = before + label + after;
   // console.debug('replacing', node, 'containing textContent', original, 'with', replacement);
-  node.parentElement.setAttribute('data-rolod0x-original', original);
+  node.parentElement.setAttribute(ORIGINAL_ATTRIBUTE, original);
   node.textContent = replacement;
 }
 
