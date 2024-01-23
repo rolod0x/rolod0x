@@ -33,6 +33,7 @@ async function init(): Promise<void> {
   const count = replaceInNode(document.body, mapper.labelMap);
   // console.debug('initial replacements: ', count);
   const counter = { count };
+  chrome.runtime.sendMessage({ text: 'setBadgeText', count });
   // console.timeEnd('rolod0x: initial replacement');
 
   startObserver(document.body, mapper.labelMap, counter);

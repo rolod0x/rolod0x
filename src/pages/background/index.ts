@@ -28,4 +28,20 @@ chrome.runtime.onInstalled.addListener(details => {
   }
 });
 
+chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
+  // console.debug('background received msg: ', msg, 'from sender tab', sender.tab);
+  switch (msg.text) {
+    case 'get tab.id':
+      sendResponse({ tabId: sender.tab.id });
+      break;
+    case 'setBadgeText':
+      if (msg.count > 0) {
+        const data = { tabId: sender.tab.id, text: String(msg.count) };
+        console.debug(`setBadgeText()`, data);
+        chrome.action.setBadgeText(data);
+      }
+      break;
+  }
+});
+
 console.log('rolod0x: background loaded');

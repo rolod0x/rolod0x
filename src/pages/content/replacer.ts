@@ -95,6 +95,7 @@ export function startObserver(node: Node, labelMap: LabelMap, counter: Counter):
         }
       }
     }
+    chrome.runtime.sendMessage({ text: 'setBadgeText', count: counter.count });
     // console.timeEnd("rolod0x: observer");
   });
 
