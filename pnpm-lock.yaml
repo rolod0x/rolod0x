@@ -62,15 +62,15 @@ dependencies:
   react-router-dom:
     specifier: ^6.21.3
     version: 6.21.3(react-dom@18.2.0)(react@18.2.0)
-  webext-domain-permission-toggle:
-    specifier: github:fregante/webext-domain-permission-toggle#main
-    version: git@github.com+fregante/webext-domain-permission-toggle/eb71e7ce7024f8fc43e938c404b6d1b27bb178dc
   webext-dynamic-content-scripts:
     specifier: ^10.0.1
     version: 10.0.1
   webext-options-sync:
     specifier: ^4.2.1
     version: 4.2.1
+  webext-permission-toggle:
+    specifier: 5.0.0-1
+    version: 5.0.0-1
   webext-permissions:
     specifier: ^3.1.2
     version: 3.1.2
@@ -9683,6 +9683,18 @@ packages:
       escape-string-regexp: 5.0.0
     dev: false
 
+  /webext-permission-toggle@5.0.0-1:
+    resolution: {integrity: sha512-YCYh4cOvduD3wRVO0z++yWmfhOVOkFuJaKXNhD3h9IPEMRdAdWQC6xSkEjXSAa4AWQOOkEeOxsjrjLsOaz/7Hg==}
+    engines: {node: '>=16'}
+    dependencies:
+      webext-alert: 0.9.0
+      webext-content-scripts: 2.6.1
+      webext-detect-page: 5.0.0
+      webext-permissions: 3.1.2
+      webext-polyfill-kinda: 1.0.2
+      webext-tools: 1.2.3
+    dev: false
+
   /webext-permissions@3.1.2:
     resolution: {integrity: sha512-/eE5ggBROQx7/mN3AqDjDhOtswFlhu2jAsaQBBc2aCLlsmQbGW/aGwg0w9/AlXtYlhYYVpB79oYp829A2HViKg==}
     engines: {node: '>=18'}
@@ -10055,17 +10067,3 @@ packages:
       compress-commons: 2.1.1
       readable-stream: 3.6.2
     dev: true
-
-  git@github.com+fregante/webext-domain-permission-toggle/eb71e7ce7024f8fc43e938c404b6d1b27bb178dc:
-    resolution: {commit: eb71e7ce7024f8fc43e938c404b6d1b27bb178dc, repo: git@github.com:fregante/webext-domain-permission-toggle.git, type: git}
-    name: webext-permission-toggle
-    version: 5.0.0-0
-    engines: {node: '>=16'}
-    dependencies:
-      webext-alert: 0.9.0
-      webext-content-scripts: 2.6.1
-      webext-detect-page: 5.0.0
-      webext-permissions: 3.1.2
-      webext-polyfill-kinda: 1.0.2
-      webext-tools: 1.2.3
-    dev: false

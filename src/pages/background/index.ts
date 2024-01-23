@@ -1,4 +1,4 @@
-import addDomainPermissionToggle from 'webext-domain-permission-toggle';
+import addDomainPermissionToggle from 'webext-permission-toggle';
 
 import 'webext-dynamic-content-scripts';
 

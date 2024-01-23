@@ -62,7 +62,7 @@ const manifest = {
 
   optional_permissions: [],
 
-  // This allows webext-dynamic-content-scripts and webext-domain-permission-toggle
+  // This allows webext-dynamic-content-scripts and webext-permission-toggle
   // to add new hosts:
   optional_host_permissions: ['*://*/*'],
 
