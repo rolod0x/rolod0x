@@ -7,6 +7,7 @@ import makeManifest from './utils/plugins/make-manifest';
 import customDynamicImport from './utils/plugins/custom-dynamic-import';
 import addHmr from './utils/plugins/add-hmr';
 import watchRebuild from './utils/plugins/watch-rebuild';
+import muteWarningsPlugin from './utils/plugins/mute-warnings';
 
 const rootDir = resolve(__dirname);
 const srcDir = resolve(rootDir, 'src');
@@ -20,6 +21,12 @@ const isProduction = !isDev;
 
 // ENABLE HMR IN BACKGROUND SCRIPT
 const enableHmrInBackgroundScript = true;
+
+const warningsToIgnore = [
+  ['SOURCEMAP_ERROR', "Can't resolve original location of error"],
+  // ['MODULE_LEVEL_DIRECTIVE'],
+  // ['INVALID_ANNOTATION', 'contains an annotation that Rollup cannot interpret'],
+];
 
 export default defineConfig({
   resolve: {
@@ -38,6 +45,7 @@ export default defineConfig({
     customDynamicImport(),
     addHmr({ background: enableHmrInBackgroundScript, view: true }),
     isDev && watchRebuild(),
+    muteWarningsPlugin(warningsToIgnore),
   ],
   publicDir,
   build: {
@@ -69,12 +77,6 @@ export default defineConfig({
           }
           return `assets/[ext]/${name}.chunk.[ext]`;
         },
-      },
-      onwarn(warning, warn) {
-        if (warning.code === 'MODULE_LEVEL_DIRECTIVE') {
-          return;
-        }
-        warn(warning);
       },
     },
   },
