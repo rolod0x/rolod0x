@@ -96,12 +96,10 @@
     "rollup": "4.9.4",
     "sass": "1.69.5",
     "ts-jest": "29.1.1",
-    "ts-loader": "9.5.1",
     "tslib": "2.6.2",
     "typescript": "5.2.2",
     "vite": "3.2.7",
     "web-ext": "^7.10.0",
-    "webpack": "^5.0.0",
     "ws": "8.15.1"
   },
   "lint-staged": {
@@ -112,7 +110,6 @@
   },
   "packageManager": "pnpm@8.9.2",
   "peerDependencies": {
-    "@codemirror/view": "^6.23.0",
-    "webpack": "^5.0.0"
+    "@codemirror/view": "^6.23.0"
   }
 }
