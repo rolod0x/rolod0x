@@ -7,6 +7,8 @@ import makeManifest from './utils/plugins/make-manifest';
 import customDynamicImport from './utils/plugins/custom-dynamic-import';
 import addHmr from './utils/plugins/add-hmr';
 import watchRebuild from './utils/plugins/watch-rebuild';
+// import inlineVitePreloadScript from './utils/plugins/inline-vite-preload-script';
+import muteWarningsPlugin from './utils/plugins/mute-warnings';
 
 const rootDir = resolve(__dirname);
 const srcDir = resolve(rootDir, 'src');
@@ -20,6 +22,13 @@ const isProduction = !isDev;
 
 // ENABLE HMR IN BACKGROUND SCRIPT
 const enableHmrInBackgroundScript = true;
+const cacheInvalidationKeyRef = { current: generateKey() };
+
+const warningsToIgnore = [
+  ['SOURCEMAP_ERROR', "Can't resolve original location of error"],
+  // ['MODULE_LEVEL_DIRECTIVE'],
+  // ['INVALID_ANNOTATION', 'contains an annotation that Rollup cannot interpret'],
+];
 
 export default defineConfig({
   resolve: {
@@ -32,17 +41,19 @@ export default defineConfig({
   },
   plugins: [
     makeManifest({
-      contentScriptCssKey: regenerateCacheInvalidationKey(),
+      getCacheInvalidationKey,
     }),
     react(),
     customDynamicImport(),
     addHmr({ background: enableHmrInBackgroundScript, view: true }),
-    isDev && watchRebuild(),
+    isDev && watchRebuild({ afterWriteBundle: regenerateCacheInvalidationKey }),
+    // inlineVitePreloadScript(),
+    muteWarningsPlugin(warningsToIgnore),
   ],
   publicDir,
   build: {
     outDir,
-    /** Can slowDown build speed. */
+    /** Can slow down build speed. */
     sourcemap: isDev,
     minify: isProduction,
     modulePreload: false,
@@ -61,36 +72,24 @@ export default defineConfig({
         entryFileNames: 'src/pages/[name]/index.js',
         chunkFileNames: isDev ? 'assets/js/[name].js' : 'assets/js/[name].[hash].js',
         assetFileNames: assetInfo => {
-          const { dir, name: _name } = path.parse(assetInfo.name);
-          const assetFolder = dir.split('/').at(-1);
-          const name = assetFolder + firstUpperCase(_name);
-          if (name === 'contentStyle') {
-            return `assets/css/contentStyle${cacheInvalidationKey}.chunk.css`;
-          }
-          return `assets/[ext]/${name}.chunk.[ext]`;
+          const { name } = path.parse(assetInfo.name);
+          const assetFileName =
+            name === 'contentStyle' ? `${name}${getCacheInvalidationKey()}` : name;
+          return `assets/[ext]/${assetFileName}.chunk.[ext]`;
         },
-      },
-      onwarn(warning, warn) {
-        if (warning.code === 'MODULE_LEVEL_DIRECTIVE') {
-          return;
-        }
-        warn(warning);
       },
     },
   },
 });
 
-function firstUpperCase(str: string) {
-  const firstAlphabet = new RegExp(/( |^)[a-z]/, 'g');
-  return str.toLowerCase().replace(firstAlphabet, L => L.toUpperCase());
+function getCacheInvalidationKey() {
+  return cacheInvalidationKeyRef.current;
 }
-
-let cacheInvalidationKey: string = generateKey();
 function regenerateCacheInvalidationKey() {
-  cacheInvalidationKey = generateKey();
-  return cacheInvalidationKey;
+  cacheInvalidationKeyRef.current = generateKey();
+  return cacheInvalidationKeyRef;
 }
 
 function generateKey(): string {
-  return `${(Date.now() / 100).toFixed()}`;
+  return `${Date.now().toFixed()}`;
 }

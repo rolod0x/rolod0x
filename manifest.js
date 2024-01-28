@@ -41,10 +41,27 @@ const defaultSites = [
 
 const manifest = {
   manifest_version: 3,
+  default_locale: 'en',
   name: packageJson.name,
   version: packageJson.version,
   description: packageJson.description,
-  permissions: ['activeTab', 'contextMenus', 'scripting', 'sidePanel', 'storage'],
+  /**
+   * if you want to support multiple languages, you can use the following reference
+   * https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Internationalization
+   */
+  // name: '__MSG_extensionName__',
+  // description: '__MSG_extensionDescription__',
+  permissions: [
+    // Needed so that the extension context menu toggle from webext-permission-toggle
+    // knows which tab it's on.
+    'activeTab',
+
+    'contextMenus', // Also needed for webext-permission-toggle
+
+    'scripting',
+    // 'sidePanel',
+    'storage',
+  ],
 
   // Anything in content_scripts.matches must also be in host_permissions:
   // https://github.com/fregante/webext-permissions/issues/22#issuecomment-1902184704
@@ -52,7 +69,7 @@ const manifest = {
 
   optional_permissions: [],
 
-  // This allows webext-dynamic-content-scripts and webext-domain-permission-toggle
+  // This allows webext-dynamic-content-scripts and webext-permission-toggle
   // to add new hosts:
   optional_host_permissions: ['*://*/*'],
 
@@ -66,9 +83,9 @@ const manifest = {
       // "connect-src ws://localhost:8081 ws://localhost:8097 'self'",
     ].join(';'),
   },
-  side_panel: {
-    default_path: 'src/pages/sidepanel/index.html',
-  },
+  // side_panel: {
+  //   default_path: 'src/pages/sidepanel/index.html',
+  // },
   options_page: 'src/pages/options/index.html',
   background: {
     service_worker: 'src/pages/background/index.js',
@@ -96,6 +113,8 @@ const manifest = {
       // KEY for cache invalidation
       css: ['assets/css/contentStyle<KEY>.chunk.css'],
     },
+    // If multiple content scripts are required, see:
+    // https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite/issues/177#issuecomment-1784112536
   ],
   web_accessible_resources: [
     {

@@ -1,10 +1,12 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import colorLog from '../log';
-import ManifestParser from '../manifest-parser';
-import type { PluginOption } from 'vite';
 import url from 'url';
 import * as process from 'process';
+
+import type { PluginOption } from 'vite';
+
+import colorLog from '../log';
+import ManifestParser from '../manifest-parser';
 
 const { resolve } = path;
 
@@ -24,17 +26,18 @@ const getManifestWithCacheBurst = (): Promise<{ default: chrome.runtime.Manifest
   return import(withCacheBurst(manifestFile));
 };
 
-export default function makeManifest(config: { contentScriptCssKey?: string }): PluginOption {
-  function makeManifest(manifest: chrome.runtime.ManifestV3, to: string) {
+export default function makeManifest(config?: {
+  getCacheInvalidationKey?: () => string;
+}): PluginOption {
+  function makeManifest(manifest: chrome.runtime.ManifestV3, to: string, cacheKey?: string) {
     if (!fs.existsSync(to)) {
       fs.mkdirSync(to);
     }
     const manifestPath = resolve(to, 'manifest.json');
-
-    // Naming change for cache invalidation
-    if (config.contentScriptCssKey) {
+    if (cacheKey) {
+      // Naming change for cache invalidation
       manifest.content_scripts.forEach(script => {
-        script.css = script.css.map(css => css.replace('<KEY>', config.contentScriptCssKey));
+        script.css &&= script.css.map(css => css.replace('<KEY>', cacheKey));
       });
     }
 
@@ -49,8 +52,9 @@ export default function makeManifest(config: { contentScriptCssKey?: string }): 
       this.addWatchFile(manifestFile);
     },
     async writeBundle() {
+      const invalidationKey = config.getCacheInvalidationKey?.();
       const manifest = await getManifestWithCacheBurst();
-      makeManifest(manifest.default, distDir);
+      makeManifest(manifest.default, distDir, invalidationKey);
     },
   };
 }

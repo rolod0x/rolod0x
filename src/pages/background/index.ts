@@ -1,4 +1,4 @@
-import addDomainPermissionToggle from 'webext-domain-permission-toggle';
+import addDomainPermissionToggle from 'webext-permission-toggle';
 
 import 'webext-dynamic-content-scripts';
 
@@ -25,6 +25,22 @@ reloadOnUpdate('pages/content/style.scss');
 chrome.runtime.onInstalled.addListener(details => {
   if (details.reason === chrome.runtime.OnInstalledReason.INSTALL) {
     chrome.tabs.create({ url: chrome.runtime.getURL('src/pages/options/index.html') });
+  }
+});
+
+chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
+  // console.debug('background received msg: ', msg, 'from sender tab', sender.tab);
+  switch (msg.text) {
+    case 'get tab.id':
+      sendResponse({ tabId: sender.tab.id });
+      break;
+    case 'setBadgeText':
+      if (msg.count > 0) {
+        const data = { tabId: sender.tab.id, text: String(msg.count) };
+        console.debug(`setBadgeText()`, data);
+        chrome.action.setBadgeText(data);
+      }
+      break;
   }
 });
 

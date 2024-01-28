@@ -1,4 +1,6 @@
-import { LabelMap } from '../../shared/types';
+import { Counter, LabelMap } from '../../shared/types';
+
+const ORIGINAL_ATTRIBUTE = 'data-rolod0x-original';
 
 function isInputNode(node: Node): boolean {
   if (!node.parentElement) {
@@ -17,16 +19,17 @@ function isInputNode(node: Node): boolean {
 /**
  * Performs substitutions in text nodes.
  * If the node contains more than just text (ex: it has child nodes),
- * call replaceText() on each of its children.
+ * call replaceInNode() on each of its children.
  *
  * @param  {Node} node    - The target DOM Node.
  * @return {void}         - Note: the substitution is done inline.
  */
-export function replaceText(node: Node, labelMap: LabelMap): void {
+export function replaceInNode(node: Node, labelMap: LabelMap): number {
   // Setting textContent on a node removes all of its children and replaces
   // them with a single text node. Since we don't want to alter the DOM aside
   // from substituting text, we only substitute on single text nodes.
   // @see https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
+  let count = 0;
   if (node.nodeType === Node.TEXT_NODE) {
     // This node only contains text.
     // @see https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType.
@@ -35,7 +38,7 @@ export function replaceText(node: Node, labelMap: LabelMap): void {
     // of substituted emoji where none was intended.
     if (isInputNode(node)) {
       // console.debug('skipping input node', node);
-      return;
+      return 0;
     }
 
     // Because DOM manipulation is slow, we don't want to keep setting
@@ -45,34 +48,40 @@ export function replaceText(node: Node, labelMap: LabelMap): void {
     const content = node.textContent;
     if (!content) {
       // console.debug('no content under', node.parentNode);
-      return;
+      return 0;
     }
 
     const match = content.match(/^(?<before>\s*)(?<body>.+?)(?<after>\s*?)$/);
 
     const data = labelMap.get(match ? match.groups.body : content);
     if (data) {
-      const replacement = match
-        ? match.groups.before + data.label + match.groups.after
-        : data.label;
-      // console.debug('replacing', node, 'containing textContent', content, 'with', replacement);
-      node.parentElement.setAttribute('data-rolod0x-original', content);
-      node.textContent = replacement;
+      count += replaceText(node, content, data.label, match?.groups.before, match?.groups.after);
     }
   } else {
-    // This node contains more than just text, call replaceText() on each
+    // This node contains more than just text, call replaceInNode() on each
     // of its children.
     for (const child of node.childNodes) {
       if (child) {
-        replaceText(child, labelMap);
+        count += replaceInNode(child, labelMap);
       }
     }
   }
+  return count;
+}
+
+function replaceText(node: Node, original: string, label: string, before = '', after = ''): 0 | 1 {
+  const replacement = before + label + after;
+  // console.debug('replacing', node, 'containing textContent', original, 'with', replacement);
+  const alreadyReplaced = !!node.parentElement.getAttribute(ORIGINAL_ATTRIBUTE);
+  node.parentElement.setAttribute(ORIGINAL_ATTRIBUTE, original);
+  node.textContent = replacement;
+  return alreadyReplaced ? 0 : 1;
 }
 
 // Now monitor the DOM for additions and substitute labels into new nodes.
 // @see https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver.
-export function startObserver(node: Node, labelMap: LabelMap) {
+export function startObserver(node: Node, labelMap: LabelMap, counter: Counter): void {
+  // console.debug('startObserver with count', counter.count);
   const observer = new MutationObserver(mutations => {
     // console.time("rolod0x: observer");
     for (const mutation of mutations) {
@@ -81,11 +90,12 @@ export function startObserver(node: Node, labelMap: LabelMap) {
         // algorithm on each newly added node.
         for (const newNode of mutation.addedNodes) {
           if (newNode) {
-            replaceText(newNode, labelMap);
+            counter.count += replaceInNode(newNode, labelMap);
           }
         }
       }
     }
+    chrome.runtime.sendMessage({ text: 'setBadgeText', count: counter.count });
     // console.timeEnd("rolod0x: observer");
   });
 
