@@ -7,6 +7,7 @@ import makeManifest from './utils/plugins/make-manifest';
 import customDynamicImport from './utils/plugins/custom-dynamic-import';
 import addHmr from './utils/plugins/add-hmr';
 import watchRebuild from './utils/plugins/watch-rebuild';
+// import inlineVitePreloadScript from './utils/plugins/inline-vite-preload-script';
 import muteWarningsPlugin from './utils/plugins/mute-warnings';
 
 const rootDir = resolve(__dirname);
@@ -46,6 +47,7 @@ export default defineConfig({
     customDynamicImport(),
     addHmr({ background: enableHmrInBackgroundScript, view: true }),
     isDev && watchRebuild({ afterWriteBundle: regenerateCacheInvalidationKey }),
+    // inlineVitePreloadScript(),
     muteWarningsPlugin(warningsToIgnore),
   ],
   publicDir,

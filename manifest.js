@@ -113,6 +113,8 @@ const manifest = {
       // KEY for cache invalidation
       css: ['assets/css/contentStyle<KEY>.chunk.css'],
     },
+    // If multiple content scripts are required, see:
+    // https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite/issues/177#issuecomment-1784112536
   ],
   web_accessible_resources: [
     {
