@@ -2,6 +2,7 @@ import path, { resolve } from 'path';
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { checker } from 'vite-plugin-checker';
 
 import makeManifest from './utils/plugins/make-manifest';
 import customDynamicImport from './utils/plugins/custom-dynamic-import';
@@ -40,6 +41,9 @@ export default defineConfig({
     },
   },
   plugins: [
+    checker({
+      typescript: true,
+    }),
     makeManifest({
       getCacheInvalidationKey,
     }),
