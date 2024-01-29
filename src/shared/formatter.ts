@@ -14,6 +14,7 @@ export class Formatter {
   format(label: Label, address: Address): string {
     return this.formatString
       .replace('%n', label)
+      .replace('%a', address)
       .replace(/%(\d+)l/, (_match, digits) => address.replace(/^0x/, '').slice(0, Number(digits)))
       .replace(/%(\d+)r/, (_match, digits) => address.replace(/^0x/, '').slice(-Number(digits)));
   }
