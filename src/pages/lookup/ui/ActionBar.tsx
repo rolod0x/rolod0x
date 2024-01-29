@@ -1,48 +1,35 @@
-import { useCallback, useEffect, useState } from 'react';
-import { cx } from '@emotion/css';
-import { useCombobox } from 'downshift';
-import Container from '@mui/material/Container';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import React, { HTMLAttributes, useCallback, useEffect, useRef, useState } from 'react';
+import Autocomplete, { AutocompleteChangeDetails } from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 
-import { Formatter } from '../../../shared/formatter';
+// import { Formatter } from '../../../shared/formatter';
 import { Rolod0xOptions, optionsStorage } from '../../../shared/options-storage';
-import { ParsedEntries } from '../../../shared/types';
+import { AddressLabelComment, ParsedEntries } from '../../../shared/types';
 import { Parser, ParseError } from '../../../shared/parser';
+// import Loading from '../../../components/Loading';
 
-const itemFormatter = new Formatter('%n (%a)');
+import { itemsFilter } from './search';
+import AddressOption from './AddressOption';
 
-function itemToString(item): string {
-  return item ? itemFormatter.format(item.label, item.address) : '';
+// const itemFormatter = new Formatter('%n (%a)');
+//
+// function itemToString(item): string {
+//   return item ? itemFormatter.format(item.label, item.address) : '';
+// }
+
+interface Props {
+  handleClose: () => void;
 }
 
-function getFilter(inputValue) {
-  const lowerCasedWords = inputValue.toLowerCase().split(/\s+/);
-
-  return function _itemFilter(item) {
-    // Show all items if no search terms provided
-    if (!inputValue) return true;
-
-    // Require each search term to match a substring of either the label or the address.
-    for (const word of lowerCasedWords) {
-      if (!item.label.toLowerCase().includes(word) && !item.address.toLowerCase().includes(word)) {
-        return false;
-      }
-    }
-    return true;
-  };
-}
-
-export default function ActionBar() {
-  const [labels, setLabels] = useState<ParsedEntries>([]);
+export default function ActionBar({ handleClose }: Props) {
   const [items, setItems] = useState<ParsedEntries>([]);
+  const textFieldRef = useRef(null);
 
   const getLabels = useCallback(async (): Promise<ParsedEntries> => {
     const options: Rolod0xOptions = await optionsStorage.getAll();
     const parser = new Parser();
     try {
       parser.parseMultiline(options.labels);
-      setLabels(parser.parsedEntries);
       return parser.parsedEntries;
     } catch (err: unknown) {
       if (err instanceof ParseError) {
@@ -51,71 +38,96 @@ export default function ActionBar() {
         console.error('rolod0x:', err);
       }
     }
-  }, [setLabels]);
+  }, []);
+
+  const focusInput = useCallback(() => {
+    const textField = textFieldRef.current;
+    if (!textField) return; // It might not be rendered yet.
+    // console.log('textField: ', textField);
+    textField.focus();
+    textField.click();
+    textField.focus();
+    // const input = textField.querySelector('#action-bar');
+    // if (!input) {
+    //   console.warn("rolod0x: Couldn't find #action-bar input to focus");
+    //   return;
+    // }
+    // input.focus();
+    // console.debug('focused', textField);
+  }, [textFieldRef]);
 
   useEffect(() => {
     async function _get(): Promise<void> {
       const parsed = await getLabels();
       setItems(parsed);
     }
-
     _get();
-  }, [getLabels, setItems]);
 
-  const {
-    isOpen,
-    getToggleButtonProps,
-    getLabelProps,
-    getMenuProps,
-    getInputProps,
-    highlightedIndex,
-    getItemProps,
-    selectedItem,
-  } = useCombobox({
-    onInputValueChange({ inputValue }) {
-      setItems(labels.filter(getFilter(inputValue)));
+    focusInput();
+
+    window.addEventListener('message', function (event) {
+      // console.log('ActionBar got message', event);
+      if (
+        // FIXME: Does this break other browsers?  Also, could we discover
+        // the full origin to check against?
+        // event.origin.startsWith('chrome-extension://') &&
+        event.data === 'focus-input'
+      ) {
+        focusInput();
+      }
+    });
+  }, [getLabels, setItems, focusInput]);
+
+  const handleChange = useCallback(
+    (
+      _event: React.SyntheticEvent,
+      value: AddressLabelComment,
+      _reason: string,
+      _details?: AutocompleteChangeDetails<AddressLabelComment>,
+    ): void => {
+      if (!value?.address) {
+        console.log('handleChange without addr', _event, value, _reason, _details);
+        return;
+      }
+
+      // This requires allow="clipboard-write" in the containing <iframe>
+      window.navigator.clipboard.writeText(value.address);
+      console.log(`rolod0x: Copied '${value.address}' to clipboard from ${value.label}`);
+      textFieldRef.current.value = '';
+      handleClose();
     },
-    items,
-    itemToString,
-  });
+    [handleClose],
+  );
 
+  /* eslint-disable jsx-a11y/no-autofocus */
   return (
-    <Container id="actionBar">
-      <div className="w-72 flex flex-col gap-1">
-        <label className="w-fit" {...getLabelProps()}>
-          Search for an address book entry:
-          <div className="flex shadow-sm bg-white gap-0.5">
-            <input placeholder="Label or address" className="w-full p-1.5" {...getInputProps()} />
-            <button
-              aria-label="toggle menu"
-              className="px-2"
-              type="button"
-              {...getToggleButtonProps()}>
-              {isOpen ? <>&#8593;</> : <>&#8595;</>}
-            </button>
-          </div>
-        </label>
-      </div>
-      <ul
-        className={`absolute w-72 bg-white mt-1 shadow-md max-h-80 overflow-scroll p-0 z-10 ${
-          !(isOpen && items.length) && 'hidden'
-        }`}
-        {...getMenuProps()}>
-        {isOpen &&
-          items.map((item, index) => (
-            <li
-              className={cx(
-                highlightedIndex === index && 'bg-blue-300',
-                selectedItem === item && 'font-bold',
-                'py-2 px-3 shadow-sm flex flex-col',
-              )}
-              key={itemToString(item)}
-              {...getItemProps({ item, index })}>
-              <span>{item.label}</span>
-              <span className="text-sm text-gray-700">{item.address}</span>
-            </li>
-          ))}
-      </ul>
-    </Container>
+    <Autocomplete
+      autoFocus
+      autoHighlight
+      clearOnBlur={false}
+      clearOnEscape={false}
+      selectOnFocus={false}
+      getOptionKey={option => option.address + ' ||| ' + option.label}
+      id="action-bar"
+      options={items}
+      sx={{
+        minWidth: 500,
+      }}
+      ListboxProps={{
+        style: {
+          maxHeight: '75vh',
+        },
+      }}
+      filterOptions={itemsFilter}
+      loading={items.length == 0}
+      onChange={handleChange}
+      // This would break Escape closing the dropdown and then a second escape
+      // closing the modal:
+      // open={true}
+      renderInput={params => <TextField {...params} inputRef={textFieldRef} label="Search terms" />}
+      renderOption={(props: HTMLAttributes<HTMLLIElement>, option: AddressLabelComment) => (
+        <AddressOption {...{ props }} {...{ option }} />
+      )}
+    />
   );
 }

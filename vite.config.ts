@@ -67,7 +67,7 @@ export default defineConfig({
       input: {
         content: resolve(pagesDir, 'content', 'index.ts'),
         lookup: resolve(pagesDir, 'lookup', 'index.ts'),
-        lookupUi: resolve(pagesDir, 'lookup', 'ui', 'index.tsx'),
+        lookupUi: resolve(pagesDir, 'lookup', 'ui', 'index.html'),
         background: resolve(pagesDir, 'background', 'index.ts'),
         contentStyle: resolve(pagesDir, 'content', 'style.scss'),
         popup: resolve(pagesDir, 'popup', 'index.html'),

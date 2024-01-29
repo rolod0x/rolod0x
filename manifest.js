@@ -56,6 +56,7 @@ const manifest = {
     // knows which tab it's on.
     'activeTab',
 
+    'clipboardWrite',
     'contextMenus', // Also needed for webext-permission-toggle
 
     'scripting',
