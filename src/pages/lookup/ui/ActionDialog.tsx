@@ -1,9 +1,11 @@
-import Button from '@mui/material/Button';
+import CloseIcon from '@mui/icons-material/Close';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import IconButton from '@mui/material/IconButton';
+import Stack from '@mui/material/Stack';
 
 import Rolod0xText from '../../../components/Rolod0xText';
 
@@ -17,18 +19,25 @@ export default function ActionDialog() {
 
   return (
     <Dialog fullScreen open={true} onClose={handleClose}>
-      <DialogTitle variant="h3">
-        <Rolod0xText /> address book lookup
-      </DialogTitle>
+      <Stack direction="row" justifyContent="space-between">
+        <DialogTitle variant="h3">
+          <Rolod0xText /> address book lookup
+        </DialogTitle>
+        <DialogActions>
+          <IconButton
+            onClick={handleClose}
+            color="primary"
+            aria-label="Close the rolod0x search dialog">
+            <CloseIcon />
+          </IconButton>
+        </DialogActions>
+      </Stack>
       <DialogContent>
         <DialogContentText sx={{ pb: 2 }}>
           Enter one or more search terms, space-separated:
         </DialogContentText>
         <ActionBar handleClose={handleClose} />
       </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose}>Close</Button>
-      </DialogActions>
     </Dialog>
   );
 }
