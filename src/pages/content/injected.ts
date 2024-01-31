@@ -18,7 +18,7 @@ async function init(): Promise<void> {
     }
   }
 
-  console.log(`rolod0x: extracted ${parser.parsedEntries.length} parseable lines`);
+  // console.debug(`rolod0x: extracted ${parser.parsedEntries.length} parseable lines`);
 
   const exactFormatter = new Formatter(
     options.displayLabelFormat || DEFAULT_OPTIONS.displayLabelFormat,

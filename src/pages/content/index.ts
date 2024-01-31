@@ -9,4 +9,4 @@
  */
 import('@pages/content/injected');
 
-console.log('rolod0x: content loaded');
+// console.debug('rolod0x: content loaded');

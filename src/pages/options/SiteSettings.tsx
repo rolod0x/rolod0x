@@ -1,7 +1,5 @@
 import { Fragment, useCallback, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
-import Box from '@mui/material/Box';
-import CircularProgress from '@mui/material/CircularProgress';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
@@ -11,26 +9,17 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 // import ListItemText from '@mui/material/ListItemText';
 // import PublicIcon from '@mui/icons-material/Public';
-import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import 'webextension-polyfill';
 import { queryAdditionalPermissions, normalizeManifestPermissions } from 'webext-permissions';
 
+import Loading from '../../components/Loading';
 import Rolod0xText from '../../components/Rolod0xText';
 
 import SettingsSection from './SettingsSection';
 import SettingsPageHeader from './SettingsPageHeader';
-
-export function Loading() {
-  return (
-    <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-      <CircularProgress />
-      <Box>Loading sites ...</Box>
-    </Stack>
-  );
-}
 
 const StyledTextField = styled(TextField)(`
   .MuiOutlinedInput-input {

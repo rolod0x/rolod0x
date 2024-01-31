@@ -28,4 +28,9 @@ describe('Formatter', () => {
     const formatter = new Formatter('0x%4l...%n...%4r');
     expect(formatter.format(label, addr)).toEqual(`0xe3D8...${label}...F109`);
   });
+
+  it('formats a label with a full address', () => {
+    const formatter = new Formatter('%n (%a)');
+    expect(formatter.format(label, addr)).toEqual(`${label} (${addr})`);
+  });
 });

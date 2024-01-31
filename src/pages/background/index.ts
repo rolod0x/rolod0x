@@ -8,7 +8,7 @@ import reloadOnUpdate from 'virtual:reload-on-update-in-background-script';
 
 chrome.permissions.onAdded.addListener(() => checkPermissions('onAdded'));
 chrome.permissions.onRemoved.addListener(() => checkPermissions('onRemoved'));
-chrome.tabs.onActivated.addListener(() => checkPermissions('tab activated'));
+// chrome.tabs.onActivated.addListener(() => checkPermissions('tab activated'));
 // chrome.tabs.onUpdated.addListener(() => checkPermissions('tab updated'));
 
 checkPermissions('init');
@@ -42,6 +42,13 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
       }
       break;
   }
+});
+
+chrome.commands.onCommand.addListener((command, tab) => {
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    files: ['src/pages/lookup/index.js'],
+  });
 });
 
 console.log('rolod0x: background loaded');

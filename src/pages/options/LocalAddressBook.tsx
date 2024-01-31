@@ -86,7 +86,7 @@ export default function LocalAddressBook() {
           <Typography>
             Enter your address labels here, one on each line. Each entry should look something like:
           </Typography>
-          <Box sx={{ p: 2, fontFamily: 'Monospace' }}>
+          <Box p={2} fontFamily="Monospace">
             <StyledCode>0xaddress Label for address</StyledCode>
           </Box>
           <Typography>
