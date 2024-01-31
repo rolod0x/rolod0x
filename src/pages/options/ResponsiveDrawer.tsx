@@ -25,7 +25,7 @@ export default function ResponsiveDrawer() {
   }, [mobileOpen, setMobileOpen]);
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box display="flex">
       <AppBar
         position="fixed"
         sx={{
