@@ -1,10 +1,8 @@
 <div align="center">
-<img src="public/icon-128.png" alt="logo"/>
 <h1>
   <!-- rolod<span style="color: #00e300">0x</span> -->
-  <img src="./docs/images/rolod0x.svg" width="200" alt="rolod0x" />
+  <img src="./public/logo-440x280.png" alt="rolod0x: Your free private onchain address book" />
 </h1>
-<h2> Your free, private web3 addressbook </h2>
 
 [![](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
 [![](https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
