@@ -15,7 +15,7 @@ const rootDir = resolve(__dirname);
 const srcDir = resolve(rootDir, 'src');
 const pagesDir = resolve(srcDir, 'pages');
 const assetsDir = resolve(srcDir, 'assets');
-const outDir = resolve(rootDir, 'dist');
+const outDir = resolve(rootDir, 'dist', process.env.__FIREFOX__ ? 'firefox' : 'chrome');
 const publicDir = resolve(rootDir, 'public');
 
 const isDev = process.env.__DEV__ === 'true';

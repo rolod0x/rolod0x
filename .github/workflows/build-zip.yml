@@ -31,9 +31,12 @@ jobs:
 
       - run: pnpm build
 
-      - name: Prepare to build archive
+      - run: pnpm build:firefox
+
+      - name: Prepare to build archives
         run: |
-          mv dist rolod0x
+          mv dist/chrome rolod0x-chrome
+          mv dist/firefox rolod0x-firefox
 
           if [[ ${{github.ref}} == refs/pull/* ]]; then
               echo "Detected PR; github.ref=${{github.ref}}"
@@ -46,30 +49,39 @@ jobs:
           echo "RELEASE_NAME=$RELEASE_NAME"
           echo "RELEASE_NAME=$RELEASE_NAME" >> $GITHUB_ENV
 
-      - name: Upload development build artifact
+      # This action creates a .zip and uploads it as an artifact
+      - name: Upload development build artifact for Chrome
         uses: actions/upload-artifact@v4
         if: ${{ github.ref_type != 'tag' }}
         with:
           # .zip suffix gets appended automatically
-          name: "${{env.RELEASE_NAME}}"
+          name: "${{env.RELEASE_NAME}}-chrome"
 
           # Ugly wildcard hack to include containing directory in the .zip file;
           # this makes the .zip file structure consistent with release .zip files
           # which are constructed below.
           # See https://github.com/actions/upload-artifact#upload-using-multiple-paths-and-exclusions
-          path: rolod0x*
+          path: rolod0x-chrome*
 
-      - name: Create release zip file
+      # Same as above, but for Firefox
+      - name: Upload development build artifact for Firefox
+        uses: actions/upload-artifact@v4
+        if: ${{ github.ref_type != 'tag' }}
+        with:
+          name: "${{env.RELEASE_NAME}}-firefox"
+          path: rolod0x-firefox*
+
+      - name: Create release zip files from version tag
         if: startsWith(github.ref, 'refs/tags/v')
         run: |
-
-          zip -r $RELEASE_NAME.zip rolod0x/
+          zip -r $RELEASE_NAME-chrome.zip rolod0x-chrome/
+          zip -r $RELEASE_NAME-firefox.zip rolod0x-chrome/
 
       - name: Create a draft release from a tag
         uses: ncipollo/release-action@v1
-        if: ${{ github.ref_type == 'tag' }}
+        if: startsWith(github.ref, 'refs/tags/v')
         with:
-          artifacts: "${{env.RELEASE_NAME}}.zip"
+          artifacts: "${{env.RELEASE_NAME}}-*.zip"
           draft: true
           generateReleaseNotes: true
 

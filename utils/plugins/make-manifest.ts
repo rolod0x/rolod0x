@@ -11,7 +11,7 @@ import ManifestParser from '../manifest-parser';
 const { resolve } = path;
 
 const rootDir = resolve(__dirname, '..', '..');
-const distDir = resolve(rootDir, 'dist');
+const distDir = resolve(rootDir, 'dist', process.env.__FIREFOX__ ? 'firefox' : 'chrome');
 const manifestFile = resolve(rootDir, 'manifest.js');
 
 const getManifestWithCacheBurst = (): Promise<{ default: chrome.runtime.ManifestV3 }> => {
