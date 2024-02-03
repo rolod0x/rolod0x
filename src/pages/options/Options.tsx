@@ -1,11 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
-import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider } from '@mui/material/styles';
 import { withErrorBoundary } from 'react-error-boundary';
 
-import { theme } from '@src/shared/theme';
 import withSuspense from '@src/shared/hoc/withSuspense';
 import ErrorPage from '@src/components/ErrorPage';
+import Rolod0xThemeProvider from '@src/components/Rolod0xThemeProvider';
 
 import ResponsiveDrawer from './ResponsiveDrawer';
 import AddressesSettings from './AddressesSettings';
@@ -15,9 +13,7 @@ import SiteSettings from './SiteSettings';
 
 const Options = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-
+    <Rolod0xThemeProvider>
       <Routes>
         <Route path="/" element={<ResponsiveDrawer />}>
           <Route index element={<AddressesSettings />} />
@@ -28,7 +24,7 @@ const Options = () => {
           <Route path="*" element={<AddressesSettings />} />
         </Route>
       </Routes>
-    </ThemeProvider>
+    </Rolod0xThemeProvider>
   );
 };
 

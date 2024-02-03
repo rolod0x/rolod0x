@@ -28,7 +28,7 @@ const OptionsDrawer = () => {
       // console.log('OptionsDrawer page', page, 'selected', selected);
       return (
         <NavLink to={path} style={{ textDecoration: 'none' }}>
-          <ListItem key={page} disablePadding sx={{ bgcolor: selected && 'primary.dark' }}>
+          <ListItem key={page} disablePadding sx={{ bgcolor: selected && 'background.selected' }}>
             <ListItemButton>
               <ListItemIcon>{children}</ListItemIcon>
               <ListItemText primary={page} sx={{ color: 'text.primary' }} />

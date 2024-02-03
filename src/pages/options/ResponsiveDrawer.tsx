@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -7,8 +7,11 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 import Rolod0xText from '../../components/Rolod0xText';
+import { ThemeNameContext } from '../../components/Rolod0xThemeProvider';
 
 import OptionsDrawer from './OptionsDrawer';
 
@@ -19,6 +22,7 @@ const drawerWidth = 200;
 
 export default function ResponsiveDrawer() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { themeName, toggleTheme } = useContext(ThemeNameContext);
 
   const handleDrawerToggle = useCallback(() => {
     setMobileOpen(!mobileOpen);
@@ -32,7 +36,12 @@ export default function ResponsiveDrawer() {
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
         }}>
-        <Toolbar>
+        <Toolbar
+          sx={{
+            color: 'text.toolbar',
+            bgcolor: 'background.toolbar',
+            justifyContent: 'space-between',
+          }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -44,6 +53,9 @@ export default function ResponsiveDrawer() {
           <Typography variant="h3" component="h1">
             <Rolod0xText /> settings
           </Typography>
+          <IconButton sx={{ ml: 1 }} onClick={toggleTheme} color="inherit">
+            {themeName === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Box
