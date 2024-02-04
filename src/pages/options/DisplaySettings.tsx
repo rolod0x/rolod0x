@@ -147,7 +147,7 @@ export default function DisplaySettings() {
           When <Rolod0xText /> detects an <em>abbreviated</em> address, it will try to guess what
           the address corresponds to. For example, if your address book has an entry for
         </Typography>
-        <Box p={2} fontFamily="Monospace">
+        <Box p={2}>
           <StyledCode>0x186bA87Ee6C3B4B25318c0f521C45b482d7f2dC3</StyledCode>
         </Box>
         <Typography paragraph>
