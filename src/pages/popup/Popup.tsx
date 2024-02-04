@@ -1,4 +1,5 @@
 import React from 'react';
+import { withErrorBoundary } from 'react-error-boundary';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -9,7 +10,7 @@ import '@pages/popup/Popup.css';
 import useStorage from '@src/shared/hooks/useStorage';
 import exampleThemeStorage from '@src/shared/storages/exampleThemeStorage';
 import withSuspense from '@src/shared/hoc/withSuspense';
-import withErrorBoundary from '@src/shared/hoc/withErrorBoundary';
+import ErrorPage from '@src/components/ErrorPage';
 
 const Popup = () => {
   const theme = useStorage(exampleThemeStorage);
@@ -32,7 +33,6 @@ const Popup = () => {
   );
 };
 
-export default withErrorBoundary(
-  withSuspense(Popup, <div> Loading ... </div>),
-  <div>Error occurred in rolod0x popup!</div>,
-);
+export default withErrorBoundary(withSuspense(Popup, <h1> Loading rolod0x popup... </h1>), {
+  fallbackRender: ({ error }) => <ErrorPage error={error} />,
+});
