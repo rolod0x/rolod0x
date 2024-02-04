@@ -1,8 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
+import { withErrorBoundary } from 'react-error-boundary';
 
 import { theme } from '../../shared/theme';
+import ErrorPage from '../../components/ErrorPage';
 
 import ResponsiveDrawer from './ResponsiveDrawer';
 import AddressesSettings from './AddressesSettings';
@@ -10,7 +12,9 @@ import DisplaySettings from './DisplaySettings';
 import Donate from './Donate';
 import SiteSettings from './SiteSettings';
 
-export default function Options() {
+import withSuspense from '@src/shared/hoc/withSuspense';
+
+const Options = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -27,4 +31,8 @@ export default function Options() {
       </Routes>
     </ThemeProvider>
   );
-}
+};
+
+export default withErrorBoundary(withSuspense(Options, <h1> Loading rolod0x option... </h1>), {
+  fallbackRender: ({ error }) => <ErrorPage error={error} />,
+});
