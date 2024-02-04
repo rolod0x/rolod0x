@@ -56,10 +56,7 @@ export default function AddressOption({ props, option }: Props) {
       component="li"
       {...props}>
       <Typography>{option.label}</Typography>{' '}
-      <Typography
-        component="code"
-        color={theme.palette.text.secondary}
-        sx={{ fontFamily: 'monospace' }}>
+      <Typography component="code" color={theme.palette.text.secondary}>
         {option.address}
       </Typography>
     </Stack>

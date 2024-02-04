@@ -10,6 +10,7 @@ export default function StyledCode({ children, className }: Props) {
   const Code = styled('code')(
     ({ theme }) =>
       `
+        font-family: Ubuntu Mono;
         margin: 2px 4px;
         padding: 2px;
         color: ${theme.palette.secondary.light};
