@@ -1,4 +1,4 @@
-import { ParsedEntries } from '../../../shared/types';
+import { ParsedEntries } from '@src/shared/types';
 
 import { itemsFilter } from './search';
 

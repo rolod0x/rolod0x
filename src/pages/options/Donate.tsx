@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import Typography from '@mui/material/Typography';
 
-import Rolod0xText from '../../components/Rolod0xText';
+import Rolod0xText from '@src/components/Rolod0xText';
 
 import SettingsPageHeader from './SettingsPageHeader';
 import StyledCode from './StyledCode';

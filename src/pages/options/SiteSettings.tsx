@@ -15,8 +15,8 @@ import Typography from '@mui/material/Typography';
 import 'webextension-polyfill';
 import { queryAdditionalPermissions, normalizeManifestPermissions } from 'webext-permissions';
 
-import Loading from '../../components/Loading';
-import Rolod0xText from '../../components/Rolod0xText';
+import Loading from '@src/components/Loading';
+import Rolod0xText from '@src/components/Rolod0xText';
 
 import SettingsSection from './SettingsSection';
 import SettingsPageHeader from './SettingsPageHeader';

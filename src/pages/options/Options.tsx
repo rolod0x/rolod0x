@@ -3,16 +3,15 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import { withErrorBoundary } from 'react-error-boundary';
 
-import { theme } from '../../shared/theme';
-import ErrorPage from '../../components/ErrorPage';
+import { theme } from '@src/shared/theme';
+import withSuspense from '@src/shared/hoc/withSuspense';
+import ErrorPage from '@src/components/ErrorPage';
 
 import ResponsiveDrawer from './ResponsiveDrawer';
 import AddressesSettings from './AddressesSettings';
 import DisplaySettings from './DisplaySettings';
 import Donate from './Donate';
 import SiteSettings from './SiteSettings';
-
-import withSuspense from '@src/shared/hoc/withSuspense';
 
 const Options = () => {
   return (

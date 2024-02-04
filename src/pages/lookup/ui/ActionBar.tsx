@@ -2,11 +2,11 @@ import React, { HTMLAttributes, useCallback, useEffect, useRef, useState } from 
 import Autocomplete, { AutocompleteChangeDetails } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
-// import { Formatter } from '../../../shared/formatter';
-import { Rolod0xOptions, optionsStorage } from '../../../shared/options-storage';
-import { AddressLabelComment, ParsedEntries } from '../../../shared/types';
-import { Parser, ParseError } from '../../../shared/parser';
-// import Loading from '../../../components/Loading';
+// import { Formatter } from '@src/shared/formatter';
+import { Rolod0xOptions, optionsStorage } from '@src/shared/options-storage';
+import { AddressLabelComment, ParsedEntries } from '@src/shared/types';
+import { Parser, ParseError } from '@src/shared/parser';
+// import Loading from '@src/components/Loading';
 
 import { itemsFilter } from './search';
 import AddressOption from './AddressOption';

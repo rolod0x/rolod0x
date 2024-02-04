@@ -3,7 +3,7 @@ import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import { ThemeProvider } from '@mui/material/styles';
 
-import { theme } from '../../../shared/theme';
+import { theme } from '@src/shared/theme';
 
 import ActionDialog from './ActionDialog';
 

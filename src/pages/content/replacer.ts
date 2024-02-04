@@ -1,4 +1,4 @@
-import { Counter, LabelMap } from '../../shared/types';
+import { Counter, LabelMap } from '@src/shared/types';
 
 const ORIGINAL_ATTRIBUTE = 'data-rolod0x-original';
 

@@ -2,8 +2,7 @@ import addDomainPermissionToggle from 'webext-permission-toggle';
 
 import 'webext-dynamic-content-scripts';
 
-import { checkPermissions } from '../../shared/permissions';
-
+import { checkPermissions } from '@src/shared/permissions';
 import reloadOnUpdate from 'virtual:reload-on-update-in-background-script';
 
 chrome.permissions.onAdded.addListener(() => checkPermissions('onAdded'));

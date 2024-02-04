@@ -7,9 +7,9 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
-import { Formatter } from '../../shared/formatter';
-import { optionsStorage } from '../../shared/options-storage';
-import Rolod0xText from '../../components/Rolod0xText';
+import { Formatter } from '@src/shared/formatter';
+import { optionsStorage } from '@src/shared/options-storage';
+import Rolod0xText from '@src/components/Rolod0xText';
 
 import SettingsPageHeader from './SettingsPageHeader';
 import SettingsSection from './SettingsSection';

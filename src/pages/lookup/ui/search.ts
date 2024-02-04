@@ -1,4 +1,4 @@
-import { ParsedEntries } from '../../../shared/types';
+import { ParsedEntries } from '@src/shared/types';
 
 export function itemsFilter(items: ParsedEntries, { inputValue }) {
   const lowerCasedWords = inputValue.toLowerCase().match(/\S+/g);

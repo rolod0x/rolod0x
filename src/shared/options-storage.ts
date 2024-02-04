@@ -1,5 +1,6 @@
-import type { Options } from 'webext-options-sync';
 import OptionsSync from 'webext-options-sync';
+
+import type { Options } from 'webext-options-sync';
 
 export interface Rolod0xOptions extends Options {
   labels: string;

@@ -25,7 +25,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HashRouter } from 'react-router-dom';
 
-import '../../shared/fonts';
+import '@src/shared/fonts';
 import Options from '@pages/options/Options';
 import refreshOnUpdate from 'virtual:reload-on-update-in-view';
 
