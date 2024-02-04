@@ -7,7 +7,7 @@ import { useTheme } from '@mui/material/styles';
 // import styled from '@emotion/styled';
 // import { css } from '@emotion/react';
 
-import { AddressLabelComment } from '../../../shared/types';
+import { AddressLabelComment } from '@src/shared/types';
 
 interface Props {
   props: HTMLAttributes<HTMLLIElement>;

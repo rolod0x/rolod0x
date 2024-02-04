@@ -5,13 +5,14 @@ import { useMemo } from 'react';
 // https://mui.com/material-ui/customization/palette/#provide-tokens-manually
 import { alpha, darken, useTheme } from '@mui/material/styles';
 import CodeMirror from '@uiw/react-codemirror';
-import { createTheme } from '@uiw/codemirror-themes';
-// For some weird reason this interface needs to be imported via 'import type':
-import type { CreateThemeOptions } from '@uiw/codemirror-themes';
 import { javascript } from '@codemirror/lang-javascript';
+import { createTheme } from '@uiw/codemirror-themes';
 import { tags as t } from '@lezer/highlight';
 
-// import { themeOptions } from '../../shared/theme';
+// For some weird reason this interface needs to be imported via 'import type':
+import type { CreateThemeOptions } from '@uiw/codemirror-themes';
+
+// import { themeOptions } from '@src/shared/theme';
 
 const extensions = [javascript({ jsx: true })];
 

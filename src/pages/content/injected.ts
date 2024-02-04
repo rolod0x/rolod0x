@@ -1,7 +1,7 @@
-import { Formatter } from '../../shared/formatter';
-import { DEFAULT_OPTIONS, Rolod0xOptions, optionsStorage } from '../../shared/options-storage';
-import { Parser, ParseError } from '../../shared/parser';
-import { Mapper } from '../../shared/mapper';
+import { Formatter } from '@src/shared/formatter';
+import { DEFAULT_OPTIONS, Rolod0xOptions, optionsStorage } from '@src/shared/options-storage';
+import { Parser, ParseError } from '@src/shared/parser';
+import { Mapper } from '@src/shared/mapper';
 
 import { replaceInNode, startObserver } from './replacer';
 

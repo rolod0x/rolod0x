@@ -6,7 +6,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import '../../../shared/fonts';
+import '@src/shared/fonts';
 import Lookup from '@pages/lookup/ui/Lookup';
 import refreshOnUpdate from 'virtual:reload-on-update-in-view';
 

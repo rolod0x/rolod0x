@@ -7,8 +7,8 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import * as murmurhash from 'murmurhash';
 
-import { Parser, ParseError } from '../../shared/parser';
-import { optionsStorage } from '../../shared/options-storage';
+import { Parser, ParseError } from '@src/shared/parser';
+import { optionsStorage } from '@src/shared/options-storage';
 
 import CodeMirrorTextAddresses from './CodeMirrorTextAddresses';
 import StyledCode from './StyledCode';

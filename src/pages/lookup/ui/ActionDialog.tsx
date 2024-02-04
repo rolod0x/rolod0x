@@ -7,7 +7,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 
-import Rolod0xText from '../../../components/Rolod0xText';
+import Rolod0xText from '@src/components/Rolod0xText';
 
 import ActionBar from './ActionBar';
 
