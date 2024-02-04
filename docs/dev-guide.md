@@ -47,7 +47,8 @@ Run:
 
 Once you have built the extension, installation is the same as
 documented in the installation guide for [Chrome](./install.md#chrome)
-or [Firefox](./install.md#firefox).
+or [Firefox](./install.md#firefox), except you have to select the
+folder `dist/chrome` or `dist/firefox` respectively.
 
 ## Linting <a name="lint"></a>
 
