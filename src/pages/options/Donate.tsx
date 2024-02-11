@@ -10,7 +10,7 @@ export default function Donate() {
   return (
     <Fragment>
       <SettingsPageHeader>
-        Support <Rolod0xText />!
+        Support <Rolod0xText bold />!
       </SettingsPageHeader>
       <Typography paragraph>
         If you find this project helpful and would like to support its development, you can make a

@@ -1,10 +1,14 @@
 import { useTheme } from '@mui/material/styles';
 
-export default function Rolod0xText() {
+interface Props {
+  bold?: boolean;
+}
+
+export default function Rolod0xText({ bold }: Props) {
   const theme = useTheme();
 
   return (
-    <span>
+    <span style={bold && { fontWeight: 'bold' }}>
       rolod<span style={{ color: theme.palette.primary.main }}>0x</span>
     </span>
   );

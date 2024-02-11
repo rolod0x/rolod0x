@@ -48,7 +48,7 @@ export default function ActionDialog() {
       onClose={handleClose}>
       <Stack direction="row" justifyContent="space-between">
         <DialogTitle variant="h3">
-          <Rolod0xText /> address book lookup
+          <Rolod0xText bold /> address book lookup
         </DialogTitle>
         <DialogActions>
           <IconButton

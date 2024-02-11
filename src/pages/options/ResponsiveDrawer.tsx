@@ -51,7 +51,7 @@ export default function ResponsiveDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h3" component="h1">
-            <Rolod0xText /> settings
+            <Rolod0xText bold /> settings
           </Typography>
           <IconButton sx={{ ml: 1 }} onClick={toggleTheme} color="inherit">
             {themeName === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
