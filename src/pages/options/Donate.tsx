@@ -18,16 +18,16 @@ export default function Donate() {
       </Typography>
       <ul>
         <li>
-          Send <strong>Bitcoin</strong> to:{' '}
-          <StyledCode>bc1quuspvrjepx63k5hpydwqkf6nmtt9eqm86y8w8a</StyledCode>
-        </li>
-        <li>
           Send <strong>ETH</strong> or tokens on any Ethereum network to:{' '}
           <StyledCode>rolod0x.eth</StyledCode>
           <br />
           (N.B. that's a zero before the <StyledCode>x</StyledCode>, not an uppercase{' '}
           <StyledCode>O</StyledCode> &mdash; the address should resolve to{' '}
           <StyledCode>0x06357397d8078C19195f4555db7A407b1b1f5FB3</StyledCode>.)
+        </li>
+        <li>
+          Send <strong>Bitcoin</strong> to:{' '}
+          <StyledCode>bc1quuspvrjepx63k5hpydwqkf6nmtt9eqm86y8w8a</StyledCode>
         </li>
       </ul>
       <Typography paragraph>
