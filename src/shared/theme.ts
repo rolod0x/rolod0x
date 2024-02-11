@@ -1,4 +1,11 @@
-import { alpha, lighten, darken, ThemeOptions, createTheme } from '@mui/material/styles';
+import {
+  alpha,
+  lighten,
+  darken,
+  PaletteColorOptions,
+  ThemeOptions,
+  createTheme,
+} from '@mui/material/styles';
 import _ from 'lodash';
 
 import { typography } from './typography';
@@ -9,12 +16,14 @@ const common = {
 
 // https://mui.com/material-ui/customization/theming/#typescript
 declare module '@mui/material/styles' {
+  interface PaletteOptions {
+    accent: PaletteColorOptions;
+  }
   interface TypeBackground {
     selected: string;
     toolbar: string;
   }
   interface TypeText {
-    accent: string;
     code: {
       main: string;
       border: string;
@@ -47,6 +56,9 @@ export const _lightThemeOptions: ThemeOptions = {
       toolbar: '#EBE5D8', // Eggshell
       // toolbar: '#111111', // smoky black
     },
+    accent: {
+      main: '#F4E174', // Jasmine
+    },
     text: {
       primary: '#111111',
       selected: '#FFFFFF',
@@ -73,6 +85,9 @@ const _darkThemeOptions: ThemeOptions = {
       paper: '#212121', // raisin black
       toolbar: '#111111', // smoky black
     },
+    accent: {
+      main: '#F4E174', // Jasmine
+    },
     text: {
       primary: '#FFFFFF',
       selected: '#FFFFFF',
@@ -93,7 +108,6 @@ export const lightThemeOptions: ThemeOptions = _.merge(_lightThemeOptions, {
       selected: _light.palette.secondary.main,
     },
     text: {
-      accent: _light.palette.primary.main,
       code: {
         main: _light.palette.primary.dark,
         border: alpha(_light.palette.primary.light, 0.5),
@@ -109,7 +123,6 @@ export const darkThemeOptions: ThemeOptions = _.merge(_darkThemeOptions, {
       selected: darken(_dark.palette.secondary.dark, 0.2),
     },
     text: {
-      accent: _dark.palette.primary.main,
       code: {
         main: _dark.palette.secondary.light,
         border: alpha(_dark.palette.secondary.dark, 0.5),
