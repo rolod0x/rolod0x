@@ -2,6 +2,9 @@
 // Supports weights 300-800
 import '@fontsource-variable/open-sans';
 
+// https://fontsource.org/fonts/ubuntu/install
+import '@fontsource/ubuntu';
+
 // https://fontsource.org/fonts/ubuntu-mono/install
 import '@fontsource/ubuntu-mono';
 
