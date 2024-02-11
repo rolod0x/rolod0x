@@ -106,6 +106,8 @@ export default function ActionBar({ handleClose }: Props) {
       autoHighlight
       clearOnBlur={false}
       clearOnEscape={false}
+      // Uncomment for debugging via inspector
+      // open={true}
       selectOnFocus={false}
       getOptionKey={option => option.address + ' ||| ' + option.label}
       id="action-bar"

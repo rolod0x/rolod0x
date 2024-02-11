@@ -17,9 +17,15 @@ dependencies:
   '@emotion/styled':
     specifier: ^11.11.0
     version: 11.11.0(@emotion/react@11.11.3)(@types/react@18.2.48)(react@18.2.0)
+  '@fontsource-variable/open-sans':
+    specifier: ^5.0.23
+    version: 5.0.23
   '@fontsource/roboto':
     specifier: ^5.0.8
     version: 5.0.8
+  '@fontsource/ubuntu-mono':
+    specifier: ^5.0.18
+    version: 5.0.18
   '@lezer/highlight':
     specifier: ^1.2.0
     version: 1.2.0
@@ -1288,8 +1294,16 @@ packages:
     engines: {node: '>=14.0.0', npm: '>=7.0.0'}
     dev: true
 
+  /@fontsource-variable/open-sans@5.0.23:
+    resolution: {integrity: sha512-fIvxjvdqyl53Nw2ostM94pNAXtqpJPKWUlNqZo2NGzOERz/TK4HL+Lgxy5XCNVw2yPdeGt01xb0Qr5aa9fZ9gA==}
+    dev: false
+
   /@fontsource/roboto@5.0.8:
     resolution: {integrity: sha512-XxPltXs5R31D6UZeLIV1td3wTXU3jzd3f2DLsXI8tytMGBkIsGcc9sIyiupRtA8y73HAhuSCeweOoBqf6DbWCA==}
+    dev: false
+
+  /@fontsource/ubuntu-mono@5.0.18:
+    resolution: {integrity: sha512-Cvp8Le+AUSdSuUGdDHEsNQQkohAu+WRu/6PsIC3F9ebjTdd+Q6AA7QE5Uws2g3hVY3BaI0SUxkSIwillxAirSA==}
     dev: false
 
   /@humanwhocodes/config-array@0.11.14:

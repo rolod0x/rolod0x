@@ -1,6 +1,8 @@
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+// https://fontsource.org/fonts/open-sans/install
+// Supports weights 300-800
+import '@fontsource-variable/open-sans';
+
+// https://fontsource.org/fonts/ubuntu-mono/install
+import '@fontsource/ubuntu-mono';
 
 import './fonts.css';
