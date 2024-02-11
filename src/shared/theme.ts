@@ -19,6 +19,7 @@ declare module '@mui/material/styles' {
       main: string;
       border: string;
     };
+    selected: string;
     toolbar: string;
   }
 }
@@ -46,6 +47,10 @@ export const _lightThemeOptions: ThemeOptions = {
       toolbar: '#EBE5D8', // Eggshell
       // toolbar: '#111111', // smoky black
     },
+    text: {
+      primary: '#111111',
+      selected: '#FFFFFF',
+    },
   },
   ...common,
 };
@@ -68,6 +73,10 @@ const _darkThemeOptions: ThemeOptions = {
       paper: '#212121', // raisin black
       toolbar: '#111111', // smoky black
     },
+    text: {
+      primary: '#FFFFFF',
+      selected: '#FFFFFF',
+    },
   },
   ...common,
 };
@@ -81,7 +90,7 @@ const _dark = createTheme(_darkThemeOptions);
 export const lightThemeOptions: ThemeOptions = _.merge(_lightThemeOptions, {
   palette: {
     background: {
-      selected: _light.palette.secondary.dark,
+      selected: _light.palette.secondary.main,
     },
     text: {
       accent: _light.palette.primary.main,

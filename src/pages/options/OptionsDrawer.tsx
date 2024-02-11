@@ -31,7 +31,10 @@ const OptionsDrawer = () => {
           <ListItem key={page} disablePadding sx={{ bgcolor: selected && 'background.selected' }}>
             <ListItemButton>
               <ListItemIcon>{children}</ListItemIcon>
-              <ListItemText primary={page} sx={{ color: 'text.primary' }} />
+              <ListItemText
+                primary={page}
+                sx={{ color: selected ? 'text.selected' : 'text.primary' }}
+              />
             </ListItemButton>
           </ListItem>
         </NavLink>
