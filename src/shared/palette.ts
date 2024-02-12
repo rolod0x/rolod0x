@@ -46,13 +46,13 @@ export const _lightPaletteOptions: PaletteOptions = {
     // main: '#6C8BDA', // blue-gray / cornflower
     main: '#8DF2D4', // medium aquamarine / magic mint
   },
+  accent: {
+    main: '#F4E174', // Jasmine
+  },
   background: {
     default: '#FCFAF3', // Floral white
     // paper: lighten('#EBE5D8', 0.9), // Eggshell
     paper: '#F8F7F4', // Cultured / white smoke
-  },
-  accent: {
-    main: '#F4E174', // Jasmine
   },
   text: {
     primary: '#111111',
@@ -70,12 +70,12 @@ const _darkPaletteOptions: PaletteOptions = {
     // main: '#7067CF', // slate blue
     main: '#8DF2D4', // medium aquamarine / magic mint
   },
+  accent: {
+    main: '#F4E174', // Jasmine
+  },
   background: {
     default: '#111111', // smoky black
     paper: '#212121', // raisin black
-  },
-  accent: {
-    main: '#F4E174', // Jasmine
   },
   text: {
     primary: '#FFFFFF',
