@@ -109,7 +109,7 @@ const _dark = createTheme(_darkThemeOptions);
 const _lightThemeExtraPaletteOptions: Partial<PaletteOptions> = {
   selectedOption: {
     text: '#111111',
-    background: _light.palette.secondary.main,
+    background: _light.palette.secondary.dark,
   },
   toolbar: {
     text: '#111111', // smoky black
