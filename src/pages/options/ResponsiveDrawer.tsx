@@ -10,8 +10,8 @@ import Typography from '@mui/material/Typography';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 
-import Rolod0xText from '../../components/Rolod0xText';
-import { ThemeNameContext } from '../../components/Rolod0xThemeProvider';
+import Rolod0xText from '@src/components/Rolod0xText';
+import { ThemeNameContext } from '@src/components/Rolod0xThemeProvider';
 
 import OptionsDrawer from './OptionsDrawer';
 

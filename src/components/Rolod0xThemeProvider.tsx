@@ -2,8 +2,8 @@ import { createContext, ReactNode, useCallback, useEffect, useState } from 'reac
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
-import { themes, ThemeName } from '../shared/theme';
-import { optionsStorage, Rolod0xOptions } from '../shared/options-storage';
+import { themes, ThemeName } from '@src/shared/theme';
+import { optionsStorage, Rolod0xOptions } from '@src/shared/options-storage';
 
 export const ThemeNameContext = createContext({ themeName: 'light', toggleTheme: () => {} });
 

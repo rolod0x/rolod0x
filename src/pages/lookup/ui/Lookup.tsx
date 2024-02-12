@@ -1,4 +1,4 @@
-import Rolod0xThemeProvider from '../../../components/Rolod0xThemeProvider';
+import Rolod0xThemeProvider from '@src/components/Rolod0xThemeProvider';
 
 import ActionDialog from './ActionDialog';
 

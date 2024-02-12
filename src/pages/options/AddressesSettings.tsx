@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Typography from '@mui/material/Typography';
 
-import { ThemeNameContext } from '../../components/Rolod0xThemeProvider';
+import { ThemeNameContext } from '@src/components/Rolod0xThemeProvider';
 
 import LocalAddressBook from './LocalAddressBook';
 
