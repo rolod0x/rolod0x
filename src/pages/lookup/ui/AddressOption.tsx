@@ -53,7 +53,7 @@ export default function AddressOption({ props, option }: Props) {
       component="li"
       {...props}>
       <Typography>{option.label}</Typography>{' '}
-      <Typography component="code" color="text.secondary">
+      <Typography component="code" color="secondary.dark">
         {option.address}
       </Typography>
     </Stack>
