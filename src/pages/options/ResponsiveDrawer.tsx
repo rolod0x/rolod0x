@@ -38,8 +38,8 @@ export default function ResponsiveDrawer() {
         }}>
         <Toolbar
           sx={{
-            color: 'text.toolbar',
-            bgcolor: 'background.toolbar',
+            color: 'toolbar.text',
+            bgcolor: 'toolbar.background',
             justifyContent: 'space-between',
           }}>
           <IconButton

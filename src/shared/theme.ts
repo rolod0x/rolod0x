@@ -2,6 +2,7 @@ import {
   alpha,
   lighten,
   darken,
+  PaletteOptions,
   PaletteColorOptions,
   ThemeOptions,
   createTheme,
@@ -18,83 +19,79 @@ const common = {
 declare module '@mui/material/styles' {
   interface PaletteOptions {
     accent: PaletteColorOptions;
+    selectedOption?: {
+      background: string;
+      text: string;
+    };
+    toolbar?: {
+      background: string;
+      text: string;
+    };
   }
-  interface TypeBackground {
-    selected: string;
-    toolbar: string;
-  }
+
   interface TypeText {
     code: {
       main: string;
       border: string;
     };
-    selected: string;
-    toolbar: string;
   }
 }
 
 // Generate these palettes with https://zenoo.github.io/mui-theme-creator/
 
-export const _lightThemeOptions: ThemeOptions = {
-  palette: {
-    mode: 'light',
-    primary: {
-      // main: '#E4F4F9', // bubbles
-      // main: '#387CF7', // bleu de France
-      // main: '#6C8BDA', // blue-gray / cornflower
-      main: '#517BE8', // royal blue
-    },
-    secondary: {
-      // main: '#8F67CF', // amethyst
-      // main: '#6C8BDA', // blue-gray / cornflower
-      main: '#8DF2D4', // medium aquamarine / magic mint
-    },
-    background: {
-      default: '#FCFAF3', // Floral white
-      // paper: lighten('#EBE5D8', 0.9), // Eggshell
-      paper: '#F8F7F4', // Cultured / white smoke
-      toolbar: '#EBE5D8', // Eggshell
-      // toolbar: '#111111', // smoky black
-    },
-    accent: {
-      main: '#F4E174', // Jasmine
-    },
-    text: {
-      primary: '#111111',
-      selected: '#FFFFFF',
-    },
+export const _lightPaletteOptions: PaletteOptions = {
+  mode: 'light',
+  primary: {
+    // main: '#E4F4F9', // bubbles
+    // main: '#387CF7', // bleu de France
+    // main: '#6C8BDA', // blue-gray / cornflower
+    main: '#517BE8', // royal blue
   },
-  ...common,
+  secondary: {
+    // main: '#8F67CF', // amethyst
+    // main: '#6C8BDA', // blue-gray / cornflower
+    main: '#8DF2D4', // medium aquamarine / magic mint
+  },
+  background: {
+    default: '#FCFAF3', // Floral white
+    // paper: lighten('#EBE5D8', 0.9), // Eggshell
+    paper: '#F8F7F4', // Cultured / white smoke
+  },
+  accent: {
+    main: '#F4E174', // Jasmine
+  },
+  text: {
+    primary: '#111111',
+  },
 };
-const _light = createTheme(_lightThemeOptions);
 
-const _darkThemeOptions: ThemeOptions = {
-  palette: {
-    mode: 'dark',
-    primary: {
-      // main: '#79DE0D', // lawn green
-      main: lighten('#6C8BDA', 0.2), // blue-gray / cornflower
-    },
-    secondary: {
-      // main: '#D584E7', // violet
-      // main: '#7067CF', // slate blue
-      main: '#8DF2D4', // medium aquamarine / magic mint
-    },
-    background: {
-      default: '#111111', // smoky black
-      paper: '#212121', // raisin black
-      toolbar: '#111111', // smoky black
-    },
-    accent: {
-      main: '#F4E174', // Jasmine
-    },
-    text: {
-      primary: '#FFFFFF',
-      selected: '#FFFFFF',
-    },
+const _darkPaletteOptions: PaletteOptions = {
+  mode: 'dark',
+  primary: {
+    // main: '#79DE0D', // lawn green
+    main: lighten('#6C8BDA', 0.2), // blue-gray / cornflower
   },
-  ...common,
+  secondary: {
+    // main: '#D584E7', // violet
+    // main: '#7067CF', // slate blue
+    main: '#8DF2D4', // medium aquamarine / magic mint
+  },
+  background: {
+    default: '#111111', // smoky black
+    paper: '#212121', // raisin black
+  },
+  accent: {
+    main: '#F4E174', // Jasmine
+  },
+  text: {
+    primary: '#FFFFFF',
+  },
 };
+
+const _lightThemeOptions: ThemeOptions = { palette: _lightPaletteOptions, ...common };
+const _darkThemeOptions: ThemeOptions = { palette: _darkPaletteOptions, ...common };
+
+const _light = createTheme(_lightThemeOptions);
 const _dark = createTheme(_darkThemeOptions);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -102,35 +99,63 @@ const _dark = createTheme(_darkThemeOptions);
 // tokens from those.
 /////////////////////////////////////////////////////////////////////////////
 
-export const lightThemeOptions: ThemeOptions = _.merge(_lightThemeOptions, {
-  palette: {
-    background: {
-      selected: _light.palette.secondary.main,
-    },
-    text: {
-      code: {
-        main: _light.palette.primary.dark,
-        border: alpha(_light.palette.primary.light, 0.5),
-      },
-      toolbar: '#111111', // smoky black
-    },
-  },
-});
+// We could also use a nested partial with the following trick from
+// https://stackoverflow.com/a/47914631/179332
+//
+// type RecursivePartial<T> = {
+//   [P in keyof T]?: RecursivePartial<T[P]>;
+// };
+//
+// const _lightThemeExtraThemeOptions: RecursivePartial<ThemeOptions> = {
+//   palette: {
+//     ...
+//   },
+// };
 
-export const darkThemeOptions: ThemeOptions = _.merge(_darkThemeOptions, {
-  palette: {
-    background: {
-      selected: darken(_dark.palette.secondary.dark, 0.2),
-    },
-    text: {
-      code: {
-        main: _dark.palette.secondary.light,
-        border: alpha(_dark.palette.secondary.dark, 0.5),
-      },
-      toolbar: '#FFFFFF',
+const _lightThemeExtraPaletteOptions: Partial<PaletteOptions> = {
+  selectedOption: {
+    text: '#111111',
+    background: _light.palette.secondary.main,
+  },
+  toolbar: {
+    text: '#111111', // smoky black
+    background: '#EBE5D8', // Eggshell
+  },
+  text: {
+    code: {
+      main: _light.palette.primary.dark,
+      border: alpha(_light.palette.primary.light, 0.5),
     },
   },
-});
+};
+
+const _darkThemeExtraPaletteOptions: Partial<PaletteOptions> = {
+  selectedOption: {
+    text: '#FFFFFF',
+    background: darken(_dark.palette.secondary.dark, 0.2),
+  },
+  toolbar: {
+    text: '#FFFFFF',
+    background: '#111111',
+  },
+  text: {
+    code: {
+      main: _dark.palette.secondary.light,
+      border: alpha(_dark.palette.secondary.dark, 0.5),
+    },
+  },
+};
+
+export const lightThemeOptions: ThemeOptions = _.merge(
+  _lightThemeOptions,
+  { palette: _lightThemeExtraPaletteOptions },
+  // _lightThemeExtraThemeOptions,
+);
+export const darkThemeOptions: ThemeOptions = _.merge(
+  _darkThemeOptions,
+  { palette: _darkThemeExtraPaletteOptions },
+  // _darkThemeExtraThemeOptions,
+);
 
 export const themes = {
   light: createTheme(lightThemeOptions),
