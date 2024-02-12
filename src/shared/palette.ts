@@ -118,7 +118,7 @@ const _lightThemeExtraPaletteOptions: Partial<PaletteOptions> = {
   text: {
     code: {
       main: _light.palette.primary.dark,
-      border: alpha(_light.palette.primary.light, 0.5),
+      border: alpha(_light.palette.primary.light, 0.3),
     },
   },
 };
