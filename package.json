@@ -37,6 +37,7 @@
   "type": "module",
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.1",
+    "@codemirror/state": "^6.4.1",
     "@commander-js/extra-typings": "^12.0.0",
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.3",
