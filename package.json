@@ -7,6 +7,9 @@
     "type": "git",
     "url": "https://github.com/aspiers/rolod0x.git"
   },
+  "bin": {
+    "rolod0x": "./src/cli.ts"
+  },
   "scripts": {
     "build": "tsc --noEmit && vite build",
     "build:firefox": "tsc --noEmit && cross-env __FIREFOX__=true vite build",
@@ -28,11 +31,13 @@
     "lint:eslint:fix": "pnpm eslint --fix",
     "lint:prettier": "prettier --check .",
     "lint:prettier:fix": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "rolod0x": "pnpm exec tsx ./src/cli.ts"
   },
   "type": "module",
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.1",
+    "@commander-js/extra-typings": "^12.0.0",
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
@@ -46,6 +51,7 @@
     "@types/webextension-polyfill": "^0.10.7",
     "@uiw/codemirror-themes": "^4.21.24",
     "@uiw/react-codemirror": "^4.21.21",
+    "commander-js": "0.0.1-security",
     "construct-style-sheets-polyfill": "^3.1.0",
     "dedent": "^1.5.1",
     "ethers": "^6.10.0",
@@ -54,6 +60,7 @@
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.12",
     "react-router-dom": "^6.22.1",
+    "tsx": "^4.7.1",
     "webext-dynamic-content-scripts": "^10.0.1",
     "webext-options-sync": "^4.2.1",
     "webext-permission-toggle": "5.0.0-1",
