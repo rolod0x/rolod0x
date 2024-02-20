@@ -61,7 +61,7 @@
     "webextension-polyfill": "^0.10.0"
   },
   "devDependencies": {
-    "@codemirror/view": "^6.24.0",
+    "@codemirror/view": "^6.24.1",
     "@commitlint/cli": "^18.6.0",
     "@commitlint/config-conventional": "^18.6.0",
     "@rollup/plugin-typescript": "^11.1.6",
@@ -114,6 +114,6 @@
   },
   "packageManager": "pnpm@8.9.2",
   "peerDependencies": {
-    "@codemirror/view": "^6.24.0"
+    "@codemirror/view": "^6.24.1"
   }
 }
