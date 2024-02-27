@@ -76,7 +76,8 @@ See the [developer guide][].
 Any [pull request][using PRs] providing an enhancement or bugfix is
 extremely welcome!
 
-[developer guide]: docs/dev-guide.md
+[developer guide]: ./dev-guide.md
+[using PRs]: https://docs.github.com/en/pull-requests
 
 ## Installation of the command-line utility <a name="cli"></a>
 
