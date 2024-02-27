@@ -4,6 +4,8 @@
 - [Installation in Chrome and similar](#chrome)
 - [Upgrading a Chrome installation](#chrome-upgrade)
 - [Installation in Firefox](#firefox)
+- [Installation from source](#source)
+- [Installation of the command-line utility](#cli)
 
 ## Downloads <a name="downloads"></a>
 
@@ -75,3 +77,16 @@ Any [pull request][using PRs] providing an enhancement or bugfix is
 extremely welcome!
 
 [developer guide]: docs/dev-guide.md
+
+## Installation of the command-line utility <a name="cli"></a>
+
+For now this requires building from source as per above.  Once you
+have done `pnpm install` then in theory it should be enough to run:
+
+    pnpm link --global
+
+and this should install a `rolod0x` executable within a
+pnpm-controlled directory on your `$PATH`.  However, it seems that
+`pnpm` still has issues installing scripts in some cases, so if you
+run into problems with this, please follow the guidelines in
+[`CONTRIBUTING.md`](../CONTRIBUTING.md).

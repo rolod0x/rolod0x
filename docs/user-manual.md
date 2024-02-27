@@ -2,6 +2,7 @@
 
 - [Usage in Chrome and similar](#chrome)
 - [Usage in other browsers](#other)
+- [Usage on the command line](#cli)
 
 ## Usage in Chrome and similar <a name="chrome"></a>
 
@@ -44,3 +45,19 @@ planned - see <https://github.com/aspiers/rolod0x/issues/19>.
 Other browsers such as Firefox will have similar usage, but these
 instructions will need to be augmented accordingly when they are
 officially supported.
+
+## Usage on the command line <a name="cli"></a>
+
+If [installation](./install.md#cli) was successful then you should be
+able to run the `rolod0x` command.  If not, then try to `cd` to the
+source directory and run:
+
+    pnpm --silent run rolod0x
+
+The CLI utility takes an address book text file as a parameter, and
+then reads input from `STDIN` and filters it through rolod0x's
+replacement engine, so that `STDOUT` will contain the same text with
+any recognised addresses substituted for a labelled version.
+
+The substitution format can be controlled similarly as in the browser
+extension.
