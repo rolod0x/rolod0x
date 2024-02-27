@@ -1,4 +1,5 @@
 import { ABBREVIATION_FUNCTIONS } from './abbreviators';
+import { TRANSFORMER_FUNCTIONS } from './transformers';
 import { Formatter } from './formatter';
 import { Address, AddressLabelComment, LabelComment, LabelMap, ParsedEntries } from './types';
 
@@ -28,6 +29,13 @@ export class Mapper {
     // data.address is guaranteed to be ERC-55 checksummed
     this.labelMap.set(address, value);
     this.labelMap.set(address.toLowerCase(), value);
+
+    for (const func of TRANSFORMER_FUNCTIONS) {
+      for (const transformed of func(address)) {
+        this.labelMap.set(transformed, value);
+        this.labelMap.set(transformed.toLowerCase(), value);
+      }
+    }
 
     // The abbreviated form has a small risk of collisions,
     // so technically this is "just" a well-educated guess,
