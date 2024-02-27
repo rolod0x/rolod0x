@@ -37,6 +37,7 @@ const defaultSites = [
   // Other services
   'https://app.disco.xyz/*',
   'https://dashboard.redefine.net/*',
+  'https://bankless.com/*',
 ];
 
 const manifest = {

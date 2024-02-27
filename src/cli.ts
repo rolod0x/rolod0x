@@ -16,7 +16,8 @@ interface CLIOptions {
 }
 
 export function run() {
-  const program = new Command()
+  const program = new Command();
+  program
     .name('rolod0x')
     .description('CLI for mapping blockchain addresses to labels')
     .version('0.1.0')
@@ -25,7 +26,8 @@ export function run() {
     .argument('<ADDRESS-FILE>', 'path to address book file')
     .action((addressesFile: string, options: CLIOptions) => {
       main(addressesFile, options);
-    });
+    })
+    .showHelpAfterError();
 
   program.parse();
 }
