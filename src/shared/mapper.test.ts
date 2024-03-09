@@ -57,6 +57,20 @@ describe('Mapper', () => {
     });
   });
 
+  it('maps an address abbreviated 4/4 lowercase', () => {
+    expect(mapper.get('0xe3d8...f109')).toEqual({
+      label: '?my label? F109',
+      comment: 'ERC-55',
+    });
+  });
+
+  it('maps an address abbreviated 4/4 lowercase', () => {
+    expect(mapper.get('0x1803...3b5d')).toEqual({
+      label: '?another label? 3B5d',
+      comment: 'all lowercase',
+    });
+  });
+
   it('maps an address abbreviated 6/8', () => {
     expect(mapper.get('0xe3D823...D62eF109')).toEqual({
       label: '?my label? F109',
@@ -64,13 +78,17 @@ describe('Mapper', () => {
     });
   });
 
-  // In the future we may also map these, if there is a demand for it.
-  // However so far sites don't seem to be formatting addresses this way.
-  it("doesn't map a lowercase address abbreviated 4/4", () => {
-    expect(mapper.get('0xe3d8...f109')).toBe(undefined);
+  it('maps an address abbreviated 6/8 lowercase', () => {
+    expect(mapper.get('0xe3d823...d62ef109')).toEqual({
+      label: '?my label? F109',
+      comment: 'ERC-55',
+    });
   });
 
-  it("doesn't map a lowercase address abbreviated 6/8", () => {
-    expect(mapper.get('0xe3d823...d62ef109')).toBe(undefined);
+  it('maps an address abbreviated 6/8 lowercase', () => {
+    expect(mapper.get('0x180398...060c3b5d')).toEqual({
+      label: '?another label? 3B5d',
+      comment: 'all lowercase',
+    });
   });
 });
