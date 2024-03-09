@@ -44,6 +44,7 @@ export class Mapper {
     for (const func of ABBREVIATION_FUNCTIONS) {
       for (const abbrev of func(address)) {
         this.labelMap.set(abbrev, guess);
+        this.labelMap.set(abbrev.toLowerCase(), guess);
       }
     }
   }
