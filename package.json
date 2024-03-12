@@ -47,7 +47,7 @@
     "@lezer/highlight": "^1.2.0",
     "@mui/icons-material": "^5.15.12",
     "@mui/material": "^5.15.6",
-    "@mui/system": "^5.15.7",
+    "@mui/system": "^5.15.12",
     "@types/webextension-polyfill": "^0.10.7",
     "@uiw/codemirror-themes": "^4.21.24",
     "@uiw/react-codemirror": "^4.21.21",
