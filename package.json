@@ -45,7 +45,7 @@
     "@fontsource/roboto": "^5.0.8",
     "@fontsource/ubuntu-mono": "^5.0.18",
     "@lezer/highlight": "^1.2.0",
-    "@mui/icons-material": "^5.15.11",
+    "@mui/icons-material": "^5.15.12",
     "@mui/material": "^5.15.6",
     "@mui/system": "^5.15.7",
     "@types/webextension-polyfill": "^0.10.7",
