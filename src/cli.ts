@@ -41,7 +41,9 @@ function main(addressesFile, options: CLIOptions): void {
   const mapper = getMapper(addressesFile, options);
   const rl = readline.createInterface({ input: process.stdin });
   rl.on('line', (line: string) => {
-    const mapped = line.replace(/0x[0-9a-f]{40}\b/gi, (match: string) => replacer(mapper, match));
+    const mapped = line.replace(/(0x[0-9a-f]{40}|(0x)?[0-9a-f]{64})\b/gi, (match: string) =>
+      replacer(mapper, match),
+    );
     console.log(mapped);
   });
 }
