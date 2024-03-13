@@ -7,9 +7,13 @@ const ABBREVIATION_LENGTHS = [
   // abbreviated in the form 0x1234...1234
   [4, 4],
 
-  // On etherscan, addresses are abbreviated in the form
-  // 0x123456...12345678
+  // On etherscan and clones, addresses are _mostly_ abbreviated in
+  // the form 0x123456...12345678
   [6, 8],
+
+  // However, on the Holders tab of etherscan and clones, addresses
+  // are abbreviated in the form 0x12345678...123456789.  Yay consistency!
+  [8, 9],
 
   // On Coinbase and app.ens.domains, addresses are abbreviated in the
   // form 0x123...12345
