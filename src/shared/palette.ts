@@ -1,6 +1,6 @@
 import {
   alpha,
-  lighten,
+  // lighten,
   darken,
   PaletteOptions,
   PaletteColorOptions,
@@ -64,7 +64,8 @@ const _darkPaletteOptions: PaletteOptions = {
   mode: 'dark',
   primary: {
     // main: '#79DE0D', // lawn green
-    main: lighten('#6C8BDA', 0.2), // blue-gray / cornflower
+    // main: lighten('#6C8BDA', 0.2), // blue-gray / cornflower
+    main: '#517BE8', // royal blue
   },
   secondary: {
     // main: '#D584E7', // violet
