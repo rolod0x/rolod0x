@@ -20,6 +20,7 @@
   <a href="#features">Features at a Glance</a> •
   <a href="./docs/install.md">Installation</a> •
   <a href="./docs/user-manual.md">Usage</a> •
+  <a href="./docs/FAQ.md">FAQ</a> •
   <a href="#donations">Donations</a> •
   <a href="./CONTRIBUTING.md">Support</a> •
   <a href="./docs/dev-guide.md">Development</a> •
@@ -86,6 +87,10 @@ Please see [the installation guide](./docs/install.md).
 ## Usage <a name="usage"></a>
 
 Please see [the user manual](./docs/user-manual.md).
+
+## FAQ <a name="faq"></a>
+
+Please see [the Frequently Asked Questions page](./docs/FAQ.md).
 
 ## Donations <a name="donations"></a>
 
