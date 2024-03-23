@@ -13,7 +13,7 @@ export const DEFAULT_OPTIONS: Rolod0xOptions = {
   themeName: 'light',
   labels: '',
   displayLabelFormat: '%n (0x%4l…%4r)',
-  displayGuessFormat: '[0x%4l…%n?…%4r]',
+  displayGuessFormat: '? %n ? (0x%4l…%4r)',
 };
 
 export const optionsStorage = new OptionsSync<Rolod0xOptions>({
