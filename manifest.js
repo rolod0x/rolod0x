@@ -13,9 +13,11 @@ const defaultSites = [
   'https://*.polygonscan.com/*',
   'https://*.arbiscan.io/*',
   'https://*.gnosisscan.io/*',
+  'https://*.basescan.org/*',
   'https://*.explorer.zksync.io/*',
   'https://explorer.celo.org/*',
   'https://*.celoscan.io/*',
+  'https://*.blockscout.com/*',
   'https://explorer.bitquery.io/*',
 
   // Multisig management services
