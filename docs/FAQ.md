@@ -3,6 +3,7 @@
 - [Why is it called rolod0x?](#name)
 - [Why does web3 need private address books?](#why)
   - [But what's wrong with existing name services?](#name-services)
+- [What's the animal in the logo?](#animal)
 
 ## Why is it called rolod0x? <a name="name"></a>
 
@@ -75,3 +76,12 @@ Name services in web3 typically come in two forms:
    - It requires you to trust the centralized block explorer services with
      your private addresses.  This is in direct opposition to the web3
      values of trust minimization and decentralization!
+
+## What's the animal in the logo? <a name="animal"></a>
+
+OK, this isn't really a FAQ -- literally no one has asked.  But it can
+be considered as homage to [Ethereum's Merge Panda by `@icebearhww`][panda]:
+
+![Ethereum Merge Panda](./images/ethereum_panda.png)
+
+[panda]: https://twitter.com/icebearhww/status/1431970802040127498
