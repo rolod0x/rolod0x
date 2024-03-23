@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { alpha, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 interface Props {
   children: ReactNode;
@@ -12,8 +12,8 @@ export default function StyledCode({ children, className }: Props) {
       `
         margin: 2px 4px;
         padding: 2px;
-        color: ${theme.palette.secondary.light};
-        border-color: ${alpha(theme.palette.secondary.dark, 0.5)};
+        color: ${theme.palette.text.code.main};
+        border-color: ${theme.palette.text.code.border};
         border-width: 1px;
         border-radius: 4px;
         border-style: solid;

@@ -1,24 +1,15 @@
-import { ThemeOptions, createTheme } from '@mui/material/styles';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 import { typography } from './typography';
+import { lightPaletteOptions, darkPaletteOptions } from './palette';
 
-export const themeOptions: ThemeOptions = {
-  // Generate this palette with https://zenoo.github.io/mui-theme-creator/
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#79de0d',
-    },
-    secondary: {
-      // main: '#d584e7', // purpley
-      main: '#7067cf', // slate blue
-    },
-    background: {
-      default: '#111111',
-      paper: '#212121',
-    },
-  },
+const common = {
   typography,
 };
 
-export const theme = createTheme(themeOptions);
+export const themes = {
+  light: responsiveFontSizes(createTheme({ palette: lightPaletteOptions, ...common })),
+  dark: responsiveFontSizes(createTheme({ palette: darkPaletteOptions, ...common })),
+};
+
+export type ThemeName = keyof typeof themes;

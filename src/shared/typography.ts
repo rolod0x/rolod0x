@@ -1,6 +1,6 @@
 import { TypographyVariantsOptions } from '@mui/material/styles';
 
-const headerFont = 'Ubuntu Mono';
+const headerFont = 'Ubuntu';
 
 export const typography: TypographyVariantsOptions = {
   fontFamily: ['"Open Sans"', 'Ubuntu', 'Roboto', 'Oxygen', 'sans-serif'].join(', '),

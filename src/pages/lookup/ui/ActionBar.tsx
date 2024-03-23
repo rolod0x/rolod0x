@@ -117,7 +117,7 @@ export default function ActionBar({ handleClose }: Props) {
       }}
       ListboxProps={{
         style: {
-          maxHeight: '75vh',
+          maxHeight: '70vh',
         },
       }}
       filterOptions={itemsFilter}

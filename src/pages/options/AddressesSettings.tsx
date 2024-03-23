@@ -11,7 +11,7 @@ import LocalAddressBook from './LocalAddressBook';
 export default function AddressesSettings() {
   return (
     <Box>
-      <Alert severity="warning" variant="outlined">
+      <Alert severity="warning" variant="outlined" sx={{ borderWidth: 3 }}>
         After changing entries in the address book, you may have to reload pages for the changes to
         take effect.
       </Alert>

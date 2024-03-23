@@ -3,7 +3,6 @@
 import { HTMLAttributes } from 'react';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { useTheme } from '@mui/material/styles';
 // import styled from '@emotion/styled';
 // import { css } from '@emotion/react';
 
@@ -15,8 +14,6 @@ interface Props {
 }
 
 export default function AddressOption({ props, option }: Props) {
-  const theme = useTheme();
-
   // Very frustratingly, neither of these work when used directly in <Stack>:
   //
   //      justifyContent="space-between"
@@ -56,7 +53,7 @@ export default function AddressOption({ props, option }: Props) {
       component="li"
       {...props}>
       <Typography>{option.label}</Typography>{' '}
-      <Typography component="code" color={theme.palette.text.secondary}>
+      <Typography component="code" color="secondary.dark">
         {option.address}
       </Typography>
     </Stack>
