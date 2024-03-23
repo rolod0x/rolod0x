@@ -55,7 +55,9 @@ export default function ResponsiveDrawer() {
       <Box
         component="main"
         sx={{ flexGrow: 1, p: 3, width: { md: `calc(100% - ${drawerWidth}px)` } }}>
-        <Toolbar />
+        <Toolbar id="toolbar-spacer">
+          {/* Empty space to shift the content down below the AppBar */}
+        </Toolbar>
         <Outlet />
       </Box>
     </Box>
