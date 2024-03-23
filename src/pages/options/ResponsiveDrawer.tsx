@@ -12,6 +12,7 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 import Rolod0xText from '@src/components/Rolod0xText';
 import { ThemeNameContext } from '@src/components/Rolod0xThemeProvider';
+import './ResponsiveDrawer.css';
 
 import OptionsDrawer from './OptionsDrawer';
 
@@ -33,14 +34,15 @@ export default function ResponsiveDrawer() {
       <AppBar
         position="fixed"
         sx={{
-          width: { md: `calc(100% - ${drawerWidth}px)` },
-          ml: { md: `${drawerWidth}px` },
+          width: '100%',
+          color: 'toolbar.text',
+          bgcolor: 'toolbar.background',
         }}>
         <Toolbar
           sx={{
-            color: 'toolbar.text',
-            bgcolor: 'toolbar.background',
-            justifyContent: 'space-between',
+            justifyContent: 'flex-start',
+            width: { md: `calc(100% - ${drawerWidth}px)` },
+            ml: { md: `${drawerWidth}px` },
           }}>
           <IconButton
             color="inherit"
@@ -50,7 +52,7 @@ export default function ResponsiveDrawer() {
             sx={{ mr: 2, display: { md: 'none' } }}>
             <MenuIcon />
           </IconButton>
-          <Typography variant="h3" component="h1">
+          <Typography variant="h3" component="h1" sx={{ flexGrow: 1 }}>
             <Rolod0xText bold /> settings
           </Typography>
           <IconButton sx={{ ml: 1 }} onClick={toggleTheme} color="inherit">
