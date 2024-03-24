@@ -5,8 +5,8 @@ import Toolbar from '@mui/material/Toolbar';
 
 import './ResponsiveDrawer.css';
 
+import AppBar from './AppBar';
 import NavBar from './NavBar';
-import SettingsAppBar from './SettingsAppBar';
 
 const drawerWidth = 200;
 
@@ -22,7 +22,7 @@ export default function ResponsiveDrawer() {
 
   return (
     <Box display="flex">
-      <SettingsAppBar {...{ drawerWidth, handleDrawerToggle }} />
+      <AppBar {...{ drawerWidth, handleDrawerToggle }} />
       <NavBar {...{ drawerWidth, handleDrawerToggle, mobileOpen }} />
 
       {/* main content */}
