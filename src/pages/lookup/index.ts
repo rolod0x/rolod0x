@@ -7,22 +7,21 @@
 //
 //   Uncaught SyntaxError: Identifier '_MyClass' has already been declared
 //
-// So until we can import and use nice ESM syntax, we have to use var.  Ugh.
+// So until we can import and use nice ESM syntax, we have to use normal functions
+// and can't move them to another file for reusability.  Ugh.
 
-/* eslint-disable no-var */
-var CONTAINER_ID = 'chrome-extension-boilerplate-react-vite-lookup-view-root';
-var IFRAME_URL = 'src/pages/lookup/ui/index.html';
-/* eslint-enable no-var */
+void rolod0x_iframe_init('lookup', 'src/pages/lookup/ui/index.html', 'rolod0x address lookup');
 
-function rolod0x_lookup_init(containerId: string, url: string, title: string): void {
+function rolod0x_iframe_init(id: string, url: string, title: string): void {
+  const containerId = `rolod0x-${id}-iframe-container`;
   if (document.getElementById(containerId)) {
     setIframeVisibility(containerId, true);
   } else {
-    newContainer(containerId, url, title);
+    newContainer(id, containerId, url, title);
   }
 }
 
-function newContainer(containerId: string, url: string, title: string) {
+function newContainer(id: string, containerId: string, url: string, title: string) {
   const container: HTMLDivElement = document.createElement('div');
   container.id = containerId;
   container.style.display = 'block';
@@ -33,18 +32,18 @@ function newContainer(containerId: string, url: string, title: string) {
   const shadowRoot = container.attachShadow({ mode: 'open' });
   shadowRoot.appendChild(ifr);
 
-  setupHideHandler(containerId);
+  setupHideHandler(id, containerId);
 
   return container;
 }
 
-function setupHideHandler(containerId: string) {
+function setupHideHandler(id: string, containerId: string) {
   window.addEventListener('message', function (event) {
     if (
       // FIXME: Does this break other browsers?  Also, could we discover
       // the full origin to check against?
       // event.origin.startsWith('chrome-extension://') &&
-      event.data === 'rolod0x-hide-lookup'
+      event.data === `rolod0x-hide-${id}`
     ) {
       setIframeVisibility(containerId, false);
     }
@@ -74,17 +73,15 @@ function newIframe(url: string, title: string) {
 function setIframeVisibility(containerId: string, visible: boolean): void {
   const container: HTMLElement = document.getElementById(containerId);
   if (!container) {
-    console.error(`BUG: rolod0x couldn't find lookup shadow container with id ${containerId}`);
+    console.error(`BUG: rolod0x couldn't find shadow container with id ${containerId}`);
     return;
   }
   const ifr = container.shadowRoot.firstChild as HTMLIFrameElement;
   ifr.style.display = visible ? 'block' : 'none';
   // FIXME: need to wait here until iframe is visible before focusing!
-  console.log('rolod0x: Changing display of lookup iframe to', ifr.style.display);
+  console.log('rolod0x: Changing display of iframe to', ifr.style.display);
   // ifr.style.zIndex = String(2147483647 * (visible ? 1 : -1));
   if (visible) {
     ifr.contentWindow.postMessage('focus-input', '*');
   }
 }
-
-void rolod0x_lookup_init(CONTAINER_ID, IFRAME_URL, 'rolod0x address lookup');
