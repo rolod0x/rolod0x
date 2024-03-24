@@ -14,31 +14,31 @@ var CONTAINER_ID = 'chrome-extension-boilerplate-react-vite-lookup-view-root';
 var IFRAME_URL = 'src/pages/lookup/ui/index.html';
 /* eslint-enable no-var */
 
-function rolod0x_lookup_init(): void {
-  if (document.getElementById(CONTAINER_ID)) {
-    setIframeVisibility(true);
+function rolod0x_lookup_init(containerId: string, url: string, title: string): void {
+  if (document.getElementById(containerId)) {
+    setIframeVisibility(containerId, true);
   } else {
-    newContainer();
+    newContainer(containerId, url, title);
   }
 }
 
-function newContainer() {
+function newContainer(containerId: string, url: string, title: string) {
   const container: HTMLDivElement = document.createElement('div');
-  container.id = CONTAINER_ID;
+  container.id = containerId;
   container.style.display = 'block';
   container.style.opacity = '1';
   document.body.append(container);
 
-  const ifr = newIframe();
+  const ifr = newIframe(url, title);
   const shadowRoot = container.attachShadow({ mode: 'open' });
   shadowRoot.appendChild(ifr);
 
-  setupHideHandler();
+  setupHideHandler(containerId);
 
   return container;
 }
 
-function setupHideHandler() {
+function setupHideHandler(containerId: string) {
   window.addEventListener('message', function (event) {
     if (
       // FIXME: Does this break other browsers?  Also, could we discover
@@ -46,14 +46,14 @@ function setupHideHandler() {
       // event.origin.startsWith('chrome-extension://') &&
       event.data === 'rolod0x-hide-lookup'
     ) {
-      setIframeVisibility(false);
+      setIframeVisibility(containerId, false);
     }
   });
-  console.log('setupHideHandler');
+  console.log('setupHideHandler on', containerId);
 }
 
-function newIframe() {
-  const frontEndURL = chrome.runtime.getURL(IFRAME_URL);
+function newIframe(url: string, title: string) {
+  const frontEndURL = chrome.runtime.getURL(url);
   const ifr: HTMLIFrameElement = document.createElement('iframe');
   ifr.setAttribute('src', frontEndURL);
   ifr.setAttribute('allow', 'clipboard-write');
@@ -61,7 +61,7 @@ function newIframe() {
   ifr.setAttribute('frameborder', '0');
   ifr.setAttribute('scrolling', 'no');
   // ifr.setAttribute('class', '...');
-  ifr.setAttribute('title', 'rolod0x address lookup');
+  ifr.setAttribute('title', title);
   ifr.style.position = 'fixed';
   ifr.style.left = '10%';
   ifr.style.top = '10%';
@@ -71,10 +71,10 @@ function newIframe() {
   return ifr;
 }
 
-function setIframeVisibility(visible: boolean): void {
-  const container: HTMLElement = document.getElementById(CONTAINER_ID);
+function setIframeVisibility(containerId: string, visible: boolean): void {
+  const container: HTMLElement = document.getElementById(containerId);
   if (!container) {
-    console.error(`BUG: rolod0x couldn't find lookup shadow container with id ${CONTAINER_ID}`);
+    console.error(`BUG: rolod0x couldn't find lookup shadow container with id ${containerId}`);
     return;
   }
   const ifr = container.shadowRoot.firstChild as HTMLIFrameElement;
@@ -87,4 +87,4 @@ function setIframeVisibility(visible: boolean): void {
   }
 }
 
-void rolod0x_lookup_init();
+void rolod0x_lookup_init(CONTAINER_ID, IFRAME_URL, 'rolod0x address lookup');
