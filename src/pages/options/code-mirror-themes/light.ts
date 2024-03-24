@@ -2,11 +2,10 @@ import { lighten, Palette } from '@mui/material/styles';
 import { createTheme } from '@uiw/codemirror-themes';
 import { tags as t } from '@lezer/highlight';
 
-// For some weird reason these interfaces need to be imported via 'import type':
 import type { CreateThemeOptions } from '@uiw/codemirror-themes';
-import type { Extension } from '@codemirror/state';
+import type { ExtensionWithExtras } from './types';
 
-export function lightTheme(palette: Palette): Extension {
+export function lightTheme(palette: Palette): ExtensionWithExtras {
   const settings: CreateThemeOptions['settings'] = {
     background: palette.background.default, // was '#0f0f0f'
     foreground: palette.primary.main, // was '#defdef'
@@ -18,7 +17,7 @@ export function lightTheme(palette: Palette): Extension {
     lineHighlight: lighten(palette.primary.main, 0.9), // was '#0a6bcb3d'
   };
 
-  return createTheme({
+  const extension = createTheme({
     theme: 'light',
     settings,
     styles: [
@@ -47,4 +46,6 @@ export function lightTheme(palette: Palette): Extension {
       { tag: t.link, color: 'blueviolet', fontWeight: 'bold' },
     ],
   });
+
+  return { extension, extras: { selectionForeground: palette.background.default } };
 }

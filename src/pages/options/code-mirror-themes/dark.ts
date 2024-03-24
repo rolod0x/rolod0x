@@ -2,11 +2,10 @@ import { alpha, darken, Palette } from '@mui/material/styles';
 import { createTheme } from '@uiw/codemirror-themes';
 import { tags as t } from '@lezer/highlight';
 
-// For some weird reason these interfaces need to be imported via 'import type':
 import type { CreateThemeOptions } from '@uiw/codemirror-themes';
-import type { Extension } from '@codemirror/state';
+import type { ExtensionWithExtras } from './types';
 
-export function darkTheme(palette: Palette): Extension {
+export function darkTheme(palette: Palette): ExtensionWithExtras {
   // Taken from abcdef theme
   // https://uiwjs.github.io/react-codemirror/#/theme/data/abcdef
   // https://github.com/uiwjs/react-codemirror/blob/master/themes/abcdef/src/index.ts
@@ -21,7 +20,7 @@ export function darkTheme(palette: Palette): Extension {
     lineHighlight: alpha(darken(palette.info.dark, 0.6), 0.5), // was '#0a6bcb3d'
   };
 
-  return createTheme({
+  const extension = createTheme({
     theme: 'dark',
     settings,
     styles: [
@@ -50,4 +49,6 @@ export function darkTheme(palette: Palette): Extension {
       { tag: t.link, color: 'blueviolet', fontWeight: 'bold' },
     ],
   });
+
+  return { extension, extras: { selectionForeground: palette.background.default } };
 }

@@ -3,6 +3,7 @@ import { useContext, useMemo } from 'react';
 // https://github.com/mui/material-ui/blob/48251abb01cac73ee9924feb804286f97c2e45ff/apps/zero-runtime-vite-app/src/utils/colorManipulator.js#L270
 // as documented in:
 // https://mui.com/material-ui/customization/palette/#provide-tokens-manually
+import { css } from '@emotion/css';
 import { useTheme, Theme } from '@mui/material/styles';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
@@ -26,6 +27,15 @@ export default function CodeMirrorTextAddresses(props: Props) {
     return themeFn(theme.palette);
   }, [theme, themeName]);
 
+  // Required because react-codemirror doesn't support setting
+  // foreground colour of selected text yet.  See:
+  // https://github.com/uiwjs/react-codemirror/blob/e16e45adc9ef7c2237033df148ddb757fd136c0e/themes/theme/src/index.tsx#L101-L107
+  const style = css`
+    .cm-content ::selection {
+      color: ${cmTheme.extras.selectionForeground};
+    }
+  `;
+
   return (
     <CodeMirror
       value={props.value}
@@ -33,7 +43,8 @@ export default function CodeMirrorTextAddresses(props: Props) {
       minWidth="800px"
       minHeight="100px"
       maxHeight="800px"
-      theme={cmTheme}
+      theme={cmTheme.extension}
+      className={style}
       extensions={extensions}
       placeholder="0x6B175474E89094C44Da98b954EedeAC495271d0F DAI    // Dai Stablecoin"
       basicSetup={{ lineNumbers: true, autocompletion: false }}
