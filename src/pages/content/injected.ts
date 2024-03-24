@@ -5,7 +5,7 @@ import { Mapper } from '@src/shared/mapper';
 
 import { replaceInNode, startObserver } from './replacer';
 
-async function init(): Promise<void> {
+async function initReplacer(): Promise<void> {
   const options: Rolod0xOptions = await optionsStorage.getAll();
   const parser = new Parser();
   try {
@@ -39,4 +39,4 @@ async function init(): Promise<void> {
   startObserver(document.body, mapper.labelMap, counter);
 }
 
-void init();
+void initReplacer();

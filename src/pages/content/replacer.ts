@@ -1,4 +1,4 @@
-import { Counter, LabelMap } from '@src/shared/types';
+import { Counter, LabelComment, LabelMap } from '@src/shared/types';
 
 const ORIGINAL_ATTRIBUTE = 'data-rolod0x-original';
 
@@ -29,48 +29,94 @@ export function replaceInNode(node: Node, labelMap: LabelMap): number {
   // them with a single text node. Since we don't want to alter the DOM aside
   // from substituting text, we only substitute on single text nodes.
   // @see https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
-  let count = 0;
   if (node.nodeType === Node.TEXT_NODE) {
     // This node only contains text.
     // @see https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType.
+    return replaceInTextNode(node, labelMap);
+  }
 
-    // Skip textarea nodes due to the potential for accidental submission
-    // of substituted emoji where none was intended.
-    if (isInputNode(node)) {
-      // console.debug('skipping input node', node);
-      return 0;
-    }
-
-    // Because DOM manipulation is slow, we don't want to keep setting
-    // textContent after every replacement. Instead, manipulate a copy of
-    // this string outside of the DOM and then perform the manipulation
-    // once, at the end.
-    const content = node.textContent;
-    if (!content) {
-      // console.debug('no content under', node.parentNode);
-      return 0;
-    }
-
-    const match = content.match(/^(?<before>\s*)(?<body>.+?)(?<after>\s*?)$/);
-
-    const data = labelMap.get(match ? match.groups.body : content);
-    if (data) {
-      count += replaceText(node, content, data.label, match?.groups.before, match?.groups.after);
-    }
-  } else {
-    // This node contains more than just text, call replaceInNode() on each
-    // of its children.
-    for (const child of node.childNodes) {
-      if (child) {
-        count += replaceInNode(child, labelMap);
-      }
+  // This node contains more than just text, call replaceInNode() on each
+  // of its children.
+  let count = 0;
+  for (const child of node.childNodes) {
+    if (child) {
+      count += replaceInNode(child, labelMap);
     }
   }
   return count;
 }
 
-function replaceText(node: Node, original: string, label: string, before = '', after = ''): 0 | 1 {
+function textNodeIsIgnored(node: Node): boolean {
+  // Skip textarea nodes due to the potential for accidental submission
+  // of substitutions where none was intended.
+  if (isInputNode(node)) {
+    // console.debug('skipping input node', node);
+    return true;
+  }
+
+  // Because DOM manipulation is slow, we don't want to keep setting
+  // textContent after every replacement. Instead, manipulate a copy of
+  // this string outside of the DOM and then perform the manipulation
+  // once, at the end.
+  if (!node.textContent) {
+    // console.debug('no content under', node.parentNode);
+    return true;
+  }
+
+  return false;
+}
+
+/*
+ * Get the text within the text node which needs looking up in the address book and potentially
+ * replacing, as well as any text before and after which should be left unchanged.
+ *
+ * @param  {Node} node - The target DOM Node.
+ * @return {[before, textToLookup, after]}
+ */
+export function getLookupText(node: Node): [before: string, textToLookup: string, after: string] {
+  const content = node.textContent;
+  const match = content.match(/^(?<before>\s*)(?<body>.+?)(?<after>\s*?)$/);
+  if (match) {
+    return [match.groups.before, match.groups.body, match.groups.after];
+  }
+  return ['', content, ''];
+}
+
+/*
+ * Get the text within the text node which needs looking up in the address book, do the lookup, and
+ * return the result, as well as any text before and after which should be left unchanged.  Returns
+ * null if no replacement is needed.
+ *
+ * @param  {Node} node - The target DOM Node.
+ * @return {[before, replacementData, after] | null}
+ */
+export function getReplacementData(
+  node: Node,
+  labelMap: LabelMap,
+): [before: string, data: LabelComment, after: string] | null {
+  if (textNodeIsIgnored(node)) return null;
+
+  const toLookup = getLookupText(node);
+  if (!toLookup) return null;
+  const [before, textToLookup, after] = toLookup;
+
+  const data = labelMap.get(textToLookup);
+  if (!data) return null;
+  return [before, data, after];
+}
+
+// Perform the lookup and any possible replacement on a text node.
+export function replaceInTextNode(node: Node, labelMap: LabelMap): number {
+  const replacement = getReplacementData(node, labelMap);
+  if (!replacement) return 0;
+  const [before, data, after] = replacement;
+
+  return replaceText(node, data.label, before, after);
+}
+
+function replaceText(node: Node, label: string, before, after): 0 | 1 {
   const replacement = before + label + after;
+  const original = node.textContent;
   // console.debug('replacing', node, 'containing textContent', original, 'with', replacement);
   const alreadyReplaced = !!node.parentElement.getAttribute(ORIGINAL_ATTRIBUTE);
   node.parentElement.setAttribute(ORIGINAL_ATTRIBUTE, original);
