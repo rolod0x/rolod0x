@@ -6,9 +6,10 @@ import * as readline from 'readline';
 
 import { Command } from '@commander-js/extra-typings';
 
+import { Formatter } from './shared/formatter';
+import { RE_ADDRESS_OR_BYTES32 } from './shared/searcher';
 import { Mapper } from './shared/mapper';
 import { Parser } from './shared/parser';
-import { Formatter } from './shared/formatter';
 
 interface CLIOptions {
   format: string;
@@ -40,10 +41,9 @@ function fatal(msg: string): void {
 function main(addressesFile, options: CLIOptions): void {
   const mapper = getMapper(addressesFile, options);
   const rl = readline.createInterface({ input: process.stdin });
+  const regexp = new RegExp(RE_ADDRESS_OR_BYTES32.source, 'gi');
   rl.on('line', (line: string) => {
-    const mapped = line.replace(/(0x[0-9a-f]{40}|(0x)?[0-9a-f]{64})\b/gi, (match: string) =>
-      replacer(mapper, match),
-    );
+    const mapped = line.replace(regexp, (match: string) => replacer(mapper, match));
     console.log(mapped);
   });
 }
