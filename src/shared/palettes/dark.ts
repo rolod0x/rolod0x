@@ -13,7 +13,8 @@ const _paletteOptions: PaletteOptions = {
   secondary: {
     // main: '#D584E7', // violet
     // main: '#7067CF', // slate blue
-    main: '#8DF2D4', // medium aquamarine / magic mint
+    // main: '#8DF2D4', // medium aquamarine / magic mint
+    main: '#8DD9CC', // middle blue green
   },
   accent: {
     main: '#F4E174', // Jasmine
@@ -50,8 +51,8 @@ const _theme = createTheme(_themeOptions);
 
 const _extraPaletteOptions: Partial<PaletteOptions> = {
   selectedOption: {
-    text: '#FFFFFF',
-    background: darken(_theme.palette.secondary.dark, 0.2),
+    text: _theme.palette.primary.contrastText,
+    background: darken(_theme.palette.secondary.dark, 0),
   },
   toolbar: {
     text: '#FFFFFF',

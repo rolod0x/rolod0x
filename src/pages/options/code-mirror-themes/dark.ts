@@ -12,9 +12,9 @@ export function darkTheme(palette: Palette): ExtensionWithExtras {
   const settings: CreateThemeOptions['settings'] = {
     background: palette.background.default, // was '#0f0f0f'
     foreground: palette.primary.main, // was '#defdef'
-    caret: palette.primary.main, // was '#00FF00'
+    caret: palette.text.primary, // was '#00FF00'
     selection: palette.secondary.main,
-    selectionMatch: palette.secondary.main,
+    selectionMatch: palette.secondary.dark,
     gutterBackground: '#555',
     gutterForeground: palette.text.primary, // was '#FFFFFF'
     lineHighlight: alpha(darken(palette.info.dark, 0.6), 0.5), // was '#0a6bcb3d'

@@ -1,4 +1,4 @@
-import { lighten, Palette } from '@mui/material/styles';
+import { alpha, Palette } from '@mui/material/styles';
 import { createTheme } from '@uiw/codemirror-themes';
 import { tags as t } from '@lezer/highlight';
 
@@ -9,12 +9,12 @@ export function lightTheme(palette: Palette): ExtensionWithExtras {
   const settings: CreateThemeOptions['settings'] = {
     background: palette.background.default, // was '#0f0f0f'
     foreground: palette.primary.main, // was '#defdef'
-    caret: palette.primary.main, // was '#00FF00'
-    selection: palette.secondary.main,
+    caret: 'black', // was '#00FF00'
+    selection: palette.secondary.dark,
     selectionMatch: palette.secondary.main,
     gutterBackground: palette.action.disabledBackground,
     gutterForeground: palette.text.primary, // was '#FFFFFF'
-    lineHighlight: lighten(palette.primary.main, 0.9), // was '#0a6bcb3d'
+    lineHighlight: alpha(palette.primary.main, 0.2), // was '#0a6bcb3d'
   };
 
   const extension = createTheme({

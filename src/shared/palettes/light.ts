@@ -1,4 +1,4 @@
-import { alpha, PaletteOptions, ThemeOptions, createTheme } from '@mui/material/styles';
+import { alpha, darken, PaletteOptions, ThemeOptions, createTheme } from '@mui/material/styles';
 import _ from 'lodash';
 
 // Generate these palettes with https://zenoo.github.io/mui-theme-creator/
@@ -53,8 +53,8 @@ const _theme = createTheme(_themeOptions);
 
 const _extraPaletteOptions: Partial<PaletteOptions> = {
   selectedOption: {
-    text: '#111111',
-    background: _theme.palette.secondary.dark,
+    text: _theme.palette.primary.contrastText,
+    background: darken(_theme.palette.secondary.main, 0.2),
   },
   toolbar: {
     text: '#111111', // smoky black
