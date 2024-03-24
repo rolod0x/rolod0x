@@ -1,8 +1,9 @@
-import React, { HTMLAttributes, useCallback, useEffect, useRef, useState } from 'react';
+import React, { HTMLAttributes, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import Autocomplete, { AutocompleteChangeDetails } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
 // import { Formatter } from '@src/shared/formatter';
+import { CloserContext } from '@src/components/IframeModal';
 import { Rolod0xOptions, optionsStorage } from '@src/shared/options-storage';
 import { AddressLabelComment, ParsedEntries } from '@src/shared/types';
 import { Parser, ParseError } from '@src/shared/parser';
@@ -17,13 +18,10 @@ import AddressOption from './AddressOption';
 //   return item ? itemFormatter.format(item.label, item.address) : '';
 // }
 
-interface Props {
-  handleClose: () => void;
-}
-
-export default function ActionBar({ handleClose }: Props) {
+export default function ActionBar() {
   const [items, setItems] = useState<ParsedEntries>([]);
   const textFieldRef = useRef(null);
+  const handleClose = useContext(CloserContext);
 
   const getLabels = useCallback(async (): Promise<ParsedEntries> => {
     const options: Rolod0xOptions = await optionsStorage.getAll();
