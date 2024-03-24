@@ -142,8 +142,10 @@ Thanks to all contributors.  Some special mentions:
   <https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite> which was
   a great starting point for a React-based MV3 extension.
 
-- The awesome team at my startup [Toucan](https://toucan.earth) for being
-  early beta testers and encouraging me to keep working on this project.
+- The awesome team at my startup [Toucan](https://toucan.earth) for
+  being early beta testers and encouraging me to keep working on this
+  project.  In particular, thanks to [Alex Haase](https://twitter.com/herrhaase)
+  for brainstorming with me and coming up with the perfect name!
 
 ## Security <a name="security"></a>
 
