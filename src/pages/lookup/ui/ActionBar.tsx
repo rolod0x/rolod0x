@@ -64,7 +64,7 @@ export default function ActionBar() {
     focusInput();
 
     window.addEventListener('message', function (event) {
-      // console.log('ActionBar got message', event);
+      // console.log('rolod0x: ActionBar got message', event);
       if (
         // FIXME: Does this break other browsers?  Also, could we discover
         // the full origin to check against?
@@ -84,7 +84,7 @@ export default function ActionBar() {
       _details?: AutocompleteChangeDetails<AddressLabelComment>,
     ): void => {
       if (!value?.address) {
-        console.log('handleChange without addr', _event, value, _reason, _details);
+        // console.debug('rolod0x: handleChange without addr', _event, value, _reason, _details);
         return;
       }
 
