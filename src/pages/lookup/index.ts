@@ -46,6 +46,8 @@ function setupHideHandler(id: string, containerId: string) {
       event.data === `rolod0x-hide-${id}`
     ) {
       setIframeVisibility(containerId, false);
+      window.focus();
+      document.body.focus();
     }
   });
   console.log('setupHideHandler on', containerId);
