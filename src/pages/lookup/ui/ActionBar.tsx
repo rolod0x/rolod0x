@@ -72,6 +72,8 @@ export default function ActionBar() {
         event.data === 'focus-input'
       ) {
         focusInput();
+        const textField = textFieldRef.current;
+        textField.select();
       }
     });
   }, [getLabels, setItems, focusInput]);
