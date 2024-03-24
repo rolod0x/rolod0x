@@ -1,27 +1,107 @@
-// It seems this file cannot contain static import statements. See:
-//
-// - https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite/issues/160
-// - https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite/issues/306
-//
-// Also, use of const or class at the top-level will result in:
-//
-//   Uncaught SyntaxError: Identifier '_MyClass' has already been declared
-//
-// So until we can import and use nice ESM syntax, we have to use normal functions
-// and can't move them to another file for reusability.  Ugh.
+import { getCanonicalAddress } from '@src/shared/address';
+import { getMapper, isNewAddress } from '@src/shared/address-book';
+// import { getBadgeText } from '@src/shared/badge';
+import { RE_ADDRESS } from '@src/shared/searcher';
+import { Counter } from '@src/shared/types';
 
-rolod0x_iframe_init({
-  id: 'lookup',
-  url: 'src/pages/lookup/ui/index.html',
-  title: 'rolod0x address lookup',
-  width: '80%',
-  height: '80%',
-  closeAction: 'hide',
-});
+import { replaceInNodeAndCount } from './replacer';
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// !! FIXME: The below code is duplicated with src/pages/content/contextMenu.ts
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+const IFRAME_URL = 'src/pages/content/contextMenu/index.html';
+
+let clickedEl: HTMLElement = null;
+
+async function addLabelForClickedElement(): Promise<void> {
+  // const options: Rolod0xOptions = await optionsStorage.getAll();
+  console.debug('rolod0x: Right-clicked on', clickedEl);
+
+  let url = IFRAME_URL;
+
+  const match = clickedEl.outerHTML?.match(RE_ADDRESS);
+  if (match) {
+    const address = match[0];
+    const canonical = getCanonicalAddress(address);
+    if (!canonical) {
+      console.log(`rolod0x: Invalid address ${address}`);
+      return;
+    }
+
+    const isNew = await isNewAddress(address);
+    if (isNew) {
+      console.debug('rolod0x: Found address in element:', canonical);
+      url += `?address=${canonical}`;
+    }
+  } else {
+    console.debug('rolod0x: No address found in:', clickedEl.outerHTML);
+  }
+
+  rolod0x_iframe_init({
+    id: 'update',
+    url,
+    title: 'rolod0x: update address book',
+    width: '80%',
+    height: '80%',
+    closeAction: 'remove',
+    updateHandler,
+  });
+}
+
+async function updateHandler() {
+  const mapper = await getMapper();
+  const count = 0; // FIXME await getBadgeText();
+  const counter: Counter = { count: Number(count) ?? 0 };
+  replaceInNodeAndCount(document.body, mapper.labelMap, counter);
+}
+
+export function initContextMenu(): void {
+  // We only have access to the element that's been clicked when the context menu is first opened.
+  // Remember it for use later.
+
+  document.addEventListener(
+    'contextmenu',
+    event => {
+      clickedEl = event.target as HTMLElement;
+      // console.debug('rolod0x: Updated last right-clicked element:', clickedEl);
+    },
+
+    // useCapture - the event listener is triggered in the capturing phase, before reaching the
+    // target element:
+    true,
+    // False (the default) means that the event listener is triggered in the bubbling phase, after
+    // the event has reached the target element.
+    //
+    // FIXME: Not sure if it makes any difference which we use here.
+  );
+
+  // Runs when the context menu item is actually clicked.
+  chrome.runtime.onMessage.addListener((event, _sender, sendResponse) => {
+    // see src/pages/background/contextMenu.ts
+    if (event === 'rolod0x update address book') {
+      console.debug(
+        'rolod0x: Received add label request from background service worker:',
+        clickedEl,
+      );
+      addLabelForClickedElement();
+
+      if (sendResponse) {
+        sendResponse({ clickedElementHTML: clickedEl.innerHTML });
+      }
+      // This is another way of sending the element back to the background service worker:
+      //
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      // chrome.runtime.sendMessage({
+      //   command: 'foo',
+      //   sender: 'contextMenuHandler',
+      //   element: clickedEl,
+      // });
+    }
+  });
+
+  console.debug('rolod0x: init context menu in content script');
+}
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !! FIXME: The below code is duplicated with src/pages/lookup/index.ts
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 interface IframeParams {
   id: string;

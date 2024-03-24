@@ -5,6 +5,8 @@ import 'webext-dynamic-content-scripts';
 import { checkPermissions } from '@src/shared/permissions';
 import reloadOnUpdate from 'virtual:reload-on-update-in-background-script';
 
+import { initContextMenu } from './contextMenu';
+
 chrome.permissions.onAdded.addListener(() => checkPermissions('onAdded'));
 chrome.permissions.onRemoved.addListener(() => checkPermissions('onRemoved'));
 // chrome.tabs.onActivated.addListener(() => checkPermissions('tab activated'));
@@ -50,4 +52,6 @@ chrome.commands.onCommand.addListener((command, tab) => {
   });
 });
 
-console.log('rolod0x: background loaded');
+initContextMenu();
+
+console.log('background service worker finished loading');

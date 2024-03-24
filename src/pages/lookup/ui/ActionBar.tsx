@@ -3,7 +3,7 @@ import Autocomplete, { AutocompleteChangeDetails } from '@mui/material/Autocompl
 import TextField from '@mui/material/TextField';
 
 // import { Formatter } from '@src/shared/formatter';
-import { CloserContext } from '@src/components/IframeModal';
+import { IframeContext } from '@src/components/IframeModal';
 import { Rolod0xOptions, optionsStorage } from '@src/shared/options-storage';
 import { delayedFocusInput } from '@src/shared/focus';
 import { AddressLabelComment, ParsedEntries } from '@src/shared/types';
@@ -22,7 +22,7 @@ import AddressOption from './AddressOption';
 export default function ActionBar() {
   const [items, setItems] = useState<ParsedEntries>([]);
   const textFieldRef = useRef(null);
-  const handleClose = useContext(CloserContext);
+  const { handleClose } = useContext(IframeContext);
 
   const getLabels = useCallback(async (): Promise<ParsedEntries> => {
     const options: Rolod0xOptions = await optionsStorage.getAll();

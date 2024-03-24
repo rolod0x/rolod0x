@@ -15,19 +15,22 @@ interface Props {
   children?: ReactNode;
 }
 
-export const CloserContext = createContext(null);
+export const IframeContext = createContext(null);
 
 export default function IframeModal(props: Props) {
   const { themeName } = useContext(ThemeNameContext);
 
-  const handleClose = () => {
+  const handleUpdate = () => {
     // We need an origin of * otherwise the parent window won't receive it.
-    window.top.postMessage(`rolod0x-hide-${props.id}`, '*');
+    window.top.postMessage(`rolod0x-update-${props.id}`, '*');
+  };
+
+  const handleClose = () => {
+    window.top.postMessage(`rolod0x-close-${props.id}`, '*');
   };
 
   return (
-    <CloserContext.Provider value={handleClose}>
-      {' '}
+    <IframeContext.Provider value={{ handleUpdate, handleClose }}>
       <Dialog
         fullScreen
         PaperProps={{
@@ -65,6 +68,6 @@ export default function IframeModal(props: Props) {
         </Stack>
         <DialogContent>{props.children}</DialogContent>
       </Dialog>
-    </CloserContext.Provider>
+    </IframeContext.Provider>
   );
 }

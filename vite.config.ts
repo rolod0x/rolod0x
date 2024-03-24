@@ -66,6 +66,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         content: resolve(pagesDir, 'content', 'index.ts'),
+        update: resolve(pagesDir, 'content', 'contextMenu', 'index.html'),
         lookup: resolve(pagesDir, 'lookup', 'index.ts'),
         lookupUi: resolve(pagesDir, 'lookup', 'ui', 'index.html'),
         background: resolve(pagesDir, 'background', 'index.ts'),

@@ -24,7 +24,7 @@ vertical dots to the right of the extension.
 
 ### Adding some address labels
 
-From the options page:
+There are two ways to do this.  Firstly, from the options page:
 
 1.  Add some addresses to your address book as directed by the help text.
 
@@ -40,6 +40,11 @@ From the options page:
 5.  At this point, you should see that the addresses on the web page
     have been replaced with the labels you provided in the extension
     options.  If not, try simply reloading the web page.
+
+Secondly, you can label an address by right-clicking on it, and
+selecting the rolod0x option from the context menu.  This only works
+if rolod0x is enabled on that website, as described in the [the
+section below](#allow-list).
 
 ### Controlling which sites rolod0x is active on <a name="allow-list"></a>
 

@@ -124,6 +124,14 @@ function replaceText(node: Node, label: string, before, after): 0 | 1 {
   return alreadyReplaced ? 0 : 1;
 }
 
+export function replaceInNodeAndCount(node: Node, labelMap: LabelMap, counter: Counter): void {
+  // console.time('rolod0x: initial replacement');
+  counter.count += replaceInNode(node, labelMap);
+  // console.debug('initial replacements: ', count);
+  chrome.runtime.sendMessage({ text: 'setBadgeText', count: counter.count });
+  // console.timeEnd('rolod0x: initial replacement');
+}
+
 // Now monitor the DOM for additions and substitute labels into new nodes.
 // @see https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver.
 export function startObserver(node: Node, labelMap: LabelMap, counter: Counter): void {
