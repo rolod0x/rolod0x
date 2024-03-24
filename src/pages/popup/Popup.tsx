@@ -8,12 +8,12 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 import '@pages/popup/Popup.css';
 import useStorage from '@src/shared/hooks/useStorage';
-import exampleThemeStorage from '@src/shared/storages/exampleThemeStorage';
+import themeStorage from '@src/shared/storages/themeStorage';
 import withSuspense from '@src/shared/hoc/withSuspense';
 import ErrorPage from '@src/components/ErrorPage';
 
 const Popup = () => {
-  const theme = useStorage(exampleThemeStorage);
+  const theme = useStorage(themeStorage);
 
   return (
     <div

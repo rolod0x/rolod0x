@@ -4,12 +4,12 @@ import { withErrorBoundary } from 'react-error-boundary';
 import logo from '@assets/img/logo.svg';
 import '@pages/sidepanel/SidePanel.css';
 import useStorage from '@src/shared/hooks/useStorage';
-import exampleThemeStorage from '@src/shared/storages/exampleThemeStorage';
+import themeStorage from '@src/shared/storages/themeStorage';
 import ErrorPage from '@src/components/ErrorPage';
 import withSuspense from '@src/shared/hoc/withSuspense';
 
 const SidePanel = () => {
-  const theme = useStorage(exampleThemeStorage);
+  const theme = useStorage(themeStorage);
 
   return (
     <div
@@ -35,7 +35,7 @@ const SidePanel = () => {
             backgroundColor: theme === 'light' ? '#fff' : '#000',
             color: theme === 'light' ? '#000' : '#fff',
           }}
-          onClick={exampleThemeStorage.toggle}>
+          onClick={themeStorage.toggle}>
           Toggle theme
         </button>
       </header>
