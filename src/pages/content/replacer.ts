@@ -29,44 +29,47 @@ export function replaceInNode(node: Node, labelMap: LabelMap): number {
   // them with a single text node. Since we don't want to alter the DOM aside
   // from substituting text, we only substitute on single text nodes.
   // @see https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
-  let count = 0;
   if (node.nodeType === Node.TEXT_NODE) {
     // This node only contains text.
     // @see https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType.
+    return replaceInTextNode(node, labelMap);
+  }
 
-    // Skip textarea nodes due to the potential for accidental submission
-    // of substituted emoji where none was intended.
-    if (isInputNode(node)) {
-      // console.debug('skipping input node', node);
-      return 0;
-    }
-
-    // Because DOM manipulation is slow, we don't want to keep setting
-    // textContent after every replacement. Instead, manipulate a copy of
-    // this string outside of the DOM and then perform the manipulation
-    // once, at the end.
-    const content = node.textContent;
-    if (!content) {
-      // console.debug('no content under', node.parentNode);
-      return 0;
-    }
-
-    const match = content.match(/^(?<before>\s*)(?<body>.+?)(?<after>\s*?)$/);
-
-    const data = labelMap.get(match ? match.groups.body : content);
-    if (data) {
-      count += replaceText(node, content, data.label, match?.groups.before, match?.groups.after);
-    }
-  } else {
-    // This node contains more than just text, call replaceInNode() on each
-    // of its children.
-    for (const child of node.childNodes) {
-      if (child) {
-        count += replaceInNode(child, labelMap);
-      }
+  // This node contains more than just text, call replaceInNode() on each
+  // of its children.
+  let count = 0;
+  for (const child of node.childNodes) {
+    if (child) {
+      count += replaceInNode(child, labelMap);
     }
   }
   return count;
+}
+
+export function replaceInTextNode(node: Node, labelMap: LabelMap): number {
+  // Skip textarea nodes due to the potential for accidental submission
+  // of substitutions where none was intended.
+  if (isInputNode(node)) {
+    // console.debug('skipping input node', node);
+    return 0;
+  }
+
+  // Because DOM manipulation is slow, we don't want to keep setting
+  // textContent after every replacement. Instead, manipulate a copy of
+  // this string outside of the DOM and then perform the manipulation
+  // once, at the end.
+  if (!node.textContent) {
+    // console.debug('no content under', node.parentNode);
+    return 0;
+  }
+
+  const content = node.textContent;
+  const match = content.match(/^(?<before>\s*)(?<body>.+?)(?<after>\s*?)$/);
+
+  const data = labelMap.get(match ? match.groups.body : content);
+  if (!data) return 0;
+
+  return replaceText(node, content, data.label, match?.groups.before, match?.groups.after);
 }
 
 function replaceText(node: Node, original: string, label: string, before = '', after = ''): 0 | 1 {
