@@ -17,17 +17,24 @@ directory (see [#19][] and [#15][]).  This will greatly simplify installation.
 [#15]: https://github.com/aspiers/rolod0x/issues/15
 [#19]: https://github.com/aspiers/rolod0x/issues/19
 
-However for now, you can download a `.zip` file from one of two places:
+However for now, you can download a `.zip` file from one of three places:
 
 1. Go to [the releases page][releases], pick a recent release, and then look
-   for an asset named something like `rolod0x-v0.1.0.zip` at the Assets
+   for an asset named something like `rolod0x-v1.0.0-chrome.zip` at the Assets
    section at the bottom of the release page.
 
-2. Go to the [zip workflow][] page, and pick a build of a PR or branch such
-   as `main`.  In this case you will need to download an artifact called
-   `rolod0x.zip`.
+2. View [the list of recent builds of the `main` branch][main].  Click
+   on the latest, or another recent one, then scroll down to the
+   bottom of the page and download the relevant artifact `.zip` file,
+   which will be called `rolodox-main-chrome` or similar.
+
+3. Go to the [zip workflow][] page, and pick any recent build.  This
+   is especially useful if you want to test a particular pull request
+   which is still in development (e.g. for a bug fix or new feature).
+   Then download the artifact in the same way as in step 2.
 
 [releases]: https://github.com/aspiers/rolod0x/releases
+[main]: https://github.com/aspiers/rolod0x/actions/workflows/build-zip.yml?query=branch%3Amain
 [zip workflow]: https://github.com/aspiers/rolod0x/actions/workflows/build-zip.yml
 
 Then unpack the `.zip` file into a fresh folder anywhere on your machine,
