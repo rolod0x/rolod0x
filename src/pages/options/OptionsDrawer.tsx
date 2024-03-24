@@ -48,7 +48,9 @@ const OptionsDrawer = () => {
 
   return (
     <div>
-      <Toolbar />
+      <Toolbar>
+        <img src="/icon-128-no-bg.png" className="logo-icon" alt="rolod0x logo icon" />
+      </Toolbar>
       <Divider />
       <List>
         <DrawerItem page="Addresses">

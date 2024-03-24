@@ -61,3 +61,28 @@ any recognised addresses substituted for a labelled version.
 
 The substitution format can be controlled similarly as in the browser
 extension.
+
+If you use this regularly with a preferred address book file and/or
+display formats, you can create a simple wrapper shell script
+somewhere on your `$PATH`, containing something like the following:
+
+    ```sh
+    #!/bin/sh
+
+    cd ~/path/to/rolod0x
+    pnpm --silent run rolod0x ~/path/to/my-address-book.txt "$@"
+    ```
+
+For example, this could be called `rx` for easy invocation.
+Don't forget to make it executable:
+
+    chmod +x rx
+
+If you're lucky / smart enough to be using
+[`zsh`](https://zsh.sourceforge.io/) instead of `bash`, you could even
+create a global alias:
+
+    alias -g 0x='|& rx'
+
+Then you can just append ` 0x` to the end of any command and it will
+pipe STDOUT and STDERR through rolod0x.
