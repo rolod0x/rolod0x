@@ -70,6 +70,7 @@ they will now be labelled in this human-readable way!
 - [Completely free and Open Source!](#license).
 - Completely private local-only web3 address book.
 - Automatically translates blockchain addresses to human-readable labels.
+- Instantly look up an address via a hotkey.
 - Works on any website.
 - Works on any EVM-based blockchain (and could easily support other
   chains in the future).
