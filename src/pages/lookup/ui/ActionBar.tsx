@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 // import { Formatter } from '@src/shared/formatter';
 import { CloserContext } from '@src/components/IframeModal';
 import { Rolod0xOptions, optionsStorage } from '@src/shared/options-storage';
+import { delayedFocusInput } from '@src/shared/focus';
 import { AddressLabelComment, ParsedEntries } from '@src/shared/types';
 import { Parser, ParseError } from '@src/shared/parser';
 // import Loading from '@src/components/Loading';
@@ -38,21 +39,7 @@ export default function ActionBar() {
     }
   }, []);
 
-  const focusInput = useCallback(() => {
-    const textField = textFieldRef.current;
-    if (!textField) return; // It might not be rendered yet.
-    // console.log('textField: ', textField);
-    textField.focus();
-    textField.click();
-    textField.focus();
-    // const input = textField.querySelector('#action-bar');
-    // if (!input) {
-    //   console.warn("rolod0x: Couldn't find #action-bar input to focus");
-    //   return;
-    // }
-    // input.focus();
-    // console.debug('focused', textField);
-  }, [textFieldRef]);
+  const focusTextField = useCallback(() => delayedFocusInput(textFieldRef), [textFieldRef]);
 
   useEffect(() => {
     async function _get(): Promise<void> {
@@ -61,7 +48,7 @@ export default function ActionBar() {
     }
     _get();
 
-    focusInput();
+    focusTextField();
 
     window.addEventListener('message', function (event) {
       // console.log('rolod0x: ActionBar got message', event);
@@ -71,12 +58,12 @@ export default function ActionBar() {
         // event.origin.startsWith('chrome-extension://') &&
         event.data === 'focus-input'
       ) {
-        focusInput();
+        focusTextField();
         const textField = textFieldRef.current;
         textField.select();
       }
     });
-  }, [getLabels, setItems, focusInput]);
+  }, [getLabels, setItems, focusTextField]);
 
   const handleChange = useCallback(
     (
