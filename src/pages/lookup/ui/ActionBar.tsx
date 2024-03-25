@@ -1,9 +1,11 @@
-import React, { HTMLAttributes, useCallback, useEffect, useRef, useState } from 'react';
+import React, { HTMLAttributes, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import Autocomplete, { AutocompleteChangeDetails } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
 // import { Formatter } from '@src/shared/formatter';
+import { IframeContext } from '@src/components/IframeModal';
 import { Rolod0xOptions, optionsStorage } from '@src/shared/options-storage';
+import { delayedFocusInput } from '@src/shared/focus';
 import { AddressLabelComment, ParsedEntries } from '@src/shared/types';
 import { Parser, ParseError } from '@src/shared/parser';
 // import Loading from '@src/components/Loading';
@@ -17,13 +19,10 @@ import AddressOption from './AddressOption';
 //   return item ? itemFormatter.format(item.label, item.address) : '';
 // }
 
-interface Props {
-  handleClose: () => void;
-}
-
-export default function ActionBar({ handleClose }: Props) {
+export default function ActionBar() {
   const [items, setItems] = useState<ParsedEntries>([]);
   const textFieldRef = useRef(null);
+  const { handleClose } = useContext(IframeContext);
 
   const getLabels = useCallback(async (): Promise<ParsedEntries> => {
     const options: Rolod0xOptions = await optionsStorage.getAll();
@@ -40,21 +39,7 @@ export default function ActionBar({ handleClose }: Props) {
     }
   }, []);
 
-  const focusInput = useCallback(() => {
-    const textField = textFieldRef.current;
-    if (!textField) return; // It might not be rendered yet.
-    // console.log('textField: ', textField);
-    textField.focus();
-    textField.click();
-    textField.focus();
-    // const input = textField.querySelector('#action-bar');
-    // if (!input) {
-    //   console.warn("rolod0x: Couldn't find #action-bar input to focus");
-    //   return;
-    // }
-    // input.focus();
-    // console.debug('focused', textField);
-  }, [textFieldRef]);
+  const focusTextField = useCallback(() => delayedFocusInput(textFieldRef), [textFieldRef]);
 
   useEffect(() => {
     async function _get(): Promise<void> {
@@ -63,20 +48,22 @@ export default function ActionBar({ handleClose }: Props) {
     }
     _get();
 
-    focusInput();
+    focusTextField();
 
     window.addEventListener('message', function (event) {
-      // console.log('ActionBar got message', event);
+      // console.log('rolod0x: ActionBar got message', event);
       if (
         // FIXME: Does this break other browsers?  Also, could we discover
         // the full origin to check against?
         // event.origin.startsWith('chrome-extension://') &&
         event.data === 'focus-input'
       ) {
-        focusInput();
+        focusTextField();
+        const textField = textFieldRef.current;
+        textField.select();
       }
     });
-  }, [getLabels, setItems, focusInput]);
+  }, [getLabels, setItems, focusTextField]);
 
   const handleChange = useCallback(
     (
@@ -86,7 +73,7 @@ export default function ActionBar({ handleClose }: Props) {
       _details?: AutocompleteChangeDetails<AddressLabelComment>,
     ): void => {
       if (!value?.address) {
-        console.log('handleChange without addr', _event, value, _reason, _details);
+        // console.debug('rolod0x: handleChange without addr', _event, value, _reason, _details);
         return;
       }
 

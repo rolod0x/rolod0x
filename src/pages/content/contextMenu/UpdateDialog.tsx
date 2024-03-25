@@ -4,21 +4,21 @@ import DialogContentText from '@mui/material/DialogContentText';
 import IframeModal from '@src/components/IframeModal';
 import Rolod0xText from '@src/components/Rolod0xText';
 
-import ActionBar from './ActionBar';
+import UpdateForm from './UpdateForm';
 
-export default function ActionDialog() {
+export default function UpdateDialog() {
   const title = (
     <Fragment>
-      <Rolod0xText bold /> address book lookup
+      <Rolod0xText bold /> address book update
     </Fragment>
   );
 
   return (
-    <IframeModal id="lookup" title={title}>
-      <DialogContentText sx={{ pb: 2 }}>
-        Enter one or more search terms, space-separated:
+    <IframeModal id="update" title={title}>
+      <DialogContentText component="h2" sx={{ pb: 2 }}>
+        Add a new address label
       </DialogContentText>
-      <ActionBar />
+      <UpdateForm />
     </IframeModal>
   );
 }

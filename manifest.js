@@ -125,6 +125,7 @@ const manifest = {
     {
       resources: [
         'src/pages/lookup/ui/index.html',
+        'src/pages/content/contextMenu/index.html',
         'assets/js/*.js',
         'assets/css/*.css',
         'icon-128.png',
