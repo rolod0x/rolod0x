@@ -28,12 +28,12 @@ export function lightTheme(palette: Palette): ExtensionWithExtras {
         tag: t.number,
         color: palette.primary.main, // was 'violet'
       },
-      { tag: t.definition(t.variableName), color: '#fffabc' },
+      { tag: t.definition(t.variableName), color: palette.secondary.dark },
       {
         tag: t.variableName,
         color: palette.text.primary, // was '#abcdef'
       },
-      { tag: t.function(t.variableName), color: '#fffabc' },
+      { tag: t.function(t.variableName), color: palette.secondary.dark },
       { tag: t.typeName, color: '#FFDD44' },
       { tag: t.tagName, color: '#def' },
       { tag: t.string, color: '#2b4' },
