@@ -20,7 +20,7 @@ directory (see [#19][] and [#15][]).  This will greatly simplify installation.
 However for now, you can download a `.zip` file from one of three places:
 
 1. Go to [the releases page][releases], pick a recent release, and then look
-   for an asset named something like `rolod0x-v1.1.0-chrome.zip` at the Assets
+   for an asset named something like `rolod0x-v1.1.1-chrome.zip` at the Assets
    section at the bottom of the release page.
 
 2. View [the list of recent builds of the `main` branch][main].  Click
