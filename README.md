@@ -15,7 +15,7 @@
 
 <p align="center">
   <a href="#overview">Overview</a> •
-  <a href="#features">Features at a Glance</a> •
+  <a href="#features">Features</a> •
   <a href="./docs/install.md">Installation</a> •
   <a href="./docs/user-manual.md">Usage</a> •
   <a href="./docs/FAQ.md">FAQ</a> •
