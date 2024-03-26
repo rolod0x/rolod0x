@@ -21,7 +21,7 @@ export default function AddressesSettings() {
           aria-controls="panel1a-content"
           id="panel1a-header">
           <Typography variant="h4" component="h2">
-            Local addressbook
+            Local address book
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
