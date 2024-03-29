@@ -1,6 +1,6 @@
 import { getAddress } from 'ethers';
 
-import { ParsedEntries } from './types';
+import { Address, Label, Comment, ParsedEntries } from './types';
 
 export class ParseError extends Error {
   lineNumber: number;
@@ -19,7 +19,9 @@ export class ParseError extends Error {
 }
 
 export class Parser {
-  parsedEntries: ParsedEntries = [];
+  addresses: Address[] = [];
+  labels: Record<Address, Label[]> = {};
+  comments: Record<Address, Comment[]> = {};
 
   constructor(unparsedLabels?: string) {
     if (unparsedLabels) {
@@ -49,11 +51,7 @@ export class Parser {
             }
             throw err;
           }
-          this.parsedEntries.push({
-            address: canonical,
-            label,
-            comment,
-          });
+          this.addEntry(canonical, label, comment);
           return;
         }
 
@@ -69,5 +67,40 @@ export class Parser {
     });
 
     return this.parsedEntries;
+  }
+
+  addEntry(address: Address, label: Label, comment?: Comment): void {
+    if (!this.labels[address]) {
+      this.addresses.push(address);
+    }
+
+    this.labels[address] ||= [];
+    // The O(n) inclusion check here is suboptimal, but n should be tiny so it's not worth
+    // maintaining an ordered dictionary.
+    if (!this.labels[address].includes(label)) {
+      this.labels[address].push(label);
+    }
+
+    if (comment) {
+      this.comments[address] ||= [];
+      // O(n) again here.
+      if (!this.comments[address].includes(comment)) {
+        this.comments[address].push(comment);
+      }
+    }
+  }
+
+  get parsedEntries(): ParsedEntries {
+    return this.addresses.map(address => {
+      return {
+        address,
+        label: this.labels[address].join(' / '),
+        comment: this.comments[address]?.join(' / '),
+      };
+    });
+  }
+
+  get duplicates(): Address[] {
+    return this.addresses.filter(address => this.labels[address]?.length > 1);
   }
 }

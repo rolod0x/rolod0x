@@ -46,6 +46,11 @@ selecting the rolod0x option from the context menu.  This only works
 if rolod0x is enabled on that website, as described in the [the
 section below](#allow-list).
 
+Note that if you enter the same address multiple times with different
+labels, when replacing labels with addresses, rolod0x will
+automatically join the labels together with a `/` character in between
+each label.  The same applies for comments.
+
 ### Controlling which sites rolod0x is active on <a name="allow-list"></a>
 
 By default, rolod0x is enabled and will substitute known addresses for
@@ -134,3 +139,9 @@ create a global alias:
 
 Then you can just append ` 0x` to the end of any command and it will
 pipe STDOUT and STDERR through rolod0x.
+
+### Listing duplicate labels
+
+If you specify the `-d` or `--duplicates` option, then instead of
+filtering `STDIN`, it will list all addresses in the given address
+book file which have duplicate labels.

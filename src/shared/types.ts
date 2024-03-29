@@ -1,9 +1,10 @@
 export type Label = string;
 export type Address = string;
+export type Comment = string;
 
 export interface LabelComment {
   label: Label;
-  comment?: string;
+  comment?: Comment;
 }
 
 export type LabelMap = Map<Address, LabelComment>;
