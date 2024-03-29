@@ -117,4 +117,139 @@ describe('Parser', () => {
       },
     ]);
   });
+
+  it('parses duplicate addresses with no comments', () => {
+    const parser = new Parser(dedent`
+      // a comment
+      0xe3D82337F79306712477b642EF59B75dD62eF109 first
+      0x1803982898d6a8E832177Fca8fD763B9060C3050 another address
+      // another comment
+      0xe3D82337F79306712477b642EF59B75dD62eF109   duplicate 1
+      0xe3D82337F79306712477b642EF59B75dD62eF109 duplicate 2
+    `);
+    expect(parser.parsedEntries).toEqual([
+      {
+        address: '0xe3D82337F79306712477b642EF59B75dD62eF109',
+        label: 'first / duplicate 1 / duplicate 2',
+        comment: undefined,
+      },
+      {
+        address: '0x1803982898d6a8E832177Fca8fD763B9060C3050',
+        label: 'another address',
+        comment: undefined,
+      },
+    ]);
+    expect(parser.duplicates).toEqual(['0xe3D82337F79306712477b642EF59B75dD62eF109']);
+  });
+
+  it('ignores duplicate labels', () => {
+    const parser = new Parser(dedent`
+      // a comment
+      0xe3D82337F79306712477b642EF59B75dD62eF109 first
+      0x1803982898d6a8E832177Fca8fD763B9060C3050 another address
+      // another comment
+      0xe3D82337F79306712477b642EF59B75dD62eF109   duplicate 1
+      0xe3D82337F79306712477b642EF59B75dD62eF109 first
+    `);
+    expect(parser.parsedEntries).toEqual([
+      {
+        address: '0xe3D82337F79306712477b642EF59B75dD62eF109',
+        label: 'first / duplicate 1',
+        comment: undefined,
+      },
+      {
+        address: '0x1803982898d6a8E832177Fca8fD763B9060C3050',
+        label: 'another address',
+        comment: undefined,
+      },
+    ]);
+    expect(parser.duplicates).toEqual(['0xe3D82337F79306712477b642EF59B75dD62eF109']);
+  });
+
+  it('parses duplicate addresses with one comment', () => {
+    const parser = new Parser(dedent`
+      0x14dc79964da2c08b23698b3d3cc7ca32193d9955 a lowercase address
+      // a comment
+      0xe3D82337F79306712477b642EF59B75dD62eF109 label one   // comment on first
+      0x1803982898d6a8E832177Fca8fD763B9060C3050   another address
+      // another comment
+      0xe3D82337F79306712477b642EF59B75dD62eF109  label two for same address
+    `);
+    expect(parser.parsedEntries).toEqual([
+      {
+        address: '0x14dC79964da2C08b23698B3D3cc7Ca32193d9955',
+        label: 'a lowercase address',
+        comment: undefined,
+      },
+      {
+        address: '0xe3D82337F79306712477b642EF59B75dD62eF109',
+        label: 'label one / label two for same address',
+        comment: 'comment on first',
+      },
+      {
+        address: '0x1803982898d6a8E832177Fca8fD763B9060C3050',
+        label: 'another address',
+        comment: undefined,
+      },
+    ]);
+    expect(parser.duplicates).toEqual(['0xe3D82337F79306712477b642EF59B75dD62eF109']);
+  });
+
+  it('parses duplicate addresses with two comments', () => {
+    const parser = new Parser(dedent`
+      0x14dc79964da2c08b23698b3d3cc7ca32193d9955 a lowercase address
+      // a comment
+      0xe3D82337F79306712477b642EF59B75dD62eF109 label one // 1st comment
+      0x1803982898d6a8E832177Fca8fD763B9060C3050 another address
+      // another comment
+      0xe3D82337F79306712477b642EF59B75dD62eF109 label two    //  2nd comment
+    `);
+    expect(parser.parsedEntries).toEqual([
+      {
+        address: '0x14dC79964da2C08b23698B3D3cc7Ca32193d9955',
+        label: 'a lowercase address',
+        comment: undefined,
+      },
+      {
+        address: '0xe3D82337F79306712477b642EF59B75dD62eF109',
+        label: 'label one / label two',
+        comment: '1st comment / 2nd comment',
+      },
+      {
+        address: '0x1803982898d6a8E832177Fca8fD763B9060C3050',
+        label: 'another address',
+        comment: undefined,
+      },
+    ]);
+    expect(parser.duplicates).toEqual(['0xe3D82337F79306712477b642EF59B75dD62eF109']);
+  });
+
+  it('ignores duplicate comments', () => {
+    const parser = new Parser(dedent`
+      0x14dc79964da2c08b23698b3d3cc7ca32193d9955 a lowercase address
+      // a comment
+      0xe3D82337F79306712477b642EF59B75dD62eF109 label one // comment
+      0x1803982898d6a8E832177Fca8fD763B9060C3050 another address
+      // another comment
+      0xe3D82337F79306712477b642EF59B75dD62eF109 label two    //   comment
+    `);
+    expect(parser.parsedEntries).toEqual([
+      {
+        address: '0x14dC79964da2C08b23698B3D3cc7Ca32193d9955',
+        label: 'a lowercase address',
+        comment: undefined,
+      },
+      {
+        address: '0xe3D82337F79306712477b642EF59B75dD62eF109',
+        label: 'label one / label two',
+        comment: 'comment',
+      },
+      {
+        address: '0x1803982898d6a8E832177Fca8fD763B9060C3050',
+        label: 'another address',
+        comment: undefined,
+      },
+    ]);
+    expect(parser.duplicates).toEqual(['0xe3D82337F79306712477b642EF59B75dD62eF109']);
+  });
 });
