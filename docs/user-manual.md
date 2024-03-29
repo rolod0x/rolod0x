@@ -139,3 +139,9 @@ create a global alias:
 
 Then you can just append ` 0x` to the end of any command and it will
 pipe STDOUT and STDERR through rolod0x.
+
+### Listing duplicate labels
+
+If you specify the `-d` or `--duplicates` option, then instead of
+filtering `STDIN`, it will list all addresses in the given address
+book file which have duplicate labels.
