@@ -50,7 +50,7 @@ would be a massive privacy violation!
 **So why accept anything less when using web3 and blockchains?**
 
 Well, you don't have to any longer!  rolod0x is a free cross-browser
-extension providing **a totally private web3 address book which instantly
+extension providing **a totally private onchain address book which instantly
 makes every web3 website more usable and all your addresses more
 accessible.**
 
@@ -70,7 +70,7 @@ they will now be labelled in this human-readable way!
 
 ## Features <a name="features"></a>
 
-- [Completely free and Open Source!](#license).
+- [Completely free and Open Source!](#license)
 - Completely private local-only web3 address book.
 - Automatically translates blockchain addresses to human-readable labels.
 - Add entries directly from within a web page, by right-clicking on an address.
