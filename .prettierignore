@@ -10,3 +10,4 @@ node_modules
 LICENSE
 *.md
 pnpm-lock.yaml
+_site/
