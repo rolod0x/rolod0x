@@ -16,13 +16,13 @@ It's a combination of three ideas:
   file device which used to be a common way to store business contact
   information before the digital era.
 
+- `0x` is [a prefix used to denote hexadecimal numbers][0x],
+  and in particular it's used as a prefix for all Ethereum addresses.
+
 - The word
   "[dox](https://www.urbandictionary.com/define.php?term=dox)" or
   "[d0x](https://www.urbandictionary.com/define.php?term=d0x)" refers
   to (revealing of) personal information about people online.
-
-- `0x` is [a prefix used to denote hexadecimal numbers][0x],
-  and in particular it's used as a prefix for all Ethereum addresses.
 
 [0x]: https://stackoverflow.com/questions/2670639/why-are-hexadecimal-numbers-prefixed-with-0x
 
