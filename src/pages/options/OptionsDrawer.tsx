@@ -49,7 +49,7 @@ const OptionsDrawer = () => {
   return (
     <div>
       <Toolbar>
-        <img src="/icon-128-no-bg.png" className="logo-icon" alt="rolod0x logo icon" />
+        <img src="/icon-104x100-no-bg.png" className="logo-icon" alt="rolod0x logo icon" />
       </Toolbar>
       <Divider />
       <List>
