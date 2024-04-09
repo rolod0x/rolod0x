@@ -24,8 +24,8 @@ dependencies:
     specifier: ^11.11.5
     version: 11.11.5(@emotion/react@11.11.4)(@types/react@18.2.56)(react@18.2.0)
   '@fontsource-variable/open-sans':
-    specifier: ^5.0.23
-    version: 5.0.23
+    specifier: ^5.0.28
+    version: 5.0.28
   '@fontsource/roboto':
     specifier: ^5.0.12
     version: 5.0.12
@@ -1550,8 +1550,8 @@ packages:
     engines: {node: '>=14.0.0', npm: '>=7.0.0'}
     dev: true
 
-  /@fontsource-variable/open-sans@5.0.23:
-    resolution: {integrity: sha512-fIvxjvdqyl53Nw2ostM94pNAXtqpJPKWUlNqZo2NGzOERz/TK4HL+Lgxy5XCNVw2yPdeGt01xb0Qr5aa9fZ9gA==}
+  /@fontsource-variable/open-sans@5.0.28:
+    resolution: {integrity: sha512-PYfH6e+Jm8N5DRRAEOGneQx3ObnyNgAJ9WTbw7w84tSEmvk+ypo1kUslF2WGkgaygU2uN7wwAAPVnO7YYpipzg==}
     dev: false
 
   /@fontsource/roboto@5.0.12:
