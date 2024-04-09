@@ -156,7 +156,9 @@ Thanks to all contributors.  Some special mentions:
   a great starting point for a React-based MV3 extension.
 
 - Miles Essex for some fantastic design work which freed up my time to
-  focus on technical work.
+  focus on technical work.  Check out his exciting project
+  [Rails](https://rails.run) which generates dynamic, interactive maps
+  visualising DeFi transactions!
 
 - The awesome team at my startup [Toucan](https://toucan.earth) for
   being early beta testers and encouraging me to keep working on this
