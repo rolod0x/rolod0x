@@ -147,10 +147,21 @@ Thanks to all contributors.  Some special mentions:
   <https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite> which was
   a great starting point for a React-based MV3 extension.
 
+- Miles Essex for some fantastic design work which freed up my time to
+  focus on technical work.
+
 - The awesome team at my startup [Toucan](https://toucan.earth) for
   being early beta testers and encouraging me to keep working on this
   project.  In particular, thanks to [Alex Haase](https://twitter.com/herrhaase)
   for brainstorming with me and coming up with the perfect name!
+
+- [Dalton Maag](https://www.daltonmaag.com/) and
+  [Canonical](https://canonical.com/) for [the Ubuntu
+  font](https://design.ubuntu.com/font) whose `0x` gave me the
+  inspiration for the logo.
+
+- [ricmoo](https://www.ricmoo.com/) for the wonderful
+  [ethers](https://ethers.org/) Javascript library.
 
 ## Security <a name="security"></a>
 
