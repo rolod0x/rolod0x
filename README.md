@@ -24,11 +24,11 @@
   <a href="./docs/FAQ.md">FAQ</a> •
   <a href="#donations">Donations</a> •
   <a href="./CONTRIBUTING.md">Support</a> •
+  <a href="./SECURITY.md">Security</a> •
+  <a href="./docs/privacy-policy.md">Privacy</a> •
   <a href="./docs/dev-guide.md">Development</a> •
   <a href="#star-history">Star History</a> •
   <a href="#thanks">Thanks</a> •
-  <a href="./SECURITY.md">Security</a> •
-  <a href="./docs/privacy-policy.md">Privacy</a> •
   <a href="#license">License
 </p>
 
@@ -121,6 +121,14 @@ Thank you for considering a donation to support our work!
 
 Please see [this document](./CONTRIBUTING.md).
 
+## Security <a name="security"></a>
+
+Please see [the `SECURITY.md` file](./SECURITY.md).
+
+## Privacy policy <a name="privacy"></a>
+
+Please see [`docs/privacy-policy.md` file](./docs/privacy-policy.md).
+
 ## Development and building from source <a name="development"></a>
 
 For information on how to get started with development, please see
@@ -162,14 +170,6 @@ Thanks to all contributors.  Some special mentions:
 
 - [ricmoo](https://www.ricmoo.com/) for the wonderful
   [ethers](https://ethers.org/) Javascript library.
-
-## Security <a name="security"></a>
-
-Please see [the `SECURITY.md` file](./SECURITY.md).
-
-## Privacy policy <a name="privacy"></a>
-
-Please see [`docs/privacy-policy.md` file](./docs/privacy-policy.md).
 
 ## License <a name="license"></a>
 
