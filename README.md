@@ -24,11 +24,11 @@
   <a href="./docs/FAQ.md">FAQ</a> •
   <a href="#donations">Donations</a> •
   <a href="./CONTRIBUTING.md">Support</a> •
+  <a href="./SECURITY.md">Security</a> •
+  <a href="./docs/privacy-policy.md">Privacy</a> •
   <a href="./docs/dev-guide.md">Development</a> •
   <a href="#star-history">Star History</a> •
   <a href="#thanks">Thanks</a> •
-  <a href="./SECURITY.md">Security</a> •
-  <a href="./docs/privacy-policy.md">Privacy</a> •
   <a href="#license">License
 </p>
 
@@ -121,6 +121,14 @@ Thank you for considering a donation to support our work!
 
 Please see [this document](./CONTRIBUTING.md).
 
+## Security <a name="security"></a>
+
+Please see [the `SECURITY.md` file](./SECURITY.md).
+
+## Privacy policy <a name="privacy"></a>
+
+Please see [`docs/privacy-policy.md` file](./docs/privacy-policy.md).
+
 ## Development and building from source <a name="development"></a>
 
 For information on how to get started with development, please see
@@ -147,18 +155,21 @@ Thanks to all contributors.  Some special mentions:
   <https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite> which was
   a great starting point for a React-based MV3 extension.
 
+- Miles Essex for some fantastic design work which freed up my time to
+  focus on technical work.
+
 - The awesome team at my startup [Toucan](https://toucan.earth) for
   being early beta testers and encouraging me to keep working on this
   project.  In particular, thanks to [Alex Haase](https://twitter.com/herrhaase)
   for brainstorming with me and coming up with the perfect name!
 
-## Security <a name="security"></a>
+- [Dalton Maag](https://www.daltonmaag.com/) and
+  [Canonical](https://canonical.com/) for [the Ubuntu
+  font](https://design.ubuntu.com/font) whose `0x` gave me the
+  inspiration for the logo.
 
-Please see [the `SECURITY.md` file](./SECURITY.md).
-
-## Privacy policy <a name="privacy"></a>
-
-Please see [`docs/privacy-policy.md` file](./docs/privacy-policy.md).
+- [ricmoo](https://www.ricmoo.com/) for the wonderful
+  [ethers](https://ethers.org/) Javascript library.
 
 ## License <a name="license"></a>
 
