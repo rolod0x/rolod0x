@@ -129,7 +129,7 @@ const manifest = {
         'assets/js/*.js',
         'assets/css/*.css',
         'icon-128.png',
-        'icon-128-no-bg.png',
+        'icon-104x100-no-bg.png',
         'icon-38.png',
       ],
       matches: ['*://*/*'],
