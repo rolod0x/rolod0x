@@ -16,6 +16,7 @@
     "build:watch": "cross-env __DEV__=true vite build -w --mode development",
     "build:firefox:watch": "cross-env __DEV__=true __FIREFOX__=true vite build -w --mode development",
     "build:hmr": "rollup --config utils/reload/rollup.config.mjs",
+    "zip": "version=$(jq -r .version package.json); zip=rolod0x-v$version-chrome.zip; (cd dist/chrome && rm -f ../$zip && zip -r ../$zip *) && ls -l dist/$zip",
     "build:crx": "crx pack dist",
     "wss": "node utils/reload/initReloadServer.js",
     "dev": "pnpm build:hmr && (run-p wss build:watch)",
