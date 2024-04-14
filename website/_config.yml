@@ -1,0 +1,63 @@
+title: rolod0x - your free private onchain address book!
+repository: aspiers/rolod0x
+description: >-
+  rolod0x is a free privacy-preserving address book which gives you
+  a much smoother experience when browsing sites onchain.
+url: rolod0x.io
+lsi: false
+source: .
+incremental: false
+highlighter: rouge
+gist:
+  noscript: false
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
+theme: just-the-docs
+#theme: minima
+#theme: jekyll-theme-hacker
+plugins:
+  - jekyll-readme-index
+readme_index:
+  enabled: true
+  remove_originals: true
+  with_frontmatter: false
+optional_front_matter:
+  remove_originals: true
+
+include:
+  - CONTRIBUTING.md
+exclude:
+  - bin/
+  - .#*
+
+defaults:
+  - scope:
+      path: docs/install.md
+    values:
+      nav_order: 1
+  - scope:
+      path: docs/user-manual.md
+    values:
+      nav_order: 2
+  - scope:
+      path: docs/FAQ.md
+    values:
+      nav_order: 3
+  - scope:
+      path: docs/privacy-policy.md
+    values:
+      nav_order: 4
+  - scope:
+      path: docs/SECURITY.md
+    values:
+      nav_order: 5
+  - scope:
+      path: CONTRIBUTING.md
+    values:
+      title: Support
+      nav_order: 6
+  - scope:
+      path: docs/dev-guide.md
+    values:
+      nav_order: 7

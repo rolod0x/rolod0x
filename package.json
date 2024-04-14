@@ -33,7 +33,8 @@
     "lint:prettier": "prettier --check .",
     "lint:prettier:fix": "prettier --write .",
     "prepare": "husky install",
-    "rolod0x": "pnpm exec tsx ./src/cli.ts"
+    "rolod0x": "pnpm exec tsx ./src/cli.ts",
+    "website:prepare": "./scripts/website-prepare.sh"
   },
   "type": "module",
   "dependencies": {

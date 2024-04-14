@@ -1,4 +1,4 @@
-# rolod0x security analysis
+# Security analysis
 
 Since security is paramount in web3, every effort has been made to eliminate
 any risk caused by using rolod0x.

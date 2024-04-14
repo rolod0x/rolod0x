@@ -4,6 +4,7 @@
 - [Building from source](#build)
 - [Linting](#lint)
 - [Unit tests](#test)
+- [Website](#website)
 
 ## How to contribute <a name="workflows"></a>
 
@@ -76,3 +77,24 @@ re-run all tests whenever relevant files change.
 
 If you are adding new functionality or bug fixes, please ensure that you
 add tests to cover those cases.
+
+## Website <a name="website"></a>
+
+First ensure that you have Ruby 3.3.x or similar installed, since the website
+is generated via Jekyll which runs on Ruby.
+
+All files required for the website need to live under the `website/`
+subdirectory.  Some are already placed there by git, but others
+(mostly Markdown files and images) need to be copied in via:
+
+    pnpm website:prepare
+
+Then to generate the website and preview it locally, run:
+
+    cd website
+    bundle install
+    bundle exec jekyll serve --open
+
+If you modify source files, you'll need to rerun `pnpm
+website:prepare` to copy them in.  If you modify the Jekyll config in
+`_config.yml` or `Gemfile` then you'll need to restart the server.
