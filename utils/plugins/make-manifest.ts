@@ -3,15 +3,17 @@ import * as path from 'path';
 import url from 'url';
 import * as process from 'process';
 
-import type { PluginOption } from 'vite';
-
 import colorLog from '../log';
 import ManifestParser from '../manifest-parser';
 
+import type { PluginOption } from 'vite';
+
 const { resolve } = path;
 
+const isFirefox = process.env.__FIREFOX__;
+
 const rootDir = resolve(__dirname, '..', '..');
-const distDir = resolve(rootDir, 'dist', process.env.__FIREFOX__ ? 'firefox' : 'chrome');
+const distDir = resolve(rootDir, 'dist', isFirefox ? 'firefox' : 'chrome');
 const manifestFile = resolve(rootDir, 'manifest.js');
 
 const getManifestWithCacheBurst = (): Promise<{ default: chrome.runtime.ManifestV3 }> => {
@@ -39,6 +41,10 @@ export default function makeManifest(config?: {
       manifest.content_scripts.forEach(script => {
         script.css &&= script.css.map(css => css.replace('<KEY>', cacheKey));
       });
+    }
+    if (isFirefox) {
+      // https://github.com/fregante/webext-permission-toggle/issues/50
+      manifest.permissions.push('activeTab');
     }
 
     fs.writeFileSync(manifestPath, ManifestParser.convertManifestToString(manifest));
