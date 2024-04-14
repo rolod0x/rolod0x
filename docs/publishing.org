@@ -1,0 +1,98 @@
+This file tracks the work required to publish rolod0x in a variety of
+places.  Being able to reuse previous work should make future
+submissions easier.
+
+* YouTube promo video
+*** voiceover script
+***** overview
+      If your phone didn't have an address book feature,
+      you'd never know who was calling you, and /making/
+      phone calls would be painful too.
+
+      So why accept anything less when browsing onchain?
+***** title page
+      rolod0x is a free privacy-preserving address book which gives you
+      a much smoother experience when browsing sites onchain.
+***** right-click demo
+      Instead of keeping track of long hexadecimal addresses, simply
+      right-click an address ... and give it a memorable label.  Now when
+      you go to any page, you can always see that label wherever the
+      page refers to that address.
+
+      This makes understanding onchain activity way easier, and it works
+      on any website and any blockchain!
+***** lookup
+      You can also quickly look up any address by pressing a hotkey, and then
+      just type part of what you're looking for.
+***** view address book
+      From the settings page you can see your whole address book in one
+      place.
+***** privacy
+      To protect your privacy, it's stored locally in your browser, so
+      it never leaves your device.
+***** edit as text
+      It's just plain text which is easy to edit, and you can
+      export and import addresses from anywhere simply with copy and paste.
+***** enable per site
+      For maximum security, rolod0x is only enabled on a limited list of
+      websites, but you can add extra sites if you want.
+***** theme and display format
+      To suit everyone's tastes, there's a dark colour theme, and you
+      can also customise the way the labels are shown on the page.
+***** FOSS
+      Finally, rolod0x is Free and Open Source software, so anyone can
+      help make it better.  So if you think of something which can be improved
+      visit the GitHub project and get involved!
+***** sign-off
+      If you like rolod0x, please spread the word!
+
+      Thanks for watching!
+*** screencast order
+***** highlight first 5
+***** renumber hardware wallets -> click Save
+***** select line -> right-click -> copy
+***** click Sites -> scroll to allow list
+*** video description
+    rolod0x is a free privacy-preserving address book which gives you a much smoother experience when browsing sites onchain.  Instead of keeping track of long hexadecimal addresses, simply right-click an address, and give it a memorable label.
+
+    Now when you go to any page, the extension automatically replaces that address wherever it appears with the label you provided.
+
+    This makes understanding onchain activity way easier, and it works on any website and any blockchain!  You can also quickly look up any address by pressing a hotkey, and then just type part of what you're looking for.
+
+    To protect your privacy, it's stored locally in your browser, so it never leaves your device without your permission.
+
+    For maximum security, rolod0x is only enabled on a limited list of websites, but you can add extra sites if you want.
+
+    rolod0x is Free and Open Source software, so anyone can help make it better.  So if you think of something which can be improved visit the GitHub project and get involved!
+* Chrome Web Store submission
+*** Store listing
+***** description
+      rolod0x is a free privacy-preserving address book which gives you a much smoother experience when browsing sites onchain.
+
+      Instead of having to keep track of long hexadecimal addresses, simply right-click an address and give it a memorable label.  Now when you go to any page, the extension automatically replaces that address wherever it appears with the label you provided.  This makes understanding onchain activity way easier, and it works on any website and any blockchain!
+
+      You can also quickly look up any address by pressing a hotkey, and then just type part of what you're looking for.
+
+      From the settings page you can see your whole address book in one place. To protect your privacy, it's stored locally in your browser, so it never leaves your device.  It's just plain text which is easy to edit, and you can export and import addresses from anywhere simply with copy and paste.
+
+      For maximum security, rolod0x is only enabled on a limited list of websites, but you can add extra sites if you want.
+
+      To suit everyone's tastes, there's a dark colour theme, and you can also customise the way the labels are shown on the page.
+
+      Finally, rolod0x is Free and Open Source software, so anyone can help make it better.  So if you think of something which can be improved visit the GitHub project and get involved!
+
+      If you like rolod0x, please spread the word!
+*** Privacy
+***** Single purpose
+rolod0x is a privacy-preserving address book extension for web3 which gives users a much smoother experience when browsing sites onchain.
+
+Instead of having to keep track of long hexadecimal addresses, users can simply right-click an address and give it a memorable label.  Now when they go to any page, the extension automatically replaces that address wherever it appears with the label they provided.  This makes understanding onchain activity way easier, and it works on any website and any blockchain.
+
+They can also quickly look up any address by pressing a hotkey, and then just type part of what they're looking for.
+***** Permission justification
+******* activeTab
+******* clipboardWrite
+******* contextMenus
+******* scripting
+******* storage
+******* Host permission
