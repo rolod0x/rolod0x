@@ -1,38 +1,38 @@
 <div align="center">
 <h1>
-  <!-- rolod<span style="color: #00e300">0x</span> -->
-  <img src="./public/logo-440x280.png" alt="rolod0x: Your free private onchain address book" />
+<img src="./public/logo-440x280.png" alt="rolod0x: Your free private onchain address book" />
 </h1>
-
-[![GitHub release](https://img.shields.io/github/release/aspiers/rolod0x.svg)](https://github.com/aspiers/rolod0x/releases/)
-[![GitHub commits](https://img.shields.io/github/commits-since/aspiers/rolod0x/latest.svg)](https://github.com/aspiers/rolod0x/commit/)
-![GitHub last commit](https://img.shields.io/github/last-commit/aspiers/rolod0x)
-[![](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
-[![](https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![](https://badges.aleen42.com/src/vitejs.svg)](https://vitejs.dev/)
-<img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://github.com/aspiers/rolod0xFactions&count_bg=%23#222222&title_bg=%23#454545&title=😀&edge_flat=true" alt="hits"/>
-<br />
-![Tests](https://github.com/aspiers/rolod0x/actions/workflows/test.yml/badge.svg)
-![Lint](https://github.com/aspiers/rolod0x/actions/workflows/lint.yml/badge.svg)
-![zip](https://github.com/aspiers/rolod0x/actions/workflows/build-zip.yml/badge.svg)
+</div>
 
 <p align="center">
-  <a href="#overview">Overview</a> •
-  <a href="#features">Features</a> •
-  <a href="./docs/install.md">Installation</a> •
-  <a href="./docs/user-manual.md">Usage</a> •
-  <a href="./docs/FAQ.md">FAQ</a> •
-  <a href="#donations">Donations</a> •
-  <a href="./CONTRIBUTING.md">Support</a> •
-  <a href="./SECURITY.md">Security</a> •
-  <a href="./docs/privacy-policy.md">Privacy</a> •
-  <a href="./docs/dev-guide.md">Development</a> •
-  <a href="#star-history">Star History</a> •
-  <a href="#thanks">Thanks</a> •
-  <a href="#license">License
+<a href="https://github.com/aspiers/rolod0x/releases/" alt="GitHub release"><img src="https://img.shields.io/github/release/aspiers/rolod0x.svg" /></a>
+<a href="https://github.com/aspiers/rolod0x/commit/" alt="GitHub commits"><img src="https://img.shields.io/github/commits-since/aspiers/rolod0x/latest.svg" /></a>
+<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/aspiers/rolod0x" />
+<a href="https://react.dev/"><img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" /></a>
+<a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=typescript&logoColor=white" /></a>
+<a href="https://vitejs.dev/"><img src="https://badges.aleen42.com/src/vitejs.svg" /></a>
+<img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://github.com/aspiers/rolod0xFactions&count_bg=%23#222222&title_bg=%23#454545&title=😀&edge_flat=true" alt="hits"/>
+<br />
+<img alt="Tests" src="https://github.com/aspiers/rolod0x/actions/workflows/test.yml/badge.svg" />
+<img alt="Lint" src="https://github.com/aspiers/rolod0x/actions/workflows/lint.yml/badge.svg" />
+<img alt="zip" src="https://github.com/aspiers/rolod0x/actions/workflows/build-zip.yml/badge.svg" />
 </p>
 
-</div>
+<p id="navstrip" align="center">
+<a href="#overview">Overview</a> •
+<a href="#features">Features</a> •
+<a href="./docs/install.md">Installation</a> •
+<a href="./docs/user-manual.md">Usage</a> •
+<a href="./docs/FAQ.md">FAQ</a> •
+<a href="#donations">Donations</a> •
+<a href="./CONTRIBUTING.md">Support</a> •
+<a href="./SECURITY.md">Security</a> •
+<a href="./docs/privacy-policy.md">Privacy</a> •
+<a href="./docs/dev-guide.md">Development</a> •
+<a href="#star-history">Star History</a> •
+<a href="#thanks">Thanks</a> •
+<a href="#license">License</a>
+</p>
 
 ## Overview <a name="overview"></a>
 
@@ -142,7 +142,7 @@ extremely welcome!
 
 ## Star History <a name="star-history"></a>
 
-[![Star History Chart](https://api.star-history.com/svg?repos=aspiers/rolod0x&type=Date)](https://star-history.com/#aspiers/rolod0x&Date)
+<a href="https://star-history.com/#aspiers/rolod0x&Date" alt="Star History Chart"><img src="https://api.star-history.com/svg?repos=aspiers/rolod0x&type=Date" /></a>
 
 ## Thanks <a name="thanks"></a>
 

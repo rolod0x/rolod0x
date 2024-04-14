@@ -1,4 +1,4 @@
-# Installation of rolod0x
+# Installation
 
 - [Downloads](#downloads)
 - [Installation in Chrome and similar](#chrome)

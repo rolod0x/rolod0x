@@ -1,0 +1,11 @@
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
+
+README.md
+CONTRIBUTING.md
+bin/
+docs/
+public/

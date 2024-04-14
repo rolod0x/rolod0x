@@ -1,4 +1,4 @@
-# rolod0x user manual
+# User manual
 
 - [Usage in Chrome and similar](#chrome)
 - [Usage in other browsers](#other)
