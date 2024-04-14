@@ -110,4 +110,4 @@ They can also quickly look up any address by pressing a hotkey, and then just ty
 
         In particular, the usage of block explorers like <https://etherscan.io> and its family of clones for the various other EVM chains are used extremely commonly.  Every web3 wallet and pretty much every onchain app links to block explorers as part of its regular UX.
 
-        With the explosive growth of many layer 2 and layer 3 chains over the last year (e.g. see <https://l2beat.com/>), users are already being asked to jump through various setup steps for various pieces of software when using a new chain for the first time, so it's helpful for rolod0x to avoid that, given that it is such a low risk extension (for reasons explained above).
+        With the explosive growth of many layer 2 and layer 3 chains over the last year (e.g. see <https://l2beat.com/>), users are already being asked to jump through various setup steps for various pieces of software when using a new chain for the first time, so it's helpful for rolod0x to avoid that, given that it is such a low risk extension (for reasons explained in the security policy in SECURITY.md).
