@@ -63,12 +63,11 @@ const manifest = {
     // See also https://github.com/aspiers/rolod0x/issues/216
     // which may require activeTab in the future.
 
-    'clipboardWrite',
-    'contextMenus', // Also needed for webext-permission-toggle
-
-    'scripting',
+    'clipboardWrite', // See SECURITY.md
+    'contextMenus', // See SECURITY.md
+    'scripting', // See SECURITY.md
     // 'sidePanel',
-    'storage',
+    'storage', // See SECURITY.md
   ],
 
   // Anything in content_scripts.matches must also be in host_permissions:
