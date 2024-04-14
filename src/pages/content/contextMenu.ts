@@ -53,8 +53,8 @@ async function updateHandler() {
 }
 
 export function initContextMenu(): void {
-  // We only have access to the element that's been clicked when the context menu is first opened.
-  // Remember it for use later.
+  // We only have access to the element that's been clicked when the
+  // context menu is first opened.  Remember it for use later.
 
   document.addEventListener(
     'contextmenu',
@@ -63,11 +63,12 @@ export function initContextMenu(): void {
       // console.debug('rolod0x: Updated last right-clicked element:', clickedEl);
     },
 
-    // useCapture - the event listener is triggered in the capturing phase, before reaching the
-    // target element:
+    // useCapture - the event listener is triggered in the capturing
+    // phase, before reaching the target element:
     true,
-    // False (the default) means that the event listener is triggered in the bubbling phase, after
-    // the event has reached the target element.
+    // False (the default) means that the event listener is triggered
+    // in the bubbling phase, after the event has reached the target
+    // element.
     //
     // FIXME: Not sure if it makes any difference which we use here.
   );
@@ -85,7 +86,8 @@ export function initContextMenu(): void {
       if (sendResponse) {
         sendResponse({ clickedElementHTML: clickedEl.innerHTML });
       }
-      // This is another way of sending the element back to the background service worker:
+      // This is another way of sending the element back to the
+      // background service worker:
       //
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       // chrome.runtime.sendMessage({

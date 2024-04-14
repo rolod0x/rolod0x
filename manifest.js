@@ -55,9 +55,13 @@ const manifest = {
   // name: '__MSG_extensionName__',
   // description: '__MSG_extensionDescription__',
   permissions: [
-    // Needed so that the extension context menu toggle from webext-permission-toggle
-    // knows which tab it's on.
-    'activeTab',
+    // activeTab is documented as required by webext-permission-toggle,
+    // but doesn't seem to be required on Chrome with MV2 or MV3.
+    // See https://github.com/fregante/webext-permission-toggle/issues/50
+    // 'activeTab',
+    //
+    // See also https://github.com/aspiers/rolod0x/issues/216
+    // which may require activeTab in the future.
 
     'clipboardWrite',
     'contextMenus', // Also needed for webext-permission-toggle

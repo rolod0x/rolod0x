@@ -1,10 +1,32 @@
 const CONTEXT_MENU_ID = 'rolod0x-context-menu';
 
+function debugClickEvent(
+  message: string,
+  info: chrome.contextMenus.OnClickData,
+  tab: chrome.tabs.Tab,
+): void {
+  console.log(message);
+  console.log('Context menu OnClickData:', info);
+  console.log('Tab info:', tab || '<tab undefined>');
+}
+
 // Horrible hack to work around https://issues.chromium.org/issues/40375229 -
 // see https://stackoverflow.com/questions/7703697/how-to-retrieve-the-element-where-a-contextmenu-has-been-executed
 function handleContextMenuClick(info: chrome.contextMenus.OnClickData, tab: chrome.tabs.Tab): void {
+  if (info.menuItemId !== CONTEXT_MENU_ID) {
+    debugClickEvent('Update address book handler ignoring other context menu click', info, tab);
+    return;
+  }
+
+  if (!info.frameUrl) {
+    // This could happen if there's no activeTab permission and the extension hasn't been granted
+    // permission to the tab's site.
+    debugClickEvent("Can't send update address book message to unknown frame", info, tab);
+    return;
+  }
+
   if (info.frameUrl.startsWith('chrome-extension://')) {
-    console.log('NOT sending update address book message to chrome extension', info, tab);
+    debugClickEvent('NOT sending update address book message to chrome extension', info, tab);
     return;
   }
 

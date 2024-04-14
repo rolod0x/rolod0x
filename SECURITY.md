@@ -1,7 +1,13 @@
 # rolod0x security analysis
 
 Since security is paramount in web3, every effort has been made to eliminate
-any risk caused by using rolod0x.  Its design is inherently low risk since:
+any risk caused by using rolod0x.
+
+## Security design
+
+rolod0x's design is inherently low risk since:
+
+- It uses the minimum possible permissions, as documented [below](#perms).
 
 - It only operates on sites approved by the user.
 
@@ -18,6 +24,11 @@ any risk caused by using rolod0x.  Its design is inherently low risk since:
 - The data is stored locally within an isolated storage area in the
   browser reserved for the extension.
 
+- Even though the address lookup feature writes to the clipboard, it only
+  writes addresses which the user provided themself.
+
+## Risk assessment
+
 However, there are still some minor risks which need to be considered:
 
 1. There is a theoretical but extremely unlikely possibility that the
@@ -32,11 +43,26 @@ However, there are still some minor risks which need to be considered:
    and can be mitigated much more easily by virtue of the fact that the code
    is Free and Open Source and can be easily audited and rebuilt from
    source.  If this makes you nervous, you should consider that web3 wallet
-   extensions are in general a far more lucrative target for this type of attack.
+   extensions are in general a *far* more lucrative target for this type of attack.
 
 3. The browser could be compromised via a bug, which could allow attackers
    access to the extension's local storage.  Again, this risk applies to
    all browser extensions, including web3 wallet extensions.
+
+## Manifest permissions <a name="perms"></a>
+
+The following chrome API permissions are requested by the extension manifest:
+
+- `clipboardWrite`: Required to copy the selected address to the clipboard,
+  when the user completes their search of the address book.
+
+- `scripting`: Required when the user presses the search hotkey, to
+  execute the script which displays the modal dialog for searching
+  the address book.
+
+- `storage`: Required to store the user's address book and settings locally.
+
+## Feedback
 
 This is work in progress, and any suggestions for improvements are very welcome -
 please see [`CONTRIBUTING.md`](CONTRIBUTING.md).
