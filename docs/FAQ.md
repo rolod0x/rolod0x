@@ -1,4 +1,4 @@
-# rolod0x FAQ
+# FAQ
 
 - [Why is it called rolod0x?](#name)
 - [Why does web3 need private address books?](#why)

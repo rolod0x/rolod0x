@@ -1,4 +1,4 @@
-# Support and contributing to rolod0x
+# Support and contributing
 
 ## Feedback
 

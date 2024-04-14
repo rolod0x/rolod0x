@@ -1,4 +1,4 @@
-# Privacy Policy for rolod0x
+# Privacy Policy
 
 **rolod0x will never share your personal data without your explicit
 permission.**

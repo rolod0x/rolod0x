@@ -1,4 +1,4 @@
-# rolod0x developer guide
+# Developer guide
 
 - [How to contribute](#workflows)
 - [Building from source](#build)
