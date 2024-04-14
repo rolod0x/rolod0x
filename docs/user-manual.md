@@ -85,6 +85,10 @@ rolod0x has not yet been enabled.  However it will not work on
 if `Allow access to file URLs` is enabled).  Unfortunately this is a
 browser limitation which probably can't be bypassed.
 
+If it's not working on normal pages, then visit
+<chrome://extensions/shortcuts> and make sure that you have the hotkey
+set up correctly.
+
 ### Customizing the label display format
 
 See the `Display` section of the options page which explains this in
