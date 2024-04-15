@@ -36,6 +36,11 @@ defaults:
     values:
       image: /docs/images/promo/social-1200x630.png
   - scope:
+      path: README.md
+    values:
+      title: Overview
+      nav_order: 0
+  - scope:
       path: docs/install.md
     values:
       nav_order: 1
