@@ -28,6 +28,16 @@ h1, h2, h3, h4, h5, h6, button {
 
 @import "./color_schemes/rolod0x-light";
 
+@media (min-width: 66.5rem) {
+    .site-nav, .site-header, .site-footer {
+        width: 15.5rem !important;
+    }
+}
+
+a.site-title {
+    display: block;
+}
+
 .site-logo {
     color: #111111;
     font-family: Ubuntu;
