@@ -1,6 +1,6 @@
 <div align="center">
 <h1>
-<img src="./public/logo-440x280.png" alt="rolod0x: Your free private onchain address book" />
+<img src="./docs/images/docs-header.png" alt="rolod0x: Your free private onchain address book" />
 </h1>
 </div>
 
@@ -21,6 +21,7 @@
 <p id="navstrip" align="center">
 <a href="#overview">Overview</a> •
 <a href="#features">Features</a> •
+<a href="https://youtu.be/AoWeASmnrPc" target="_blank" rel="noopener noreferrer">Video</a> •
 <a href="./docs/install.md">Installation</a> •
 <a href="./docs/user-manual.md">Usage</a> •
 <a href="./docs/FAQ.md">FAQ</a> •
@@ -83,6 +84,14 @@ they will now be labelled in this human-readable way!
 - [Command-line version](./docs/user-manual.md#cli) for translating addresses output on the terminal.
 - Light and dark themes.
 - Named using [a triple pun](./docs/FAQ.md#name).
+
+## Demo video
+
+<a href="https://youtu.be/AoWeASmnrPc" target="_blank" rel="noopener noreferrer" title="Demo video on YouTube"> <img src="docs/images/youtube-thumbnail.png" alt="Demo video on YouTube"/></a>
+
+<!--
+<div style="text-align: center;" align="center"> <iframe width="560" height="315" src="https://www.youtube.com/embed/AoWeASmnrPc?si=7en-7eQRgq3lLNwo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> </div>
+-->
 
 ## Installation <a name="installation"></a>
 

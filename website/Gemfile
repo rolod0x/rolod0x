@@ -10,7 +10,9 @@ group :jekyll_plugins do
   #gem "jekyll-theme-hacker"
 
   gem "jekyll-default-layout"
-  gem "jekyll-github-metadata"
+  # This one spams the GitHub API to hell and back for no good reason:
+  # https://github.com/jekyll/github-metadata/issues/266
+  # gem "jekyll-github-metadata"
   gem "jekyll-optional-front-matter"
   gem "jekyll-readme-index"
   gem "jekyll-relative-links"
