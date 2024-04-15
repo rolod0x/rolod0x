@@ -18,22 +18,21 @@
 <img alt="zip" src="https://github.com/aspiers/rolod0x/actions/workflows/build-zip.yml/badge.svg" />
 </p>
 
-<p id="navstrip" align="center">
-<a href="#overview">Overview</a> •
-<a href="#features">Features</a> •
-<a href="https://youtu.be/AoWeASmnrPc" target="_blank" rel="noopener noreferrer">Video</a> •
-<a href="./docs/install.md">Installation</a> •
-<a href="./docs/user-manual.md">Usage</a> •
-<a href="./docs/FAQ.md">FAQ</a> •
-<a href="#donations">Donations</a> •
-<a href="./CONTRIBUTING.md">Support</a> •
-<a href="./SECURITY.md">Security</a> •
-<a href="./docs/privacy-policy.md">Privacy</a> •
-<a href="./docs/dev-guide.md">Development</a> •
-<a href="#star-history">Star History</a> •
-<a href="#thanks">Thanks</a> •
-<a href="#license">License</a>
-</p>
+<!-- auto-replace-line-for-jekyll: {: .text-center} -->
+[Overview](#overview) •
+[Features](#features) •
+[Video](https://youtu.be/AoWeASmnrPc) •
+[Installation](./docs/install.md) •
+[Usage](./docs/user-manual.md) •
+[FAQ](./docs/FAQ.md) •
+[Donations](#donations) •
+[Support](./CONTRIBUTING.md) •
+[Security](./SECURITY.md) •
+[Privacy](./docs/privacy-policy.md) •
+[Development](./docs/dev-guide.md) •
+[Star History](#star-history) •
+[Thanks](#thanks) •
+[License](#license)
 
 ## Overview <a name="overview"></a>
 
