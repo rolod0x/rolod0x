@@ -92,22 +92,123 @@ They can also quickly look up any address by pressing a hotkey, and then just ty
 ***** Permission justification
       These are copied from [[../SECURITY.md][SECURITY.md]].
 
-******* =activeTab= (dropped, at least for now)
+******* =activeTab=
+        Required when the user presses the search hotkey, to execute the content script which displays the modal dialog allowing them to quickly and easily search their address book from the current tab.  This happens within an <iframe> inserted by a content script into a shadow root element inside the DOM.  The same mechanism also requires the scripting permission listed below.  The code executing the script is here:
+
+  https://github.com/rolod0x/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/background/index.ts#L49-L52
 ******* =clipboardWrite=
         Required to copy the selected address to the clipboard, when the user completes their search of the address book.
 ******* =contextMenus=
         Required in order to items to two context menus:
 
-1. Add an item "Enable rolod0x on this domain" to the context menu when right-clicking on the extension icon.  This is the mechanism for enabling and disabling access per website.  It is provided by the Open Source npm module https://github.com/fregante/webext-permission-toggle, and activated here: https://github.com/aspiers/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/background/index.ts#L16
+1. Add an item "Enable rolod0x on this domain" to the context menu when right-clicking on the extension icon.  This is the mechanism for enabling and disabling access per website.  It is provided by the Open Source npm module https://github.com/fregante/webext-permission-toggle, and activated here: https://github.com/rolod0x/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/background/index.ts#L16
 
-2. Add an item "rolod0x: add entry to address book" to the context menu when right-clicking within a web page.  This is activated here: https://github.com/aspiers/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/background/contextMenu.ts#L49-L52
+2. Add an item "rolod0x: add entry to address book" to the context menu when right-clicking within a web page.  This is activated here: https://github.com/rolod0x/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/background/contextMenu.ts#L49-L52
 ******* =scripting=
-        Required when the user presses the search hotkey, to execute the content script which displays the modal dialog for searching the address book.  The code executing the script is here: https://github.com/aspiers/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/background/index.ts#L49-L52
+        Required when the user presses the search hotkey, to execute the content script which displays the modal dialog for searching the address book.  This happens within an <iframe> inserted by a content script into a shadow root element inside the DOM.  The same mechanism also requires the activeTab permission listed above.  The code executing the script is here: https://github.com/rolod0x/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/background/index.ts#L49-L52
 ******* =storage=
-        Required to store the user's address book and settings locally.  The storage-handling code can be found here: https://github.com/aspiers/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/shared/options-storage.ts#L19-L24 and it depends on the npm module: https://github.com/fregante/webext-options-sync/
+        Required to store the user's address book and settings locally.  The storage-handling code can be found here: https://github.com/rolod0x/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/shared/options-storage.ts#L19-L24 and it depends on the npm module: https://github.com/fregante/webext-options-sync/
 ******* Host permissions
         These have been required because in web3 there are certain highly popular and well respected sites which are frequented by the majority of users, and it provides a smoother onboarding experience if users don't have to authorise the extension for each of these manually.
 
         In particular, the usage of block explorers like <https://etherscan.io> and its family of clones for the various other EVM chains are used extremely commonly.  Every web3 wallet and pretty much every onchain app links to block explorers as part of its regular UX.
 
         With the explosive growth of many layer 2 and layer 3 chains over the last year (e.g. see <https://l2beat.com/>), users are already being asked to jump through various setup steps for various pieces of software when using a new chain for the first time, so it's helpful for rolod0x to avoid that, given that it is such a low risk extension (for reasons explained in the security policy in SECURITY.md).
+* Gitcoin Grants round
+*** project description
+**rolod0x is a free privacy-preserving address book which gives you a much smoother experience when browsing sites onchain.**
+
+Instead of having to keep track of long hexadecimal addresses, simply right-click an address and give it a memorable label.  Now when you go to any web page, the extension automatically replaces that address wherever it appears with the label you provided.  **This makes understanding onchain activity way easier, and it works on any website and any blockchain!**
+
+![](https://raw.githubusercontent.com/aspiers/rolod0x/main/docs/images/promo/right-click.jpg)
+
+You can also quickly look up any address by pressing a hotkey, and then just type part of what you're looking for.
+
+![](https://raw.githubusercontent.com/aspiers/rolod0x/main/docs/images/promo/hotkey-lookup.jpg)
+
+From the settings page you can see your whole address book in one place. To protect your privacy, it's stored locally in your browser, so it never leaves your device.  It's just plain text which is easy to edit, and you can export and import addresses from anywhere simply with copy and paste.
+
+![](https://raw.githubusercontent.com/aspiers/rolod0x/main/docs/images/promo/edit-as-text.jpg)
+
+For maximum security, rolod0x is only enabled on a limited list of websites, but you can add extra sites if you want.
+
+![](https://raw.githubusercontent.com/aspiers/rolod0x/main/docs/images/promo/enable-per-site.jpg)
+
+rolod0x is [Free and Open Source software][license].  All code has been done by one person over the last two years for free.  There are many exciting plans for improvement listed in [the GitHub project][future], including:
+
+- [Firefox support][firefox]
+
+- [integration with the Rotki portfolio manager][rotki] (a long-time recipient of Gitcoin Grants), and other wallets
+
+- [creating a standardized address book format][format] for [interoperability][] across web3.
+
+**However without funding, any significant further development is simply not sustainable.**
+
+So your support for this project would be hugely appreciated.  Thanks for reading!
+
+[license]: https://rolod0x.io/#license
+[future]: https://github.com/users/aspiers/projects/2/views/2?sliceBy%5Bvalue%5D=M3%3A+post-launch+priorities
+[firefox]: https://github.com/users/aspiers/projects/2/views/2?sliceBy%5Bvalue%5D=M2%3A+Firefox+support
+[rotki]: https://github.com/aspiers/rolod0x/issues/81
+[format]: https://github.com/aspiers/rolod0x/issues/244
+[interoperability]: https://github.com/aspiers/rolod0x/issues?q=label%3Ainteroperability
+
+*** Please describe your dApp or App, focusing on its innovative utility or service within the ecosystem. Highlight the problem it solves or the need it addresses.
+
+Current web3 UX very regularly requires dealing with long hexadecimal 0x1234... addresses, which can represent user-owned accounts (EOAs), tokens, multisigs, and all kinds of other smart contracts.
+
+The addresses appear across many dApps and other frequently visited websites such as block explorers.  However, given how long they are, it's an impossible task to expect users to memorise them.  This creates many obvious usability and even security issues for every single web3 user.
+
+Public naming services such as ENS are a partial solution to this, but they only work when privacy is not required.  Some dApps and block explorers offer private address books, but those only work on a per-site (and sometimes per-chain) basis.
+
+In contrast, rolod0x is a fully generalized browser extension which provides users with a completely private, local-only address book which can work on every website and every chain.
+
+*** Describe how your application improves user experience in the Web3 space. Include any specific design choices or features that enhance accessibility and practical utility
+
+With the rolod0x browser extension, users can label addresses on any web3 site simply by right-clicking on the address and typing a label.  Then when they visit any web page, the extension automatically replaces that address wherever it appears with the label they provided.  This makes understanding onchain activity way easier, and it works on any website and any blockchain!
+
+Users can also quickly look up any address by pressing a hotkey, and then just type part of what they're looking for.
+
+It's also worth noting that there's a command-line version which can be very useful for developers.
+
+*** In what ways does your project contribute to financial inclusion, education, or social impact? Explain the specific areas of impact and the target audience or communities you serve.
+
+By translating inaccessible hexadecimal addresses into human-readable labels, rolod0x makes web3 a more inclusive place for all, especially non-technical users.
+
+It has use cases within web3 education too.  For example, when developers take part in a hackathon, they will instantly have to work with a whole set of new addresses of wallets and smart contracts related to their hack project.  Given that hackathon deadlines usually create a lot of time pressure, rolod0x's browser extension and CLI can help developers build quicker, because they can instantly see which addresses are being used where, and quickly identify any mistakes.  The same is true in any kind of web3 workshop or education program.
+
+*** What type of open source software (OSS) license(s) do you have? Is all of your code available on public repos or is some portion of your codebase private?
+
+[rolod0x is fully and proudly Open Source][1], released on GitHub under the GPL-3.0 license.  There is also a [developer guide][2] to make it easier for others to contribute.
+
+[1]: https://rolod0x.io/#license
+[2]: https://rolod0x.io/docs/dev-guide.html
+
+*** What stage of development is your application currently in, and what are your immediate next steps? Provide a roadmap or development timeline if available.
+
+rolod0x has been alive and in use by the author as a functional prototype for two years, but was only turned into a proper product in the last few months.  It has had a small but rapidly growing handful of enthusiastic users for the last 6 months or so, and even though it's still relatively young, it's generally very stable.
+
+In the short term, the main priorities are [full Firefox support][firefox], [integration with Rotki][rotki], [adding support for dividing the address book into multiple sections][sections], and [automatic import of address book entries from URLs][URL-import] specified by the user, and tackling a few rough edges.
+
+Longer-term, working on [creating a standardized address book format][format] for [interoperability between address books across the whole ecosystem][interoperability] (including wallets and other apps) seems very worthwhile.
+
+The full roadmap is listed at <https://github.com/users/aspiers/projects/2/views/2>.
+
+[firefox]: https://github.com/users/aspiers/projects/2/views/2?sliceBy%5Bvalue%5D=M2%3A+Firefox+support
+[sections]: https://github.com/rolod0x/rolod0x/issues/16
+[URL-import]: https://github.com/rolod0x/rolod0x/issues/24
+[rotki]: https://github.com/rolod0x/rolod0x/issues/81
+[format]: https://github.com/rolod0x/rolod0x/issues/244
+[interoperability]: https://github.com/rolod0x/rolod0x/issues?q=label%3Ainteroperability
+
+*** How would funding from this round support your project's development and goals? Outline specific areas where the funds would be allocated (e.g., development, user research, community building).
+
+Funds would go mainly towards development of new features as mentioned above, and perhaps a bit towards getting assistance from a professional designer.
+
+It is unlikely that we would spend much or anything on any kind of marketing, as the goal is to achieve viral growth from word of mouth, by making rolod0x so useful and easy to use that it becomes a complete no-brainer for everyone to use it :-)
+
+There are no plans to monetize rolod0x.  It was built as a public good to improve web3 UX and therefore help scale web3 adoption.
+
+*** Anything else you'd like to share about your project, previous work, or other project affiliations? Anything you'd like to add that may help in determining project eligibility?
+
+It's probably not particularly relevant to this grant application, but I'm CTO and co-founder of <https://toucan.earth>, where our team relies heavily on rolod0x for our daily work :-)

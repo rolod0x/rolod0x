@@ -66,9 +66,9 @@ You can view and control the list of enabled sites in the `Sites`
 section of the options page.  At this time it is not possible to
 disable rolod0x on the built-in sites, however if you need that
 functionality, please upvote [issue
-#215](https://github.com/aspiers/rolod0x/issues/215).
+#215](https://github.com/rolod0x/rolod0x/issues/215).
 
-There is also [issue #74](https://github.com/aspiers/rolod0x/issues/74)
+There is also [issue #74](https://github.com/rolod0x/rolod0x/issues/74)
 
 ### Looking up an address via hotkey
 
@@ -97,7 +97,7 @@ detail.
 ## Usage in other browsers <a name="other"></a>
 
 **N.B. Firefox support has not been tested yet!**  However it is
-planned - see <https://github.com/aspiers/rolod0x/issues/19>.
+planned - see <https://github.com/rolod0x/rolod0x/issues/19>.
 
 Other browsers such as Firefox will have similar usage, but these
 instructions will need to be augmented accordingly when they are

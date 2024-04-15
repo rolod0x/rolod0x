@@ -8,8 +8,8 @@ Please first check that your bug / issue / enhancement request is not
 already listed in [the issue tracker][issues] or discussed in [the
 Discussions forum][discussions].
 
-[issues]: https://github.com/aspiers/rolod0x/issues
-[discussions]: https://github.com/aspiers/rolod0x/discussions
+[issues]: https://github.com/rolod0x/rolod0x/issues
+[discussions]: https://github.com/rolod0x/rolod0x/discussions
 
 If it isn't in either place:
 
@@ -19,8 +19,8 @@ If it isn't in either place:
 - Alternatively, if it's a specific technical bug report or feature
   request then [please file a new issue][new issue].
 
-[new discussion]: https://github.com/aspiers/rolod0x/discussions/new/choose
-[new issue]: https://github.com/aspiers/rolod0x/issues/new/choose
+[new discussion]: https://github.com/rolod0x/rolod0x/discussions/new/choose
+[new issue]: https://github.com/rolod0x/rolod0x/issues/new/choose
 
 ## Helping with development
 

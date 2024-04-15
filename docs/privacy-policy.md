@@ -24,7 +24,7 @@ implemented, it will require the user to explicitly authorise this
 synchronization.  Even if authorised by the user, rolod0x will ensure
 that the synchronised data will remain strictly private.
 
-[#6]: https://github.com/aspiers/rolod0x/issues/6
+[#6]: https://github.com/rolod0x/rolod0x/issues/6
 
 ## Other data
 
@@ -37,4 +37,4 @@ changes to this policy.
 ## Contact
 
 If you have any questions or suggestions regarding this privacy policy, do
-not hesitate to [contact us](https://github.com/aspiers/rolod0x/discussions/new).
+not hesitate to [contact us](https://github.com/rolod0x/rolod0x/discussions/new).

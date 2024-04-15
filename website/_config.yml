@@ -1,5 +1,5 @@
 title: rolod0x
-repository: aspiers/rolod0x
+repository: rolod0x/rolod0x
 description: >-
   Your free private onchain address book
 lsi: false
@@ -34,7 +34,7 @@ defaults:
   - scope:
       path: ''
     values:
-      image: /docs/images/promo/social-1200x630.png
+      image: https://rolod0x.io/docs/images/promo/social-1200x630.png
   - scope:
       path: README.md
     values:
