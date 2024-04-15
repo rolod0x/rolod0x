@@ -1,6 +1,6 @@
 <div align="center">
 <h1>
-<img src="./public/logo-440x280.png" alt="rolod0x: Your free private onchain address book" />
+<img src="./docs/images/docs-header.png" alt="rolod0x: Your free private onchain address book" />
 </h1>
 </div>
 
