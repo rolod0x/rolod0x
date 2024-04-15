@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aspiers/rolod0x.git"
+    "url": "https://github.com/rolod0x/rolod0x.git"
   },
   "bin": {
     "rolod0x": "./src/cli.ts"

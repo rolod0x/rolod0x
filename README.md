@@ -5,17 +5,17 @@
 </div>
 
 <p align="center">
-<a href="https://github.com/aspiers/rolod0x/releases/" alt="GitHub release"><img src="https://img.shields.io/github/release/aspiers/rolod0x.svg" /></a>
-<a href="https://github.com/aspiers/rolod0x/commit/" alt="GitHub commits"><img src="https://img.shields.io/github/commits-since/aspiers/rolod0x/latest.svg" /></a>
-<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/aspiers/rolod0x" />
+<a href="https://github.com/rolod0x/rolod0x/releases/" alt="GitHub release"><img src="https://img.shields.io/github/release/rolod0x/rolod0x.svg" /></a>
+<a href="https://github.com/rolod0x/rolod0x/commit/" alt="GitHub commits"><img src="https://img.shields.io/github/commits-since/rolod0x/rolod0x/latest.svg" /></a>
+<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/rolod0x/rolod0x" />
 <a href="https://react.dev/"><img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" /></a>
 <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=typescript&logoColor=white" /></a>
 <a href="https://vitejs.dev/"><img src="https://badges.aleen42.com/src/vitejs.svg" /></a>
-<img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://github.com/aspiers/rolod0xFactions&count_bg=%23#222222&title_bg=%23#454545&title=😀&edge_flat=true" alt="hits"/>
+<img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://github.com/rolod0x/rolod0xFactions&count_bg=%23#222222&title_bg=%23#454545&title=😀&edge_flat=true" alt="hits"/>
 <br />
-<img alt="Tests" src="https://github.com/aspiers/rolod0x/actions/workflows/test.yml/badge.svg" />
-<img alt="Lint" src="https://github.com/aspiers/rolod0x/actions/workflows/lint.yml/badge.svg" />
-<img alt="zip" src="https://github.com/aspiers/rolod0x/actions/workflows/build-zip.yml/badge.svg" />
+<img alt="Tests" src="https://github.com/rolod0x/rolod0x/actions/workflows/test.yml/badge.svg" />
+<img alt="Lint" src="https://github.com/rolod0x/rolod0x/actions/workflows/lint.yml/badge.svg" />
+<img alt="zip" src="https://github.com/rolod0x/rolod0x/actions/workflows/build-zip.yml/badge.svg" />
 </p>
 
 <!-- auto-replace-line-for-jekyll: {: .text-center} -->
@@ -79,7 +79,7 @@ they will now be labelled in this human-readable way!
 - Works on any EVM-based blockchain (and could easily support other
   chains in the future).
 - Should work on Chrome, Chromium, Brave, or any other browser in the Chrome family.
-- _May_ work on Firefox - not yet tested, but planned (see https://github.com/aspiers/rolod0x/issues/19).
+- _May_ work on Firefox - not yet tested, but planned (see https://github.com/rolod0x/rolod0x/issues/19).
 - [Command-line version](./docs/user-manual.md#cli) for translating addresses output on the terminal.
 - Light and dark themes.
 - Named using [a triple pun](./docs/FAQ.md#name).
@@ -150,7 +150,7 @@ extremely welcome!
 
 ## Star History <a name="star-history"></a>
 
-<a href="https://star-history.com/#aspiers/rolod0x&Date" alt="Star History Chart"><img src="https://api.star-history.com/svg?repos=aspiers/rolod0x&type=Date" /></a>
+<a href="https://star-history.com/#rolod0x/rolod0x&Date" alt="Star History Chart"><img src="https://api.star-history.com/svg?repos=rolod0x/rolod0x&type=Date" /></a>
 
 ## Thanks <a name="thanks"></a>
 

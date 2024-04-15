@@ -13,9 +13,9 @@ In the (hopefully near) future, rolod0x will be available from the Chrome
 Web Store (for which you can track progress in [#14][]) and Firefox Add-ons
 directory (see [#19][] and [#15][]).  This will greatly simplify installation.
 
-[#14]: https://github.com/aspiers/rolod0x/issues/14
-[#15]: https://github.com/aspiers/rolod0x/issues/15
-[#19]: https://github.com/aspiers/rolod0x/issues/19
+[#14]: https://github.com/rolod0x/rolod0x/issues/14
+[#15]: https://github.com/rolod0x/rolod0x/issues/15
+[#19]: https://github.com/rolod0x/rolod0x/issues/19
 
 However for now, you can download a `.zip` file from one of three places:
 
@@ -33,9 +33,9 @@ However for now, you can download a `.zip` file from one of three places:
    which is still in development (e.g. for a bug fix or new feature).
    Then download the artifact in the same way as in step 2.
 
-[releases]: https://github.com/aspiers/rolod0x/releases
-[main]: https://github.com/aspiers/rolod0x/actions/workflows/build-zip.yml?query=branch%3Amain
-[zip workflow]: https://github.com/aspiers/rolod0x/actions/workflows/build-zip.yml
+[releases]: https://github.com/rolod0x/rolod0x/releases
+[main]: https://github.com/rolod0x/rolod0x/actions/workflows/build-zip.yml?query=branch%3Amain
+[zip workflow]: https://github.com/rolod0x/rolod0x/actions/workflows/build-zip.yml
 
 Then unpack the `.zip` file into a fresh folder anywhere on your machine,
 remembering the location.
@@ -66,7 +66,7 @@ better:
 ## Installation in Firefox <a name="firefox"></a>
 
 **N.B. Firefox support has not been tested yet!**  However it is
-planned - see <https://github.com/aspiers/rolod0x/issues/19>.
+planned - see <https://github.com/rolod0x/rolod0x/issues/19>.
 
 1. Open `about:debugging#/runtime/this-firefox` in your browser.
 2. Click `Load Temporary Add-on...`.

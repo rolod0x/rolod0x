@@ -137,7 +137,7 @@ export default function SiteSettings() {
         <Typography paragraph>
           These are automatically enabled by rolod0x and cannot be disabled (yet, but{' '}
           <Link
-            href="https://github.com/aspiers/rolod0x/blob/main/CONTRIBUTING.md"
+            href="https://github.com/rolod0x/rolod0x/blob/main/CONTRIBUTING.md"
             target="_noblank"
             rel="noreferrer noopener">
             let us know

@@ -15,7 +15,7 @@ export default function ErrorPage({ error }: { error: Error }) {
       </div>
       <p>
         Please{' '}
-        <a href="https://github.com/aspiers/rolod0x/issues/new?labels=bug&projects=&template=bug_report.md">
+        <a href="https://github.com/rolod0x/rolod0x/issues/new?labels=bug&projects=&template=bug_report.md">
           report this bug
         </a>{' '}
         so we can fix it. Thanks a lot!

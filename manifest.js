@@ -63,7 +63,7 @@ const manifest = {
     // be able to popup the search modal dialog.
     'activeTab',
     //
-    // See also https://github.com/aspiers/rolod0x/issues/216
+    // See also https://github.com/rolod0x/rolod0x/issues/216
     // which may require activeTab in the future.
 
     'clipboardWrite', // See SECURITY.md
