@@ -1,7 +1,7 @@
 import addDomainPermissionToggle from 'webext-permission-toggle';
-
 import 'webext-dynamic-content-scripts';
 
+import { displayLookup } from '@src/shared/lookup';
 import { checkPermissions } from '@src/shared/permissions';
 import reloadOnUpdate from 'virtual:reload-on-update-in-background-script';
 
@@ -46,10 +46,7 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
 });
 
 chrome.commands.onCommand.addListener((command, tab) => {
-  chrome.scripting.executeScript({
-    target: { tabId: tab.id },
-    files: ['src/pages/lookup/index.js'],
-  });
+  displayLookup(tab.id);
 });
 
 initContextMenu();
