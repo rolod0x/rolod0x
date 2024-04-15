@@ -6,6 +6,7 @@ vendor
 
 README.md
 CONTRIBUTING.md
+SECURITY.md
 bin/
 docs/
 public/
