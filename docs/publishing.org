@@ -188,12 +188,13 @@ It has use cases within web3 education too.  For example, when developers take p
 
 rolod0x has been alive and in use by the author as a functional prototype for two years, but was only turned into a proper product in the last few months.  It has had a small but rapidly growing handful of enthusiastic users for the last 6 months or so, and even though it's still relatively young, it's generally very stable.
 
-In the short term, the main priorities are [full Firefox support][firefox], [integration with Rotki][rotki], [adding support for dividing the address book into multiple sections][sections], and [automatic import of address book entries from URLs][URL-import] specified by the user, and tackling a few rough edges.
+In the short term, the main priorities are [getting published in the Chrome Web Store][cws] (submission already in review), [full Firefox support][firefox], [integration with Rotki][rotki], [adding support for dividing the address book into multiple sections][sections], and [automatic import of address book entries from URLs][URL-import] specified by the user, and tackling a few rough edges.
 
 Longer-term, working on [creating a standardized address book format][format] for [interoperability between address books across the whole ecosystem][interoperability] (including wallets and other apps) seems very worthwhile.
 
 The full roadmap is listed at <https://github.com/users/aspiers/projects/2/views/2>.
 
+[cws]: https://github.com/rolod0x/rolod0x/issues/14
 [firefox]: https://github.com/users/aspiers/projects/2/views/2?sliceBy%5Bvalue%5D=M2%3A+Firefox+support
 [sections]: https://github.com/rolod0x/rolod0x/issues/16
 [URL-import]: https://github.com/rolod0x/rolod0x/issues/24
