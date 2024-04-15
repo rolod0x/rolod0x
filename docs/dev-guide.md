@@ -2,6 +2,7 @@
 
 - [How to contribute](#workflows)
 - [Building from source](#build)
+- [Debugging with React devtools](#devtools)
 - [Linting](#lint)
 - [Unit tests](#test)
 - [Website](#website)
@@ -50,6 +51,21 @@ Once you have built the extension, installation is the same as
 documented in the installation guide for [Chrome](./install.md#chrome)
 or [Firefox](./install.md#firefox), except you have to select the
 folder `dist/chrome` or `dist/firefox` respectively.
+
+## Debugging with React Developer Tools <a name="devtools"></a>
+
+You can debug the extension with React Developer Tools as follows:
+
+- Change `content_security_policy` in `manifest.js` to include
+  `script-src http://localhost:8097 'self'`, and restart `pnpm dev`.
+
+- Uncomment the relevant occurrence(s) of
+
+      <script src="http://localhost:8097"></script>
+
+  as needed.
+
+- Run `pnpm devtools`.
 
 ## Linting <a name="lint"></a>
 

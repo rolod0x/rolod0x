@@ -82,8 +82,10 @@ const manifest = {
 
   content_security_policy: {
     extension_pages: [
-      // Allow react-devtools <script> tag.
-      "script-src http://localhost:8097 'self'",
+      "script-src 'self'",
+      // Use this version instead to allow react-devtools <script> tag.
+      // "script-src http://localhost:8097 'self'",
+
       "object-src 'self'",
 
       // Not sure if this is needed
