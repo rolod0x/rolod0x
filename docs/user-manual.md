@@ -3,6 +3,7 @@
 - [Usage in Chrome and similar](#chrome)
 - [Usage in other browsers](#other)
 - [Usage on the command line](#cli)
+- [Importing token lists on the command line](#import-tokenlist)
 
 ## Usage in Chrome and similar <a name="chrome"></a>
 
@@ -149,3 +150,18 @@ pipe STDOUT and STDERR through rolod0x.
 If you specify the `-d` or `--duplicates` option, then instead of
 filtering `STDIN`, it will list all addresses in the given address
 book file which have duplicate labels.
+
+## Importing token lists on the command line <a name="import-tokenlist"></a>
+
+If you want to augment your private address book with some well-known
+public addresses, take a look at https://tokenlists.org/ has a nice
+list of public token lists.
+
+You can of course copy any of these into your address book manually,
+but you can also convert a whole list into rolod0x, by downloading the
+source JSON file, and then running something like the following:
+
+    pnpm --silent tokenlist:import tokens.json > tokens.txt
+
+The contents of the resulting `tokens.txt` file can then be imported
+into rolod0x simply by pasting them into the address book.
