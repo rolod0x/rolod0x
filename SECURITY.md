@@ -56,6 +56,16 @@ However, there are still some minor risks which need to be considered:
 
 The following chrome API permissions are requested by the extension manifest:
 
+- `activeTab`: Required when the user presses the search hotkey, to
+  execute the content script which displays the modal dialog allowing
+  them to quickly and easily search their address book from the
+  current tab.  This happens within an `<iframe>` inserted by a
+  content script into a shadow root element inside the DOM.  The same
+  mechanism also requires the `scripting` permission listed below.
+  The code executing the script is here:
+
+  <https://github.com/aspiers/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/background/index.ts#L49-L52>
+
 - `clipboardWrite`: Required to copy the selected address to the
   clipboard, when the user completes their search of the address book.
   This happens within an `<iframe>` inserted by a content script into
@@ -82,8 +92,10 @@ The following chrome API permissions are requested by the extension manifest:
 
 - `scripting`: Required when the user presses the search hotkey, to
   execute the content script which displays the modal dialog for
-  searching the address book.  The code executing the script is
-  here:
+  searching the address book.  This happens within an `<iframe>`
+  inserted by a content script into a shadow root element inside the
+  DOM.  The same mechanism also requires the `activeTab` permission
+  listed above.  The code executing the script is here:
 
   <https://github.com/aspiers/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/background/index.ts#L49-L52>
 
