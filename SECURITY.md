@@ -11,8 +11,11 @@ rolod0x's design is inherently low risk since:
 
 - It only operates on sites approved by the user.
 
-- The core logic in [`parser.ts`](src/shared/parser.ts) and
-  [`replacer.ts`](src/pages/content/replacer.ts) is really very simple.
+- The core logic in
+  [`parser.ts`](https://github.com/rolod0x/rolod0x/blob/main/src/shared/parser.ts)
+  and
+  [`replacer.ts`](https://github.com/rolod0x/rolod0x/blob/main/src/pages/content/replacer.ts)
+  is really very simple.
 
 - It only alters web pages by replacing addresses with labels supplied by
   the user.
@@ -58,7 +61,7 @@ The following chrome API permissions are requested by the extension manifest:
   This happens within an `<iframe>` inserted by a content script into
   a shadow root element inside the DOM.  The call can be seen here:
 
-  https://github.com/aspiers/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/lookup/ui/ActionBar.tsx#L81
+  <https://github.com/aspiers/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/lookup/ui/ActionBar.tsx#L81>
 
 - `contextMenus`: Required in order to items to two context menus:
 
@@ -69,26 +72,26 @@ The following chrome API permissions are requested by the extension manifest:
      <https://github.com/fregante/webext-permission-toggle>, and
      activated here:
 
-     https://github.com/aspiers/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/background/index.ts#L16
+     <https://github.com/aspiers/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/background/index.ts#L16>
 
   2. Add an item "rolod0x: add entry to address book" to the context
      menu when right-clicking within a web page.  This is activated
      here:
 
-     https://github.com/aspiers/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/background/contextMenu.ts#L49-L52
+     <https://github.com/aspiers/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/background/contextMenu.ts#L49-L52>
 
 - `scripting`: Required when the user presses the search hotkey, to
   execute the content script which displays the modal dialog for
   searching the address book.  The code executing the script is
   here:
 
-  https://github.com/aspiers/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/background/index.ts#L49-L52
+  <https://github.com/aspiers/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/background/index.ts#L49-L52>
 
 - `storage`: Required to store the user's address book and settings
   locally.  The storage-handling code can be found
   here:
 
-  https://github.com/aspiers/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/shared/options-storage.ts#L19-L24
+  <https://github.com/aspiers/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/shared/options-storage.ts#L19-L24>
 
   and it depends on the npm module <https://github.com/fregante/webext-options-sync/>.
 
