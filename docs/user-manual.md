@@ -71,11 +71,14 @@ functionality, please upvote [issue
 
 There is also [issue #74](https://github.com/rolod0x/rolod0x/issues/74)
 
-### Looking up an address via hotkey
+### Looking up an address
 
-If you want to quickly obtain an address, you can press a keyboard
-shortcut to launch a popup window to do a lookup.  By default, this
-hotkey is `Shift`-`Alt`-`Space` on Windows and Linux, and
+If you want to quickly obtain an address, you can click the extension
+icon and select the `Search` menu item.
+
+Alternatively you can press a keyboard shortcut to launch a popup
+window to do a lookup.  By default, this hotkey is
+`Shift`-`Alt`-`Space` on Windows and Linux, and
 `Shift`-`Command`-`Space` on MacOS, but you can customize this by
 visiting <chrome://extensions/> and then clicking on `Keyboard
 shortcuts`.
