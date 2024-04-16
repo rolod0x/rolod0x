@@ -34,6 +34,15 @@
 [Thanks](#thanks) •
 [License](#license)
 
+<p align="center">
+  <a style="margin-top: 10px; text-decoration: none; text-align: center; color: white; background: #517BE8; display: inline-flex; align-items: center; justify-content: center; padding: 8px 20px; border-radius: 999px; font-size: 20px;" href="https://chromewebstore.google.com/detail/rolod0x/dgagbbklcgogbaamlbmaaemljjfnminp" target="_blank"  rel="noopener noreferrer" title="rolod0x in Chrome Web Store">
+    <span style="display: inline-flex;">
+      <img style="" loading="lazy" decoding="async" src="https://images.ctfassets.net/9sy2a0egs6zh/6jY0xZYtP18iUGOuL7qsEa/255fab1bec903c6a079c5b171afa9504/Chrome_Logo.svg" alt="rolod0x in Chrome Web Store" width="48">
+    </span>
+    <span style="padding: 0px 8px 0px 16px;">Download from Chrome Web Store</span>
+  </a>
+</p>
+
 ## Overview <a name="overview"></a>
 
 <img src="./docs/images/phone-unknown-number-calling.png" align="right" width="200"
