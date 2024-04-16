@@ -33,7 +33,7 @@ export default function LocalAddressBook() {
       } catch (err: unknown) {
         if (err instanceof ParseError) {
           console.log(err.message);
-          setError(err.message);
+          setError(`Please check that line ${err.lineNumber} is in the correct format.`);
         } else if (err instanceof Error) {
           console.error(err.message);
           setError(err.message);
@@ -102,7 +102,7 @@ export default function LocalAddressBook() {
         </Box>
       </Stack>
       <Stack sx={{ width: '100%' }} spacing={2}>
-        <Alert severity="error" style={{ display: !error && 'none' }}>
+        <Alert severity="warning" style={{ display: !error && 'none' }}>
           <AlertTitle>Error parsing address book</AlertTitle>
           {error}
         </Alert>
