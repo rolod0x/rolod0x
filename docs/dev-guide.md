@@ -25,10 +25,14 @@ Thanks in advance!
 
 ## Building from source <a name="build"></a>
 
-1. Install pnpm globally: `npm install -g pnpm` (check your node version >=
+1. Clone the repository from GitHub, e.g.
+
+        git clone git@github.com:rolod0x/rolod0x.git
+
+2. Install pnpm globally: `npm install -g pnpm` (check your node version >=
    16.6, recommended >= 18)
 
-2. Run `pnpm install`
+3. Run `pnpm install`
 
 Then you can build the extension as follows.
 
