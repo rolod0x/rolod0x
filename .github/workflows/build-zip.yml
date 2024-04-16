@@ -7,6 +7,11 @@ on:
       - 'v[0-9]+.[0-9]+.[0-9]+'
   pull_request:
 
+# Needed for ncipollo/release-action@v1 below
+# See https://github.com/ncipollo/release-action/issues/208#issuecomment-1398625039
+permissions:
+  contents: write
+
 jobs:
   build:
 
