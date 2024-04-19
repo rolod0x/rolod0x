@@ -1,32 +1,42 @@
 # Installation
 
-- [Downloads](#downloads)
+<a style="margin-top: 10px; text-decoration: none; text-align: center; color: white; background: #517BE8; display: inline-flex; align-items: center; justify-content: center; padding: 8px 20px; border-radius: 999px; font-size: 20px;" href="https://chromewebstore.google.com/detail/rolod0x/dgagbbklcgogbaamlbmaaemljjfnminp" target="_blank"  rel="noopener noreferrer" title="rolod0x in Chrome Web Store">
+  <span style="display: inline-flex;">
+    <img style="" loading="lazy" decoding="async" src="https://images.ctfassets.net/9sy2a0egs6zh/6jY0xZYtP18iUGOuL7qsEa/255fab1bec903c6a079c5b171afa9504/Chrome_Logo.svg" alt="rolod0x in Chrome Web Store" width="48">
+  </span>
+  <span style="padding: 0px 8px 0px 16px;">Download from Chrome Web Store</span>
+</a>
+
+This should work for Chrome and other browsers in the Chrome family,
+such as Chromium and Brave.
+
+However, if you use Firefox, or just want to install directly from
+GitHub, read on!
+
+## Table of contents
+
+- [Downloads from GitHub](#downloads)
 - [Installation in Chrome and similar](#chrome)
 - [Upgrading a Chrome installation](#chrome-upgrade)
 - [Installation in Firefox](#firefox)
 - [Installation from source](#source)
 - [Installation of the command-line utility](#cli)
 
-## Downloads <a name="downloads"></a>
+## Downloads from GitHub <a name="downloads"></a>
 
-In the (hopefully near) future, rolod0x will be available from the Chrome
-Web Store (for which you can track progress in [#14][]) and Firefox Add-ons
-directory (see [#19][] and [#15][]).  This will greatly simplify installation.
+You can download a `.zip` file from one of three places:
 
-[#14]: https://github.com/rolod0x/rolod0x/issues/14
-[#15]: https://github.com/rolod0x/rolod0x/issues/15
-[#19]: https://github.com/rolod0x/rolod0x/issues/19
-
-However for now, you can download a `.zip` file from one of three places:
-
-1. Go to [the releases page][releases], pick a recent release, and then look
-   for an asset named something like `rolod0x-v1.3.0-chrome.zip` at the Assets
-   section at the bottom of the release page.
+1. Go to [the releases page][releases], pick a recent release, and
+   then look for an asset named something like
+   `rolod0x-v1.3.0-chrome.zip` at the Assets section at the bottom of
+   the release page.  However currently `.zip` files for Firefox are
+   not included in releases since they are [not yet of release
+   quality](https://github.com/rolod0x/rolod0x/issues/19).
 
 2. View [the list of recent builds of the `main` branch][main].  Click
    on the latest, or another recent one, then scroll down to the
    bottom of the page and download the relevant artifact `.zip` file,
-   which will be called `rolodox-main-chrome` or similar.
+   which will be called `rolodox-main-firefox` or similar.
 
 3. Go to the [zip workflow][] page, and pick any recent build.  This
    is especially useful if you want to test a particular pull request
@@ -42,7 +52,7 @@ remembering the location.
 
 Then follow the relevant installation steps below for your browser:
 
-## Installation in Chrome <a name="chrome"></a>
+## Installation from GitHub in Chrome <a name="chrome"></a>
 
 This should also work for other browsers in the Chrome family, such as
 Chromium and Brave.
@@ -52,7 +62,7 @@ Chromium and Brave.
 3. Click `Load unpacked` at the top left.
 4. Select the folder you just unpacked.
 
-## Upgrading an existing installation in Chrome <a name="chrome-upgrade"></a>
+## Upgrading an existing GitHub installation in Chrome <a name="chrome-upgrade"></a>
 
 Obviously you can uninstall the existing installation and do a fresh
 install, but that may lose all your config.  So the following is probably
@@ -63,10 +73,17 @@ better:
 3. Click the reload icon near the bottom right of the rolod0x extension
    card.
 
-## Installation in Firefox <a name="firefox"></a>
+## Installation from GitHub in Firefox <a name="firefox"></a>
 
-**N.B. Firefox support has not been tested yet!**  However it is
-planned - see <https://github.com/rolod0x/rolod0x/issues/19>.
+**N.B. Firefox support has not been heavily tested yet!**  However it
+is [in progress](https://github.com/rolod0x/rolod0x/issues/19).  Once
+all the issues have been ironed out, we aim to [publish it in the
+Firefox Add-ons directory](https://github.com/rolod0x/rolod0x/issues/15)
+to simplify installation.
+
+In the mean time you are very welcome to try it out and [report
+bugs](../CONTRIBUTING.md).  After following the download instructions
+above, take the following steps:
 
 1. Open `about:debugging#/runtime/this-firefox` in your browser.
 2. Click `Load Temporary Add-on...`.

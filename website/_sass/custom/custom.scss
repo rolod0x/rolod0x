@@ -51,6 +51,10 @@ button {
   }
 }
 
+a {
+  color: $primary-main;
+}
+
 a.site-title {
   display: block;
 }
@@ -63,4 +67,35 @@ a.site-title {
 
 .primary-main {
   color: $primary-main;
+}
+
+.ribbon {
+  /* positioning */
+  position: fixed;
+  padding: 5px 24px;
+  /* width: 128px; */
+  /* top right of the page */
+  top: 36px;
+  right: -36px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  /* effects with some shadow */
+  /*
+  box-shadow: 0 0 0 3px #EBE5D8, 0 0 20px -3px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 0 #555555, 0 0 5px rgba(0, 0, 0, 0.3);
+*/
+  /* ribbon effects */
+  border: 2px dotted #d2be93;
+  /* looks */
+  background-color: #ebe5d8;
+  color: #555555;
+  font-size: 13px;
+  font-family: sans-serif;
+  text-decoration: none;
+  font-weight: bold;
+  /* webkit antialias fix */
+  -webkit-backface-visibility: hidden;
+  letter-spacing: 0.5px;
 }
