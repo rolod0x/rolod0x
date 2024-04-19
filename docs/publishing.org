@@ -213,3 +213,8 @@ There are no plans to monetize rolod0x.  It was built as a public good to improv
 *** Anything else you'd like to share about your project, previous work, or other project affiliations? Anything you'd like to add that may help in determining project eligibility?
 
 It's probably not particularly relevant to this grant application, but I'm CTO and co-founder of <https://toucan.earth>, where our team relies heavily on rolod0x for our daily work :-)
+* emacs local variables
+*** Local Variables: **
+*** truncate-lines: nil **
+*** auto-fill-mode: nil **
+*** End: **
