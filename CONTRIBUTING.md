@@ -4,9 +4,11 @@
 
 Any kind of feedback is very welcome!
 
-Please first check that your bug / issue / enhancement request is not
-already listed in [the issue tracker][issues] or discussed in [the
-Discussions forum][discussions].
+Please first check that you are on [the latest
+release](https://github.com/rolod0x/rolod0x/releases) (click the
+extension icon to see the version), and that your bug / issue /
+enhancement request is not already listed in [the issue
+tracker][issues] or discussed in [the Discussions forum][discussions].
 
 [issues]: https://github.com/rolod0x/rolod0x/issues
 [discussions]: https://github.com/rolod0x/rolod0x/discussions
