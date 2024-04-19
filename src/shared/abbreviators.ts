@@ -18,6 +18,10 @@ const ABBREVIATION_LENGTHS = [
   // On Coinbase and app.ens.domains, addresses are abbreviated in the
   // form 0x123...12345
   [3, 5],
+
+  // On *.blockscout.com, some addresses are abbreviated in the form
+  // 0x12...1234
+  [2, 4],
 ];
 
 export function abbreviatedAddresses(address: string): string[] {
