@@ -3,6 +3,12 @@ const ABBREVIATION_LENGTHS = [
   // Safe), addresses are abbreviated in the form 0x12345678...1234
   [8, 4],
 
+  // On Tenderly, some addresses are abbreviated in
+  // 0x1234567890...1234 form, e.g. on the Contracts tab of a
+  // Simulated Transaction page when one of the contracts is a proxy,
+  // the implementation address is shown in this form.
+  [10, 4],
+
   // On app.safe.global, signer addresses in confirmations are
   // abbreviated in the form 0x1234...1234
   [4, 4],
