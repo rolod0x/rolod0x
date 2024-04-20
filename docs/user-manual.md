@@ -17,6 +17,8 @@ toolbar.  This can done either from <chrome://extensions>, or by
 clicking the jigsaw icon, finding the extension in the list, and then
 clicking the pin icon.
 
+![Pinning the extension icon to the toolbar](./images/pinning-extension.png)
+
 On install, the extension's options page will automatically open,
 but you can re-open it later in the normal way, e.g. by clicking on
 the extension icon if it's pinned, or from <chrome://extensions>, or
