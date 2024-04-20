@@ -17,15 +17,38 @@ toolbar.  This can done either from <chrome://extensions>, or by
 clicking the jigsaw icon, finding the extension in the list, and then
 clicking the pin icon.
 
+![Pinning the extension icon to the toolbar](./images/pinning-extension.png)
+
 On install, the extension's options page will automatically open,
 but you can re-open it later in the normal way, e.g. by clicking on
 the extension icon if it's pinned, or from <chrome://extensions>, or
 again via the jigsaw icon and then clicking the icon with the three
 vertical dots to the right of the extension.
 
-### Adding some address labels
+### Adding labels to the address book
 
-There are two ways to do this.  Firstly, from the options page:
+There are two ways to do label an address.  The easiest is simply to
+right-click on it, and then select the rolod0x option from the context
+menu:
+
+[![Right-clicking to add an address label](./images/right-click.jpg)](./images/right-click.jpg)
+
+Currently this only works if rolod0x is enabled on that website (see
+the [the section below on controlling which sites are
+allowed](#allow-list)).  However [a fix for this is
+planned](https://github.com/rolod0x/rolod0x/issues/216), so in future
+right-click will work on any site.
+
+After adding the label, you should see the address you right-clicked
+on immediately replaced with the label.  To ensure that this happens
+for this website in the future, you will also need to make sure that
+rolod0x is enabled for that site, unless it's one of the built-in
+sites listed under the "Sites" section of the settings.  See [the
+below section](#allow-list) for how to do that.
+
+The second way to add addresses is from the options page:
+
+[![Editing the address book](./images/edit-as-text.jpg)](./images/edit-as-text.jpg)
 
 1.  Add some addresses to your address book as directed by the help text.
 
@@ -42,10 +65,7 @@ There are two ways to do this.  Firstly, from the options page:
     have been replaced with the labels you provided in the extension
     options.  If not, try simply reloading the web page.
 
-Secondly, you can label an address by right-clicking on it, and
-selecting the rolod0x option from the context menu.  This only works
-if rolod0x is enabled on that website, as described in the [the
-section below](#allow-list).
+### Handling of duplicate labels
 
 Note that if you enter the same address multiple times with different
 labels, when replacing labels with addresses, rolod0x will
@@ -64,12 +84,18 @@ is selected.  Otherwise, you can reach the same context menu by
 clicking the three dots icon mentioned above.
 
 You can view and control the list of enabled sites in the `Sites`
-section of the options page.  At this time it is not possible to
-disable rolod0x on the built-in sites, however if you need that
-functionality, please upvote [issue
+section of the options page:
+
+[![Controlling which sites rolod0x is enabled for](./images/enable-per-site.jpg)](./images/enable-per-site.jpg)
+
+At this time it is not possible to disable rolod0x on the built-in
+sites, however if you need that functionality, please upvote [issue
 #215](https://github.com/rolod0x/rolod0x/issues/215).
 
-There is also [issue #74](https://github.com/rolod0x/rolod0x/issues/74)
+There is also [issue
+#74](https://github.com/rolod0x/rolod0x/issues/74) which is an idea
+for a future feature to allow temporarily disabling of rolod0x for the
+current tab.
 
 ### Looking up an address
 
@@ -82,6 +108,8 @@ window to do a lookup.  By default, this hotkey is
 `Shift`-`Command`-`Space` on MacOS, but you can customize this by
 visiting <chrome://extensions/> and then clicking on `Keyboard
 shortcuts`.
+
+[![Looking up an address](./images/hotkey-lookup.jpg)](./images/hotkey-lookup.jpg)
 
 This hotkey should work on any regular website, even ones on which
 rolod0x has not yet been enabled.  However it will not work on
@@ -97,6 +125,8 @@ set up correctly.
 
 See the `Display` section of the options page which explains this in
 detail.
+
+[![Customizing display settings](./images/customize-display-format.jpg)](./images/customize-display-format.jpg)
 
 ## Usage in other browsers <a name="other"></a>
 
