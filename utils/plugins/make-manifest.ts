@@ -42,10 +42,6 @@ export default function makeManifest(config?: {
         script.css &&= script.css.map(css => css.replace('<KEY>', cacheKey));
       });
     }
-    if (isFirefox) {
-      // https://github.com/fregante/webext-permission-toggle/issues/50
-      manifest.permissions.push('activeTab');
-    }
 
     fs.writeFileSync(manifestPath, ManifestParser.convertManifestToString(manifest));
 
