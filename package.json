@@ -53,7 +53,7 @@
     "@mui/icons-material": "^5.15.12",
     "@mui/material": "^5.15.15",
     "@mui/system": "^5.15.12",
-    "@types/lodash": "^4.14.202",
+    "@types/lodash": "^4.17.0",
     "@types/webextension-polyfill": "^0.10.7",
     "@uiw/codemirror-themes": "^4.21.24",
     "@uiw/react-codemirror": "^4.21.25",
