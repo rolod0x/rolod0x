@@ -125,7 +125,11 @@ subdirectory.  Some are already placed there by git, but others
 Then to generate the website and preview it locally, run:
 
     cd website
+
+    # If this fails due to lack of write access for installing
+    # gems, try adding the --deployment option:
     bundle install
+
     bundle exec jekyll serve --open
 
 If you modify source files, you'll need to rerun `pnpm
