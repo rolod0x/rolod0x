@@ -88,7 +88,7 @@ they will now be labelled in this human-readable way!
 - Works on any EVM-based blockchain (and could easily support other
   chains in the future).
 - Should work on Chrome, Chromium, Brave, or any other browser in the Chrome family.
-- _May_ work on Firefox - not yet tested, but planned (see https://github.com/rolod0x/rolod0x/issues/19).
+- Should work on Firefox (see https://github.com/rolod0x/rolod0x/issues/19).
 - [Command-line version](./docs/user-manual.md#cli) for translating addresses output on the terminal.
 - Light and dark themes.
 - Named using [a triple pun](./docs/FAQ.md#name).
