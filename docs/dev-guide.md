@@ -45,9 +45,10 @@ Run:
 
 ### For Firefox: <a name="firefox"></a>
 
-1. Run:
-   - Dev: `pnpm dev:firefox` or `npm run dev:firefox`
-   - Prod: `pnpm build:firefox` or `npm run build:firefox`
+Run:
+
+- Dev: `pnpm dev:firefox` or `npm run dev:firefox`
+- Prod: `pnpm build:firefox` or `npm run build:firefox`
 
 ### Installation
 
@@ -55,6 +56,18 @@ Once you have built the extension, installation is the same as
 documented in the installation guide for [Chrome](./install.md#chrome)
 or [Firefox](./install.md#firefox), except you have to select the
 folder `dist/chrome` or `dist/firefox` respectively.
+
+For Firefox, you can launch a fresh install of the extension in
+a clean profile via:
+
+    pnpm test:firefox
+
+This is just a wrapper around the `run` subcommand of [the `web-ext`
+utility](https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/),
+so you can also specify additional `web-ext` parameters as desired.
+
+Please note that this installation is temporary, so any settings will
+be lost when that Firefox instance is terminated.
 
 ## Debugging with React Developer Tools <a name="devtools"></a>
 
