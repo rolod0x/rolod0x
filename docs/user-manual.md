@@ -1,31 +1,45 @@
 # User manual
 
-- [Usage in Chrome and similar](#chrome)
+- [First steps after install](#first)
+- [Adding labels to the address book](#adding)
+- [Editing the address book](#editing)
+- [Handling of duplicate labels](#duplicates)
+- [Controlling which sites rolod0x is active on](#allow-list)
+- [Looking up an address](#lookup)
 - [Usage in other browsers](#other)
 - [Usage on the command line](#cli)
 - [Importing token lists on the command line](#import-tokenlist)
 
-## Usage in Chrome and similar <a name="chrome"></a>
+The following instructions are for Chrome and Firefox.  They should
+also apply to other browsers in the same families, e.g. Chromium and
+Brave, although some details may differ.  (If you notice differences
+not documented here, please [let us know](../CONTRIBUTING.md)!)
 
-The following instructions are for Chrome and other browsers in the
-Chrome family, such as Chromium and Brave.
+## First steps after install <a name="first"></a>
 
-### First steps after install
+### Pinning the extension
 
 Once the extension is installed, it is recommended to pin it to the
-toolbar.  This can done either from <chrome://extensions>, or by
-clicking the jigsaw icon, finding the extension in the list, and then
+toolbar.  This can done by clicking the jigsaw icon near the top right
+of the browser window, finding the extension in the list, and then
 clicking the pin icon.
 
 ![Pinning the extension icon to the toolbar](./images/pinning-extension.png)
 
-On install, the extension's options page will automatically open,
-but you can re-open it later in the normal way, e.g. by clicking on
-the extension icon if it's pinned, or from <chrome://extensions>, or
-again via the jigsaw icon and then clicking the icon with the three
-vertical dots to the right of the extension.
+### (Re-)opening the settings
 
-### Adding labels to the address book
+On install, the extension's options page will automatically open, but
+you can re-open it later in the normal way, e.g. by clicking on the
+extension icon if it's pinned as per above, or again via the jigsaw
+icon.  In Chrome you then have to click the icon with the three
+vertical dots to the right of the extension.  In Firefox first select
+`Extensions` in the left-hand sidebar, look for rolod0x, then click
+the three horizontal dots and select `Preferences`.
+
+In Chrome you can also get to the same place via the address
+<chrome://extensions>, or in Firefox the address is <about:addons>.
+
+## Adding labels to the address book <a name="adding"></a>
 
 There are two ways to do label an address.  The easiest is simply to
 right-click on it, and then select the rolod0x option from the context
@@ -46,11 +60,15 @@ rolod0x is enabled for that site, unless it's one of the built-in
 sites listed under the "Sites" section of the settings.  See [the
 below section](#allow-list) for how to do that.
 
-The second way to add addresses is from the options page:
+## Editing the address book <a name="editing"></a>
+
+The second way to add addresses is from the options page, which is
+also how you can edit existing entries:
 
 [![Editing the address book](./images/edit-as-text.jpg)](./images/edit-as-text.jpg)
 
-1.  Add some addresses to your address book as directed by the help text.
+1.  Add or edit addresses to your address book as directed by the help
+    text.
 
 2.  Click the `Save` button.
 
@@ -65,14 +83,14 @@ The second way to add addresses is from the options page:
     have been replaced with the labels you provided in the extension
     options.  If not, try simply reloading the web page.
 
-### Handling of duplicate labels
+## Handling of duplicate labels <a name="duplicates"></a>
 
 Note that if you enter the same address multiple times with different
 labels, when replacing labels with addresses, rolod0x will
 automatically join the labels together with a `/` character in between
 each label.  The same applies for comments.
 
-### Controlling which sites rolod0x is active on <a name="allow-list"></a>
+## Controlling which sites rolod0x is active on <a name="allow-list"></a>
 
 By default, rolod0x is enabled and will substitute known addresses for
 labels on a bunch of well-known block explorers and other sites.  However
@@ -97,7 +115,7 @@ There is also [issue
 for a future feature to allow temporarily disabling of rolod0x for the
 current tab.
 
-### Looking up an address
+## Looking up an address <a name="#lookup"></a>
 
 If you want to quickly obtain an address, you can click the extension
 icon and select the `Search` menu item.
@@ -130,10 +148,9 @@ detail.
 
 ## Usage in other browsers <a name="other"></a>
 
-**N.B. Firefox support has not been tested yet!**  However it is
-planned - see <https://github.com/rolod0x/rolod0x/issues/19>.
+So far only Chrome, Chromium, Brave, and Firefox have been tested.
 
-Other browsers such as Firefox will have similar usage, but these
+Other browsers will probably have similar usage, but these
 instructions will need to be augmented accordingly when they are
 officially supported.
 
