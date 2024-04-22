@@ -81,9 +81,9 @@ all the issues have been ironed out, we aim to [publish it in the
 Firefox Add-ons directory](https://github.com/rolod0x/rolod0x/issues/15)
 to simplify installation.
 
-In the mean time you are very welcome to try it out and [report
-bugs](../CONTRIBUTING.md).  After following the download instructions
-above, take the following steps:
+In the mean time you are very welcome to try it out and
+[report bugs](../CONTRIBUTING.md).  After following the
+download instructions above, take the following steps:
 
 1. Open `about:debugging#/runtime/this-firefox` in your browser.
 2. Click `Load Temporary Add-on...`.
