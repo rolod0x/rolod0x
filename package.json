@@ -76,7 +76,7 @@
   },
   "devDependencies": {
     "@codemirror/view": "^6.26.3",
-    "@commitlint/cli": "^19.0.3",
+    "@commitlint/cli": "^19.2.2",
     "@commitlint/config-conventional": "^19.0.3",
     "@rollup/plugin-typescript": "^11.1.6",
     "@testing-library/react": "^14.2.1",
