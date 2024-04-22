@@ -1,9 +1,28 @@
 # FAQ
 
+- [Why are some labels surrounded by question marks?](#abbrevs)
 - [Why is it called rolod0x?](#name)
 - [Why does web3 need private address books?](#why)
   - [But what's wrong with existing name services?](#name-services)
 - [What's the animal in the logo?](#animal)
+
+## Why are some labels surrounded by question marks? <a name="abbrevs"></a>
+
+If a website displays an abbreviated form of an address, such as
+`0x123456...0987`, rolod0x may have no way of knowing *for sure* what
+full address that represents.  So if you have an entry in your rolod0x
+address book for a full address matching this abbreviation, rolod0x
+knows there is a very high probability the site is referring to the
+same address, but it cannot guarantee that it's *definitely* the same
+address.
+
+In this case, to avoid any security issues associated with
+accidentally misleading you into thinking that the label shown
+*definitely* represents the expected address, the label is surrounded
+with question marks.
+
+You can customize how these labelled abbreviations look in
+[the Display settings](./user-manual.md#display).
 
 ## Why is it called rolod0x? <a name="name"></a>
 
