@@ -28,7 +28,7 @@ You can download a `.zip` file from one of three places:
 
 1. Go to [the releases page][releases], pick a recent release, and
    then look for an asset named something like
-   `rolod0x-v1.3.0-chrome.zip` at the Assets section at the bottom of
+   `rolod0x-v1.4.0-chrome.zip` at the Assets section at the bottom of
    the release page.  However currently `.zip` files for Firefox are
    not included in releases since they are [not yet of release
    quality](https://github.com/rolod0x/rolod0x/issues/19).
