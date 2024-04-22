@@ -20,9 +20,11 @@ class ManifestParser {
       scripts: [manifest.background?.service_worker],
       type: 'module',
     };
+    // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/options_ui#syntax
     manifestCopy.options_ui = {
       page: manifest.options_page,
       browser_style: false,
+      open_in_tab: true,
     };
     manifestCopy.content_security_policy = {
       extension_pages: "script-src 'self'; object-src 'self'",
