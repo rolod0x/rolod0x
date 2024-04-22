@@ -31,7 +31,7 @@ const defaultSites = [
 
   // Portfolio trackers
   'https://coinshift.xyz/*',
-  'https://koinly.com/*',
+  'https://koinly.io/*',
   'https://cointracker.io/*',
   'https://coinstats.app/*',
   'https://accointing.com/*',
