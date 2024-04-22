@@ -80,7 +80,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/v')
         run: |
           zip -r $RELEASE_NAME-chrome.zip rolod0x-chrome/
-          zip -r $RELEASE_NAME-firefox.zip rolod0x-chrome/
+          zip -r $RELEASE_NAME-firefox.zip rolod0x-firefox/
 
       - name: Create a draft release from a tag
         uses: ncipollo/release-action@v1
