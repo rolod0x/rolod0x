@@ -6,6 +6,7 @@
 - [Handling of duplicate labels](#duplicates)
 - [Controlling which sites rolod0x is active on](#allow-list)
 - [Looking up an address](#lookup)
+- [Customizing the label display format](#display)
 - [Usage in other browsers](#other)
 - [Usage on the command line](#cli)
 - [Importing token lists on the command line](#import-tokenlist)
@@ -115,7 +116,7 @@ There is also [issue
 for a future feature to allow temporarily disabling of rolod0x for the
 current tab.
 
-## Looking up an address <a name="#lookup"></a>
+## Looking up an address <a name="lookup"></a>
 
 If you want to quickly obtain an address, you can click the extension
 icon and select the `Search` menu item.
@@ -139,7 +140,7 @@ If it's not working on normal pages, then visit
 <chrome://extensions/shortcuts> and make sure that you have the hotkey
 set up correctly.
 
-### Customizing the label display format
+## Customizing the label display format <a name="display"></a>
 
 See the `Display` section of the options page which explains this in
 detail.
