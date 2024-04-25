@@ -9,6 +9,7 @@
 /distribution
 
 # etc
+/demo-video
 .DS_Store
 .env.local
 .idea
