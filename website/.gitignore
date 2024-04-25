@@ -11,3 +11,4 @@ SECURITY.md
 bin/
 docs/
 public/
+vendor/

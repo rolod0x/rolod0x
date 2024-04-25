@@ -30,6 +30,14 @@ class ManifestParser {
       extension_pages: "script-src 'self'; object-src 'self'",
     };
     delete manifestCopy.options_page;
+
+    manifestCopy.browser_specific_settings = {
+      gecko: {
+        id: 'gecko-id-1@rolod0x.io',
+        strict_min_version: '109.0',
+      },
+    };
+
     return manifestCopy as Manifest;
   }
 }

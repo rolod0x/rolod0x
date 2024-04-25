@@ -19,7 +19,7 @@ const defaultSites = [
   'https://*.celoscan.io/*',
   'https://*.blockscout.com/*',
   'https://explorer.bitquery.io/*',
-  'https://onceupon.xyz/*',
+  'https://*.onceupon.xyz/*',
 
   // Multisig management services
   'https://app.safe.global/*',
@@ -151,12 +151,6 @@ const manifest = {
         mac: 'Shift+Command+Space',
       },
       description: 'Look up an address',
-    },
-  },
-  browser_specific_settings: {
-    gecko: {
-      id: 'gecko-id-1@rolod0x.io',
-      strict_min_version: '109.0',
     },
   },
 };

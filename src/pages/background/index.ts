@@ -47,7 +47,7 @@ browser.runtime.onMessage.addListener(function (msg, sender, sendResponse: (data
     case 'setBadgeText':
       if (msg.count > 0) {
         const data = { tabId: sender.tab.id, text: String(msg.count) };
-        console.debug(`setBadgeText()`, data);
+        // console.debug(`setBadgeText()`, data);
         browser.action.setBadgeText(data);
       }
       break;

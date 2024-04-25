@@ -1,5 +1,6 @@
 dist
 distribution
+demo-video/
 node_modules
 .gitignore
 .github
@@ -11,3 +12,4 @@ LICENSE
 *.md
 pnpm-lock.yaml
 _site/
+website/vendor/
