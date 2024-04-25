@@ -213,6 +213,29 @@ There are no plans to monetize rolod0x.  It was built as a public good to improv
 *** Anything else you'd like to share about your project, previous work, or other project affiliations? Anything you'd like to add that may help in determining project eligibility?
 
 It's probably not particularly relevant to this grant application, but I'm CTO and co-founder of <https://toucan.earth>, where our team relies heavily on rolod0x for our daily work :-)
+* Giveth
+*** Problem: Which problem is your organization/project trying to solve?
+Current web3 UX very regularly requires dealing with long hexadecimal 0x1234... addresses, which can represent user-owned accounts (EOAs), tokens, multisigs, and all kinds of other smart contracts.
+
+The addresses appear across many dApps and other frequently visited websites such as block explorers.  However, given how long they are, it's an impossible task to expect users to memorise them.  This creates many obvious usability and even security issues for every single web3 user.
+
+Public naming services such as ENS are a partial solution to this, but they only work when privacy is not required.  Some dApps and block explorers offer private address books, but those only work on a per-site (and sometimes per-chain) basis.
+
+In contrast, rolod0x is a fully generalized browser extension which provides users with a completely private, local-only address book which can work on every website and every chain.
+*** Mission: What is your organization/project's mission and how does it align with creating positive change in the world?
+The mission is to be a Free / Open Source project existing as a public good to improve UX across the whole of web3.  This should make web3 more accessible for everyone, which in turn brings all the benefits of web3 (financial freedom, decentralized power structures, self-sovereignty / self-custody of digital assets, verifiability, transparency, trust minimization etc.) to the wider world.
+*** Past activities: What have been the most important activities of your organization/project since conception?
+The most important recent milestone was successfully polishing the product to the level that it was accepted for listing on the Chrome Web Store: https://chromewebstore.google.com/detail/rolod0x/dgagbbklcgogbaamlbmaaemljjfnminp
+
+This included making a 90 second YouTube video to demonstrate the product in a way which is easy to understand: https://youtu.be/AoWeASmnrPc
+*** Impact: What evidence do you have that your solution to the problem actually helps?
+The project has only been public for a week or two, so it's extremely early days, but so far I've received very positive feedback from the early user base, including a few 5 star reviews on the Chrome Web Store: https://chromewebstore.google.com/detail/rolod0x/dgagbbklcgogbaamlbmaaemljjfnminp
+*** If you cannot provide links to evidence of past activities and/or social impact, you can upload proof here.
+<left blank>
+*** Plans: What are you planning to do next?
+Finishing off Firefox support and submitting to addons.mozilla.org is top priority.  After that various UX improvements and new features are planned, including interoperability with other web3 apps and dApps such as Rotki, the Open Source web3 portfolio manager.  The full roadmap is listed on GitHub: https://github.com/users/aspiers/projects/2/views/5
+*** The funds raised are expected to be used for public benefit and not for personal gain. How will you use the funds that your project raises?
+They would be used to fund further work on the project: coding, design, and possibly marketing although it is hoped that the value proposition will be strong enough that adoption will occur organically through word of mouth.
 * emacs local variables
 *** Local Variables: **
 *** truncate-lines: nil **

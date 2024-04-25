@@ -116,14 +116,19 @@ Please see [the Frequently Asked Questions page](./docs/FAQ.md).
 ## Donations <a name="donations"></a>
 
 If you find this project helpful and would like to support its
-development, you can make a donation using the following
-cryptocurrency addresses:
+development, you can make a donation in a number of ways:
+
+- Through Gitcoin Grants Round 20: <https://explorer.gitcoin.co/#/round/42161/25/89>
+
+- Through the Giveth platform: <https://giveth.io/project/rolod0x>
 
 - Send **Bitcoin** to: `bc1quuspvrjepx63k5hpydwqkf6nmtt9eqm86y8w8a`
 
+<!--
 - Send **ETH** / tokens on any Ethereum network to: `rolod0x.eth`
   (N.B. that's a zero before the `x`, not an uppercase `O` -- the
   address should resolve to `0x06357397d8078C19195f4555db7A407b1b1f5FB3`)
+-->
 
 Your contribution will go directly towards enhancing the project,
 covering development costs, and supporting ongoing maintenance.
