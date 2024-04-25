@@ -59,7 +59,15 @@ export default defineConfig({
     outDir,
     /** Can slow down build speed. */
     sourcemap: true, // isDev,
-    minify: isProduction,
+
+    // https://extensionworkshop.com/documentation/publish/source-code-submission/
+    // says:
+    //
+    //   Unlike the advantage that minified code offers web pages loaded over the
+    //   internet, extension code is loaded from a local source, so performance
+    //   benefits are not significant.
+    minify: false, // isProduction,
+
     modulePreload: false,
     reportCompressedSize: isProduction,
     emptyOutDir: !isDev,
