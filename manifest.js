@@ -152,6 +152,12 @@ const manifest = {
       description: 'Look up an address',
     },
   },
+  browser_specific_settings: {
+    gecko: {
+      id: 'gecko-id-1@rolod0x.io',
+      strict_min_version: '109.0',
+    },
+  },
 };
 
 export default manifest;
