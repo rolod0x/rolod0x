@@ -114,6 +114,38 @@ They can also quickly look up any address by pressing a hotkey, and then just ty
         In particular, the usage of block explorers like <https://etherscan.io> and its family of clones for the various other EVM chains are used extremely commonly.  Every web3 wallet and pretty much every onchain app links to block explorers as part of its regular UX.
 
         With the explosive growth of many layer 2 and layer 3 chains over the last year (e.g. see <https://l2beat.com/>), users are already being asked to jump through various setup steps for various pieces of software when using a new chain for the first time, so it's helpful for rolod0x to avoid that, given that it is such a low risk extension (for reasons explained in the security policy in SECURITY.md).
+* addons.mozilla.org
+*** Summary
+    rolod0x is a free privacy-preserving web3 address book which gives you a much smoother experience when browsing sites onchain.
+*** Description
+*** Category
+    My add-on doesn't fit into any of the categories
+*** Support web site
+    https://rolod0x.io
+*** License
+    GPL v3.0
+*** Privacy Policy
+rolod0x does not transmit any user data; however it still has a privacy policy, viewable at docs/privacy-policy.md in the source code, and also at the following locations:
+
+https://rolod0x.io/docs/privacy-policy.html
+
+https://github.com/rolod0x/rolod0x/blob/main/docs/privacy-policy.md
+*** Notes to Reviewer
+The extension was built with node 18.12.0, but probably any 18.x.y or 20.x.y is fine.
+
+Install pnpm if not already installed: npm install -g pnpm
+
+Install dependencies: pnpm install
+
+Build the extension: pnpm build:firefox
+
+You should now see the built files in the dist/firefox/ subdirectory.
+
+These built files should be identical to the files from the .zip provided, except for one line in the manifest.json file referring to a file like "assets/css/contentStyle1714088119259.chunk.css".  This filename changes on each build because the filename includes a UNIX timestamp of when the build was performed.
+
+Instructions on how to build and install from source can also be found at https://rolod0x.io/docs/dev-guide.html and https://github.com/rolod0x/rolod0x/blob/main/docs/install.md (these have the same content).
+
+Full documentation is viewable at https://rolod0x.io/ and https://github.com/rolod0x/rolod0x/#readme (these also have the same content).
 * Gitcoin Grants round
 *** project description
 **rolod0x is a free privacy-preserving address book which gives you a much smoother experience when browsing sites onchain.**
