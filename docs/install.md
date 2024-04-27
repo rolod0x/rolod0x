@@ -1,17 +1,24 @@
 # Installation
 
-<a style="margin-top: 10px; text-decoration: none; text-align: center; color: white; background: #517BE8; display: inline-flex; align-items: center; justify-content: center; padding: 8px 20px; border-radius: 999px; font-size: 20px;" href="https://chromewebstore.google.com/detail/rolod0x/dgagbbklcgogbaamlbmaaemljjfnminp" target="_blank"  rel="noopener noreferrer" title="rolod0x in Chrome Web Store">
-  <span style="display: inline-flex;">
-    <img style="" loading="lazy" decoding="async" src="https://images.ctfassets.net/9sy2a0egs6zh/6jY0xZYtP18iUGOuL7qsEa/255fab1bec903c6a079c5b171afa9504/Chrome_Logo.svg" alt="rolod0x in Chrome Web Store" width="48">
-  </span>
-  <span style="padding: 0px 8px 0px 16px;">Download from Chrome Web Store</span>
-</a>
+<p align="center">
+  <a style="margin: 10px 10px 0px 0px; text-decoration: none; text-align: center; color: white; background: #517BE8; display: inline-flex; align-items: center; justify-content: center; padding: 8px 20px; border-radius: 999px; font-size: 20px;" href="https://chromewebstore.google.com/detail/rolod0x/dgagbbklcgogbaamlbmaaemljjfnminp" target="_blank"  rel="noopener noreferrer" title="rolod0x in Chrome Web Store">
+    <span style="display: inline-flex;">
+      <img style="" loading="lazy" decoding="async" src="https://images.ctfassets.net/9sy2a0egs6zh/6jY0xZYtP18iUGOuL7qsEa/255fab1bec903c6a079c5b171afa9504/Chrome_Logo.svg" alt="rolod0x in Chrome Web Store" width="48">
+    </span>
+    <span style="padding: 0px 8px 0px 16px;">Download for Chrome</span>
+  </a>
+  <a style="margin-top: 10px; text-decoration: none; text-align: center; color: white; background: #517BE8; display: inline-flex; align-items: center; justify-content: center; padding: 8px 20px; border-radius: 999px; font-size: 20px;" href="https://addons.mozilla.org/en-GB/firefox/addon/rolod0x/" target="_blank"  rel="noopener noreferrer" title="rolod0x for Firefox">
+    <span style="display: inline-flex;">
+      <img style="" loading="lazy" decoding="async" src="./images/Fx-Browser-icon-fullColor.svg" alt="rolod0x for Firefox" width="48">
+    </span>
+    <span style="padding: 0px 8px 0px 16px;">Download for Firefox</span>
+  </a>
+</p>
 
-This should work for Chrome and other browsers in the Chrome family,
-such as Chromium and Brave.
+The Chrome download link above should also work for other browsers in
+the Chrome family, such as Chromium and Brave.
 
-However, if you use Firefox, or just want to install directly from
-GitHub, read on!
+However, if you want to install directly from GitHub, read on!
 
 ## Table of contents
 
@@ -29,9 +36,7 @@ You can download a `.zip` file from one of three places:
 1. Go to [the releases page][releases], pick a recent release, and
    then look for an asset named something like
    `rolod0x-v1.4.0-chrome.zip` at the Assets section at the bottom of
-   the release page.  However currently `.zip` files for Firefox are
-   not included in releases since they are [not yet of release
-   quality](https://github.com/rolod0x/rolod0x/issues/19).
+   the release page.
 
 2. View [the list of recent builds of the `main` branch][main].  Click
    on the latest, or another recent one, then scroll down to the
@@ -75,15 +80,10 @@ better:
 
 ## Installation from GitHub in Firefox <a name="firefox"></a>
 
-**N.B. Firefox support has not been heavily tested yet!**  However it
-is [in progress](https://github.com/rolod0x/rolod0x/issues/19).  Once
-all the issues have been ironed out, we aim to [publish it in the
-Firefox Add-ons directory](https://github.com/rolod0x/rolod0x/issues/15)
-to simplify installation.
-
-In the mean time you are very welcome to try it out and
-[report bugs](../CONTRIBUTING.md).  After following the
-download instructions above, take the following steps:
+**N.B. Firefox support has not been heavily tested yet!**  However
+[the core functionality is working fine](https://github.com/rolod0x/rolod0x/issues/19).
+Please try it out and [report bugs](../CONTRIBUTING.md).  After
+following the download instructions above, take the following steps:
 
 1. Open `about:debugging#/runtime/this-firefox` in your browser.
 2. Click `Load Temporary Add-on...`.
