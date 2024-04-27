@@ -18,7 +18,7 @@ not documented here, please [let us know](../CONTRIBUTING.md)!)
 
 ## First steps after install <a name="first"></a>
 
-### Pinning the extension
+### Pinning the extension <a name="pinning"></a>
 
 Once the extension is installed, it is recommended to pin it to the
 toolbar.  This can done by clicking the jigsaw icon near the top right
@@ -27,7 +27,7 @@ clicking the pin icon.
 
 ![Pinning the extension icon to the toolbar](./images/pinning-extension.png)
 
-### (Re-)opening the settings
+### (Re-)opening the settings <a name="reopening"></a>
 
 On install, the extension's options page will automatically open, but
 you can re-open it later in the normal way, e.g. by clicking on the
@@ -48,8 +48,8 @@ menu:
 
 [![Right-clicking to add an address label](./images/right-click.jpg)](./images/right-click.jpg)
 
-Currently this only works if rolod0x is enabled on that website (see
-the [the section below on controlling which sites are
+**Currently this only works if rolod0x is enabled on that website**
+(see the [the section below on controlling which sites are
 allowed](#allow-list)).  However [a fix for this is
 planned](https://github.com/rolod0x/rolod0x/issues/216), so in future
 right-click will work on any site.
@@ -93,14 +93,21 @@ each label.  The same applies for comments.
 
 ## Controlling which sites rolod0x is active on <a name="allow-list"></a>
 
-By default, rolod0x is enabled and will substitute known addresses for
-labels on a bunch of well-known block explorers and other sites.  However
-you can manually enable it on other sites as follows:
+On Chrome, rolod0x is enabled by default on a bunch of well-known
+block explorers and other sites.
 
-If you have pinned the extension to the toolbar, you can right-click
-the extension icon and make sure that `Enable rolod0x on this domain`
-is selected.  Otherwise, you can reach the same context menu by
-clicking the three dots icon mentioned above.
+On Firefox, rolod0x is **not** enabled by default on any site (see
+[issue #275](https://github.com/rolod0x/rolod0x/issues/275)).
+
+On all browsers, you can manually enable rolod0x on any site as
+follows:
+
+- If you have pinned the extension to the toolbar, you can right-click
+  the extension icon and make sure that `Enable rolod0x on this domain`
+  is selected.
+
+- Otherwise, you can reach the same context menu by clicking the three
+  dots icon mentioned [above](#reopening).
 
 You can view and control the list of enabled sites in the `Sites`
 section of the options page:
@@ -136,9 +143,14 @@ rolod0x has not yet been enabled.  However it will not work on
 if `Allow access to file URLs` is enabled).  Unfortunately this is a
 browser limitation which probably can't be bypassed.
 
-If it's not working on normal pages, then visit
+If it's not working on normal pages in Chrome, then visit
 <chrome://extensions/shortcuts> and make sure that you have the hotkey
 set up correctly.
+
+Similarly, in Firefox go to the extensions page and then check that
+the keyboard shortcut is set up correctly:
+
+[![Configuring Firefox extension keyboard shortcuts](./images/firefox-keyboard-shortcuts.png)](./images/firefox-keyboard-shortcuts.png)
 
 ## Customizing the label display format <a name="display"></a>
 
