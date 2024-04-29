@@ -1,3 +1,5 @@
+import * as browser from 'webextension-polyfill';
+
 import { Counter, LabelComment, LabelMap } from '@src/shared/types';
 
 const ORIGINAL_ATTRIBUTE = 'data-rolod0x-original';
@@ -128,7 +130,7 @@ export function replaceInNodeAndCount(node: Node, labelMap: LabelMap, counter: C
   // console.time('rolod0x: initial replacement');
   counter.count += replaceInNode(node, labelMap);
   // console.debug('initial replacements: ', count);
-  chrome.runtime.sendMessage({ text: 'setBadgeText', count: counter.count });
+  browser.runtime.sendMessage({ text: 'setBadgeText', count: counter.count });
   // console.timeEnd('rolod0x: initial replacement');
 }
 
@@ -152,8 +154,8 @@ export function startObserver(node: Node, labelMap: LabelMap, counter: Counter):
 
     // Make sure we have a valid runtime, since hot reloads seem to interfere with this.
     // See https://stackoverflow.com/a/69603416/179332
-    if (chrome.runtime?.id) {
-      chrome.runtime.sendMessage({ text: 'setBadgeText', count: counter.count });
+    if (browser.runtime?.id) {
+      browser.runtime.sendMessage({ text: 'setBadgeText', count: counter.count });
     }
     // console.timeEnd("rolod0x: observer");
   });
@@ -169,7 +171,7 @@ export function startObserver(node: Node, labelMap: LabelMap, counter: Counter):
   //
   //   https://stackoverflow.com/questions/53939205/how-to-avoid-extension-context-invalidated-errors-when-messaging-after-an-exte#comment133201331_55336841
   //
-  // chrome.runtime.connect().onDisconnect.addListener(function () {
+  // browser.runtime.connect().onDisconnect.addListener(function () {
   //   console.log('rolod0x: disconnecting observer', observer);
   //   observer.disconnect();
   // });
