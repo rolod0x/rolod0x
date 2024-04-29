@@ -33,8 +33,8 @@ dependencies:
     specifier: ^5.0.12
     version: 5.0.12
   '@fontsource/ubuntu-mono':
-    specifier: ^5.0.19
-    version: 5.0.19
+    specifier: ^5.0.20
+    version: 5.0.20
   '@lezer/highlight':
     specifier: ^1.2.0
     version: 1.2.0
@@ -1562,8 +1562,8 @@ packages:
     resolution: {integrity: sha512-x0o17jvgoSSbS9OZnUX2+xJmVRvVCfeaYJjkS7w62iN7CuJWtMf5vJj8LqgC7ibqIkitOHVW+XssRjgrcHn62g==}
     dev: false
 
-  /@fontsource/ubuntu-mono@5.0.19:
-    resolution: {integrity: sha512-98JGlEjX6QsY77sLyQhhdX/bK+rzUZd5TtK5nCA9EamrtrgPeqoUdn/SIZnCY7efWAlyzKeLnrbgleRSvHQw9g==}
+  /@fontsource/ubuntu-mono@5.0.20:
+    resolution: {integrity: sha512-DR//BlexvmRZIV+j4AQLKIAEso5McT+3CiDqyJkuRAwUK6QzCnTt8fAB5+TKj3R/ww92nYDZpnb3KTjoozmgXg==}
     dev: false
 
   /@fontsource/ubuntu@5.0.12:
