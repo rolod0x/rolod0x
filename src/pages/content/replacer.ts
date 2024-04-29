@@ -1,10 +1,36 @@
 import * as browser from 'webextension-polyfill';
 
+import { isAbbreviation } from '@src/shared/abbreviators';
+import { RE_ADDRESS } from '@src/shared/regexps';
 import { Counter, LabelComment, LabelMap } from '@src/shared/types';
 
-type ReplacementData = [before: string, data: LabelComment, after: string];
+type ReplacementData = [textToLookup: string, before: string, data: LabelComment, after: string];
 
 const ORIGINAL_ATTRIBUTE = 'data-rolod0x-original';
+
+function getAddressFromAttribute(
+  element: HTMLElement,
+  tagName: string,
+  attributeName: string,
+): string | null {
+  if (!element) return null;
+  if (element.tagName !== tagName) return null;
+
+  const value = element.getAttribute(attributeName);
+  if (!value) return null;
+
+  const m = value.match(RE_ADDRESS);
+  return m ? m[0] : null;
+}
+
+export function parentAddress(node: Node): string | null {
+  const parent = node.parentElement;
+
+  return (
+    getAddressFromAttribute(parent, 'A', 'href') ||
+    getAddressFromAttribute(parent, 'SPAN', 'data-highlight-target')
+  );
+}
 
 function isInputNode(node: Node): boolean {
   if (!node.parentElement) {
@@ -36,7 +62,7 @@ export function replaceInNode(node: Node, labelMap: LabelMap): number {
   if (node.nodeType === Node.TEXT_NODE) {
     // This node only contains text.
     // @see https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType.
-    return replaceInTextNode(node, labelMap);
+    return replaceOnTextNode(node, labelMap);
   }
 
   // This node contains more than just text, call replaceInNode() on each
@@ -71,48 +97,75 @@ function textNodeIsIgnored(node: Node): boolean {
 }
 
 /*
- * Get the text within the text node which needs looking up in the address book and potentially
- * replacing, as well as any text before and after which should be left unchanged.
+ * Get the text within the text node which needs looking up in the address
+ * book and potentially replacing, as well as any text before and after
+ * which should be left unchanged.
  *
  * @param  {Node} node - The target DOM Node.
- * @return {[before, textToLookup, after]}
+ * @return {[before, textToLookup, after] | null}
  */
-export function getLookupText(node: Node): [before: string, textToLookup: string, after: string] {
+export function getLookupText(
+  node: Node,
+): [before: string, textToLookup: string, after: string] | null {
   const content = node.textContent;
   const match = content.match(/^(?<before>\s*)(?<body>.+?)(?<after>\s*?)$/);
-  if (match) {
-    return [match.groups.before, match.groups.body, match.groups.after];
+  if (!match) {
+    return null;
   }
-  return ['', content, ''];
+  return [match.groups.before, match.groups.body, match.groups.after];
 }
 
 /*
- * Get the text within the text node which needs looking up in the address book, do the lookup, and
- * return the result, as well as any text before and after which should be left unchanged.  Returns
- * null if no replacement is needed.
+ * Get the text within the text node which needs looking up in the address
+ * book, do the lookup, and return the result, as well as any text before
+ * and after which should be left unchanged.  Returns null if no
+ * replacement is needed.
  *
  * @param  {Node} node - The target DOM Node.
- * @return {[before, replacementData, after] | null}
+ * @return {[toLookup, before, replacementData, after] | null}
  */
 export function getTextNodeReplacementData(node: Node, labelMap: LabelMap): ReplacementData | null {
-  if (textNodeIsIgnored(node)) return null;
-
   const toLookup = getLookupText(node);
   if (!toLookup) return null;
   const [before, textToLookup, after] = toLookup;
 
   const data = labelMap.get(textToLookup);
   if (!data) return null;
-  return [before, data, after];
+  return [textToLookup, before, data, after];
 }
 
-// Perform the lookup and any possible replacement on a text node.
-export function replaceInTextNode(node: Node, labelMap: LabelMap): number {
-  const replacement = getTextNodeReplacementData(node, labelMap);
-  if (!replacement) return 0;
-  const [before, data, after] = replacement;
+// Check whether the text node or its parent (if an <a href="...">) has
+// a full address.  If they both do, ensure that they match otherwise
+// warn the user that something fishy is probably going on.
+//
+// If a full address is found which matches an entry in the address
+// book, perform the replacement based on that.  Otherwise if a partial
+// address is found which matches, replace based on that instead.
+export function replaceOnTextNode(node: Node, labelMap: LabelMap): number {
+  if (textNodeIsIgnored(node)) return 0;
 
-  return replaceText(node, data.label, before, after);
+  const replacement = getTextNodeReplacementData(node, labelMap);
+  if (!replacement) return 0; // nothing to replace
+
+  const [textToLookup, before, data, after] = replacement;
+
+  const hrefAddr = parentAddress(node);
+  if (!hrefAddr) {
+    return replaceText(node, data.label, before, after);
+  }
+
+  if (!isAbbreviation(textToLookup.toLowerCase(), hrefAddr.toLowerCase())) {
+    // They didn't match, so just ignore the href address
+    return replaceText(node, data.label, before, after);
+  }
+
+  // They match, so if the link address has a label, replace with that
+  // rather than the text node.
+  const linkData = labelMap.get(hrefAddr);
+  if (linkData) {
+    return replaceText(node, linkData.label, before, after);
+  }
+  return 0;
 }
 
 function replaceText(node: Node, label: string, before, after): 0 | 1 {
@@ -128,7 +181,7 @@ function replaceText(node: Node, label: string, before, after): 0 | 1 {
 export function replaceInNodeAndCount(node: Node, labelMap: LabelMap, counter: Counter): void {
   // console.time('rolod0x: initial replacement');
   counter.count += replaceInNode(node, labelMap);
-  // console.debug('initial replacements: ', count);
+  // console.debug('initial replacements: ', counter.count);
   browser.runtime.sendMessage({ text: 'setBadgeText', count: counter.count });
   // console.timeEnd('rolod0x: initial replacement');
 }
