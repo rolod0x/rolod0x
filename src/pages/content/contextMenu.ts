@@ -1,7 +1,7 @@
 import { getCanonicalAddress } from '@src/shared/address';
 import { getMapper, isNewAddress } from '@src/shared/address-book';
 // import { getBadgeText } from '@src/shared/badge';
-import { RE_ADDRESS } from '@src/shared/searcher';
+import { RE_ADDRESS } from '@src/shared/regexps';
 import { Counter } from '@src/shared/types';
 
 import { replaceInNodeAndCount } from './replacer';

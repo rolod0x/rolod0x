@@ -1,4 +1,4 @@
-import { RE_ADDRESS, RE_BYTES32, RE_ADDRESS_OR_BYTES32 } from './searcher';
+import { RE_ADDRESS, RE_BYTES32, RE_ADDRESS_OR_BYTES32 } from './regexps';
 
 const ADDRESS_MATCHES = [
   ['0x6b175474e89094c44da98b954eedeac495271d0f', 'a lowercase address'],
