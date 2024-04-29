@@ -2,6 +2,8 @@ import * as browser from 'webextension-polyfill';
 
 import { Counter, LabelComment, LabelMap } from '@src/shared/types';
 
+type ReplacementData = [before: string, data: LabelComment, after: string];
+
 const ORIGINAL_ATTRIBUTE = 'data-rolod0x-original';
 
 function isInputNode(node: Node): boolean {
@@ -92,10 +94,7 @@ export function getLookupText(node: Node): [before: string, textToLookup: string
  * @param  {Node} node - The target DOM Node.
  * @return {[before, replacementData, after] | null}
  */
-export function getTextNodeReplacementData(
-  node: Node,
-  labelMap: LabelMap,
-): [before: string, data: LabelComment, after: string] | null {
+export function getTextNodeReplacementData(node: Node, labelMap: LabelMap): ReplacementData | null {
   if (textNodeIsIgnored(node)) return null;
 
   const toLookup = getLookupText(node);
