@@ -92,7 +92,7 @@ export function getLookupText(node: Node): [before: string, textToLookup: string
  * @param  {Node} node - The target DOM Node.
  * @return {[before, replacementData, after] | null}
  */
-export function getReplacementData(
+export function getTextNodeReplacementData(
   node: Node,
   labelMap: LabelMap,
 ): [before: string, data: LabelComment, after: string] | null {
@@ -109,7 +109,7 @@ export function getReplacementData(
 
 // Perform the lookup and any possible replacement on a text node.
 export function replaceInTextNode(node: Node, labelMap: LabelMap): number {
-  const replacement = getReplacementData(node, labelMap);
+  const replacement = getTextNodeReplacementData(node, labelMap);
   if (!replacement) return 0;
   const [before, data, after] = replacement;
 
