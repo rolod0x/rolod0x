@@ -2,7 +2,7 @@ import * as browser from 'webextension-polyfill';
 
 import { isAbbreviation } from '@src/shared/abbreviators';
 import { RE_ADDRESS } from '@src/shared/regexps';
-import { Counter, LabelComment, LabelMap } from '@src/shared/types';
+import { LabelComment, LabelMap } from '@src/shared/types';
 
 type ReplacementData = [textToLookup: string, before: string, data: LabelComment, after: string];
 
@@ -178,18 +178,32 @@ function replaceText(node: Node, label: string, before, after): 0 | 1 {
   return alreadyReplaced ? 0 : 1;
 }
 
-export function replaceInNodeAndCount(node: Node, labelMap: LabelMap, counter: Counter): void {
+function countReplacements(): number {
+  return document.querySelectorAll('[data-rolod0x-original]').length;
+}
+
+function updateBadge(): number {
+  const count = countReplacements();
+  // Make sure we have a valid runtime, since hot reloads seem to interfere with this.
+  // See https://stackoverflow.com/a/69603416/179332
+  if (browser.runtime?.id) {
+    browser.runtime.sendMessage({ text: 'setBadgeText', count });
+  }
+  return count;
+}
+
+export function replaceInNodeAndCount(node: Node, labelMap: LabelMap): number {
   // console.time('rolod0x: initial replacement');
-  counter.count += replaceInNode(node, labelMap);
-  // console.debug('initial replacements: ', counter.count);
-  browser.runtime.sendMessage({ text: 'setBadgeText', count: counter.count });
+  replaceInNode(node, labelMap);
+  const count = updateBadge();
+  // console.debug('initial replacements: ', count);
   // console.timeEnd('rolod0x: initial replacement');
+  return count;
 }
 
 // Now monitor the DOM for additions and substitute labels into new nodes.
 // @see https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver.
-export function startObserver(node: Node, labelMap: LabelMap, counter: Counter): void {
-  // console.debug('startObserver with count', counter.count);
+export function startObserver(node: Node, labelMap: LabelMap): void {
   const observer = new MutationObserver(mutations => {
     // console.time("rolod0x: observer");
     for (const mutation of mutations) {
@@ -198,17 +212,13 @@ export function startObserver(node: Node, labelMap: LabelMap, counter: Counter):
         // algorithm on each newly added node.
         for (const newNode of mutation.addedNodes) {
           if (newNode) {
-            counter.count += replaceInNode(newNode, labelMap);
+            replaceInNode(newNode, labelMap);
           }
         }
       }
     }
 
-    // Make sure we have a valid runtime, since hot reloads seem to interfere with this.
-    // See https://stackoverflow.com/a/69603416/179332
-    if (browser.runtime?.id) {
-      browser.runtime.sendMessage({ text: 'setBadgeText', count: counter.count });
-    }
+    updateBadge();
     // console.timeEnd("rolod0x: observer");
   });
 

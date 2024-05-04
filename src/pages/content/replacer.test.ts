@@ -5,7 +5,6 @@ import dedent from 'dedent';
 import { Formatter } from '@src/shared/formatter';
 import { Mapper } from '@src/shared/mapper';
 import { Parser } from '@src/shared/parser';
-import { Counter } from '@src/shared/types';
 import * as mockBrowser from '@src/shared/__mocks__/browser';
 
 import { parentAddress, replaceInNodeAndCount } from './replacer';
@@ -61,14 +60,13 @@ describe('replacer', () => {
   const exact = new Formatter('%n | %4r');
   const guess = new Formatter('?%n? %4r');
 
-  const runReplacement = (html: string): Counter => {
+  const runReplacement = (html: string): number => {
     const mapper = new Mapper(exact, guess);
     mapper.importParsed(parser.parsedEntries);
 
-    const counter = { count: 0 };
     document.body.innerHTML = html;
-    replaceInNodeAndCount(document.body, mapper.labelMap, counter);
-    return counter;
+    const count = replaceInNodeAndCount(document.body, mapper.labelMap);
+    return count;
   };
 
   const TEST_ID = 'test-id';
@@ -81,17 +79,17 @@ describe('replacer', () => {
     originalContent: string,
     expectedContent: string,
   ): void => {
-    const counter = runReplacement(html);
+    const count = runReplacement(html);
     const element = screen.queryByTestId(TEST_ID);
     expect(element).toHaveTextContent(expectedContent);
     expect(element).toHaveAttribute('data-rolod0x-original', originalContent);
-    expect(counter.count).toEqual(1);
+    expect(count).toEqual(1);
   };
 
   const expectNoReplacement = (html: string): void => {
-    const counter = runReplacement(html);
+    const count = runReplacement(html);
     expect(document.body.innerHTML).toEqual(html);
-    expect(counter.count).toEqual(0);
+    expect(count).toEqual(0);
   };
 
   const expectSpanReplacement = (content: string, expectedContent: string): void => {
@@ -236,7 +234,7 @@ describe('replacer', () => {
   `;
   const EXPECTED_REPLACEMENTS = 5;
 
-  let counter: Counter;
+  let count: number;
   let messages;
 
   describe('with multiple addresses', () => {
@@ -258,7 +256,7 @@ describe('replacer', () => {
       const sendMessage = mockBrowser.runtime.sendMessage;
       sendMessage.mockClear();
 
-      counter = runReplacement(HTML_ORIG);
+      count = runReplacement(HTML_ORIG);
       messages = sendMessage.mock.calls;
     });
 
@@ -270,8 +268,47 @@ describe('replacer', () => {
       expect(messages).toEqual([[{ text: 'setBadgeText', count: EXPECTED_REPLACEMENTS }]]);
     });
 
-    it('sets counter', () => {
-      expect(counter.count).toEqual(EXPECTED_REPLACEMENTS);
+    it('returns correct count', () => {
+      expect(count).toEqual(EXPECTED_REPLACEMENTS);
+    });
+  });
+
+  describe('with multiple addresses, some already replaced', () => {
+    const HTML_REPLACEMENT_2 = HTML_REPLACEMENT_1.replace(
+      '<div id="foo">',
+      dedent`
+        <div id="foo">
+          <span>0xe3D823...D62eF109</span>
+      `,
+    );
+    const HTML_REPLACEMENT_3 = HTML_REPLACEMENT_1.replace(
+      '<div id="foo">',
+      dedent`
+        <div id="foo">
+          <span data-rolod0x-original="0xe3D823...D62eF109">?my label? F109</span>
+      `,
+    );
+
+    beforeAll(() => {
+      // manually clear it first, and then capture in a lexical
+      // variable.
+      const sendMessage = mockBrowser.runtime.sendMessage;
+      sendMessage.mockClear();
+
+      count = runReplacement(HTML_REPLACEMENT_2);
+      messages = sendMessage.mock.calls;
+    });
+
+    it('does the right replacements', () => {
+      expect(document.body.innerHTML).toEqual(HTML_REPLACEMENT_3);
+    });
+
+    it('sets badge text', () => {
+      expect(messages).toEqual([[{ text: 'setBadgeText', count: EXPECTED_REPLACEMENTS + 1 }]]);
+    });
+
+    it('returns correct count', () => {
+      expect(count).toEqual(EXPECTED_REPLACEMENTS + 1);
     });
   });
 });

@@ -8,5 +8,6 @@ export const storage = {
 };
 
 export const runtime = {
+  id: 'fake-id',
   sendMessage: jest.fn(),
 };
