@@ -7,7 +7,7 @@ import * as readline from 'readline';
 import { Command } from '@commander-js/extra-typings';
 
 import { Formatter } from './shared/formatter';
-import { RE_ADDRESS_OR_BYTES32 } from './shared/searcher';
+import { RE_ADDRESS_OR_BYTES32 } from './shared/regexps';
 import { Mapper } from './shared/mapper';
 import { Parser } from './shared/parser';
 

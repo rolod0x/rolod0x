@@ -1,8 +1,7 @@
 import { getCanonicalAddress } from '@src/shared/address';
 import { getMapper, isNewAddress } from '@src/shared/address-book';
 // import { getBadgeText } from '@src/shared/badge';
-import { RE_ADDRESS } from '@src/shared/searcher';
-import { Counter } from '@src/shared/types';
+import { RE_ADDRESS } from '@src/shared/regexps';
 
 import { replaceInNodeAndCount } from './replacer';
 
@@ -47,9 +46,7 @@ async function addLabelForClickedElement(): Promise<void> {
 
 async function updateHandler() {
   const mapper = await getMapper();
-  const count = 0; // FIXME await getBadgeText();
-  const counter: Counter = { count: Number(count) ?? 0 };
-  replaceInNodeAndCount(document.body, mapper.labelMap, counter);
+  replaceInNodeAndCount(document.body, mapper.labelMap);
 }
 
 export function initContextMenu(): void {

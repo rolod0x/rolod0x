@@ -5,10 +5,9 @@ import { initContextMenu } from './contextMenu';
 
 async function initReplacer(): Promise<void> {
   const mapper = await getMapper();
-  const counter = { count: 0 };
 
-  replaceInNodeAndCount(document.body, mapper.labelMap, counter);
-  startObserver(document.body, mapper.labelMap, counter);
+  replaceInNodeAndCount(document.body, mapper.labelMap);
+  startObserver(document.body, mapper.labelMap);
 }
 
 void initReplacer();

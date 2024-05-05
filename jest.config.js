@@ -85,6 +85,7 @@ export default {
     '^@src(.*)$': '<rootDir>/src$1',
     '^@assets(.*)$': '<rootDir>/src/assets$1',
     '^@pages(.*)$': '<rootDir>/src/pages$1',
+    '^webextension-polyfill$': '<rootDir>/src/shared/__mocks__/browser.ts',
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader

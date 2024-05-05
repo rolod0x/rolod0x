@@ -1,6 +1,36 @@
-import { Counter, LabelComment, LabelMap } from '@src/shared/types';
+import * as browser from 'webextension-polyfill';
+
+import { isAbbreviation } from '@src/shared/abbreviators';
+import { RE_ADDRESS } from '@src/shared/regexps';
+import { LabelComment, LabelMap } from '@src/shared/types';
+
+type ReplacementData = [textToLookup: string, before: string, data: LabelComment, after: string];
 
 const ORIGINAL_ATTRIBUTE = 'data-rolod0x-original';
+
+function getAddressFromAttribute(
+  element: HTMLElement,
+  tagName: string,
+  attributeName: string,
+): string | null {
+  if (!element) return null;
+  if (element.tagName !== tagName) return null;
+
+  const value = element.getAttribute(attributeName);
+  if (!value) return null;
+
+  const m = value.match(RE_ADDRESS);
+  return m ? m[0] : null;
+}
+
+export function parentAddress(node: Node): string | null {
+  const parent = node.parentElement;
+
+  return (
+    getAddressFromAttribute(parent, 'A', 'href') ||
+    getAddressFromAttribute(parent, 'SPAN', 'data-highlight-target')
+  );
+}
 
 function isInputNode(node: Node): boolean {
   if (!node.parentElement) {
@@ -32,7 +62,7 @@ export function replaceInNode(node: Node, labelMap: LabelMap): number {
   if (node.nodeType === Node.TEXT_NODE) {
     // This node only contains text.
     // @see https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType.
-    return replaceInTextNode(node, labelMap);
+    return replaceOnTextNode(node, labelMap);
   }
 
   // This node contains more than just text, call replaceInNode() on each
@@ -67,51 +97,75 @@ function textNodeIsIgnored(node: Node): boolean {
 }
 
 /*
- * Get the text within the text node which needs looking up in the address book and potentially
- * replacing, as well as any text before and after which should be left unchanged.
+ * Get the text within the text node which needs looking up in the address
+ * book and potentially replacing, as well as any text before and after
+ * which should be left unchanged.
  *
  * @param  {Node} node - The target DOM Node.
- * @return {[before, textToLookup, after]}
+ * @return {[before, textToLookup, after] | null}
  */
-export function getLookupText(node: Node): [before: string, textToLookup: string, after: string] {
+export function getLookupText(
+  node: Node,
+): [before: string, textToLookup: string, after: string] | null {
   const content = node.textContent;
   const match = content.match(/^(?<before>\s*)(?<body>.+?)(?<after>\s*?)$/);
-  if (match) {
-    return [match.groups.before, match.groups.body, match.groups.after];
+  if (!match) {
+    return null;
   }
-  return ['', content, ''];
+  return [match.groups.before, match.groups.body, match.groups.after];
 }
 
 /*
- * Get the text within the text node which needs looking up in the address book, do the lookup, and
- * return the result, as well as any text before and after which should be left unchanged.  Returns
- * null if no replacement is needed.
+ * Get the text within the text node which needs looking up in the address
+ * book, do the lookup, and return the result, as well as any text before
+ * and after which should be left unchanged.  Returns null if no
+ * replacement is needed.
  *
  * @param  {Node} node - The target DOM Node.
- * @return {[before, replacementData, after] | null}
+ * @return {[toLookup, before, replacementData, after] | null}
  */
-export function getReplacementData(
-  node: Node,
-  labelMap: LabelMap,
-): [before: string, data: LabelComment, after: string] | null {
-  if (textNodeIsIgnored(node)) return null;
-
+export function getTextNodeReplacementData(node: Node, labelMap: LabelMap): ReplacementData | null {
   const toLookup = getLookupText(node);
   if (!toLookup) return null;
   const [before, textToLookup, after] = toLookup;
 
   const data = labelMap.get(textToLookup);
   if (!data) return null;
-  return [before, data, after];
+  return [textToLookup, before, data, after];
 }
 
-// Perform the lookup and any possible replacement on a text node.
-export function replaceInTextNode(node: Node, labelMap: LabelMap): number {
-  const replacement = getReplacementData(node, labelMap);
-  if (!replacement) return 0;
-  const [before, data, after] = replacement;
+// Check whether the text node or its parent (if an <a href="...">) has
+// a full address.  If they both do, ensure that they match otherwise
+// warn the user that something fishy is probably going on.
+//
+// If a full address is found which matches an entry in the address
+// book, perform the replacement based on that.  Otherwise if a partial
+// address is found which matches, replace based on that instead.
+export function replaceOnTextNode(node: Node, labelMap: LabelMap): number {
+  if (textNodeIsIgnored(node)) return 0;
 
-  return replaceText(node, data.label, before, after);
+  const replacement = getTextNodeReplacementData(node, labelMap);
+  if (!replacement) return 0; // nothing to replace
+
+  const [textToLookup, before, data, after] = replacement;
+
+  const hrefAddr = parentAddress(node);
+  if (!hrefAddr) {
+    return replaceText(node, data.label, before, after);
+  }
+
+  if (!isAbbreviation(textToLookup.toLowerCase(), hrefAddr.toLowerCase())) {
+    // They didn't match, so just ignore the href address
+    return replaceText(node, data.label, before, after);
+  }
+
+  // They match, so if the link address has a label, replace with that
+  // rather than the text node.
+  const linkData = labelMap.get(hrefAddr);
+  if (linkData) {
+    return replaceText(node, linkData.label, before, after);
+  }
+  return 0;
 }
 
 function replaceText(node: Node, label: string, before, after): 0 | 1 {
@@ -124,18 +178,32 @@ function replaceText(node: Node, label: string, before, after): 0 | 1 {
   return alreadyReplaced ? 0 : 1;
 }
 
-export function replaceInNodeAndCount(node: Node, labelMap: LabelMap, counter: Counter): void {
+function countReplacements(): number {
+  return document.querySelectorAll('[data-rolod0x-original]').length;
+}
+
+function updateBadge(): number {
+  const count = countReplacements();
+  // Make sure we have a valid runtime, since hot reloads seem to interfere with this.
+  // See https://stackoverflow.com/a/69603416/179332
+  if (browser.runtime?.id) {
+    browser.runtime.sendMessage({ text: 'setBadgeText', count });
+  }
+  return count;
+}
+
+export function replaceInNodeAndCount(node: Node, labelMap: LabelMap): number {
   // console.time('rolod0x: initial replacement');
-  counter.count += replaceInNode(node, labelMap);
+  replaceInNode(node, labelMap);
+  const count = updateBadge();
   // console.debug('initial replacements: ', count);
-  chrome.runtime.sendMessage({ text: 'setBadgeText', count: counter.count });
   // console.timeEnd('rolod0x: initial replacement');
+  return count;
 }
 
 // Now monitor the DOM for additions and substitute labels into new nodes.
 // @see https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver.
-export function startObserver(node: Node, labelMap: LabelMap, counter: Counter): void {
-  // console.debug('startObserver with count', counter.count);
+export function startObserver(node: Node, labelMap: LabelMap): void {
   const observer = new MutationObserver(mutations => {
     // console.time("rolod0x: observer");
     for (const mutation of mutations) {
@@ -144,17 +212,13 @@ export function startObserver(node: Node, labelMap: LabelMap, counter: Counter):
         // algorithm on each newly added node.
         for (const newNode of mutation.addedNodes) {
           if (newNode) {
-            counter.count += replaceInNode(newNode, labelMap);
+            replaceInNode(newNode, labelMap);
           }
         }
       }
     }
 
-    // Make sure we have a valid runtime, since hot reloads seem to interfere with this.
-    // See https://stackoverflow.com/a/69603416/179332
-    if (chrome.runtime?.id) {
-      chrome.runtime.sendMessage({ text: 'setBadgeText', count: counter.count });
-    }
+    updateBadge();
     // console.timeEnd("rolod0x: observer");
   });
 
@@ -169,7 +233,7 @@ export function startObserver(node: Node, labelMap: LabelMap, counter: Counter):
   //
   //   https://stackoverflow.com/questions/53939205/how-to-avoid-extension-context-invalidated-errors-when-messaging-after-an-exte#comment133201331_55336841
   //
-  // chrome.runtime.connect().onDisconnect.addListener(function () {
+  // browser.runtime.connect().onDisconnect.addListener(function () {
   //   console.log('rolod0x: disconnecting observer', observer);
   //   observer.disconnect();
   // });
