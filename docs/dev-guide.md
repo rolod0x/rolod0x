@@ -34,21 +34,21 @@ Thanks in advance!
 
 3. Run `pnpm install`
 
-Then you can build the extension as follows.
+Then you can build the extension as follows:
 
-### For Chrome: <a name="chrome"></a>
+|             | Chrome       | Firefox              | both               |
+|-------------|--------------|----------------------|--------------------|
+| development | `pnpm dev`   | `pnpm dev:firefox`   | `pnpm dev:all`     |
+| production  | `pnpm build` | `pnpm build:firefox` | `pnpm firefox:all` |
 
-Run:
+The development build commands all continually watch for changes to
+files and automatically trigger rebuilds when changes are spotted.
 
-- Dev: `pnpm dev` or `npm run dev`
-- Prod: `pnpm build` or `npm run build`
+In contrast, the production build commands are one-shot and only build
+once before exiting.
 
-### For Firefox: <a name="firefox"></a>
-
-Run:
-
-- Dev: `pnpm dev:firefox` or `npm run dev:firefox`
-- Prod: `pnpm build:firefox` or `npm run build:firefox`
+The `*:all` commands run builds for both in parallel for greater
+speed.
 
 ### Installation
 
@@ -64,7 +64,9 @@ a clean profile via:
 
 This is just a wrapper around the `run` subcommand of [the `web-ext`
 utility](https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/),
-so you can also specify additional `web-ext` parameters as desired.
+so you can also specify additional `web-ext` parameters as desired,
+such as `-u https://etherscan.io/address/0x...` to start on a
+particular block explorer page.
 
 Please note that this installation is temporary, so any settings will
 be lost when that Firefox instance is terminated.
