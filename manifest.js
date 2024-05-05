@@ -69,6 +69,7 @@ const manifest = {
     // which may require activeTab in the future.
 
     'clipboardWrite', // See SECURITY.md
+    'clipboardRead', // See SECURITY.md
     'contextMenus', // See SECURITY.md
     'scripting', // See SECURITY.md
     // 'sidePanel',
