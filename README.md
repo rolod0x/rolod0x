@@ -24,6 +24,7 @@
 [Video](https://youtu.be/AoWeASmnrPc) •
 [Installation](./docs/install.md) •
 [Usage](./docs/user-manual.md) •
+[Telegram](https://t.me/rolod0x) •
 [FAQ](./docs/FAQ.md) •
 [Donations](#donations) •
 [Support](./CONTRIBUTING.md) •

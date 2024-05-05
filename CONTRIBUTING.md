@@ -1,5 +1,9 @@
 # Support and contributing
 
+## Chat
+
+Come and say hello in our Telegram group: <https://t.me/rolod0x>
+
 ## Feedback
 
 Any kind of feedback is very welcome!
@@ -15,14 +19,17 @@ tracker][issues] or discussed in [the Discussions forum][discussions].
 
 If it isn't in either place:
 
-- If it's a question or support request, then please [post in the
+- If it's a question or support request, then ideally please [post in the
   Discussions forum][new discussion].
 
 - Alternatively, if it's a specific technical bug report or feature
-  request then [please file a new issue][new issue].
+  request then ideally [please file a new issue][new issue].
 
 [new discussion]: https://github.com/rolod0x/rolod0x/discussions/new/choose
 [new issue]: https://github.com/rolod0x/rolod0x/issues/new/choose
+
+That said, if GitHub isn't your thing, you can also just [share your
+thoughts via Telegram](https://t.me/rolod0x).
 
 ## Helping with development
 
