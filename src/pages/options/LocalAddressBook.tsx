@@ -77,6 +77,7 @@ export default function LocalAddressBook() {
   }, [getOptions]);
 
   const labelsChanged = currentLabelsHash !== savedLabelsHash;
+  const canRevert = labelsChanged;
   const canSave = !error && labelsChanged;
 
   return (
@@ -96,6 +97,9 @@ export default function LocalAddressBook() {
           </Typography>
         </Box>
         <Box>
+          <Button variant="contained" onClick={getOptions} disabled={!canRevert} sx={{ mr: 1 }}>
+            Discard changes
+          </Button>
           <Button variant="contained" onClick={handleSave} disabled={!canSave}>
             Save
           </Button>
