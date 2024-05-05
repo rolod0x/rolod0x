@@ -4,6 +4,7 @@
 </h1>
 </div>
 
+<!-- auto-remove-section-for-jekyll -->
 <p align="center">
 <a href="https://github.com/rolod0x/rolod0x/releases/" alt="GitHub release"><img src="https://img.shields.io/github/release/rolod0x/rolod0x.svg" /></a>
 <a href="https://github.com/rolod0x/rolod0x/commit/" alt="GitHub commits"><img src="https://img.shields.io/github/commits-since/rolod0x/rolod0x/latest.svg" /></a>
@@ -17,6 +18,7 @@
 <img alt="Lint" src="https://github.com/rolod0x/rolod0x/actions/workflows/lint.yml/badge.svg" />
 <img alt="zip" src="https://github.com/rolod0x/rolod0x/actions/workflows/build-zip.yml/badge.svg" />
 </p>
+<!-- /auto-remove-section-for-jekyll -->
 
 <!-- auto-replace-line-for-jekyll: {: .text-center} -->
 [Overview](#overview) •
