@@ -46,7 +46,7 @@
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@fontsource-variable/open-sans": "^5.0.28",
+    "@fontsource-variable/open-sans": "^5.0.29",
     "@fontsource/roboto": "^5.0.12",
     "@fontsource/ubuntu": "^5.0.12",
     "@fontsource/ubuntu-mono": "^5.0.20",
