@@ -11,8 +11,11 @@
     "rolod0x": "./src/cli.ts"
   },
   "scripts": {
-    "build": "tsc --noEmit && vite build",
-    "build:firefox": "tsc --noEmit && cross-env __FIREFOX__=true vite build",
+    "build": "tsc --noEmit && pnpm build:vite",
+    "build:vite": "vite build",
+    "build:firefox": "tsc --noEmit && pnpm build:firefox:vite",
+    "build:firefox:vite": "cross-env __FIREFOX__=true vite build",
+    "build:all": "tsc --noEmit && (run-p build:vite build:firefox:vite)",
     "build:watch": "cross-env __DEV__=true vite build -w --mode development",
     "build:firefox:watch": "cross-env __DEV__=true __FIREFOX__=true vite build -w --mode development",
     "build:hmr": "rollup --config utils/reload/rollup.config.mjs",
@@ -22,6 +25,7 @@
     "dev": "pnpm build:hmr && (run-p wss build:watch)",
     "devtools": "pnpm react-devtools",
     "dev:firefox": "pnpm build:hmr && (run-p wss build:firefox:watch)",
+    "dev:all": "pnpm build:hmr && (run-p wss build:watch build:firefox:watch)",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:firefox": "pnpm web-ext run -s dist/firefox",
