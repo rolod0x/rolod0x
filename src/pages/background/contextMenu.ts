@@ -20,14 +20,15 @@ function handleContextMenuClick(info: browser.Menus.OnClickData, tab: browser.Ta
     return;
   }
 
-  if (!info.pageUrl) {
+  const url = info.pageUrl;
+  if (!url) {
     // This could happen if there's no activeTab permission and the extension hasn't been granted
     // permission to the tab's site.
     debugClickEvent("Can't send update address book message to unknown frame", info, tab);
     return;
   }
 
-  if (info.pageUrl.match(new RegExp('(moz|chrome)-extension://'))) {
+  if (url.match(new RegExp('(moz|chrome)-extension://'))) {
     debugClickEvent('NOT sending update address book message to browser extension', info, tab);
     return;
   }
