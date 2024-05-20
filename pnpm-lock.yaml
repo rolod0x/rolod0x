@@ -105,8 +105,8 @@ dependencies:
     specifier: ^3.1.3
     version: 3.1.3
   webextension-polyfill:
-    specifier: ^0.10.0
-    version: 0.10.0
+    specifier: ^0.12.0
+    version: 0.12.0
 
 devDependencies:
   '@codemirror/view':
@@ -9994,8 +9994,8 @@ packages:
       webext-polyfill-kinda: 1.0.2
     dev: false
 
-  /webextension-polyfill@0.10.0:
-    resolution: {integrity: sha512-c5s35LgVa5tFaHhrZDnr3FpQpjj1BB+RXhLTYUxGqBVN460HkbM8TBtEqdXWbpTKfzwCcjAZVF7zXCYSKtcp9g==}
+  /webextension-polyfill@0.12.0:
+    resolution: {integrity: sha512-97TBmpoWJEE+3nFBQ4VocyCdLKfw54rFaJ6EVQYLBCXqCIpLSZkwGgASpv4oPt9gdKCJ80RJlcmNzNn008Ag6Q==}
     dev: false
 
   /webidl-conversions@7.0.0:
