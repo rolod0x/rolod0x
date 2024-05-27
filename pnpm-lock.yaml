@@ -221,8 +221,8 @@ devDependencies:
     specifier: ^3.2.5
     version: 3.2.5
   react-devtools:
-    specifier: ^5.1.0
-    version: 5.1.0
+    specifier: ^5.2.0
+    version: 5.2.0
   rollup:
     specifier: ^4.17.2
     version: 4.17.2
@@ -8168,8 +8168,8 @@ packages:
       strip-json-comments: 2.0.1
     dev: true
 
-  /react-devtools-core@5.1.0:
-    resolution: {integrity: sha512-NRtLBqYVLrIY+lOa2oTpFiAhI7Hru0AUXI0tP9neCyaPPAzlZyeH0i+VZ0shIyRTJbpvyqbD/uCsewA2hpfZHw==}
+  /react-devtools-core@5.2.0:
+    resolution: {integrity: sha512-vZK+/gvxxsieAoAyYaiRIVFxlajb7KXhgBDV7OsoMzaAE+IqGpoxusBjIgq5ibqA2IloKu0p9n7tE68z1xs18A==}
     dependencies:
       shell-quote: 1.8.1
       ws: 7.5.9
@@ -8178,15 +8178,15 @@ packages:
       - utf-8-validate
     dev: true
 
-  /react-devtools@5.1.0:
-    resolution: {integrity: sha512-2jSyIO8caGXAgL1y8yVHgS7wF/0PVNv1tukMrHc0LYNyhk6afgINddUmDC8oerfH/+wJj+wKl2m/pIMTwZ8ZZg==}
+  /react-devtools@5.2.0:
+    resolution: {integrity: sha512-QdVc0OYS8wh19x0J6ZRDHivuTMnoN+i4MziDiRLk5LID3hkraPR3157MybVdYgYVsKg86PCVjTHLZVUyB13ztg==}
     hasBin: true
     dependencies:
       cross-spawn: 5.1.0
       electron: 23.3.13
       ip: 1.1.9
       minimist: 1.2.8
-      react-devtools-core: 5.1.0
+      react-devtools-core: 5.2.0
       update-notifier: 2.5.0
     transitivePeerDependencies:
       - bufferutil
