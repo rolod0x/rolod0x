@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 
 // import { Formatter } from '@src/shared/formatter';
 import { IframeContext } from '@src/components/IframeModal';
-import { Rolod0xOptions, optionsStorage } from '@src/shared/options-storage';
+import { optionsStorage } from '@src/shared/options-storage';
 import { delayedFocusInput } from '@src/shared/focus';
 import { AddressLabelComment, ParsedEntries } from '@src/shared/types';
 import { Parser, ParseError } from '@src/shared/parser';
@@ -25,10 +25,10 @@ export default function ActionBar() {
   const { handleClose } = useContext(IframeContext);
 
   const getLabels = useCallback(async (): Promise<ParsedEntries> => {
-    const options: Rolod0xOptions = await optionsStorage.getAll();
+    const section = await optionsStorage.getSection();
     const parser = new Parser();
     try {
-      parser.parseMultiline(options.labels);
+      parser.parseMultiline(section.labels);
       return parser.parsedEntries;
     } catch (err: unknown) {
       if (err instanceof ParseError) {

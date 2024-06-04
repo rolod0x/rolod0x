@@ -3,7 +3,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
 import { themes, ThemeName } from '@src/shared/theme';
-import { optionsStorage, Rolod0xOptions } from '@src/shared/options-storage';
+import { optionsStorage } from '@src/shared/options-storage';
 
 export const ThemeNameContext = createContext({
   themeName: 'light',
@@ -24,7 +24,7 @@ export default function Rolod0xThemeProvider({ children, initialTheme = null }: 
   }, []);
 
   const hydrateTheme = useCallback(async () => {
-    const options: Rolod0xOptions = await optionsStorage.getAll();
+    const options = await optionsStorage.getAllDeserialized();
     setThemeName(options.themeName);
   }, [setThemeName]);
 

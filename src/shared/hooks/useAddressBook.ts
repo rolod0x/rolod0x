@@ -35,14 +35,19 @@ export function useAddressBook() {
   );
 
   const handleSave = useCallback(async () => {
-    await optionsStorage.set({ labels });
+    const section = await optionsStorage.getSection();
+    const uuid = section.id;
+    await optionsStorage.setSection(uuid, { labels });
     const hash = murmurhash.v3(labels);
     setSavedLabelsHash(hash);
     validate(labels);
   }, [labels, validate]);
 
   const getOptions = useCallback(async () => {
-    const options = await optionsStorage.getAll();
+    const options = await optionsStorage.getSection();
+    if (!options) {
+      throw new Error('No options found');
+    }
     setLabels(options.labels);
     const hash = murmurhash.v3(options.labels);
     console.log(`Hydrated options from storage (hash ${hash})`);

@@ -66,7 +66,7 @@ export default function DisplaySettings() {
 
   useEffect(() => {
     async function hydrateOptions() {
-      const options = await optionsStorage.getAll();
+      const options = await optionsStorage.getAllDeserialized();
       if (options.displayLabelFormat) {
         updateLabelDisplay('exact', options.displayLabelFormat);
       }

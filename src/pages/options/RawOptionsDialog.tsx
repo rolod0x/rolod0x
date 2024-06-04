@@ -12,7 +12,7 @@ import { useContext, useState } from 'react';
 import { JSONTree } from 'react-json-tree';
 import { useTheme } from '@mui/material/styles';
 
-import { optionsStorage, DEFAULT_OPTIONS } from '@src/shared/options-storage';
+import { deserializeOptions, optionsStorage } from '@src/shared/options-storage';
 import { ThemeNameContext } from '@src/components/Rolod0xThemeProvider';
 
 const RawOptionsDialog = () => {
@@ -23,14 +23,13 @@ const RawOptionsDialog = () => {
   const [showConfirmReset, setShowConfirmReset] = useState(false);
 
   const handleCornerClick = async () => {
-    const options = await optionsStorage.getAll();
+    const options = await optionsStorage.getAllDeserialized();
     setRawOptions(options);
     setShowRawOptions(true);
   };
 
   const resetToDefaults = async () => {
-    await optionsStorage.setAll(DEFAULT_OPTIONS);
-    const options = await optionsStorage.getAll();
+    const options = deserializeOptions(await optionsStorage.resetToDefaults());
     setRawOptions(options);
 
     // Trigger theme update
