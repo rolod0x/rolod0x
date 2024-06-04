@@ -60,7 +60,7 @@
     "@mui/system": "^5.15.15",
     "@types/lodash": "^4.17.1",
     "@types/webextension-polyfill": "^0.10.7",
-    "@uiw/codemirror-themes": "^4.22.0",
+    "@uiw/codemirror-themes": "^4.22.1",
     "@uiw/react-codemirror": "^4.22.0",
     "construct-style-sheets-polyfill": "^3.1.0",
     "dedent": "^1.5.3",
