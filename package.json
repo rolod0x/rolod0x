@@ -125,7 +125,7 @@
     "typescript": "^5.4.5",
     "vite": "^5.2.11",
     "vite-plugin-checker": "^0.6.4",
-    "web-ext": "^7.11.0",
+    "web-ext": "^8.0.0",
     "ws": "^8.17.0"
   },
   "lint-staged": {
