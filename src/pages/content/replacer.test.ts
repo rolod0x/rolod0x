@@ -143,6 +143,10 @@ describe('replacer', () => {
     expectSpanReplacement('0xe3D82337F79306712477b642EF59B75dD62eF109', 'my label | F109');
   });
 
+  it('replaces a full double-quoted ERC55 address', () => {
+    expectSpanReplacement('"0xe3D82337F79306712477b642EF59B75dD62eF109"', '"my label | F109"');
+  });
+
   it('replaces a full lowercase address', () => {
     expectSpanReplacement('0x1803982898d6a8e832177fca8fd763b9060c3b5d', 'another label | 3B5d');
   });

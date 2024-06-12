@@ -108,7 +108,7 @@ export function getLookupText(
   node: Node,
 ): [before: string, textToLookup: string, after: string] | null {
   const content = node.textContent;
-  const match = content.match(/^(?<before>\s*)(?<body>.+?)(?<after>\s*?)$/);
+  const match = content.match(/^(?<before>\s*|(?<open>['"]))(?<body>.+?)(?<after>\s*?|\k<open>)$/);
   if (!match) {
     return null;
   }
