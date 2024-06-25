@@ -86,7 +86,7 @@
     "@jest/globals": "^29.7.0",
     "@rollup/plugin-typescript": "^11.1.6",
     "@testing-library/dom": "^10.2.0",
-    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
     "@types/chrome": "^0.0.268",
     "@types/jest": "^29.5.12",
