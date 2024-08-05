@@ -123,7 +123,7 @@
     "ts-jest": "^29.2.3",
     "tslib": "^2.6.3",
     "typescript": "^5.5.4",
-    "vite": "^5.2.11",
+    "vite": "^5.3.5",
     "vite-plugin-checker": "^0.6.4",
     "web-ext": "^8.2.0",
     "ws": "^8.18.0"
