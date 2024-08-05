@@ -12,8 +12,8 @@ dependencies:
     specifier: ^6.4.1
     version: 6.4.1
   '@commander-js/extra-typings':
-    specifier: ^12.0.1
-    version: 12.0.1(commander@12.0.0)
+    specifier: ^12.1.0
+    version: 12.1.0(commander@12.1.0)
   '@emotion/css':
     specifier: ^11.13.0
     version: 11.13.0
@@ -755,12 +755,12 @@ packages:
       style-mod: 4.1.2
       w3c-keyname: 2.2.8
 
-  /@commander-js/extra-typings@12.0.1(commander@12.0.0):
-    resolution: {integrity: sha512-OvkMobb1eMqOCuJdbuSin/KJkkZr7n24/UNV+Lcz/0Dhepf3r2p9PaGwpRpAWej7A+gQnny4h8mGhpFl4giKkg==}
+  /@commander-js/extra-typings@12.1.0(commander@12.1.0):
+    resolution: {integrity: sha512-wf/lwQvWAA0goIghcb91dQYpkLBcyhOhQNqG/VgWhnKzgt+UOMvra7EX/2fv70arm5RW+PUHoQHHDa6/p77Eqg==}
     peerDependencies:
-      commander: ~12.0.0
+      commander: ~12.1.0
     dependencies:
-      commander: 12.0.0
+      commander: 12.1.0
     dev: false
 
   /@commitlint/cli@19.3.0(@types/node@20.12.12)(typescript@5.5.3):
@@ -4055,15 +4055,9 @@ packages:
       delayed-stream: 1.0.0
     dev: true
 
-  /commander@12.0.0:
-    resolution: {integrity: sha512-MwVNWlYjDTtOjX5PiD7o5pK0UrFU/OYgcJfjjK4RaHZETNtjJqrZa9Y9ds88+A+f+d5lv+561eZ+yCKoS3gbAA==}
-    engines: {node: '>=18'}
-    dev: false
-
   /commander@12.1.0:
     resolution: {integrity: sha512-Vw8qHK3bZM9y/P10u3Vib8o/DdkvA2OtPtZvD871QKjy74Wj1WSKFILMPRPSdUSx5RFK1arlJzEtA4PkFgnbuA==}
     engines: {node: '>=18'}
-    dev: true
 
   /commander@2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
