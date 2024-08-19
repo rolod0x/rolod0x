@@ -61,7 +61,7 @@
     "@types/lodash": "^4.17.7",
     "@types/webextension-polyfill": "^0.10.7",
     "@uiw/codemirror-themes": "^4.22.2",
-    "@uiw/react-codemirror": "^4.22.0",
+    "@uiw/react-codemirror": "^4.23.0",
     "construct-style-sheets-polyfill": "^3.1.0",
     "dedent": "^1.5.3",
     "ethers": "^6.12.1",
