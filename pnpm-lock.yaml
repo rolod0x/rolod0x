@@ -51,8 +51,8 @@ dependencies:
     specifier: ^4.17.7
     version: 4.17.7
   '@types/webextension-polyfill':
-    specifier: ^0.10.7
-    version: 0.10.7
+    specifier: ^0.12.0
+    version: 0.12.0
   '@uiw/codemirror-themes':
     specifier: ^4.22.2
     version: 4.22.2(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)
@@ -2586,8 +2586,8 @@ packages:
     resolution: {integrity: sha512-/Ad8+nIOV7Rl++6f1BdKxFSMgmoqEoYbHRpPcx3JEfv8VRsQe9Z4mCXeJBzxs7mbHY/XOZZuXlRNfhpVPbs6ZA==}
     dev: true
 
-  /@types/webextension-polyfill@0.10.7:
-    resolution: {integrity: sha512-10ql7A0qzBmFB+F+qAke/nP1PIonS0TXZAOMVOxEUsm+lGSW6uwVcISFNa0I4Oyj0884TZVWGGMIWeXOVSNFHw==}
+  /@types/webextension-polyfill@0.12.0:
+    resolution: {integrity: sha512-0d1V0jw5wswj11ijrPoUUP+kV2pHCNKDDgQSzNdD1PK5i3vQ0eHiA1xzT5mFwaqdwatrXdgkxgC4BzCQ6C9eUw==}
     dev: false
 
   /@types/ws@8.5.10:
