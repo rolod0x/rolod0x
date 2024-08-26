@@ -120,7 +120,7 @@
     "react-devtools": "^5.3.1",
     "rollup": "^4.21.0",
     "sass": "^1.77.5",
-    "ts-jest": "^29.2.3",
+    "ts-jest": "^29.2.5",
     "tslib": "^2.6.3",
     "typescript": "^5.5.4",
     "vite": "^5.4.0",
