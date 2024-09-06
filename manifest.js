@@ -19,7 +19,6 @@ const defaultSites = [
   'https://*.celoscan.io/*',
   'https://*.blockscout.com/*',
   'https://explorer.bitquery.io/*',
-  'https://*.onceupon.xyz/*',
 
   // Multisig management services
   'https://app.safe.global/*',

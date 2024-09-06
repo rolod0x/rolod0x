@@ -11,7 +11,6 @@ const EXPECTED_ABBREVIATIONS = [
   '0x6B175474...495271d0F',
   '0x6B1...71d0F',
   '0x6B...1d0F',
-  '0x6B1...d0F',
 ];
 
 const INVALID_ABBREVIATIONS = [
