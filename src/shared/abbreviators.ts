@@ -33,6 +33,9 @@ const ABBREVIATION_LENGTHS = [
   // On *.blockscout.com, some addresses are abbreviated in the form
   // 0x12...1234
   [2, 4],
+
+  // On oklink.com, addresses are abbreviated to 0x1234...123456789a
+  [4, 10],
 ];
 
 export function abbreviatedAddresses(address: string): string[] {
