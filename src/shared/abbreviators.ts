@@ -34,8 +34,8 @@ const ABBREVIATION_LENGTHS = [
   // 0x12...1234
   [2, 4],
 
-  // On onceupon.xyz, addresses are abbreviated to 0x123...456
-  [3, 3],
+  // On oklink.com, addresses are abbreviated to 0x1234...123456789a
+  [4, 10],
 ];
 
 export function abbreviatedAddresses(address: string): string[] {
