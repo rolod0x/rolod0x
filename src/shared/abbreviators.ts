@@ -36,23 +36,30 @@ const ABBREVIATION_LENGTHS = [
 
   // On oklink.com, addresses are abbreviated to 0x1234...123456789a
   [4, 10],
+
+  // On metasleuth.io, addresses within the transaction graph are split
+  // into two vertically stacked <text> elements within the <svg>: the
+  // top one is 30+0, and the bottom is 0+10.  We'd need some custom
+  // code to replace this elegantly, but for now arguably replacing just
+  // the top one is better than nothing, even though it's ugly.
+  [30, 0],
 ];
 
 export function abbreviatedAddresses(address: string): string[] {
   return ABBREVIATION_LENGTHS.map(
-    ([left, right]: [number, number]) => address.slice(0, left + 2) + '...' + address.slice(-right),
+    ([left, right]: [number, number]) =>
+      address.slice(0, left + 2) + (right === 0 ? '' : '...' + address.slice(-right)),
   );
 }
 
 export const ABBREVIATION_FUNCTIONS = [abbreviatedAddresses];
 
 export function isAbbreviation(abbreviation: string, fullAddress: string): boolean {
-  const m = abbreviation.match(/^(0x[0-9a-f]+)\.\.\.([0-9a-f]+)$/i);
+  const m = abbreviation.match(/^(0x[0-9a-f]+)(?:\.\.\.([0-9a-f]+))?$/i);
   if (!m) return false;
   const [_match, start, end] = m;
-
   // We consider abbreviations valid only if the ERC-55 checksum
   // capitalization is preserved, OR if it was never there in
   // the first place.
-  return fullAddress.startsWith(start) && fullAddress.endsWith(end);
+  return fullAddress.startsWith(start) && fullAddress.endsWith(end || '');
 }
