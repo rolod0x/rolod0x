@@ -27,8 +27,8 @@ dependencies:
     specifier: ^5.0.29
     version: 5.0.29
   '@fontsource/roboto':
-    specifier: ^5.0.13
-    version: 5.0.13
+    specifier: ^5.0.15
+    version: 5.0.15
   '@fontsource/ubuntu':
     specifier: ^5.0.13
     version: 5.0.13
@@ -1647,8 +1647,8 @@ packages:
     resolution: {integrity: sha512-p8T55iQwhErREcjY997t4ah9JKTyJNSBDDVfvVsWIQRGpA2fcTPk9rLue/Mkrr5/efkehxTSbT8JpTTRaFbM5A==}
     dev: false
 
-  /@fontsource/roboto@5.0.13:
-    resolution: {integrity: sha512-j61DHjsdUCKMXSdNLTOxcG701FWnF0jcqNNQi2iPCDxU8seN/sMxeh62dC++UiagCWq9ghTypX+Pcy7kX+QOeQ==}
+  /@fontsource/roboto@5.0.15:
+    resolution: {integrity: sha512-352XiID9jfwmYaHpdmS3ocGJi3PA+vOm4HzJIRfSyPEyLP6dZN8iiEKUbdAfB5YXQO3YxO2KZpR+R28q2zMiYw==}
     dev: false
 
   /@fontsource/ubuntu-mono@5.0.21:
