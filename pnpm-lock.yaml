@@ -159,7 +159,7 @@ devDependencies:
     version: 6.21.0(eslint@8.57.0)(typescript@5.5.4)
   '@vitejs/plugin-react':
     specifier: ^4.3.1
-    version: 4.3.1(vite@5.4.3)
+    version: 4.3.1(vite@5.4.6)
   chokidar:
     specifier: ^3.6.0
     version: 3.6.0
@@ -239,11 +239,11 @@ devDependencies:
     specifier: ^5.5.4
     version: 5.5.4
   vite:
-    specifier: ^5.4.3
-    version: 5.4.3(@types/node@22.5.5)(sass@1.77.8)
+    specifier: ^5.4.6
+    version: 5.4.6(@types/node@22.5.5)(sass@1.77.8)
   vite-plugin-checker:
     specifier: ^0.7.2
-    version: 0.7.2(eslint@8.57.0)(typescript@5.5.4)(vite@5.4.3)
+    version: 0.7.2(eslint@8.57.0)(typescript@5.5.4)(vite@5.4.6)
   web-ext:
     specifier: ^8.2.0
     version: 8.2.0
@@ -274,7 +274,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/highlight': 7.24.5
-      picocolors: 1.0.0
+      picocolors: 1.0.1
 
   /@babel/compat-data@7.24.4:
     resolution: {integrity: sha512-vg8Gih2MLK+kOkHJp4gBEIkyaIi00jgWot2D9QOmmfLC8jINSOzmCLta6Bvz/JSBCqnegV0L80jhxkol5GWNfQ==}
@@ -3047,7 +3047,7 @@ packages:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
     dev: true
 
-  /@vitejs/plugin-react@4.3.1(vite@5.4.3):
+  /@vitejs/plugin-react@4.3.1(vite@5.4.6):
     resolution: {integrity: sha512-m/V2syj5CuVnaxcUJOQRel/Wr31FFXRFlnOoq1TVtkCxsY5veGMTEmpWHndrhB2U8ScHtCQB1e+4hWYExQc6Lg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -3058,7 +3058,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.24.1(@babel/core@7.24.5)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 5.4.3(@types/node@22.5.5)(sass@1.77.8)
+      vite: 5.4.6(@types/node@22.5.5)(sass@1.77.8)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -8433,9 +8433,6 @@ packages:
     resolution: {integrity: sha512-F3asv42UuXchdzt+xXqfW1OGlVBe+mxa2mqI0pg5yAHZPvFmY3Y6drSf/GQ1A86WgWEN9Kzh/WrgKa6iGcHXLg==}
     dev: true
 
-  /picocolors@1.0.0:
-    resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
-
   /picocolors@1.0.1:
     resolution: {integrity: sha512-anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==}
 
@@ -10133,7 +10130,7 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite-plugin-checker@0.7.2(eslint@8.57.0)(typescript@5.5.4)(vite@5.4.3):
+  /vite-plugin-checker@0.7.2(eslint@8.57.0)(typescript@5.5.4)(vite@5.4.6):
     resolution: {integrity: sha512-xeYeJbG0gaCaT0QcUC4B2Zo4y5NR8ZhYenc5gPbttrZvraRFwkEADCYwq+BfEHl9zYz7yf85TxsiGoYwyyIjhw==}
     engines: {node: '>=14.16'}
     peerDependencies:
@@ -10179,15 +10176,15 @@ packages:
       strip-ansi: 6.0.1
       tiny-invariant: 1.3.3
       typescript: 5.5.4
-      vite: 5.4.3(@types/node@22.5.5)(sass@1.77.8)
+      vite: 5.4.6(@types/node@22.5.5)(sass@1.77.8)
       vscode-languageclient: 7.0.0
       vscode-languageserver: 7.0.0
       vscode-languageserver-textdocument: 1.0.11
       vscode-uri: 3.0.8
     dev: true
 
-  /vite@5.4.3(@types/node@22.5.5)(sass@1.77.8):
-    resolution: {integrity: sha512-IH+nl64eq9lJjFqU+/yrRnrHPVTlgy42/+IzbOdaFDVlyLgI/wDlf+FCobXLX1cT0X5+7LMyH1mIy2xJdLfo8Q==}
+  /vite@5.4.6(@types/node@22.5.5)(sass@1.77.8):
+    resolution: {integrity: sha512-IeL5f8OO5nylsgzd9tq4qD2QqI0k2CQLGrWD0rCN0EQJZpBK5vJAx0I+GDkMOXxQX/OfFHMuLIx6ddAxGX/k+Q==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
