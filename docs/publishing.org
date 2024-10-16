@@ -146,7 +146,80 @@ These built files should be identical to the files from the .zip provided, excep
 Instructions on how to build and install from source can also be found at https://rolod0x.io/docs/dev-guide.html and https://github.com/rolod0x/rolod0x/blob/main/docs/install.md (these have the same content).
 
 Full documentation is viewable at https://rolod0x.io/ and https://github.com/rolod0x/rolod0x/#readme (these also have the same content).
-* Gitcoin Grants round
+* Gitcoin Grants round 22 OSS - dApps & Apps
+*** project description
+**rolod0x is a free privacy-preserving address book which gives you a much smoother experience when browsing sites onchain.**
+
+Instead of having to keep track of long hexadecimal addresses, simply right-click an address and give it a memorable label.  Now when you go to any web page, the extension automatically replaces that address wherever it appears with the label you provided.  **This makes understanding onchain activity way easier, and it works on any website and any blockchain!**
+
+![](https://raw.githubusercontent.com/rolod0x/rolod0x/main/docs/images/promo/right-click.jpg)
+
+You can also quickly look up any address by pressing a hotkey, and then just type part of what you're looking for.
+
+![](https://raw.githubusercontent.com/rolod0x/rolod0x/main/docs/images/promo/hotkey-lookup.jpg)
+
+From the settings page you can see your whole address book in one place. To protect your privacy, it's stored locally in your browser, so it never leaves your device.  It's just plain text which is easy to edit, and you can export and import addresses from anywhere simply with copy and paste.
+
+![](https://raw.githubusercontent.com/rolod0x/rolod0x/main/docs/images/promo/edit-as-text.jpg)
+
+For maximum security, rolod0x is only enabled on a limited list of websites, but you can add extra sites if you want.
+
+![](https://raw.githubusercontent.com/rolod0x/rolod0x/main/docs/images/promo/enable-per-site.jpg)
+
+rolod0x is [Free and Open Source software][license].  All code has been done by one person over the last two years for free.  There are many exciting plans for improvement listed in [the GitHub project][future], including:
+
+- [adding support for dividing the address book into multiple sections][sections],
+- [automatic import of address book entries from URLs][URL-import] specified by the user,
+- [integration with the Rotki portfolio manager][rotki] (a long-time recipient of Gitcoin Grants), and other wallets,
+- [creating a standardized address book format][format] for [interoperability][] across web3, and
+- polishing of various elements of the user experience.
+
+The full roadmap is listed at <https://github.com/users/aspiers/projects/2/views/2>.
+
+There are no plans to monetize rolod0x.  It was built as a public good to improve web3 UX and therefore help scale web3 adoption.
+
+**However without funding, any significant further development is simply not sustainable.**
+
+So your support for this project would be hugely appreciated.  Thanks for reading!
+
+[license]: https://rolod0x.io/#license
+[future]: https://github.com/users/aspiers/projects/2/views/2?sliceBy%5Bvalue%5D=M3%3A+post-launch+priorities
+[sections]: https://github.com/rolod0x/rolod0x/issues/16
+[URL-import]: https://github.com/rolod0x/rolod0x/issues/24
+[rotki]: https://github.com/rolod0x/rolod0x/issues/81
+[format]: https://github.com/rolod0x/rolod0x/issues/244
+[interoperability]: https://github.com/rolod0x/rolod0x/issues?q=label%3Ainteroperability
+*** How does your project contribute to the growth of the OSS ecosystem? Please provide specific examples of how your application enhances or expands the current ecosystem.
+Users of web3, and especially developers, have to keep track of multiple account addresses whenever they interact with dApps, block explorers, portfolio trackers, and other web3 sites.  These addresses can relate not only to personal and professional wallets, but multisigs, smart accounts, tokens, smart contracts, and many other types of accounts.
+
+Tracking all these addresses manually is awkward, tedious, and error-prone.  This slows down web3 development and generally discourages adoption of web3 through poor UX.
+
+rolod0x solves this by automatically translating impenetrable long hexadecimal addresses into human-readable labels, and vice-versa.
+*** What features or use cases does your dApp/App present? How is it differentiated?
+rolod0x improves the usability of every single dApp which displays account addresses, by automatically translating them into human-readable labels which are meaningful to the user.  It also allows quick lookup of addresses from those labels, which is very convenient for use cases such as quickly retrieving and pasting addresses into block explorers, CLI and other development tools, such as Foundry, Hardhat, and so on.
+
+rolod0x is in the unique position of being the only truly privacy-preserving and Open Source web3 address book which automatically integrates with any dApp on any EVM chain.
+*** What are your plans for further development, and how will the grant funds be used to achieve these goals?
+In the short term, the main priorities include some UX polish, [adding support for dividing the address book into multiple sections][sections], [automatic import of address book entries from URLs][URL-import] specified by the user, [integration with Rotki][rotki], and tackling a few rough edges.
+
+Longer-term, working on [creating a standardized address book format][format] for [interoperability between address books across the whole ecosystem][interoperability] (including wallets and other apps) seems very worthwhile.
+
+The full roadmap is listed at <https://github.com/users/aspiers/projects/2/views/2>.
+
+Funds would go mainly towards development of new features as mentioned above, and perhaps a bit towards getting assistance from professional designers and marketers.
+
+The original hope was to achieve viral growth from word of mouth, by making rolod0x so useful and easy to use that it becomes a complete no-brainer for everyone to use it.  However there are so many web3 projects competing for everyone's attention that kickstarting adoption via some grassroots marketing may make sense.
+
+There are no plans to monetize rolod0x.  It was built as a public good to improve web3 UX and therefore help scale web3 adoption.
+
+[sections]: https://github.com/rolod0x/rolod0x/issues/16
+[URL-import]: https://github.com/rolod0x/rolod0x/issues/24
+[rotki]: https://github.com/rolod0x/rolod0x/issues/81
+[format]: https://github.com/rolod0x/rolod0x/issues/244
+[interoperability]: https://github.com/rolod0x/rolod0x/issues?q=label%3Ainteroperability
+*** For any project deploying smart contracts on blockchain networks, please list all your deployer addresses and their corresponding blockchain networks.
+N/a - this is offchain software.
+* Gitcoin Grants round 20 OSS - dApps & Apps
 *** project description
 **rolod0x is a free privacy-preserving address book which gives you a much smoother experience when browsing sites onchain.**
 
