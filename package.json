@@ -55,7 +55,7 @@
     "@fontsource/ubuntu": "^5.0.13",
     "@fontsource/ubuntu-mono": "^5.0.21",
     "@lezer/highlight": "^1.2.0",
-    "@mui/icons-material": "^5.15.20",
+    "@mui/icons-material": "^5.16.8",
     "@mui/material": "^5.16.1",
     "@mui/system": "^5.15.15",
     "@types/lodash": "^4.17.7",
