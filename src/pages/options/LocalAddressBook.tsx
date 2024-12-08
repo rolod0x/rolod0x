@@ -3,6 +3,9 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import ContentPasteIcon from '@mui/icons-material/ContentPaste';
+import RestorePageIcon from '@mui/icons-material/RestorePage';
+import SaveIcon from '@mui/icons-material/Save';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import * as murmurhash from 'murmurhash';
@@ -55,6 +58,14 @@ export default function LocalAddressBook() {
     [setLabels, validate],
   );
 
+  const handlePaste = useCallback(async () => {
+    const clipboardContents = await window.navigator.clipboard.readText();
+    const hash = murmurhash.v3(clipboardContents);
+    setLabels(clipboardContents);
+    setCurrentLabelsHash(hash);
+    validate(labels);
+  }, [labels, setLabels, validate]);
+
   const handleSave = useCallback(async () => {
     await optionsStorage.set({ labels });
     const hash = murmurhash.v3(labels);
@@ -97,10 +108,26 @@ export default function LocalAddressBook() {
           </Typography>
         </Box>
         <Box>
-          <Button variant="contained" onClick={getOptions} disabled={!canRevert} sx={{ mr: 1 }}>
+          <Button
+            variant="contained"
+            onClick={handlePaste}
+            startIcon={<ContentPasteIcon />}
+            sx={{ mr: 1 }}>
+            Paste
+          </Button>
+          <Button
+            variant="contained"
+            onClick={getOptions}
+            startIcon={<RestorePageIcon />}
+            disabled={!canRevert}
+            sx={{ mr: 1 }}>
             Discard changes
           </Button>
-          <Button variant="contained" onClick={handleSave} disabled={!canSave}>
+          <Button
+            variant="contained"
+            onClick={handleSave}
+            startIcon={<SaveIcon />}
+            disabled={!canSave}>
             Save
           </Button>
         </Box>

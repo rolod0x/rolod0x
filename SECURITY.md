@@ -66,6 +66,11 @@ The following chrome API permissions are requested by the extension manifest:
 
   <https://github.com/rolod0x/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/background/index.ts#L49-L52>
 
+- `clipboardRead`: Required to paste the contents of the clipboard
+  into the address book.  The call can be seen here:
+
+  <https://github.com/rolod0x/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/lookup/ui/ActionBar.tsx#L81>
+
 - `clipboardWrite`: Required to copy the selected address to the
   clipboard, when the user completes their search of the address book.
   This happens within an `<iframe>` inserted by a content script into
