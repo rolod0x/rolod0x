@@ -4,6 +4,8 @@ import AlertTitle from '@mui/material/AlertTitle';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
+import RestorePageIcon from '@mui/icons-material/RestorePage';
+import SaveIcon from '@mui/icons-material/Save';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import * as murmurhash from 'murmurhash';
@@ -113,10 +115,19 @@ export default function LocalAddressBook() {
             sx={{ mr: 1 }}>
             Paste
           </Button>
-          <Button variant="contained" onClick={getOptions} disabled={!canRevert} sx={{ mr: 1 }}>
+          <Button
+            variant="contained"
+            onClick={getOptions}
+            startIcon={<RestorePageIcon />}
+            disabled={!canRevert}
+            sx={{ mr: 1 }}>
             Discard changes
           </Button>
-          <Button variant="contained" onClick={handleSave} disabled={!canSave}>
+          <Button
+            variant="contained"
+            onClick={handleSave}
+            startIcon={<SaveIcon />}
+            disabled={!canSave}>
             Save
           </Button>
         </Box>
