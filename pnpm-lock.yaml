@@ -96,8 +96,8 @@ dependencies:
     specifier: ^10.0.4
     version: 10.0.4
   webext-options-sync:
-    specifier: ^4.2.1
-    version: 4.2.1
+    specifier: ^4.3.0
+    version: 4.3.0
   webext-permission-toggle:
     specifier: 5.1.0
     version: 5.1.0
@@ -9726,8 +9726,8 @@ packages:
       real-require: 0.2.0
     dev: true
 
-  /throttle-debounce@5.0.0:
-    resolution: {integrity: sha512-2iQTSgkkc1Zyk0MeVrt/3BvuOXYPl/R8Z0U2xxo9rjwNciaHDG3R+Lm6dh4EeUci49DanvBnuqI6jshoQQRGEg==}
+  /throttle-debounce@5.0.2:
+    resolution: {integrity: sha512-B71/4oyj61iNH0KeCamLuE2rmKuTO5byTOSVwECM5FA7TiAiAW+UqTKZ9ERueC4qvgSttUhdmq1mXC3kJqGX7A==}
     engines: {node: '>=12.22'}
     dev: false
 
@@ -9969,6 +9969,11 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
     dev: true
+
+  /uint8array-extras@1.4.0:
+    resolution: {integrity: sha512-ZPtzy0hu4cZjv3z5NW9gfKnNLjoz4y6uv4HlelAjDK7sY/xOkKZv9xK/WQpcsBB3jEybChz9DPC2U/+cusjJVQ==}
+    engines: {node: '>=18'}
+    dev: false
 
   /unbox-primitive@1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
@@ -10358,15 +10363,6 @@ packages:
       webext-polyfill-kinda: 1.0.2
     dev: false
 
-  /webext-detect-page@4.2.1:
-    resolution: {integrity: sha512-saiMkdwrjR5WIoW+clqFCZiGLqbe5Bp3udnPpsaFj6gL3uYTYhpkSjc7givG6gwE3g0oXLPIKOhhP52MrHdK+w==}
-    dev: false
-
-  /webext-detect-page@5.0.1:
-    resolution: {integrity: sha512-HizogkTmviA5qA1yODwewzz4ETSc+N9bYrK6pEVIAP2kAG139Sg+3DOJixRnFYl2gFVZn4PBReDZhgmFOEVbeg==}
-    engines: {node: '>=18'}
-    dev: false
-
   /webext-detect@5.0.2:
     resolution: {integrity: sha512-R/Jfape0ML8rxWxIlOk8qODkD9G7L6+HijSNktsAKY6ZWZwGGO0Mfxa5C3BcJkNwLBR5/44cGhpbGSf5dne3vQ==}
     engines: {node: '>=18'}
@@ -10384,13 +10380,6 @@ packages:
       webext-polyfill-kinda: 1.0.2
     dev: false
 
-  /webext-events@2.3.0:
-    resolution: {integrity: sha512-3irAy/AUT7cxjH1KQ6ari9Dv5wkVbjMpF5Rid1hk7/3lm7ebQYvO4PoF3LwnJAhFjhVPO7jwJy5DcgHXjdmvNA==}
-    engines: {node: '>=18'}
-    dependencies:
-      webext-detect-page: 5.0.1
-    dev: false
-
   /webext-events@3.0.1:
     resolution: {integrity: sha512-GbIR9VuO0RWFLTJmvJSOCfdkM83olWg6e0vEr4QglcyBuHedZlBitIrzSfLUSV5hHoh6sr6ah9Osl5xoHFQNiA==}
     engines: {node: '>=18'}
@@ -10398,15 +10387,16 @@ packages:
       webext-detect: 5.0.2
     dev: false
 
-  /webext-options-sync@4.2.1:
-    resolution: {integrity: sha512-d6aUkTuemyFSymCnTO0tbzgS3pUQ1SV07HHlYGXBNdBay1NP67ocG+fn5RWgqCpFqhIKAfd7vND3yhBE1kjmKw==}
+  /webext-options-sync@4.3.0:
+    resolution: {integrity: sha512-ZuujFYSB1+n30xGo6/MbTCBfhDqH8HoUnAxOIHmx8tsyfTYLlTLACTV8+a73A4v8FWEU1xq3wJ3QRulaO4x79w==}
     engines: {node: '>=18'}
     dependencies:
       dom-form-serializer: 2.0.0
       lz-string: 1.5.0
-      throttle-debounce: 5.0.0
-      webext-detect-page: 4.2.1
-      webext-events: 2.3.0
+      throttle-debounce: 5.0.2
+      uint8array-extras: 1.4.0
+      webext-detect: 5.0.2
+      webext-events: 3.0.1
       webext-polyfill-kinda: 1.0.2
     dev: false
 
