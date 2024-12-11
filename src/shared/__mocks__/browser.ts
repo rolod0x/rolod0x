@@ -1,13 +1,11 @@
-import { jest } from '@jest/globals';
-
 export const storage = {
   local: {
-    get: jest.fn(),
-    set: jest.fn(),
+    get: vi.fn(),
+    set: vi.fn(),
   },
 };
 
 export const runtime = {
   id: 'fake-id',
-  sendMessage: jest.fn(),
+  sendMessage: vi.fn(),
 };

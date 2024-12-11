@@ -1,5 +1,6 @@
 import path, { resolve } from 'path';
 
+/// <reference types="vite" />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { checker } from 'vite-plugin-checker';
@@ -10,6 +11,9 @@ import addHmr from './utils/plugins/add-hmr';
 import watchRebuild from './utils/plugins/watch-rebuild';
 // import inlineVitePreloadScript from './utils/plugins/inline-vite-preload-script';
 import muteWarningsPlugin from './utils/plugins/mute-warnings';
+
+import type { UserConfig as VitestUserConfigInterface } from 'vitest/config';
+import type { UserConfig } from 'vite';
 
 const rootDir = resolve(__dirname);
 const srcDir = resolve(rootDir, 'src');
@@ -30,6 +34,20 @@ const warningsToIgnore = [
   // ['MODULE_LEVEL_DIRECTIVE'],
   // ['INVALID_ANNOTATION', 'contains an annotation that Rollup cannot interpret'],
 ];
+
+const vitestConfig: VitestUserConfigInterface = {
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './test-utils/vitest.setup.js',
+    // Here's a slightly more voodoo way of achieving the same
+    // global browser mocking accomplished by vitest.setup.js above:
+    //
+    // alias: {
+    //   'webextension-polyfill': resolve('./src/shared/__mocks__/browser.ts'),
+    // },
+  },
+};
 
 export default defineConfig({
   resolve: {
@@ -95,7 +113,8 @@ export default defineConfig({
       },
     },
   },
-});
+  test: vitestConfig.test,
+} as UserConfig);
 
 function getCacheInvalidationKey() {
   return cacheInvalidationKeyRef.current;
