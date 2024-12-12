@@ -27,7 +27,7 @@ const enableHmrInBackgroundScript = true;
 const cacheInvalidationKeyRef = { current: generateKey() };
 
 const warningsToIgnore = [
-  ['SOURCEMAP_ERROR', "Can't resolve original location of error"],
+  // ['SOURCEMAP_ERROR', "Can't resolve original location of error"],
   // ['MODULE_LEVEL_DIRECTIVE'],
   // ['INVALID_ANNOTATION', 'contains an annotation that Rollup cannot interpret'],
 ];
