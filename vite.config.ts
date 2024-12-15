@@ -1,7 +1,7 @@
 import path, { resolve } from 'path';
 
-/// <reference types="vite" />
-import { defineConfig } from 'vite';
+import { defineConfig as defineViteConfig, mergeConfig } from 'vite';
+import { defineConfig as defineVitestConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import { checker } from 'vite-plugin-checker';
 
@@ -11,9 +11,6 @@ import addHmr from './utils/plugins/add-hmr';
 import watchRebuild from './utils/plugins/watch-rebuild';
 // import inlineVitePreloadScript from './utils/plugins/inline-vite-preload-script';
 import muteWarningsPlugin from './utils/plugins/mute-warnings';
-
-import type { UserConfig as VitestUserConfigInterface } from 'vitest/config';
-import type { UserConfig } from 'vite';
 
 const rootDir = resolve(__dirname);
 const srcDir = resolve(rootDir, 'src');
@@ -30,26 +27,12 @@ const enableHmrInBackgroundScript = true;
 const cacheInvalidationKeyRef = { current: generateKey() };
 
 const warningsToIgnore = [
-  ['SOURCEMAP_ERROR', "Can't resolve original location of error"],
+  // ['SOURCEMAP_ERROR', "Can't resolve original location of error"],
   // ['MODULE_LEVEL_DIRECTIVE'],
   // ['INVALID_ANNOTATION', 'contains an annotation that Rollup cannot interpret'],
 ];
 
-const vitestConfig: VitestUserConfigInterface = {
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: './test-utils/vitest.setup.js',
-    // Here's a slightly more voodoo way of achieving the same
-    // global browser mocking accomplished by vitest.setup.js above:
-    //
-    // alias: {
-    //   'webextension-polyfill': resolve('./src/shared/__mocks__/browser.ts'),
-    // },
-  },
-};
-
-export default defineConfig({
+const viteConfig = defineViteConfig({
   resolve: {
     alias: {
       '@root': rootDir,
@@ -113,8 +96,21 @@ export default defineConfig({
       },
     },
   },
-  test: vitestConfig.test,
-} as UserConfig);
+});
+
+const vitestConfig = defineVitestConfig({
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './test-utils/vitest.setup.js',
+    // Here's a slightly more voodoo way of achieving the same
+    // global browser mocking accomplished by vitest.setup.js above:
+    //
+    // alias: {
+    //   'webextension-polyfill': resolve('./src/shared/__mocks__/browser.ts'),
+    // },
+  },
+});
 
 function getCacheInvalidationKey() {
   return cacheInvalidationKeyRef.current;
@@ -127,3 +123,6 @@ function regenerateCacheInvalidationKey() {
 function generateKey(): string {
   return `${Date.now().toFixed()}`;
 }
+
+// https://stackoverflow.com/a/77229505/179332
+export default mergeConfig(viteConfig, vitestConfig);
