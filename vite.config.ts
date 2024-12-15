@@ -39,6 +39,15 @@ const viteConfig = defineViteConfig({
       '@src': srcDir,
       '@assets': assetsDir,
       '@pages': pagesDir,
+      // Work around https://github.com/uiwjs/react-codemirror/issues/680
+      // No longer needed since 4.23.7; see:
+      // - https://github.com/uiwjs/react-codemirror/issues/613#issuecomment-2544272857
+      // - https://github.com/uiwjs/react-codemirror/pull/708
+      //
+      // '@uiw/codemirror-themes': path.resolve(
+      //   __dirname,
+      //   'node_modules/@uiw/codemirror-themes/esm/index.js',
+      // ),
     },
   },
   plugins: [
@@ -102,7 +111,7 @@ const vitestConfig = defineVitestConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: './test-utils/vitest.setup.js',
+    setupFiles: './test-utils/vitest.setup.ts',
     // Here's a slightly more voodoo way of achieving the same
     // global browser mocking accomplished by vitest.setup.js above:
     //
