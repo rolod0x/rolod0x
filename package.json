@@ -60,8 +60,8 @@
     "@mui/system": "^5.16.8",
     "@types/lodash": "^4.17.13",
     "@types/webextension-polyfill": "^0.10.7",
-    "@uiw/codemirror-themes": "^4.23.6",
-    "@uiw/react-codemirror": "^4.23.6",
+    "@uiw/codemirror-themes": "^4.23.7",
+    "@uiw/react-codemirror": "^4.23.7",
     "construct-style-sheets-polyfill": "^3.1.0",
     "dedent": "^1.5.3",
     "ethers": "^6.13.4",
@@ -80,6 +80,7 @@
     "webextension-polyfill": "^0.12.0"
   },
   "devDependencies": {
+    "@codemirror/language": "^6.10.7",
     "@codemirror/view": "^6.35.3",
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
@@ -134,5 +135,8 @@
   "packageManager": "pnpm@9.15.0",
   "peerDependencies": {
     "@codemirror/view": "^6.33.0"
+  },
+  "resolutions": {
+    "@codemirror/state": "^6.5.0"
   }
 }

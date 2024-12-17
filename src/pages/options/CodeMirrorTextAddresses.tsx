@@ -38,6 +38,7 @@ export default function CodeMirrorTextAddresses(props: Props) {
 
   return (
     <CodeMirror
+      data-testid="codeMirror-editor"
       value={props.value}
       onChange={props.onChange}
       minWidth="800px"

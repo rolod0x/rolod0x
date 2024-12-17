@@ -9,10 +9,11 @@ export const ThemeNameContext = createContext({ themeName: 'light', toggleTheme:
 
 interface Props {
   children: ReactNode;
+  initialTheme?: ThemeName;
 }
 
-export default function Rolod0xThemeProvider({ children }: Props) {
-  const [themeName, setThemeName] = useState<ThemeName | null>(null);
+export default function Rolod0xThemeProvider({ children, initialTheme = null }: Props) {
+  const [themeName, setThemeName] = useState<ThemeName | null>(initialTheme);
 
   const saveTheme = useCallback(async (newThemeName: ThemeName) => {
     await optionsStorage.set({ themeName: newThemeName });
