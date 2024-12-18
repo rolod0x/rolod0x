@@ -163,4 +163,38 @@ describe('LocalAddressBook', () => {
     const view = await getCodeMirrorView();
     expect(view.state.doc.toString()).toBe(testInput);
   });
+
+  // add tests for discard changes
+
+  it('should discard changes after clicking the Discard button', async () => {
+    await renderLocalAddressBook();
+
+    const testInput = '0xe3D82337F79306712477b642EF59B75dD62eF109 different address';
+    await setCodeMirrorValue(testInput);
+
+    // Wait for the editor content to be updated
+    await waitFor(async () => {
+      const view = await getCodeMirrorView();
+      expect(view.state.doc.toString()).toBe(testInput);
+    });
+
+    const discardButton = screen.getByRole('button', { name: 'Discard changes' });
+    await waitFor(async () => {
+      expect(discardButton).not.toBeDisabled();
+    });
+
+    // Click the discard button
+    await act(async () => {
+      discardButton.click();
+    });
+
+    // Wait for the editor content to be reverted
+    await waitFor(async () => {
+      const view = await getCodeMirrorView();
+      expect(view.state.doc.toString()).toBe('');
+      expect(discardButton).toBeDisabled();
+      const saveButton = screen.getByRole('button', { name: 'Save' });
+      expect(saveButton).toBeDisabled();
+    });
+  });
 });
