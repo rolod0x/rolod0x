@@ -121,12 +121,17 @@ describe('LocalAddressBook', () => {
     const testInput = '0x1234567890123456789012345678901234567890 Test Address';
     await setCodeMirrorValue(testInput);
 
+    // Wait for the save button to be enabled
+    const saveButton = screen.getByRole('button', { name: 'Save' });
+    await waitFor(() => {
+      expect(saveButton).not.toBeDisabled();
+    });
+
     // Simulate removing the text we just entered
     await setCodeMirrorValue('');
 
     // Wait for the save button to be disabled
     await waitFor(() => {
-      const saveButton = screen.getByRole('button', { name: 'Save' });
       expect(saveButton).toBeDisabled();
     });
   });
@@ -138,13 +143,12 @@ describe('LocalAddressBook', () => {
     await setCodeMirrorValue(testInput);
 
     // Wait for the save button to be enabled after valid input
+    const saveButton = screen.getByRole('button', { name: 'Save' });
     await waitFor(() => {
-      const saveButton = screen.getByRole('button', { name: 'Save' });
       expect(saveButton).not.toBeDisabled();
     });
 
     // Click the save button
-    const saveButton = screen.getByRole('button', { name: 'Save' });
     await act(async () => {
       saveButton.click();
     });
@@ -158,5 +162,39 @@ describe('LocalAddressBook', () => {
     // Verify the content is still there after save
     const view = await getCodeMirrorView();
     expect(view.state.doc.toString()).toBe(testInput);
+  });
+
+  // add tests for discard changes
+
+  it('should discard changes after clicking the Discard button', async () => {
+    await renderLocalAddressBook();
+
+    const testInput = '0xe3D82337F79306712477b642EF59B75dD62eF109 different address';
+    await setCodeMirrorValue(testInput);
+
+    // Wait for the editor content to be updated
+    await waitFor(async () => {
+      const view = await getCodeMirrorView();
+      expect(view.state.doc.toString()).toBe(testInput);
+    });
+
+    const discardButton = screen.getByRole('button', { name: 'Discard changes' });
+    await waitFor(async () => {
+      expect(discardButton).not.toBeDisabled();
+    });
+
+    // Click the discard button
+    await act(async () => {
+      discardButton.click();
+    });
+
+    // Wait for the editor content to be reverted
+    await waitFor(async () => {
+      const view = await getCodeMirrorView();
+      expect(view.state.doc.toString()).toBe('');
+      expect(discardButton).toBeDisabled();
+      const saveButton = screen.getByRole('button', { name: 'Save' });
+      expect(saveButton).toBeDisabled();
+    });
   });
 });
