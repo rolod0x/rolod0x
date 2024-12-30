@@ -26,4 +26,5 @@
     },
   },
   "include": ["src", "utils", "vite.config.ts", "node_modules/@types"],
+  "exclude": ["**/*.test.ts", "**/*.test.tsx"],
 }

@@ -118,6 +118,9 @@ const vitestConfig = defineVitestConfig({
     // alias: {
     //   'webextension-polyfill': resolve('./src/shared/__mocks__/browser.ts'),
     // },
+    typecheck: {
+      tsconfig: './tsconfig.test.json',
+    },
   },
 });
 
