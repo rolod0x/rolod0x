@@ -1,7 +1,6 @@
 import React from 'react';
 import { act, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { expect, it, vi, beforeEach } from 'vitest';
 import { EditorView } from '@codemirror/view';
 
 import Rolod0xThemeProvider from '@src/components/Rolod0xThemeProvider';
