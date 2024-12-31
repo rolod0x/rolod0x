@@ -163,8 +163,6 @@ describe('LocalAddressBook', () => {
     expect(view.state.doc.toString()).toBe(testInput);
   });
 
-  // add tests for discard changes
-
   it('should discard changes after clicking the Discard button', async () => {
     await renderLocalAddressBook();
 
