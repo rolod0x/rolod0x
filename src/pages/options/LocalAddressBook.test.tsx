@@ -95,8 +95,8 @@ describe('LocalAddressBook', () => {
     await setCodeMirrorValue(testInput);
 
     // Wait for the save button to be enabled after valid input
+    const saveButton = screen.getByRole('button', { name: 'Save' });
     await waitFor(() => {
-      const saveButton = screen.getByRole('button', { name: 'Save' });
       expect(saveButton).not.toBeDisabled();
     });
   });
@@ -108,8 +108,8 @@ describe('LocalAddressBook', () => {
     await setCodeMirrorValue(testInput);
 
     // Wait for the save button to be disabled after invalid input
+    const saveButton = screen.getByRole('button', { name: 'Save' });
     await waitFor(() => {
-      const saveButton = screen.getByRole('button', { name: 'Save' });
       expect(saveButton).toBeDisabled();
     });
   });
