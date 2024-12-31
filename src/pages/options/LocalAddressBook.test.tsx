@@ -94,7 +94,7 @@ describe('LocalAddressBook', () => {
     const testInput = '0x1234567890123456789012345678901234567890 Test Address';
     await setCodeMirrorValue(testInput);
 
-    // Wait for the save button to be enabled
+    // Wait for the save button to be enabled after valid input
     await waitFor(() => {
       const saveButton = screen.getByRole('button', { name: 'Save' });
       expect(saveButton).not.toBeDisabled();
@@ -107,7 +107,7 @@ describe('LocalAddressBook', () => {
     const testInput = '0x12345678901234567890 Test Address'; // Invalid address (too short)
     await setCodeMirrorValue(testInput);
 
-    // Wait for the save button to be disabled
+    // Wait for the save button to be disabled after invalid input
     await waitFor(() => {
       const saveButton = screen.getByRole('button', { name: 'Save' });
       expect(saveButton).toBeDisabled();
@@ -120,7 +120,7 @@ describe('LocalAddressBook', () => {
     const testInput = '0x1234567890123456789012345678901234567890 Test Address';
     await setCodeMirrorValue(testInput);
 
-    // Wait for the save button to be enabled
+    // Wait for the save button to be enabled after valid input
     const saveButton = screen.getByRole('button', { name: 'Save' });
     await waitFor(() => {
       expect(saveButton).not.toBeDisabled();
@@ -129,7 +129,7 @@ describe('LocalAddressBook', () => {
     // Simulate removing the text we just entered
     await setCodeMirrorValue('');
 
-    // Wait for the save button to be disabled
+    // Wait for the save button to be disabled after removing input
     await waitFor(() => {
       expect(saveButton).toBeDisabled();
     });
