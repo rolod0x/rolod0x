@@ -82,6 +82,8 @@ possible.
   - Test behavior, not implementation
   - Use meaningful test descriptions
   - Keep tests isolated
+- Don't add imports from vi for the following vitest globals as they're
+  imported by default: beforeEach, describe, expect, it, vi
 
 ### Best Practices
 
