@@ -1,6 +1,20 @@
-import * as mockBrowser from '@src/shared/__mocks__/browser';
+import { chrome } from 'vitest-chrome';
 
-global.chrome = global.browser = mockBrowser;
+// Mock the browser globally to keep webextension-polyfill happy
+// global.chrome = global.browser = chrome;
+Object.assign(global, { chrome, browser: chrome });
+// Object.assign(global, { chrome: mockBrowser, browser: mockBrowser });
+
+// Make vitest-chrome play nice with webextension-polyfill
+// https://github.com/extend-chrome/jest-chrome/issues/7
+// chrome.runtime.sendMessage.mockImplementation(() => {
+//   return Promise.resolve();
+// });
+
+// Ensure chrome.runtime.id from vitest-chrome is a string
+// https://github.com/extend-chrome/jest-chrome/issues/8
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(chrome.runtime as any).id = 'fake-runtime-id';
 
 // Workaround for jsdom not mocking Range.getClientRects()
 // https://github.com/jsdom/jsdom/issues/3729
