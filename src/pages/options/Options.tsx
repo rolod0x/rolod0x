@@ -10,10 +10,12 @@ import AddressesSettings from './AddressesSettings';
 import DisplaySettings from './DisplaySettings';
 import Donate from './Donate';
 import SiteSettings from './SiteSettings';
+import RawOptionsDialog from './RawOptionsDialog';
 
 const Options = () => {
   return (
     <Rolod0xThemeProvider>
+      <RawOptionsDialog />
       <Routes>
         <Route path="/" element={<ResponsiveDrawer />}>
           <Route index element={<AddressesSettings />} />

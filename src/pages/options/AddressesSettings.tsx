@@ -28,6 +28,18 @@ export default function AddressesSettings() {
     getOptions();
   }, [getOptions]);
 
+  useEffect(() => {
+    const handleOptionsReset = () => {
+      getOptions();
+    };
+
+    window.addEventListener('options-reset', handleOptionsReset);
+
+    return () => {
+      window.removeEventListener('options-reset', handleOptionsReset);
+    };
+  }, [getOptions]);
+
   return (
     <Box>
       <Alert severity="warning" variant="outlined" sx={{ borderWidth: 3 }}>
