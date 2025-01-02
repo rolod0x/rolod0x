@@ -76,21 +76,30 @@ possible.
 
 - Update documentation as needed
 - Follow the established code style
+- Follow all best practices below
+
+## Best practices
+
+### General best practices
+
+- Avoid code duplication as much as possible
+- Follow TypeScript best practices
+- Use proper type annotations
+- Document complex logic
+- Follow the principle of least privilege for extension permissions
+
+### Testing best practices
+
 - Write tests for new features and ensure they pass
 - Use React Testing Library for component tests
-- Follow testing best practices:
-  - Test behavior, not implementation
-  - Use meaningful test descriptions
-  - Keep tests isolated
+- Test behavior, not implementation
+- Use meaningful test descriptions
+- Keep tests isolated
 - Don't add imports from vi for the following vitest globals as they're
   imported by default: beforeEach, describe, expect, it, vi
 
-### Best Practices
+### React best practices
 
-1. Follow TypeScript best practices
-2. Use functional components with hooks
-3. Implement proper React error boundaries
-4. Keep React components small and focused
-5. Use proper type annotations
-6. Document complex logic
-7. Follow the principle of least privilege for extension permissions
+- Use functional components with hooks
+- Implement proper React error boundaries
+- Keep React components small and focused
