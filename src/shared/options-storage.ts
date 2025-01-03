@@ -65,11 +65,12 @@ export const DEFAULT_OPTIONS_SERIALIZED: Rolod0xOptionsSerialized = serializeOpt
   DEFAULT_OPTIONS_DESERIALIZED,
 );
 
-const mutateV1ToV2 = (options: Rolod0xOptionsV1): void => {
+const mutateV1ToV2 = (options: Rolod0xOptionsV1): Rolod0xOptionsSerialized => {
   (options as unknown as Rolod0xOptionsSerialized).sections = JSON.stringify([
     labelsToSection(options.labels || ''),
   ]);
   delete options.labels;
+  return options as unknown as Rolod0xOptionsSerialized;
 };
 
 export const migrateToSections = (
@@ -93,10 +94,15 @@ export const migrateToSections = (
   }
 };
 
+const isV1Options = (options: Rolod0xRawOptions): options is Rolod0xOptionsV1 => {
+  return 'labels' in options;
+};
+
 export class DeserializableOptionsSync extends OptionsSync<Rolod0xOptionsSerialized> {
   async getAllDeserialized(): Promise<Rolod0xOptionsDeserialized> {
-    const serialized = await this.getAll();
-    return deserializeOptions(serialized);
+    const raw = await this.getAll();
+    const v2 = isV1Options(raw) ? mutateV1ToV2(raw) : raw;
+    return deserializeOptions(v2);
   }
 
   async setDeserialized(newOptions: Partial<Rolod0xOptionsDeserialized>): Promise<void> {

@@ -160,6 +160,34 @@ describe('options-storage', () => {
       mockSet.mockResolvedValue(undefined);
     });
 
+    it('correctly deserializes V1 options', async () => {
+      const labels = '0xD3159eC8ABb2114812E65A87a5c28DA3841C7FD7 test address';
+      const v1Options: Rolod0xOptionsV1 = {
+        themeName: 'dark',
+        labels,
+        displayLabelFormat: '%n (0x%4l…%4r)',
+        displayGuessFormat: '? %n ? (0x%4l…%4r)',
+      };
+      // Mock what getAll would actually return - a serialized version of the options
+      mockGetAll.mockResolvedValue(v1Options);
+
+      const result = await optionsStorage.getAllDeserialized();
+
+      expect(result).not.toHaveProperty('labels');
+      expect(result).toHaveProperty('sections');
+      expect(result.sections).toHaveLength(1);
+      expect(result.sections[0]).toMatchObject({
+        title: 'Personal addressbook',
+        format: 'rolod0x',
+        source: 'text',
+        labels,
+      });
+      expect(result.sections[0].id).toHaveLength(36); // UUID length
+      expect(result.themeName).toBe('dark');
+      expect(result.displayLabelFormat).toBe('%n (0x%4l…%4r)');
+      expect(result.displayGuessFormat).toBe('? %n ? (0x%4l…%4r)');
+    });
+
     it('correctly serializes sections when setting options', async () => {
       const newOptions: Partial<Rolod0xOptionsDeserialized> = {
         themeName: 'dark',
