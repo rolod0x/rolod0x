@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -6,9 +7,39 @@ import Box from '@mui/material/Box';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Typography from '@mui/material/Typography';
 
+import { useAddressBook } from '@src/shared/hooks/useAddressBook';
+
 import LocalAddressBook from './LocalAddressBook';
 
 export default function AddressesSettings() {
+  const {
+    labels,
+    error,
+    currentLabelsHash,
+    savedLabelsHash,
+    setLabels,
+    setCurrentLabelsHash,
+    handleSave,
+    getOptions,
+    validate,
+  } = useAddressBook();
+
+  useEffect(() => {
+    getOptions();
+  }, [getOptions]);
+
+  useEffect(() => {
+    const handleOptionsReset = () => {
+      getOptions();
+    };
+
+    window.addEventListener('options-reset', handleOptionsReset);
+
+    return () => {
+      window.removeEventListener('options-reset', handleOptionsReset);
+    };
+  }, [getOptions]);
+
   return (
     <Box>
       <Alert severity="warning" variant="outlined" sx={{ borderWidth: 3 }}>
@@ -25,7 +56,17 @@ export default function AddressesSettings() {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <LocalAddressBook />
+          <LocalAddressBook
+            labels={labels}
+            error={error}
+            currentLabelsHash={currentLabelsHash}
+            savedLabelsHash={savedLabelsHash}
+            onLabelsChange={setLabels}
+            onCurrentLabelsHashChange={setCurrentLabelsHash}
+            onSave={handleSave}
+            onGetOptions={getOptions}
+            validate={validate}
+          />
         </AccordionDetails>
       </Accordion>
     </Box>

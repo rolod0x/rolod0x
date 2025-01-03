@@ -7,15 +7,22 @@ In fact, at the moment it can't share your data in any way at all,
 since it doesn't perform any communications with the network.  (See
 [the security policy](../SECURITY.md) for the technical details.)
 
-rolod0x handles the following data:
+## Data storage
 
-## Addresses and labels
+rolod0x stores your settings and addressbook data locally within an
+isolated storage area in the browser reserved for the extension.
 
-The addresses and labels you provide in the settings dialog are stored
-locally within an isolated storage area in the browser reserved for
-the extension.  This data is only used by the extension purely to
-replace those addresses on websites which rolod0x operates on.  The
-replacement happens locally within your browser.
+If you want to see exactly what is being stored, you can view this raw
+data by [going to the extension settings
+page](user-guide.md#reopening) and clicking near to the top left
+corner of the page.
+
+### Addresses and labels
+
+The addresses and labels you provide in the settings dialog are used
+by the extension *purely* to replace those addresses on websites which
+rolod0x operates on.  The replacement happens locally within your
+browser.
 
 In the future, a strictly optional feature is planned for the
 convenience of users who use multiple browsers, to [allow convenient
@@ -26,10 +33,15 @@ that the synchronised data will remain strictly private.
 
 [#6]: https://github.com/rolod0x/rolod0x/issues/6
 
-## Other data
+### Other data
 
-Currently there is no other data.  However it is planned to extend
-rolod0x with some other settings which are not security-sensitive.
+Currently the only other data stored are:
+
+- the colour theme
+- [the two display formats](user-guide.md#display)
+
+However it is planned to extend rolod0x with some other settings which
+are not security-sensitive.
 
 This file will be maintained to reflect any such changes, or any other
 changes to this policy.

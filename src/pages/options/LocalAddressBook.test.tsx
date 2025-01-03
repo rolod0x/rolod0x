@@ -1,9 +1,11 @@
 import { act, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { EditorView } from '@codemirror/view';
+import { useEffect } from 'react';
 
 import Rolod0xThemeProvider from '@src/components/Rolod0xThemeProvider';
 import { optionsStorage } from '@src/shared/options-storage';
+import { useAddressBook } from '@src/shared/hooks/useAddressBook';
 
 import LocalAddressBook from './LocalAddressBook';
 
@@ -15,12 +17,44 @@ vi.mock('@src/shared/options-storage', () => ({
   },
 }));
 
+function LocalAddressBookWrapper() {
+  const {
+    labels,
+    error,
+    currentLabelsHash,
+    savedLabelsHash,
+    setLabels,
+    setCurrentLabelsHash,
+    handleSave,
+    getOptions,
+    validate,
+  } = useAddressBook();
+
+  useEffect(() => {
+    getOptions();
+  }, [getOptions]);
+
+  return (
+    <LocalAddressBook
+      labels={labels}
+      error={error}
+      currentLabelsHash={currentLabelsHash}
+      savedLabelsHash={savedLabelsHash}
+      onLabelsChange={setLabels}
+      onCurrentLabelsHashChange={setCurrentLabelsHash}
+      onSave={handleSave}
+      onGetOptions={getOptions}
+      validate={validate}
+    />
+  );
+}
+
 const renderLocalAddressBook = async () => {
   let container: HTMLElement;
   await act(async () => {
     ({ container } = render(
       <Rolod0xThemeProvider initialTheme="light">
-        <LocalAddressBook />
+        <LocalAddressBookWrapper />
       </Rolod0xThemeProvider>,
     ));
   });

@@ -5,7 +5,11 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { themes, ThemeName } from '@src/shared/theme';
 import { optionsStorage, Rolod0xOptions } from '@src/shared/options-storage';
 
-export const ThemeNameContext = createContext({ themeName: 'light', toggleTheme: () => {} });
+export const ThemeNameContext = createContext({
+  themeName: 'light',
+  toggleTheme: () => {},
+  hydrateTheme: () => {},
+});
 
 interface Props {
   children: ReactNode;
@@ -19,25 +23,26 @@ export default function Rolod0xThemeProvider({ children, initialTheme = null }: 
     await optionsStorage.set({ themeName: newThemeName });
   }, []);
 
+  const hydrateTheme = useCallback(async () => {
+    const options: Rolod0xOptions = await optionsStorage.getAll();
+    setThemeName(options.themeName);
+  }, [setThemeName]);
+
   const toggleTheme = useCallback(() => {
     setThemeName(prevMode => {
       const newMode = prevMode === 'light' ? 'dark' : 'light';
       saveTheme(newMode);
       return newMode;
     });
-  }, [saveTheme, setThemeName]);
+  }, [saveTheme]);
 
   useEffect(() => {
-    async function _getTheme() {
-      const options: Rolod0xOptions = await optionsStorage.getAll();
-      setThemeName(options.themeName);
-    }
-    _getTheme();
-  }, [setThemeName]);
+    hydrateTheme();
+  }, [hydrateTheme]);
 
   return (
     themeName && (
-      <ThemeNameContext.Provider value={{ themeName, toggleTheme }}>
+      <ThemeNameContext.Provider value={{ themeName, toggleTheme, hydrateTheme }}>
         <ThemeProvider theme={themes[themeName]}>
           <CssBaseline enableColorScheme />
           {children}
