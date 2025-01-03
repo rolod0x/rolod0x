@@ -26,7 +26,7 @@
     "devtools": "pnpm react-devtools",
     "dev:firefox": "pnpm build:hmr && (run-p wss build:firefox:watch)",
     "dev:all": "pnpm build:hmr && (run-p wss build:watch build:firefox:watch)",
-    "test": "vitest",
+    "test": "vitest --run",
     "test:watch": "vitest --watch",
     "test:firefox": "pnpm web-ext run -s dist/firefox",
     "commitlint": "commitlint --edit",
