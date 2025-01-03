@@ -17,7 +17,7 @@ import LocalAddressBook from './LocalAddressBook';
 const DEFAULT_SECTION_ID = DEFAULT_OPTIONS_DESERIALIZED.sections[0].id;
 
 function LocalAddressBookWrapper() {
-  return <LocalAddressBook sectionId={DEFAULT_SECTION_ID} />;
+  return <LocalAddressBook sectionId={DEFAULT_SECTION_ID} index={0} />;
 }
 
 const renderLocalAddressBook = async () => {

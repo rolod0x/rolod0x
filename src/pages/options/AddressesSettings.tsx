@@ -4,8 +4,10 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Typography from '@mui/material/Typography';
+import { v4 as uuidv4 } from 'uuid';
 
 import { optionsStorage, Rolod0xAddressBookSection } from '@src/shared/options-storage';
 
@@ -18,6 +20,19 @@ export default function AddressesSettings() {
     const options = await optionsStorage.getAllDeserialized();
     setSections(options.sections);
   }, []);
+
+  const handleAddSection = useCallback(async () => {
+    const newSection: Rolod0xAddressBookSection = {
+      id: uuidv4(),
+      title: 'New Section',
+      format: 'rolod0x',
+      source: 'text',
+      labels: '',
+    };
+    const updatedSections = [...sections, newSection];
+    await optionsStorage.setDeserialized({ sections: updatedSections });
+    setSections(updatedSections);
+  }, [sections]);
 
   useEffect(() => {
     getOptions();
@@ -41,7 +56,7 @@ export default function AddressesSettings() {
         After changing entries in the address book, you may have to reload pages for the changes to
         take effect.
       </Alert>
-      {sections.map(section => (
+      {sections.map((section, index) => (
         <Accordion key={section.id} defaultExpanded={true}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -52,10 +67,15 @@ export default function AddressesSettings() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <LocalAddressBook sectionId={section.id} />
+            <LocalAddressBook sectionId={section.id} index={index} />
           </AccordionDetails>
         </Accordion>
       ))}
+      <Box sx={{ mt: 2, mb: 2 }}>
+        <Button variant="contained" onClick={handleAddSection}>
+          Add New Section
+        </Button>
+      </Box>
     </Box>
   );
 }

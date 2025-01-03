@@ -19,9 +19,10 @@ import '@pages/options/LocalAddressBook.css';
 
 interface LocalAddressBookProps {
   sectionId: string;
+  index: number;
 }
 
-export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
+export default function LocalAddressBook({ sectionId, index }: LocalAddressBookProps) {
   const {
     labels,
     error,
@@ -75,19 +76,22 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
   return (
     <Box>
       <Stack direction="row" justifyContent="space-between" alignItems="flex-end" sx={{ pb: 1 }}>
-        <Box>
-          <Typography>
-            Enter your address labels here, one on each line. Each entry should look something like:
-          </Typography>
-          <Box p={2}>
-            <StyledCode>0xaddress Label for address</StyledCode>
+        {index === 0 && (
+          <Box>
+            <Typography>
+              Enter your address labels here, one on each line. Each entry should look something
+              like:
+            </Typography>
+            <Box p={2}>
+              <StyledCode>0xaddress Label for address</StyledCode>
+            </Box>
+            <Typography>
+              You can optionally add{' '}
+              <StyledCode className="example-comment">{'//'} a comment</StyledCode> after the
+              address to provide more information.
+            </Typography>
           </Box>
-          <Typography>
-            You can optionally add{' '}
-            <StyledCode className="example-comment">{'//'} a comment</StyledCode> after the address
-            to provide more information.
-          </Typography>
-        </Box>
+        )}
         <Box>
           <Button
             variant="contained"
