@@ -147,10 +147,12 @@ export class DeserializableOptionsSync extends OptionsSync<Rolod0xOptionsSeriali
     return await this.getAll();
   }
 
-  // Override base class method to maintain type compatibility
-  async set(newOptions: Partial<Rolod0xOptionsSerialized>): Promise<void> {
-    return super.set(newOptions);
-  }
+  // FIXME: Why is this needed?  Previous comment was:
+  // "Override base class method to maintain type compatibility"
+  // but this isn't clear.
+  // async set(newOptions: Partial<Rolod0xRawOptions>): Promise<void> {
+  //   return super.set(newOptions);
+  // }
 }
 
 export const optionsStorage = new DeserializableOptionsSync({
