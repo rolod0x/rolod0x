@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD013 MD033 MD041 -->
 <div align="center">
 <h1>
 <img src="./docs/images/docs-header.png" alt="rolod0x: Your free private onchain address book" />
@@ -6,12 +7,12 @@
 
 <!-- auto-remove-section-for-jekyll -->
 <p align="center">
-<a href="https://github.com/rolod0x/rolod0x/releases/" alt="GitHub release"><img src="https://img.shields.io/github/release/rolod0x/rolod0x.svg" /></a>
-<a href="https://github.com/rolod0x/rolod0x/commit/" alt="GitHub commits"><img src="https://img.shields.io/github/commits-since/rolod0x/rolod0x/latest.svg" /></a>
+<a href="https://github.com/rolod0x/rolod0x/releases/" alt="GitHub release"><img src="https://img.shields.io/github/release/rolod0x/rolod0x.svg" alt="Release badge" /></a>
+<a href="https://github.com/rolod0x/rolod0x/commit/" alt="GitHub commits"><img src="https://img.shields.io/github/commits-since/rolod0x/rolod0x/latest.svg" alt="Commits badge" /></a>
 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/rolod0x/rolod0x" />
-<a href="https://react.dev/"><img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" /></a>
-<a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=typescript&logoColor=white" /></a>
-<a href="https://vitejs.dev/"><img src="https://badges.aleen42.com/src/vitejs.svg" /></a>
+<a href="https://react.dev/"><img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React badge" /></a>
+<a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="Typescript badge" /></a>
+<a href="https://vitejs.dev/"><img src="https://badges.aleen42.com/src/vitejs.svg" alt="Vite.js badge" /></a>
 <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://github.com/rolod0x/rolod0xFactions&count_bg=%23#222222&title_bg=%23#454545&title=😀&edge_flat=true" alt="hits"/>
 <br />
 <img alt="Tests" src="https://github.com/rolod0x/rolod0x/actions/workflows/test.yml/badge.svg" />
@@ -173,7 +174,7 @@ extremely welcome!
 
 ## Star History <a name="star-history"></a>
 
-<a href="https://star-history.com/#rolod0x/rolod0x&Date" alt="Star History Chart"><img src="https://api.star-history.com/svg?repos=rolod0x/rolod0x&type=Date" /></a>
+<a href="https://star-history.com/#rolod0x/rolod0x&Date"><img src="https://api.star-history.com/svg?repos=rolod0x/rolod0x&type=Date" alt="GitHub star history chart /></a>
 
 ## Thanks <a name="thanks"></a>
 

@@ -25,5 +25,5 @@
       "virtual:reload-on-update-in-view": ["./src/global.d.ts"],
     },
   },
-  "include": ["src", "utils", "vite.config.ts", "node_modules/@types"],
+  "include": ["src", "utils", "test-utils", "vite.config.ts", "node_modules/@types"],
 }

@@ -139,6 +139,7 @@ const manifest = {
         'src/pages/content/contextMenu/index.html',
         'assets/js/*.js',
         'assets/css/*.css',
+        '**/*.js.map',
         'icon-128.png',
         'icon-104x100-no-bg.png',
         'icon-38.png',

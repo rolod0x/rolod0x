@@ -243,6 +243,9 @@ importers:
       vitest:
         specifier: ^2.1.8
         version: 2.1.8(@types/node@22.10.2)(jsdom@25.0.1)(sass@1.83.0)
+      vitest-chrome:
+        specifier: github:aspiers/vitest-chrome#fix-esm
+        version: https://codeload.github.com/aspiers/vitest-chrome/tar.gz/68bb7fb64559b0f391d687b4c73bdd7ee16194ee
       web-ext:
         specifier: ^8.3.0
         version: 8.3.0(node-fetch@3.3.2)
@@ -395,9 +398,6 @@ packages:
 
   '@codemirror/lang-javascript@6.2.2':
     resolution: {integrity: sha512-VGQfY+FCc285AhWuwjYxQyUQcYurWlxdKYT4bqwr3Twnd5wP5WSeu52t4tvvuWmljT4EmgEgZCqSieokhtY8hg==}
-
-  '@codemirror/language@6.10.2':
-    resolution: {integrity: sha512-kgbTYTo0Au6dCSc/TFy7fK3fpJmgHDv1sG1KNQKJXVi+xBTEeBPY/M30YXiU6mMXeH+YIDLsbrT4ZwNRdtF+SA==}
 
   '@codemirror/language@6.10.7':
     resolution: {integrity: sha512-aOswhVOLYhMNeqykt4P7+ukQSpGL0ynZYaEyFDVHE7fl2xgluU3yuE9MdgYNfw6EmaNidoFMIQ2iTh1ADrnT6A==}
@@ -1335,6 +1335,9 @@ packages:
 
   '@types/cacheable-request@6.0.3':
     resolution: {integrity: sha512-IQ3EbTzGxIigb1I3qPZc1rWJnH0BmSKv5QYTalEwweFvyBDLSAe24zP0le/hyi7ecGfZVlIVAg4BZqb8WBwKqw==}
+
+  '@types/chrome@0.0.114':
+    resolution: {integrity: sha512-i7qRr74IrxHtbnrZSKUuP5Uvd5EOKwlwJq/yp7+yTPihOXnPhNQO4Z5bqb1XTnrjdbUKEJicaVVbhcgtRijmLA==}
 
   '@types/chrome@0.0.287':
     resolution: {integrity: sha512-wWhBNPNXZHwycHKNYnexUcpSbrihVZu++0rdp6GEk5ZgAglenLx+RwdEouh6FrHS0XQiOxSd62yaujM1OoQlZQ==}
@@ -4814,6 +4817,10 @@ packages:
       terser:
         optional: true
 
+  vitest-chrome@https://codeload.github.com/aspiers/vitest-chrome/tar.gz/68bb7fb64559b0f391d687b4c73bdd7ee16194ee:
+    resolution: {tarball: https://codeload.github.com/aspiers/vitest-chrome/tar.gz/68bb7fb64559b0f391d687b4c73bdd7ee16194ee}
+    version: 0.1.0
+
   vitest@2.1.8:
     resolution: {integrity: sha512-1vBKTZskHw/aosXqQUlVWWlGUxSJR8YtiyZDJAFeW2kPAeX6S3Sool0mjspO+kXLuxVWlEDDowBAeqeAQefqLQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -5284,13 +5291,6 @@ snapshots:
       '@codemirror/view': 6.35.3
       '@lezer/common': 1.2.1
 
-  '@codemirror/autocomplete@6.16.2(@codemirror/language@6.10.2)(@codemirror/state@6.5.0)(@codemirror/view@6.35.3)(@lezer/common@1.2.1)':
-    dependencies:
-      '@codemirror/language': 6.10.2
-      '@codemirror/state': 6.5.0
-      '@codemirror/view': 6.35.3
-      '@lezer/common': 1.2.1
-
   '@codemirror/autocomplete@6.16.2(@codemirror/language@6.10.7)(@codemirror/state@6.5.0)(@codemirror/view@6.35.3)(@lezer/common@1.2.1)':
     dependencies:
       '@codemirror/language': 6.10.7
@@ -5314,15 +5314,6 @@ snapshots:
       '@codemirror/view': 6.35.3
       '@lezer/common': 1.2.1
       '@lezer/javascript': 1.4.16
-
-  '@codemirror/language@6.10.2':
-    dependencies:
-      '@codemirror/state': 6.5.0
-      '@codemirror/view': 6.35.3
-      '@lezer/common': 1.2.3
-      '@lezer/highlight': 1.2.1
-      '@lezer/lr': 1.4.1
-      style-mod: 4.1.2
 
   '@codemirror/language@6.10.7':
     dependencies:
@@ -5357,7 +5348,7 @@ snapshots:
 
   '@codemirror/theme-one-dark@6.1.2':
     dependencies:
-      '@codemirror/language': 6.10.2
+      '@codemirror/language': 6.10.7
       '@codemirror/state': 6.5.0
       '@codemirror/view': 6.35.3
       '@lezer/highlight': 1.2.1
@@ -6171,6 +6162,11 @@ snapshots:
       '@types/node': 22.10.2
       '@types/responselike': 1.0.3
 
+  '@types/chrome@0.0.114':
+    dependencies:
+      '@types/filesystem': 0.0.36
+      '@types/har-format': 1.2.15
+
   '@types/chrome@0.0.287':
     dependencies:
       '@types/filesystem': 0.0.36
@@ -6923,9 +6919,9 @@ snapshots:
 
   codemirror@6.0.1(@lezer/common@1.2.1):
     dependencies:
-      '@codemirror/autocomplete': 6.16.2(@codemirror/language@6.10.2)(@codemirror/state@6.5.0)(@codemirror/view@6.35.3)(@lezer/common@1.2.1)
+      '@codemirror/autocomplete': 6.16.2(@codemirror/language@6.10.7)(@codemirror/state@6.5.0)(@codemirror/view@6.35.3)(@lezer/common@1.2.1)
       '@codemirror/commands': 6.7.1
-      '@codemirror/language': 6.10.2
+      '@codemirror/language': 6.10.7
       '@codemirror/lint': 6.8.0
       '@codemirror/search': 6.5.6
       '@codemirror/state': 6.5.0
@@ -9983,6 +9979,10 @@ snapshots:
       '@types/node': 22.10.2
       fsevents: 2.3.3
       sass: 1.83.0
+
+  vitest-chrome@https://codeload.github.com/aspiers/vitest-chrome/tar.gz/68bb7fb64559b0f391d687b4c73bdd7ee16194ee:
+    dependencies:
+      '@types/chrome': 0.0.114
 
   vitest@2.1.8(@types/node@22.10.2)(jsdom@25.0.1)(sass@1.83.0):
     dependencies:

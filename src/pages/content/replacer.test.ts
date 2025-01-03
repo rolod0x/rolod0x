@@ -1,11 +1,11 @@
 import { screen } from '@testing-library/dom';
 import '@testing-library/jest-dom';
 import dedent from 'dedent';
+import { chrome as mockBrowser } from 'vitest-chrome';
 
 import { Formatter } from '@src/shared/formatter';
 import { Mapper } from '@src/shared/mapper';
 import { Parser } from '@src/shared/parser';
-import * as mockBrowser from '@src/shared/__mocks__/browser';
 
 import { parentAddress, replaceInNodeAndCount } from './replacer';
 
