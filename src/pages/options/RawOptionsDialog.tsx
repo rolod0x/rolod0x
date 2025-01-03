@@ -110,7 +110,7 @@ const RawOptionsDialog = () => {
             data={rawOptions}
             theme={jsonTreeTheme}
             invertTheme={theme.palette.mode === 'light'}
-            shouldExpandNodeInitially={(_keyPath, _data, level) => level < 2}
+            shouldExpandNodeInitially={(_keyPath, _data, level) => level < 3}
           />
         </DialogContent>
       </Dialog>
