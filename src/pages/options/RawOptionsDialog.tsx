@@ -1,4 +1,12 @@
-import { Dialog, DialogTitle, DialogContent, Box, Typography, Button } from '@mui/material';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Box,
+  Typography,
+  Button,
+} from '@mui/material';
 import WarningIcon from '@mui/icons-material/Warning';
 import { useContext, useState } from 'react';
 import { JSONTree } from 'react-json-tree';
@@ -12,6 +20,7 @@ const RawOptionsDialog = () => {
   const [rawOptions, setRawOptions] = useState<object>({});
   const theme = useTheme();
   const { hydrateTheme } = useContext(ThemeNameContext);
+  const [showConfirmReset, setShowConfirmReset] = useState(false);
 
   const handleCornerClick = async () => {
     const options = await optionsStorage.getAll();
@@ -33,6 +42,10 @@ const RawOptionsDialog = () => {
     // here but not for updating the theme - we'd probably be better
     // off using Redux
     window.dispatchEvent(new CustomEvent('options-reset', { detail: options }));
+  };
+
+  const handleResetClick = () => {
+    setShowConfirmReset(true);
   };
 
   // Theme that matches MUI dark/light mode
@@ -79,16 +92,21 @@ const RawOptionsDialog = () => {
         <DialogTitle>Raw options</DialogTitle>
         <DialogContent>
           <Typography variant="body1" sx={{ mb: 2 }}>
-            This hidden dialog shows the raw options data stored in the extension. You can view it
-            by clicking near the top left corner of the settings page.
+            This hidden dialog shows the raw options data stored in the extension. You can come back
+            to it any time by clicking near the top left corner of the settings page.
           </Typography>
-          <Button
-            variant="contained"
-            color="warning"
-            startIcon={<WarningIcon />}
-            onClick={resetToDefaults}>
-            Reset to defaults
-          </Button>
+          <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
+            <Button
+              variant="contained"
+              color="warning"
+              startIcon={<WarningIcon />}
+              onClick={handleResetClick}>
+              Reset to defaults
+            </Button>
+            <Button variant="contained" onClick={() => setShowRawOptions(false)}>
+              Close
+            </Button>
+          </Box>
           <JSONTree
             data={rawOptions}
             theme={jsonTreeTheme}
@@ -96,6 +114,27 @@ const RawOptionsDialog = () => {
             shouldExpandNodeInitially={(_keyPath, _data, level) => level < 2}
           />
         </DialogContent>
+      </Dialog>
+      <Dialog open={showConfirmReset} onClose={() => setShowConfirmReset(false)}>
+        <DialogTitle>Confirm Reset</DialogTitle>
+        <DialogContent>
+          <Typography>
+            Are you sure you want to reset all options to their default values? This cannot be
+            undone.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setShowConfirmReset(false)}>Cancel</Button>
+          <Button
+            color="warning"
+            variant="contained"
+            onClick={() => {
+              setShowConfirmReset(false);
+              resetToDefaults();
+            }}>
+            Reset
+          </Button>
+        </DialogActions>
       </Dialog>
     </>
   );
