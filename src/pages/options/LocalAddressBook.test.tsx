@@ -1,45 +1,23 @@
 import { act, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { EditorView } from '@codemirror/view';
-import { useEffect } from 'react';
 
-import { mockGetAll, mockSet, resetOptionsMocks } from '@root/test-utils/mocks/options-storage';
+import {
+  mockGetAll,
+  mockSet,
+  mockGetSection,
+  resetOptionsMocks,
+} from '@root/test-utils/mocks/options-storage';
 import Rolod0xThemeProvider from '@src/components/Rolod0xThemeProvider';
-import { useAddressBook } from '@src/shared/hooks/useAddressBook';
-import { DEFAULT_OPTIONS_DESERIALIZED, labelsToSection } from '@src/shared/options-storage';
+import { DEFAULT_OPTIONS_DESERIALIZED } from '@src/shared/options-storage';
 
 import LocalAddressBook from './LocalAddressBook';
 
+// Mock the uuid used for the default section
+const DEFAULT_SECTION_ID = DEFAULT_OPTIONS_DESERIALIZED.sections[0].id;
+
 function LocalAddressBookWrapper() {
-  const {
-    labels,
-    error,
-    currentLabelsHash,
-    savedLabelsHash,
-    setLabels,
-    setCurrentLabelsHash,
-    handleSave,
-    getOptions,
-    validate,
-  } = useAddressBook();
-
-  useEffect(() => {
-    getOptions();
-  }, [getOptions]);
-
-  return (
-    <LocalAddressBook
-      labels={labels}
-      error={error}
-      currentLabelsHash={currentLabelsHash}
-      savedLabelsHash={savedLabelsHash}
-      onLabelsChange={setLabels}
-      onCurrentLabelsHashChange={setCurrentLabelsHash}
-      onSave={handleSave}
-      onGetOptions={getOptions}
-      validate={validate}
-    />
-  );
+  return <LocalAddressBook sectionId={DEFAULT_SECTION_ID} />;
 }
 
 const renderLocalAddressBook = async () => {
@@ -199,11 +177,16 @@ describe('LocalAddressBook', () => {
   it('should discard changes after clicking the Discard button', async () => {
     // Set up initial storage state
     const initialLabels = '0x1234567890123456789012345678901234567890 Initial Address';
-    const initialSection = labelsToSection(initialLabels);
+    // We can't use labelsToSection here because it creates a new section with a new id,
+    // and the only delta from the defaults we want in order to test discarding is the labels.
+    // The section id needs to remain constant within the component under test.
+    const initialSection = DEFAULT_OPTIONS_DESERIALIZED.sections[0];
+    initialSection.labels = initialLabels;
     mockGetAll.mockResolvedValue({
       ...DEFAULT_OPTIONS_DESERIALIZED,
       sections: JSON.stringify([initialSection]),
     });
+    mockGetSection.mockResolvedValue(initialSection);
 
     await renderLocalAddressBook();
 

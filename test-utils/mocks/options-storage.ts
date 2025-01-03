@@ -8,6 +8,8 @@ const freshSerializedOptions = () => {
 export const mockGetAll = vi.fn();
 export const mockSet = vi.fn();
 export const mockSetAll = vi.fn();
+export const mockGetSection = vi.fn();
+export const mockSetSection = vi.fn();
 
 // Mock for webext-options-sync
 vi.mock('webext-options-sync', () => {
@@ -32,6 +34,14 @@ vi.mock('webext-options-sync', () => {
       async setAll(newOptions) {
         return mockSetAll(newOptions);
       }
+
+      async getSection(sectionId) {
+        return mockGetSection(sectionId);
+      }
+
+      async setSection(sectionId, section) {
+        return mockSetSection(sectionId, section);
+      }
     },
   };
 });
@@ -41,9 +51,12 @@ export const resetOptionsMocks = () => {
   mockGetAll.mockClear();
   mockSet.mockClear();
   mockSetAll.mockClear();
+  mockGetSection.mockClear();
+  mockSetSection.mockClear();
 
   // Reset to default values
   mockGetAll.mockResolvedValue(freshSerializedOptions());
+  mockGetSection.mockResolvedValue(DEFAULT_OPTIONS_SERIALIZED.sections[0]);
 };
 
 resetOptionsMocks();

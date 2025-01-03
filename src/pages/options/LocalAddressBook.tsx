@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Box from '@mui/material/Box';
@@ -10,51 +10,63 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import * as murmurhash from 'murmurhash';
 
+import { useAddressBook } from '@src/shared/hooks/useAddressBook';
+
 import CodeMirrorTextAddresses from './CodeMirrorTextAddresses';
 import StyledCode from './StyledCode';
 
 import '@pages/options/LocalAddressBook.css';
 
 interface LocalAddressBookProps {
-  labels: string;
-  error: string | null;
-  currentLabelsHash: number;
-  savedLabelsHash: number;
-  onLabelsChange: (labels: string) => void;
-  onCurrentLabelsHashChange: (hash: number) => void;
-  onSave: () => Promise<void>;
-  onGetOptions: () => Promise<void>;
-  validate: (labels: string) => void;
+  sectionId: string;
 }
 
-export default function LocalAddressBook({
-  labels,
-  error,
-  currentLabelsHash,
-  savedLabelsHash,
-  onLabelsChange,
-  onCurrentLabelsHashChange,
-  onSave,
-  onGetOptions,
-  validate,
-}: LocalAddressBookProps) {
+export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
+  const {
+    labels,
+    error,
+    currentLabelsHash,
+    savedLabelsHash,
+    setLabels,
+    setCurrentLabelsHash,
+    handleSave,
+    getSection,
+    validate,
+  } = useAddressBook(sectionId);
+
+  useEffect(() => {
+    getSection();
+  }, [getSection]);
+
+  useEffect(() => {
+    const handleOptionsReset = () => {
+      getSection();
+    };
+
+    window.addEventListener('options-reset', handleOptionsReset);
+
+    return () => {
+      window.removeEventListener('options-reset', handleOptionsReset);
+    };
+  }, [getSection]);
+
   const handleLabelsChange = useCallback(
     async (newValue: string) => {
-      onLabelsChange(newValue);
+      setLabels(newValue);
       const hash = murmurhash.v3(newValue);
-      onCurrentLabelsHashChange(hash);
+      setCurrentLabelsHash(hash);
       validate(newValue);
     },
-    [onLabelsChange, onCurrentLabelsHashChange, validate],
+    [setLabels, setCurrentLabelsHash, validate],
   );
 
   const handlePaste = useCallback(async () => {
     const clipboardContents = await window.navigator.clipboard.readText();
     const hash = murmurhash.v3(clipboardContents);
-    onLabelsChange(clipboardContents);
-    onCurrentLabelsHashChange(hash);
+    setLabels(clipboardContents);
+    setCurrentLabelsHash(hash);
     validate(clipboardContents);
-  }, [onLabelsChange, onCurrentLabelsHashChange, validate]);
+  }, [setLabels, setCurrentLabelsHash, validate]);
 
   const labelsChanged = currentLabelsHash !== savedLabelsHash;
   const canRevert = labelsChanged;
@@ -86,13 +98,17 @@ export default function LocalAddressBook({
           </Button>
           <Button
             variant="contained"
-            onClick={onGetOptions}
+            onClick={getSection}
             startIcon={<RestorePageIcon />}
             disabled={!canRevert}
             sx={{ mr: 1 }}>
             Discard changes
           </Button>
-          <Button variant="contained" onClick={onSave} startIcon={<SaveIcon />} disabled={!canSave}>
+          <Button
+            variant="contained"
+            onClick={handleSave}
+            startIcon={<SaveIcon />}
+            disabled={!canSave}>
             Save
           </Button>
         </Box>

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -7,22 +7,17 @@ import Box from '@mui/material/Box';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Typography from '@mui/material/Typography';
 
-import { useAddressBook } from '@src/shared/hooks/useAddressBook';
+import { optionsStorage, Rolod0xAddressBookSection } from '@src/shared/options-storage';
 
 import LocalAddressBook from './LocalAddressBook';
 
 export default function AddressesSettings() {
-  const {
-    labels,
-    error,
-    currentLabelsHash,
-    savedLabelsHash,
-    setLabels,
-    setCurrentLabelsHash,
-    handleSave,
-    getOptions,
-    validate,
-  } = useAddressBook();
+  const [sections, setSections] = useState<Rolod0xAddressBookSection[]>([]);
+
+  const getOptions = useCallback(async () => {
+    const options = await optionsStorage.getAllDeserialized();
+    setSections(options.sections);
+  }, []);
 
   useEffect(() => {
     getOptions();
@@ -46,29 +41,21 @@ export default function AddressesSettings() {
         After changing entries in the address book, you may have to reload pages for the changes to
         take effect.
       </Alert>
-      <Accordion defaultExpanded={true}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header">
-          <Typography variant="h4" component="h2">
-            Local address book
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <LocalAddressBook
-            labels={labels}
-            error={error}
-            currentLabelsHash={currentLabelsHash}
-            savedLabelsHash={savedLabelsHash}
-            onLabelsChange={setLabels}
-            onCurrentLabelsHashChange={setCurrentLabelsHash}
-            onSave={handleSave}
-            onGetOptions={getOptions}
-            validate={validate}
-          />
-        </AccordionDetails>
-      </Accordion>
+      {sections.map(section => (
+        <Accordion key={section.id} defaultExpanded={true}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls={`panel-${section.id}-content`}
+            id={`panel-${section.id}-header`}>
+            <Typography variant="h4" component="h2" title="Click to expand/collapse">
+              {section.title}
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <LocalAddressBook sectionId={section.id} />
+          </AccordionDetails>
+        </Accordion>
+      ))}
     </Box>
   );
 }

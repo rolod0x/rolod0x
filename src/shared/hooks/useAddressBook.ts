@@ -2,10 +2,11 @@ import { useCallback, useState } from 'react';
 import * as murmurhash from 'murmurhash';
 
 import { Parser, ParseError } from '@src/shared/parser';
-import { optionsStorage } from '@src/shared/options-storage';
+import { optionsStorage, Rolod0xAddressBookSection } from '@src/shared/options-storage';
 
-export function useAddressBook() {
+export function useAddressBook(sectionId: string) {
   const [labels, setLabels] = useState('');
+  const [title, setTitle] = useState('');
   const [currentLabelsHash, setCurrentLabelsHash] = useState(murmurhash.v3(''));
   const [savedLabelsHash, setSavedLabelsHash] = useState(murmurhash.v3(''));
   const [error, setError] = useState<string | null>();
@@ -35,36 +36,44 @@ export function useAddressBook() {
   );
 
   const handleSave = useCallback(async () => {
-    const section = await optionsStorage.getSection();
-    const uuid = section.id;
-    await optionsStorage.setSection(uuid, { labels });
+    const updatedSection: Rolod0xAddressBookSection = {
+      id: sectionId,
+      title,
+      format: 'rolod0x',
+      source: 'text',
+      labels,
+    };
+    await optionsStorage.setSection(sectionId, updatedSection);
     const hash = murmurhash.v3(labels);
     setSavedLabelsHash(hash);
     validate(labels);
-  }, [labels, validate]);
+  }, [sectionId, title, labels, validate]);
 
-  const getOptions = useCallback(async () => {
-    const options = await optionsStorage.getSection();
-    if (!options) {
-      throw new Error('No options found');
+  const getSection = useCallback(async () => {
+    const section = await optionsStorage.getSection(sectionId);
+    if (!section) {
+      throw new Error(`Section with id ${sectionId} not found`);
     }
-    setLabels(options.labels);
-    const hash = murmurhash.v3(options.labels);
+    setLabels(section.labels);
+    setTitle(section.title);
+    const hash = murmurhash.v3(section.labels);
     console.log(`Hydrated options from storage (hash ${hash})`);
     setCurrentLabelsHash(hash);
     setSavedLabelsHash(hash);
-    validate(options.labels);
-  }, [setLabels, validate]);
+    validate(section.labels);
+  }, [sectionId, validate]);
 
   return {
     labels,
+    title,
     error,
     currentLabelsHash,
     savedLabelsHash,
     setLabels,
+    setTitle,
     setCurrentLabelsHash,
     handleSave,
-    getOptions,
+    getSection,
     validate,
   };
 }
