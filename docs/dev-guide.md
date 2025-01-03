@@ -4,7 +4,7 @@
 - [Building from source](#build)
 - [Debugging with React devtools](#devtools)
 - [Linting](#lint)
-- [Unit tests](#test)
+- [Test suite](#test)
 - [Website](#website)
 
 ## How to contribute <a name="workflows"></a>
@@ -104,7 +104,7 @@ To automatically apply linting fixes, run `pnpm lint:eslint:fix`
 and `pnpm lint:prettier:fix`, or just run `pnpm lint:fix` which
 does both of the other two in parallel.
 
-## Unit tests <a name="test"></a>
+## Test suite <a name="test"></a>
 
 You can run the test suite once via `pnpm test`; however as with linting
 it is recommended instead to run `pnpm test:watch` which will automatically
