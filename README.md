@@ -22,21 +22,21 @@
 <!-- /auto-remove-section-for-jekyll -->
 
 <!-- auto-replace-line-for-jekyll: {: .text-center} -->
-[Overview](#overview) •
-[Features](#features) •
-[Video](https://youtu.be/AoWeASmnrPc) •
-[Installation](./docs/install.md) •
-[Usage](./docs/user-manual.md) •
-[Telegram](https://t.me/rolod0x) •
-[FAQ](./docs/FAQ.md) •
-[Donations](#donations) •
-[Support](./CONTRIBUTING.md) •
-[Security](./SECURITY.md) •
-[Privacy](./docs/privacy-policy.md) •
-[Roadmap](#roadmap) •
-[Development](./docs/dev-guide.md) •
-[Star History](#star-history) •
-[Thanks](#thanks) •
+[Overview](#overview)&nbsp;•
+[Features](#features)&nbsp;•
+[Video](https://youtu.be/AoWeASmnrPc)&nbsp;•
+[Installation](./docs/install.md)&nbsp;•
+[Usage](./docs/user-manual.md)&nbsp;•
+[Telegram](https://t.me/rolod0x)&nbsp;•
+[FAQ](./docs/FAQ.md)&nbsp;•
+[Donations](#donations)&nbsp;•
+[Support](./CONTRIBUTING.md)&nbsp;•
+[Security](./SECURITY.md)&nbsp;•
+[Privacy](./docs/privacy-policy.md)&nbsp;•
+[Roadmap](#roadmap)&nbsp;•
+[Development](./docs/dev-guide.md)&nbsp;•
+[Star History](#star-history)&nbsp;•
+[Thanks](#thanks)&nbsp;•
 [License](#license)
 
 <p align="center">
