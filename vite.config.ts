@@ -118,6 +118,11 @@ const vitestConfig = defineVitestConfig({
     // alias: {
     //   'webextension-polyfill': resolve('./src/shared/__mocks__/browser.ts'),
     // },
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      exclude: ['node_modules/**', 'test-utils/**', '**/*.test.ts', '**/*.test.tsx', 'utils/**'],
+    },
   },
 });
 
