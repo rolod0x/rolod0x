@@ -175,6 +175,7 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
             </Box>
             <Box>
               <Button
+                className="section-paste-button"
                 variant="contained"
                 onClick={handlePaste}
                 startIcon={<ContentPasteIcon />}
@@ -183,6 +184,7 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
                 Paste
               </Button>
               <Button
+                className="section-revert-button"
                 variant="contained"
                 onClick={handleRevert}
                 startIcon={<RestorePageIcon />}
@@ -192,6 +194,7 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
                 Discard changes
               </Button>
               <Button
+                className="section-save-button"
                 variant="contained"
                 onClick={handleSaveClick}
                 startIcon={<SaveIcon />}
@@ -201,6 +204,7 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
                 Save
               </Button>
               <Button
+                className="section-delete-button"
                 variant="contained"
                 onClick={handleDeleteClick}
                 startIcon={<DeleteIcon />}

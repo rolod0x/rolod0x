@@ -1,4 +1,3 @@
-import dedent from 'dedent';
 import { useContext, useMemo } from 'react';
 // darken is from:
 // https://github.com/mui/material-ui/blob/48251abb01cac73ee9924feb804286f97c2e45ff/apps/zero-runtime-vite-app/src/utils/colorManipulator.js#L270
@@ -37,16 +36,12 @@ export default function CodeMirrorTextAddresses(props: Props) {
     }
   `;
 
-  const placeholder = dedent`
-    // Enter your address labels here, one on each line.
-    // Each entry should look something like:
-    0x6B175474E89094C44Da98b954EedeAC495271d0F DAI    // Dai Stablecoin
-    // where "DAI" is the label and everything after // is a comment
-  `;
+  const placeholder = '0x6B175474E89094C44Da98b954EedeAC495271d0F DAI    // Dai Stablecoin';
 
   return (
     <CodeMirror
       data-testid="codeMirror-editor"
+      data-joyride-target="codeMirror-editor"
       value={props.value}
       onChange={props.onChange}
       minWidth="800px"
