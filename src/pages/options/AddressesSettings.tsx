@@ -91,7 +91,7 @@ export default function AddressesSettings() {
         severity="info"
         sx={{
           borderWidth: 3,
-          mb: 2,
+          mb: 1,
           '& .MuiAlert-icon': {
             marginTop: '4px',
           },
@@ -115,7 +115,7 @@ export default function AddressesSettings() {
         </Link>
         .
       </Alert>
-      <Alert severity="warning" variant="outlined" sx={{ borderWidth: 3 }}>
+      <Alert severity="warning" variant="outlined" sx={{ borderWidth: 3, mb: 3 }}>
         After changing entries in the address book, you may have to reload pages for the changes to
         take effect.
       </Alert>
