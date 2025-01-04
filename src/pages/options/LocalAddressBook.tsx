@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Box from '@mui/material/Box';
@@ -51,12 +51,23 @@ export default function LocalAddressBook({ sectionId, index }: LocalAddressBookP
     };
   }, [getSection]);
 
+  const validateTimeoutRef = useRef<NodeJS.Timeout>();
+
   const handleLabelsChange = useCallback(
     async (newValue: string) => {
       setLabels(newValue);
       const hash = murmurhash.v3(newValue);
       setCurrentLabelsHash(hash);
-      validate(newValue);
+
+      // Clear any pending validation
+      if (validateTimeoutRef.current) {
+        clearTimeout(validateTimeoutRef.current);
+      }
+
+      // Set new validation timeout
+      validateTimeoutRef.current = setTimeout(() => {
+        validate(newValue);
+      }, 1000);
     },
     [setLabels, setCurrentLabelsHash, validate],
   );
