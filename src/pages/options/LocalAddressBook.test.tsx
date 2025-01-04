@@ -79,14 +79,8 @@ describe('LocalAddressBook', () => {
 
     // Wait for the text to be visible
     await waitFor(() => {
-      expect(
-        screen.getByText(
-          'Enter your address labels here, one on each line. Each entry should look something like:',
-        ),
-      ).toBeInTheDocument();
     });
 
-    expect(screen.getByText('0xaddress Label for address')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Paste' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Discard changes' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Save' })).toBeInTheDocument();

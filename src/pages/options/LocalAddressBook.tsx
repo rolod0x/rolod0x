@@ -7,13 +7,11 @@ import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import RestorePageIcon from '@mui/icons-material/RestorePage';
 import SaveIcon from '@mui/icons-material/Save';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
 import * as murmurhash from 'murmurhash';
 
 import { useAddressBook } from '@src/shared/hooks/useAddressBook';
 
 import CodeMirrorTextAddresses from './CodeMirrorTextAddresses';
-import StyledCode from './StyledCode';
 
 import '@pages/options/LocalAddressBook.css';
 
@@ -22,7 +20,7 @@ interface LocalAddressBookProps {
   index: number;
 }
 
-export default function LocalAddressBook({ sectionId, index }: LocalAddressBookProps) {
+export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
   const {
     labels,
     error,
@@ -87,22 +85,6 @@ export default function LocalAddressBook({ sectionId, index }: LocalAddressBookP
   return (
     <Box>
       <Stack direction="row" justifyContent="space-between" alignItems="flex-end" sx={{ pb: 1 }}>
-        {index === 0 && (
-          <Box>
-            <Typography>
-              Enter your address labels here, one on each line. Each entry should look something
-              like:
-            </Typography>
-            <Box p={2}>
-              <StyledCode>0xaddress Label for address</StyledCode>
-            </Box>
-            <Typography>
-              You can optionally add{' '}
-              <StyledCode className="example-comment">{'//'} a comment</StyledCode> after the
-              address to provide more information.
-            </Typography>
-          </Box>
-        )}
         <Box>
           <Button
             variant="contained"
