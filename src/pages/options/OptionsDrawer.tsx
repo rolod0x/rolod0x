@@ -4,6 +4,7 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import DisplaySettingsIcon from '@mui/icons-material/DisplaySettings';
 import DomainVerificationIcon from '@mui/icons-material/DomainVerification';
+import HelpIcon from '@mui/icons-material/Help';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -24,7 +25,9 @@ const OptionsDrawer = () => {
     ({ page, children }: DrawerItemProps) => {
       const path = '/' + page;
       const selected =
-        location.pathname === path || (location.key === 'default' && page === 'Addresses');
+        location.pathname === path ||
+        location.hash === '#' + path ||
+        (location.pathname === '/' && location.hash === '' && page === 'Addresses');
       // console.log('OptionsDrawer page', page, 'selected', selected);
       return (
         <NavLink to={path} style={{ textDecoration: 'none' }}>
@@ -64,6 +67,9 @@ const OptionsDrawer = () => {
         </DrawerItem>
         <DrawerItem page="Donate">
           <CardGiftcardIcon />
+        </DrawerItem>
+        <DrawerItem page="Help">
+          <HelpIcon />
         </DrawerItem>
       </List>
     </div>
