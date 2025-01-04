@@ -1,12 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Typography from '@mui/material/Typography';
 import { v4 as uuidv4 } from 'uuid';
 import Joyride from 'react-joyride';
 
@@ -95,19 +90,7 @@ export default function AddressesSettings() {
         take effect.
       </Alert>
       {sections.map((section, index) => (
-        <Accordion key={section.id} defaultExpanded={true}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls={`panel-${section.id}-content`}
-            id={`panel-${section.id}-header`}>
-            <Typography variant="h4" component="h2" title="Click to expand/collapse">
-              {section.title}
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <LocalAddressBook sectionId={section.id} index={index} />
-          </AccordionDetails>
-        </Accordion>
+        <LocalAddressBook key={section.id} sectionId={section.id} index={index} />
       ))}
       <Box sx={{ mt: 2, mb: 2 }}>
         <Button className="add-section-button" variant="contained" onClick={handleAddSection}>

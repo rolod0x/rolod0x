@@ -7,6 +7,11 @@ import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import RestorePageIcon from '@mui/icons-material/RestorePage';
 import SaveIcon from '@mui/icons-material/Save';
 import Stack from '@mui/material/Stack';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Typography from '@mui/material/Typography';
 import * as murmurhash from 'murmurhash';
 
 import { useAddressBook } from '@src/shared/hooks/useAddressBook';
@@ -31,6 +36,7 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
     handleSave,
     getSection,
     validate,
+    title,
   } = useAddressBook(sectionId);
 
   useEffect(() => {
@@ -83,40 +89,56 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
   const canSave = !error && labelsChanged;
 
   return (
-    <Box>
-      <Stack direction="row" justifyContent="space-between" alignItems="flex-end" sx={{ pb: 1 }}>
+    <Accordion defaultExpanded={true}>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls={`panel-${sectionId}-content`}
+        id={`panel-${sectionId}-header`}>
+        <Typography variant="h4" component="h2" title="Click to expand/collapse">
+          {title}
+        </Typography>
+      </AccordionSummary>
+      <AccordionDetails>
         <Box>
-          <Button
-            variant="contained"
-            onClick={handlePaste}
-            startIcon={<ContentPasteIcon />}
-            sx={{ mr: 1 }}>
-            Paste
-          </Button>
-          <Button
-            variant="contained"
-            onClick={getSection}
-            startIcon={<RestorePageIcon />}
-            disabled={!canRevert}
-            sx={{ mr: 1 }}>
-            Discard changes
-          </Button>
-          <Button
-            variant="contained"
-            onClick={handleSave}
-            startIcon={<SaveIcon />}
-            disabled={!canSave}>
-            Save
-          </Button>
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            alignItems="flex-end"
+            sx={{ pb: 1 }}>
+            <Box>
+              <Button
+                variant="contained"
+                onClick={handlePaste}
+                startIcon={<ContentPasteIcon />}
+                sx={{ mr: 1 }}>
+                Paste
+              </Button>
+              <Button
+                variant="contained"
+                onClick={getSection}
+                startIcon={<RestorePageIcon />}
+                disabled={!canRevert}
+                sx={{ mr: 1 }}>
+                Discard changes
+              </Button>
+              <Button
+                variant="contained"
+                onClick={handleSave}
+                startIcon={<SaveIcon />}
+                disabled={!canSave}>
+                Save
+              </Button>
+            </Box>
+          </Stack>
+          <Stack sx={{ width: '100%' }} spacing={2}>
+            <Alert severity="warning" style={{ display: !error && 'none' }}>
+              <AlertTitle>Error parsing address book</AlertTitle>
+              {error}
+            </Alert>
+          </Stack>
+          <CodeMirrorTextAddresses value={labels} onChange={handleLabelsChange} />
         </Box>
-      </Stack>
-      <Stack sx={{ width: '100%' }} spacing={2}>
-        <Alert severity="warning" style={{ display: !error && 'none' }}>
-          <AlertTitle>Error parsing address book</AlertTitle>
-          {error}
-        </Alert>
-      </Stack>
-      <CodeMirrorTextAddresses value={labels} onChange={handleLabelsChange} />
-    </Box>
+      </AccordionDetails>
+    </Accordion>
   );
 }
