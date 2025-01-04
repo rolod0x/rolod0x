@@ -300,6 +300,60 @@ describe('options-storage', () => {
       });
     });
 
+    describe('deleteSection', () => {
+      const section1 = {
+        id: '47b70315-d782-4080-afc1-6c47d0e89dfb',
+        title: 'Section 1',
+        format: 'rolod0x' as const,
+        source: 'text' as const,
+        labels: 'section 1 labels',
+      };
+
+      const section2 = {
+        id: '8a9b0c1d-2e3f-4g5h-6i7j-8k9l0m1n2o3p',
+        title: 'Section 2',
+        format: 'rolod0x' as const,
+        source: 'text' as const,
+        labels: 'section 2 labels',
+      };
+
+      beforeEach(() => {
+        mockGetAll.mockResolvedValue({
+          ...DEFAULT_OPTIONS_SERIALIZED,
+          sections: JSON.stringify([section1, section2]),
+        });
+      });
+
+      it('removes the specified section', async () => {
+        await optionsStorage.deleteSection(section1.id);
+
+        expect(mockSet).toHaveBeenCalledWith({
+          sections: JSON.stringify([section2]),
+        });
+      });
+
+      it('creates a new empty section when deleting the last one', async () => {
+        mockGetAll.mockResolvedValue({
+          ...DEFAULT_OPTIONS_SERIALIZED,
+          sections: JSON.stringify([section1]),
+        });
+
+        await optionsStorage.deleteSection(section1.id);
+
+        const setCall = mockSet.mock.calls[0][0];
+        const sections = JSON.parse(setCall.sections);
+
+        expect(sections).toHaveLength(1);
+        expect(sections[0]).toMatchObject({
+          title: 'Personal addressbook',
+          format: 'rolod0x',
+          source: 'text',
+          labels: '',
+        });
+        expect(sections[0].id).toHaveLength(36); // UUID length
+      });
+    });
+
     describe('getSection()', () => {
       it('returns the first section when no sectionId is provided', async () => {
         const mockSection: Rolod0xAddressBookSection = {

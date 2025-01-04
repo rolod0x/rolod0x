@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Box from '@mui/material/Box';
@@ -12,6 +12,13 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CircularProgress from '@mui/material/CircularProgress';
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import * as murmurhash from 'murmurhash';
 import { styled } from '@mui/material/styles';
 
@@ -38,6 +45,7 @@ interface LocalAddressBookProps {
 }
 
 export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const {
     labels,
     error,
@@ -51,6 +59,7 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
     validate,
     title,
     updateTitle,
+    deleteSection,
   } = useAddressBook(sectionId);
 
   useEffect(() => {
@@ -111,57 +120,103 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
     [updateTitle],
   );
 
+  const handleDeleteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsDeleteDialogOpen(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    await deleteSection();
+    setIsDeleteDialogOpen(false);
+    // Trigger re-render of AddressesSettings
+    window.dispatchEvent(new Event('options-reset'));
+  };
+
+  const handleDeleteCancel = () => {
+    setIsDeleteDialogOpen(false);
+  };
+
   return isLoaded ? (
-    <Accordion defaultExpanded={true}>
-      <StyledAccordionSummary
-        expandIcon={<ExpandMoreIcon />}
-        aria-controls={`panel-${sectionId}-content`}
-        id={`panel-${sectionId}-header`}
-        title="Click to expand/collapse">
-        <EditableTitle title={title} onTitleChange={handleTitleChange} />
-      </StyledAccordionSummary>
-      <AccordionDetails>
-        <Box>
-          <Stack
-            direction="row"
-            justifyContent="space-between"
-            alignItems="flex-end"
-            sx={{ pb: 1 }}>
-            <Box>
-              <Button
-                variant="contained"
-                onClick={handlePaste}
-                startIcon={<ContentPasteIcon />}
-                sx={{ mr: 1 }}>
-                Paste
-              </Button>
-              <Button
-                variant="contained"
-                onClick={getSection}
-                startIcon={<RestorePageIcon />}
-                disabled={!canRevert}
-                sx={{ mr: 1 }}>
-                Discard changes
-              </Button>
-              <Button
-                variant="contained"
-                onClick={handleSave}
-                startIcon={<SaveIcon />}
-                disabled={!canSave}>
-                Save
-              </Button>
-            </Box>
-          </Stack>
-          <Stack sx={{ width: '100%' }} spacing={2}>
-            <Alert severity="warning" style={{ display: !error && 'none' }}>
-              <AlertTitle>Error parsing address book</AlertTitle>
-              {error}
-            </Alert>
-          </Stack>
-          <CodeMirrorTextAddresses value={labels} onChange={handleLabelsChange} />
-        </Box>
-      </AccordionDetails>
-    </Accordion>
+    <>
+      <Accordion defaultExpanded={true}>
+        <StyledAccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls={`panel-${sectionId}-content`}
+          id={`panel-${sectionId}-header`}
+          title="Click to expand/collapse">
+          <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+            <EditableTitle title={title} onTitleChange={handleTitleChange} />
+            <IconButton
+              onClick={handleDeleteClick}
+              size="small"
+              sx={{ ml: 1 }}
+              title="Delete section">
+              <DeleteIcon fontSize="small" />
+            </IconButton>
+          </Box>
+        </StyledAccordionSummary>
+        <AccordionDetails>
+          <Box>
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              alignItems="flex-end"
+              sx={{ pb: 1 }}>
+              <Box>
+                <Button
+                  variant="contained"
+                  onClick={handlePaste}
+                  startIcon={<ContentPasteIcon />}
+                  sx={{ mr: 1 }}>
+                  Paste
+                </Button>
+                <Button
+                  variant="contained"
+                  onClick={getSection}
+                  startIcon={<RestorePageIcon />}
+                  disabled={!canRevert}
+                  sx={{ mr: 1 }}>
+                  Discard changes
+                </Button>
+                <Button
+                  variant="contained"
+                  onClick={handleSave}
+                  startIcon={<SaveIcon />}
+                  disabled={!canSave}>
+                  Save
+                </Button>
+              </Box>
+            </Stack>
+            <Stack sx={{ width: '100%' }} spacing={2}>
+              <Alert severity="warning" style={{ display: !error && 'none' }}>
+                <AlertTitle>Error parsing address book</AlertTitle>
+                {error}
+              </Alert>
+            </Stack>
+            <CodeMirrorTextAddresses value={labels} onChange={handleLabelsChange} />
+          </Box>
+        </AccordionDetails>
+      </Accordion>
+
+      <Dialog
+        open={isDeleteDialogOpen}
+        onClose={handleDeleteCancel}
+        aria-labelledby="delete-dialog-title"
+        aria-describedby="delete-dialog-description">
+        <DialogTitle id="delete-dialog-title">Delete Section?</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="delete-dialog-description">
+            Are you sure you want to delete this section? This action cannot be undone.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDeleteCancel}>Cancel</Button>
+          <Button onClick={handleDeleteConfirm} color="error" variant="contained">
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
   ) : (
     <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
       <CircularProgress />

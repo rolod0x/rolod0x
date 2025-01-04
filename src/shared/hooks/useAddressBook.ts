@@ -81,6 +81,12 @@ export function useAddressBook(sectionId: string) {
     [sectionId],
   );
 
+  const deleteSection = useCallback(async () => {
+    await optionsStorage.deleteSection(sectionId);
+    // Dispatch event to notify other components
+    window.dispatchEvent(new CustomEvent('section-deleted', { detail: { sectionId } }));
+  }, [sectionId]);
+
   return {
     labels,
     title,
@@ -95,5 +101,6 @@ export function useAddressBook(sectionId: string) {
     isLoaded,
     validate,
     updateTitle,
+    deleteSection,
   };
 }

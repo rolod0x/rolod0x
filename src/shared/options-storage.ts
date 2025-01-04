@@ -144,6 +144,18 @@ export class DeserializableOptionsSync extends OptionsSync<Rolod0xOptionsSeriali
     return this.setDeserialized({ sections: options.sections });
   }
 
+  async deleteSection(sectionId: string): Promise<void> {
+    const options = await this.getAllDeserialized();
+    const updatedSections = options.sections.filter(section => section.id !== sectionId);
+
+    // Ensure we always have at least one section
+    if (updatedSections.length === 0) {
+      updatedSections.push(labelsToSection(''));
+    }
+
+    return this.setDeserialized({ sections: updatedSections });
+  }
+
   async resetToDefaults(): Promise<Rolod0xOptionsSerialized> {
     await this.setAll(DEFAULT_OPTIONS_SERIALIZED);
     return await this.getAll();
