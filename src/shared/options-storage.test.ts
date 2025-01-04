@@ -40,6 +40,7 @@ describe('options-storage', () => {
         ],
         displayLabelFormat: '%n (0x%4l…%4r)',
         displayGuessFormat: '? %n ? (0x%4l…%4r)',
+        hasSeenTour: false,
       };
       const serialized: Rolod0xOptionsSerialized = serializeOptions(deserialized);
       const expected = {
@@ -47,6 +48,7 @@ describe('options-storage', () => {
         sections: `[{"id":"47b70315-d782-4080-afc1-6c47d0e89dfb","title":"Personal addressbook","format":"rolod0x","source":"text","labels":"0xe3D82337F79306712477b642EF59B75dD62eF109 my address"}]`,
         displayLabelFormat: '%n (0x%4l…%4r)',
         displayGuessFormat: '? %n ? (0x%4l…%4r)',
+        hasSeenTour: false,
       };
       expect(serialized).toEqual(expected);
     });
@@ -143,6 +145,7 @@ describe('options-storage', () => {
         ]),
         displayLabelFormat: '%n (0x%4l…%4r)',
         displayGuessFormat: '? %n ? (0x%4l…%4r)',
+        hasSeenTour: false,
       };
 
       const optionsToMigrate = { ...existingOptions };
@@ -377,6 +380,7 @@ describe('options-storage', () => {
           ]),
           displayLabelFormat: 'custom format',
           displayGuessFormat: 'custom guess format',
+          hasSeenTour: false,
         };
         mockGetAll.mockResolvedValue(nonDefaultOptions);
 

@@ -8,13 +8,29 @@ import Button from '@mui/material/Button';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Typography from '@mui/material/Typography';
 import { v4 as uuidv4 } from 'uuid';
+import Joyride from 'react-joyride';
 
 import { optionsStorage, Rolod0xAddressBookSection } from '@src/shared/options-storage';
 
 import LocalAddressBook from './LocalAddressBook';
 
+import type { Step } from 'react-joyride';
+
+const tourSteps: Step[] = [
+  {
+    target: '.add-section-button',
+    content: 'Click here to add a new section to your address book.',
+  },
+  {
+    target: '.accordion-summary',
+    content: 'Click here to expand or collapse a section.',
+  },
+  // Add more steps as needed
+];
+
 export default function AddressesSettings() {
   const [sections, setSections] = useState<Rolod0xAddressBookSection[]>([]);
+  const [runTour, setRunTour] = useState(false);
 
   const getOptions = useCallback(async () => {
     const options = await optionsStorage.getAllDeserialized();
@@ -50,8 +66,30 @@ export default function AddressesSettings() {
     };
   }, [getOptions]);
 
+  useEffect(() => {
+    const checkTourState = async () => {
+      const options = await optionsStorage.getAllDeserialized();
+      if (!options.hasSeenTour) {
+        setRunTour(true);
+        await optionsStorage.setDeserialized({ hasSeenTour: true });
+      }
+    };
+    checkTourState();
+  }, []);
+
   return (
     <Box>
+      <Joyride
+        steps={tourSteps}
+        run={runTour}
+        continuous
+        showSkipButton
+        styles={{
+          options: {
+            zIndex: 10000,
+          },
+        }}
+      />
       <Alert severity="warning" variant="outlined" sx={{ borderWidth: 3 }}>
         After changing entries in the address book, you may have to reload pages for the changes to
         take effect.
@@ -72,7 +110,7 @@ export default function AddressesSettings() {
         </Accordion>
       ))}
       <Box sx={{ mt: 2, mb: 2 }}>
-        <Button variant="contained" onClick={handleAddSection}>
+        <Button className="add-section-button" variant="contained" onClick={handleAddSection}>
           Add New Section
         </Button>
       </Box>

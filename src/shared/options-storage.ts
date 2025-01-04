@@ -18,6 +18,7 @@ export interface Rolod0xAddressBookSection {
 
 export type Rolod0xOptionsDeserialized = Omit<Rolod0xOptionsV1, 'labels'> & {
   sections: Rolod0xAddressBookSection[];
+  hasSeenTour: boolean;
 };
 
 export type Rolod0xOptionsSerialized = Omit<Rolod0xOptionsDeserialized, 'sections'> & {
@@ -59,6 +60,7 @@ export const DEFAULT_OPTIONS_DESERIALIZED: Rolod0xOptionsDeserialized = {
   sections: [labelsToSection('')],
   displayLabelFormat: '%n (0x%4l…%4r)',
   displayGuessFormat: '? %n ? (0x%4l…%4r)',
+  hasSeenTour: false,
 };
 
 export const DEFAULT_OPTIONS_SERIALIZED: Rolod0xOptionsSerialized = serializeOptions(
