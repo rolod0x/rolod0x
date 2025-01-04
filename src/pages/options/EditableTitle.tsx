@@ -1,4 +1,4 @@
-import { useState, useCallback, KeyboardEvent, MouseEvent, useEffect } from 'react';
+import { useState, useCallback, KeyboardEvent, MouseEvent, useEffect, useRef } from 'react';
 import TextField from '@mui/material/TextField';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import EditIcon from '@mui/icons-material/Edit';
@@ -29,6 +29,7 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
 export default function EditableTitle({ title, onTitleChange }: EditableTitleProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(title);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // Ensure the local state is updated when the title prop changes
   useEffect(() => {
@@ -38,6 +39,13 @@ export default function EditableTitle({ title, onTitleChange }: EditableTitlePro
   const handleClick = useCallback((event: MouseEvent<HTMLDivElement | HTMLInputElement>) => {
     event.stopPropagation();
     setIsEditing(true);
+  }, []);
+
+  const handleIconClick = useCallback((event: React.MouseEvent) => {
+    event.stopPropagation();
+    setIsEditing(true);
+    // Focus the input on next tick after the readOnly prop is removed
+    setTimeout(() => inputRef.current?.focus(), 0);
   }, []);
 
   const handleClickAway = useCallback(() => {
@@ -84,13 +92,19 @@ export default function EditableTitle({ title, onTitleChange }: EditableTitlePro
           onChange={e => setEditedTitle(e.target.value)}
           onKeyDown={handleKeyDown}
           onClick={handleClick}
+          inputRef={inputRef}
           InputProps={{
             disableUnderline: true,
             readOnly: !isEditing,
           }}
         />
         {!isEditing && (
-          <EditIcon fontSize="small" sx={{ opacity: 0.5, ml: 1 }} titleAccess="Click to edit" />
+          <EditIcon
+            fontSize="small"
+            sx={{ opacity: 0.5, ml: 1 }}
+            titleAccess="Click to edit"
+            onClick={handleIconClick}
+          />
         )}
       </Box>
     </ClickAwayListener>
