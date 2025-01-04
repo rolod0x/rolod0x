@@ -10,6 +10,7 @@ export function useAddressBook(sectionId: string) {
   const [currentLabelsHash, setCurrentLabelsHash] = useState(murmurhash.v3(''));
   const [savedLabelsHash, setSavedLabelsHash] = useState(murmurhash.v3(''));
   const [error, setError] = useState<string | null>();
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const validate = useCallback(
     (labels: string): void => {
@@ -61,7 +62,24 @@ export function useAddressBook(sectionId: string) {
     setCurrentLabelsHash(hash);
     setSavedLabelsHash(hash);
     validate(section.labels);
+    setIsLoaded(true);
   }, [sectionId, validate]);
+
+  const updateTitle = useCallback(
+    async (newTitle: string) => {
+      const section = await optionsStorage.getSection(sectionId);
+      if (!section) {
+        throw new Error(`Section with id ${sectionId} not found`);
+      }
+      const updatedSection: Rolod0xAddressBookSection = {
+        ...section,
+        title: newTitle,
+      };
+      await optionsStorage.setSection(sectionId, updatedSection);
+      setTitle(newTitle);
+    },
+    [sectionId],
+  );
 
   return {
     labels,
@@ -74,6 +92,8 @@ export function useAddressBook(sectionId: string) {
     setCurrentLabelsHash,
     handleSave,
     getSection,
+    isLoaded,
     validate,
+    updateTitle,
   };
 }

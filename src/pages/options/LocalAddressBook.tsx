@@ -11,14 +11,26 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Typography from '@mui/material/Typography';
+import CircularProgress from '@mui/material/CircularProgress';
 import * as murmurhash from 'murmurhash';
+import { styled } from '@mui/material/styles';
 
 import { useAddressBook } from '@src/shared/hooks/useAddressBook';
 
 import CodeMirrorTextAddresses from './CodeMirrorTextAddresses';
+import EditableTitle from './EditableTitle';
 
 import '@pages/options/LocalAddressBook.css';
+
+const StyledAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
+  flexDirection: 'row-reverse',
+  '& .MuiAccordionSummary-expandIconWrapper': {
+    marginRight: theme.spacing(1),
+  },
+  '&.Mui-focusVisible': {
+    backgroundColor: 'transparent',
+  },
+}));
 
 interface LocalAddressBookProps {
   sectionId: string;
@@ -31,12 +43,14 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
     error,
     currentLabelsHash,
     savedLabelsHash,
+    isLoaded,
     setLabels,
     setCurrentLabelsHash,
     handleSave,
     getSection,
     validate,
     title,
+    updateTitle,
   } = useAddressBook(sectionId);
 
   useEffect(() => {
@@ -88,16 +102,24 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
   const canRevert = labelsChanged;
   const canSave = !error && labelsChanged;
 
-  return (
+  const handleTitleChange = useCallback(
+    (newTitle: string) => {
+      if (updateTitle) {
+        updateTitle(newTitle);
+      }
+    },
+    [updateTitle],
+  );
+
+  return isLoaded ? (
     <Accordion defaultExpanded={true}>
-      <AccordionSummary
+      <StyledAccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls={`panel-${sectionId}-content`}
-        id={`panel-${sectionId}-header`}>
-        <Typography variant="h4" component="h2" title="Click to expand/collapse">
-          {title}
-        </Typography>
-      </AccordionSummary>
+        id={`panel-${sectionId}-header`}
+        title="Click to expand/collapse">
+        <EditableTitle title={title} onTitleChange={handleTitleChange} />
+      </StyledAccordionSummary>
       <AccordionDetails>
         <Box>
           <Stack
@@ -140,5 +162,9 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
         </Box>
       </AccordionDetails>
     </Accordion>
+  ) : (
+    <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
+      <CircularProgress />
+    </Box>
   );
 }
