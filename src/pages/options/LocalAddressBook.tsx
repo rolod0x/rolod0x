@@ -13,7 +13,6 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CircularProgress from '@mui/material/CircularProgress';
 import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -99,13 +98,33 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
     [setLabels, setCurrentLabelsHash, validate],
   );
 
-  const handlePaste = useCallback(async () => {
-    const clipboardContents = await window.navigator.clipboard.readText();
-    const hash = murmurhash.v3(clipboardContents);
-    setLabels(clipboardContents);
-    setCurrentLabelsHash(hash);
-    validate(clipboardContents);
-  }, [setLabels, setCurrentLabelsHash, validate]);
+  const handlePaste = useCallback(
+    async (e: React.MouseEvent) => {
+      e.stopPropagation();
+      const clipboardContents = await window.navigator.clipboard.readText();
+      const hash = murmurhash.v3(clipboardContents);
+      setLabels(clipboardContents);
+      setCurrentLabelsHash(hash);
+      validate(clipboardContents);
+    },
+    [setLabels, setCurrentLabelsHash, validate],
+  );
+
+  const handleRevert = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      getSection();
+    },
+    [getSection],
+  );
+
+  const handleSaveClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      handleSave();
+    },
+    [handleSave],
+  );
 
   const labelsChanged = currentLabelsHash !== savedLabelsHash;
   const canRevert = labelsChanged;
@@ -144,49 +163,57 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
           aria-controls={`panel-${sectionId}-content`}
           id={`panel-${sectionId}-header`}
           title="Click to expand/collapse">
-          <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-            <EditableTitle title={title} onTitleChange={handleTitleChange} />
-            <IconButton
-              onClick={handleDeleteClick}
-              size="small"
-              sx={{ ml: 1 }}
-              title="Delete section">
-              <DeleteIcon fontSize="small" />
-            </IconButton>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              width: '100%',
+              justifyContent: 'space-between',
+            }}>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <EditableTitle title={title} onTitleChange={handleTitleChange} />
+            </Box>
+            <Box>
+              <Button
+                variant="contained"
+                onClick={handlePaste}
+                startIcon={<ContentPasteIcon />}
+                size="small"
+                sx={{ mr: 1 }}>
+                Paste
+              </Button>
+              <Button
+                variant="contained"
+                onClick={handleRevert}
+                startIcon={<RestorePageIcon />}
+                disabled={!canRevert}
+                size="small"
+                sx={{ mr: 1 }}>
+                Discard changes
+              </Button>
+              <Button
+                variant="contained"
+                onClick={handleSaveClick}
+                startIcon={<SaveIcon />}
+                disabled={!canSave}
+                size="small"
+                sx={{ mr: 1 }}>
+                Save
+              </Button>
+              <Button
+                variant="contained"
+                onClick={handleDeleteClick}
+                startIcon={<DeleteIcon />}
+                size="small"
+                color="warning"
+                sx={{ mr: 1 }}>
+                Delete section
+              </Button>
+            </Box>
           </Box>
         </StyledAccordionSummary>
         <AccordionDetails>
           <Box>
-            <Stack
-              direction="row"
-              justifyContent="space-between"
-              alignItems="flex-end"
-              sx={{ pb: 1 }}>
-              <Box>
-                <Button
-                  variant="contained"
-                  onClick={handlePaste}
-                  startIcon={<ContentPasteIcon />}
-                  sx={{ mr: 1 }}>
-                  Paste
-                </Button>
-                <Button
-                  variant="contained"
-                  onClick={getSection}
-                  startIcon={<RestorePageIcon />}
-                  disabled={!canRevert}
-                  sx={{ mr: 1 }}>
-                  Discard changes
-                </Button>
-                <Button
-                  variant="contained"
-                  onClick={handleSave}
-                  startIcon={<SaveIcon />}
-                  disabled={!canSave}>
-                  Save
-                </Button>
-              </Box>
-            </Stack>
             <Stack sx={{ width: '100%' }} spacing={2}>
               <Alert severity="warning" style={{ display: !error && 'none' }}>
                 <AlertTitle>Error parsing address book</AlertTitle>
