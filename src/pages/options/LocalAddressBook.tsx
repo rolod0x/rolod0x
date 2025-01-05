@@ -18,6 +18,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import TextField from '@mui/material/TextField';
+import DownloadIcon from '@mui/icons-material/Download';
 import * as murmurhash from 'murmurhash';
 import { styled } from '@mui/material/styles';
 
@@ -45,6 +47,7 @@ interface LocalAddressBookProps {
 
 export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [fetchUrl, setFetchUrl] = useState('');
   const {
     labels,
     error,
@@ -59,6 +62,8 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
     title,
     updateTitle,
     deleteSection,
+    url,
+    updateUrl,
   } = useAddressBook(sectionId);
 
   useEffect(() => {
@@ -76,6 +81,13 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
       window.removeEventListener('options-reset', handleOptionsReset);
     };
   }, [getSection]);
+
+  // Initialize fetchUrl from storage
+  useEffect(() => {
+    if (url) {
+      setFetchUrl(url);
+    }
+  }, [url]);
 
   const validateTimeoutRef = useRef<NodeJS.Timeout>();
 
@@ -155,6 +167,36 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
     setIsDeleteDialogOpen(false);
   };
 
+  const handleFetch = useCallback(
+    async (e: React.MouseEvent) => {
+      e.stopPropagation();
+      try {
+        const response = await fetch(fetchUrl);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const content = await response.text();
+        setLabels(content);
+        const hash = murmurhash.v3(content);
+        setCurrentLabelsHash(hash);
+        validate(content);
+      } catch (error) {
+        console.error('Error fetching URL:', error);
+        validate('Error fetching URL: ' + (error instanceof Error ? error.message : String(error)));
+      }
+    },
+    [fetchUrl, setLabels, setCurrentLabelsHash, validate],
+  );
+
+  const handleUrlChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newUrl = e.target.value;
+      setFetchUrl(newUrl);
+      updateUrl(newUrl);
+    },
+    [updateUrl],
+  );
+
   return isLoaded ? (
     <>
       <Accordion defaultExpanded={true}>
@@ -217,6 +259,23 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
           </Box>
         </StyledAccordionSummary>
         <AccordionDetails sx={{ ml: '40px' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Button
+              variant="contained"
+              startIcon={<DownloadIcon />}
+              size="small"
+              onClick={handleFetch}
+              disabled={!fetchUrl.trim()}>
+              Fetch
+            </Button>
+            <TextField
+              size="small"
+              placeholder="Enter URL to fetch addresses"
+              value={fetchUrl}
+              onChange={handleUrlChange}
+              sx={{ flexGrow: 1 }}
+            />
+          </Box>
           <Box>
             <Stack sx={{ width: '100%' }} spacing={2}>
               <Alert severity="warning" style={{ display: !error && 'none' }}>

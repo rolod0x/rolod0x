@@ -198,6 +198,7 @@ export default function AddressesSettings() {
       format: 'rolod0x',
       source: 'text',
       labels: '',
+      url: '',
     };
     const updatedSections = [...sections, newSection];
     await optionsStorage.setDeserialized({ sections: updatedSections });

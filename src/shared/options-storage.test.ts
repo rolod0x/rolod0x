@@ -36,6 +36,7 @@ describe('options-storage', () => {
             source: 'text',
             labels: dedent`
               0xe3D82337F79306712477b642EF59B75dD62eF109 my address`,
+            url: null,
           },
         ],
         displayLabelFormat: '%n (0x%4l…%4r)',
@@ -45,7 +46,7 @@ describe('options-storage', () => {
       const serialized: Rolod0xOptionsSerialized = serializeOptions(deserialized);
       const expected = {
         themeName: 'light',
-        sections: `[{"id":"47b70315-d782-4080-afc1-6c47d0e89dfb","title":"Personal addressbook","format":"rolod0x","source":"text","labels":"0xe3D82337F79306712477b642EF59B75dD62eF109 my address"}]`,
+        sections: `[{"id":"47b70315-d782-4080-afc1-6c47d0e89dfb","title":"Personal addressbook","format":"rolod0x","source":"text","labels":"0xe3D82337F79306712477b642EF59B75dD62eF109 my address","url":null}]`,
         displayLabelFormat: '%n (0x%4l…%4r)',
         displayGuessFormat: '? %n ? (0x%4l…%4r)',
         hasSeenTour: false,
@@ -112,6 +113,7 @@ describe('options-storage', () => {
         format: 'rolod0x',
         source: 'text',
         labels: v1Options.labels,
+        url: null,
       });
       expect(sections[0].id).toHaveLength(36); // UUID length
     });
@@ -184,6 +186,7 @@ describe('options-storage', () => {
         format: 'rolod0x',
         source: 'text',
         labels,
+        url: null,
       });
       expect(result.sections[0].id).toHaveLength(36); // UUID length
       expect(result.themeName).toBe('dark');
@@ -201,6 +204,7 @@ describe('options-storage', () => {
             format: 'rolod0x',
             source: 'text',
             labels: '0xe3D82337F79306712477b642EF59B75dD62eF109 test address',
+            url: '',
           },
         ],
       };
@@ -234,6 +238,7 @@ describe('options-storage', () => {
         format: 'rolod0x' as const,
         source: 'text' as const,
         labels: 'original labels',
+        url: null,
       };
 
       beforeEach(() => {
@@ -275,6 +280,7 @@ describe('options-storage', () => {
           format: 'rolod0x' as const,
           source: 'text' as const,
           labels: 'second section labels',
+          url: null,
         };
 
         mockGetAll.mockResolvedValue({
@@ -307,6 +313,7 @@ describe('options-storage', () => {
         format: 'rolod0x' as const,
         source: 'text' as const,
         labels: 'section 1 labels',
+        url: null,
       };
 
       const section2 = {
@@ -315,6 +322,7 @@ describe('options-storage', () => {
         format: 'rolod0x' as const,
         source: 'text' as const,
         labels: 'section 2 labels',
+        url: null,
       };
 
       beforeEach(() => {
@@ -349,6 +357,7 @@ describe('options-storage', () => {
           format: 'rolod0x',
           source: 'text',
           labels: '',
+          url: null,
         });
         expect(sections[0].id).toHaveLength(36); // UUID length
       });
@@ -380,6 +389,7 @@ describe('options-storage', () => {
             format: 'rolod0x',
             source: 'text',
             labels: '',
+            url: null,
           },
           {
             id: 'section-2',
@@ -387,6 +397,7 @@ describe('options-storage', () => {
             format: 'rolod0x',
             source: 'text',
             labels: '',
+            url: null,
           },
         ];
         mockGetAll.mockResolvedValue({
@@ -406,6 +417,7 @@ describe('options-storage', () => {
             format: 'rolod0x',
             source: 'text',
             labels: '',
+            url: null,
           },
         ];
         mockGetAll.mockResolvedValue({
