@@ -216,7 +216,7 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
             </Box>
           </Box>
         </StyledAccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails sx={{ ml: '40px' }}>
           <Box>
             <Stack sx={{ width: '100%' }} spacing={2}>
               <Alert severity="warning" style={{ display: !error && 'none' }}>
