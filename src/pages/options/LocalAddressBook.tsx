@@ -215,51 +215,27 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <EditableTitle title={title} onTitleChange={handleTitleChange} />
             </Box>
-            <Box>
-              <Button
-                className="section-paste-button"
-                variant="contained"
-                onClick={handlePaste}
-                startIcon={<ContentPasteIcon />}
-                size="small"
-                sx={{ mr: 1 }}>
-                Paste
-              </Button>
-              <Button
-                className="section-revert-button"
-                variant="contained"
-                onClick={handleRevert}
-                startIcon={<RestorePageIcon />}
-                disabled={!canRevert}
-                size="small"
-                sx={{ mr: 1 }}>
-                Discard changes
-              </Button>
-              <Button
-                className="section-save-button"
-                variant="contained"
-                onClick={handleSaveClick}
-                startIcon={<SaveIcon />}
-                disabled={!canSave}
-                size="small"
-                sx={{ mr: 1 }}>
-                Save
-              </Button>
-              <Button
-                className="section-delete-button"
-                variant="contained"
-                onClick={handleDeleteClick}
-                startIcon={<DeleteIcon />}
-                size="small"
-                color="warning"
-                sx={{ mr: 1 }}>
-                Delete section
-              </Button>
-            </Box>
+            <Button
+              className="section-delete-button"
+              variant="contained"
+              onClick={handleDeleteClick}
+              startIcon={<DeleteIcon />}
+              size="small"
+              color="warning"
+              sx={{ mr: 1 }}>
+              Delete section
+            </Button>
           </Box>
         </StyledAccordionSummary>
-        <AccordionDetails sx={{ ml: '40px' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+        <AccordionDetails sx={{ ml: '40px', mt: 0 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+            <TextField
+              size="small"
+              placeholder="Enter URL to fetch addresses"
+              value={fetchUrl}
+              onChange={handleUrlChange}
+              sx={{ flexGrow: 1 }}
+            />
             <Button
               variant="contained"
               startIcon={<DownloadIcon />}
@@ -268,13 +244,35 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
               disabled={!fetchUrl.trim()}>
               Fetch
             </Button>
-            <TextField
+            <Button
+              className="section-paste-button"
+              variant="contained"
+              onClick={handlePaste}
+              startIcon={<ContentPasteIcon />}
               size="small"
-              placeholder="Enter URL to fetch addresses"
-              value={fetchUrl}
-              onChange={handleUrlChange}
-              sx={{ flexGrow: 1 }}
-            />
+              sx={{ mr: 1 }}>
+              Paste
+            </Button>
+            <Button
+              className="section-revert-button"
+              variant="contained"
+              onClick={handleRevert}
+              startIcon={<RestorePageIcon />}
+              disabled={!canRevert}
+              size="small"
+              sx={{ mr: 1 }}>
+              Discard changes
+            </Button>
+            <Button
+              className="section-save-button"
+              variant="contained"
+              onClick={handleSaveClick}
+              startIcon={<SaveIcon />}
+              disabled={!canSave}
+              size="small"
+              sx={{ mr: 1 }}>
+              Save
+            </Button>
           </Box>
           <Box>
             <Stack sx={{ width: '100%' }} spacing={2}>
