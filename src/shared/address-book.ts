@@ -9,17 +9,7 @@ import { Parser, ParseError } from '@src/shared/parser';
 
 export async function getMapper(): Promise<Mapper> {
   const options: Rolod0xOptionsDeserialized = await optionsStorage.getAllDeserialized();
-  const section = await optionsStorage.getSection();
-  const parser = new Parser();
-  try {
-    parser.parseMultiline(section.labels);
-  } catch (err: unknown) {
-    if (err instanceof ParseError) {
-      console.log('rolod0x:', err);
-    } else {
-      console.error('rolod0x:', err);
-    }
-  }
+  const parser = getParser(options);
 
   // console.debug(`rolod0x: extracted ${parser.parsedEntries.length} parseable lines`);
 
@@ -35,6 +25,22 @@ export async function getMapper(): Promise<Mapper> {
   return mapper;
 }
 
+export function getParser(options: Rolod0xOptionsDeserialized) {
+  const parser = new Parser();
+  for (const section of options.sections) {
+    try {
+      parser.parseMultiline(section.labels);
+    } catch (err: unknown) {
+      if (err instanceof ParseError) {
+        console.log('rolod0x:', err);
+      } else {
+        console.error('rolod0x:', err);
+      }
+    }
+  }
+  return parser;
+}
+
 // address is assumed to be in valid format
 export async function isNewAddress(address: string): Promise<boolean> {
   const mapper = await getMapper();
@@ -48,7 +54,8 @@ export async function isNewAddress(address: string): Promise<boolean> {
 }
 
 export async function addNewEntry(address: string, label: string, comment?: string): Promise<void> {
-  const section = await optionsStorage.getSection();
+  const options: Rolod0xOptionsDeserialized = await optionsStorage.getAllDeserialized();
+  const section = options.sections[0];
   let labels = section.labels + `\n${address} ${label}`;
   if (comment) {
     labels += ` // ${comment}`;

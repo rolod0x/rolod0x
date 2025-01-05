@@ -118,12 +118,8 @@ export class DeserializableOptionsSync extends OptionsSync<Rolod0xOptionsSeriali
     return super.set(serialized);
   }
 
-  async getSection(sectionId?: string): Promise<Rolod0xAddressBookSection> {
+  async getSection(sectionId: string): Promise<Rolod0xAddressBookSection> {
     const options = await this.getAllDeserialized();
-    // FIXME: remove this once we have support for multiple sections
-    if (!sectionId) {
-      return options.sections[0];
-    }
     return options.sections?.find(section => section.id === sectionId);
   }
 

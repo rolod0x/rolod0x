@@ -4,10 +4,10 @@ import TextField from '@mui/material/TextField';
 
 // import { Formatter } from '@src/shared/formatter';
 import { IframeContext } from '@src/components/IframeModal';
-import { optionsStorage } from '@src/shared/options-storage';
+import { getParser } from '@src/shared/address-book';
+import { optionsStorage, Rolod0xOptionsDeserialized } from '@src/shared/options-storage';
 import { delayedFocusInput } from '@src/shared/focus';
 import { AddressLabelComment, ParsedEntries } from '@src/shared/types';
-import { Parser, ParseError } from '@src/shared/parser';
 // import Loading from '@src/components/Loading';
 
 import { itemsFilter } from './search';
@@ -25,18 +25,9 @@ export default function ActionBar() {
   const { handleClose } = useContext(IframeContext);
 
   const getLabels = useCallback(async (): Promise<ParsedEntries> => {
-    const section = await optionsStorage.getSection();
-    const parser = new Parser();
-    try {
-      parser.parseMultiline(section.labels);
-      return parser.parsedEntries;
-    } catch (err: unknown) {
-      if (err instanceof ParseError) {
-        console.log('rolod0x:', err);
-      } else {
-        console.error('rolod0x:', err);
-      }
-    }
+    const options: Rolod0xOptionsDeserialized = await optionsStorage.getAllDeserialized();
+    const parser = getParser(options);
+    return parser.parsedEntries;
   }, []);
 
   const focusTextField = useCallback(() => delayedFocusInput(textFieldRef), [textFieldRef]);

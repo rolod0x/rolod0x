@@ -364,23 +364,6 @@ describe('options-storage', () => {
     });
 
     describe('getSection()', () => {
-      it('returns the first section when no sectionId is provided', async () => {
-        const mockSection: Rolod0xAddressBookSection = {
-          id: 'test-section',
-          title: 'Test Section',
-          format: 'rolod0x',
-          source: 'text',
-          labels: '',
-        };
-        mockGetAll.mockResolvedValue({
-          ...DEFAULT_OPTIONS_SERIALIZED,
-          sections: JSON.stringify([mockSection]),
-        });
-
-        const result = await optionsStorage.getSection();
-        expect(result).toEqual(mockSection);
-      });
-
       it('returns the matching section when sectionId is provided', async () => {
         const mockSections: Rolod0xAddressBookSection[] = [
           {
