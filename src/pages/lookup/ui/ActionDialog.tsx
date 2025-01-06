@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import DialogContentText from '@mui/material/DialogContentText';
+import { DialogContentText } from '@mui/material';
 
 import IframeModal from '@src/components/IframeModal';
 import Rolod0xText from '@src/components/Rolod0xText';

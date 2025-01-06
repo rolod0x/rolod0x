@@ -1,7 +1,6 @@
 import { useCallback, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
+import { Box, Toolbar } from '@mui/material';
 
 import './ResponsiveDrawer.css';
 

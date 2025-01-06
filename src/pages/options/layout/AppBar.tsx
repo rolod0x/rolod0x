@@ -1,11 +1,10 @@
 import { useContext } from 'react';
-import AppBar from '@mui/material/AppBar';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
+import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
+import {
+  Menu as MenuIcon,
+  Brightness4 as Brightness4Icon,
+  Brightness7 as Brightness7Icon,
+} from '@mui/icons-material';
 
 import Rolod0xText from '@src/components/Rolod0xText';
 import { ThemeNameContext } from '@src/components/Rolod0xThemeProvider';

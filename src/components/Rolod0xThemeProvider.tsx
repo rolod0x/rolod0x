@@ -1,6 +1,5 @@
 import { createContext, ReactNode, useCallback, useEffect, useState } from 'react';
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider, CssBaseline } from '@mui/material';
 
 import { themes, ThemeName } from '@src/shared/theme';
 import { optionsStorage } from '@src/shared/options-storage';

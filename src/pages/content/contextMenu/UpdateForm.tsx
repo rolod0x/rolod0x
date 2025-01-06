@@ -1,9 +1,5 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
-import Button from '@mui/material/Button';
-import FormControl from '@mui/material/FormControl';
-import FormHelperText from '@mui/material/FormHelperText';
-import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
+import { Button, FormControl, FormHelperText, Stack, TextField } from '@mui/material';
 
 import { IframeContext } from '@src/components/IframeModal';
 import { getCanonicalAddress } from '@src/shared/address';

@@ -1,5 +1,4 @@
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
+import { Box, Drawer } from '@mui/material';
 
 import OptionsDrawer from './OptionsDrawer';
 

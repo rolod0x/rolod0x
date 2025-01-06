@@ -1,6 +1,4 @@
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import CircularProgress from '@mui/material/CircularProgress';
+import { Box, Stack, CircularProgress } from '@mui/material';
 
 interface Props {
   text?: string;

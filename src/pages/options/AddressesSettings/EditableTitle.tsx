@@ -1,9 +1,6 @@
 import { useState, useCallback, KeyboardEvent, MouseEvent, useEffect, useRef } from 'react';
-import TextField from '@mui/material/TextField';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
+import { TextField, ClickAwayListener, Box, styled } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import Box from '@mui/material/Box';
-import { styled } from '@mui/material/styles';
 
 interface EditableTitleProps {
   title: string;

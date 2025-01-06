@@ -1,5 +1,5 @@
 import { Fragment, useEffect } from 'react';
-import Typography from '@mui/material/Typography';
+import { Typography } from '@mui/material';
 
 import { usePageTitle } from '@root/src/shared/contexts/PageTitleContext';
 import Rolod0xText from '@src/components/Rolod0xText';

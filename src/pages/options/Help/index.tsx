@@ -1,7 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { Box, Button, Link, Typography, Stack } from '@mui/material';
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import { OpenInNew as OpenInNewIcon, RestartAlt as RestartAltIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 import { optionsStorage } from '@src/shared/options-storage';

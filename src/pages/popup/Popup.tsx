@@ -1,14 +1,12 @@
 import React from 'react';
 import { withErrorBoundary } from 'react-error-boundary';
-import Divider from '@mui/material/Divider';
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import SearchIcon from '@mui/icons-material/Search';
-import SettingsIcon from '@mui/icons-material/Settings';
-import HelpIcon from '@mui/icons-material/Help';
-import InfoIcon from '@mui/icons-material/Info';
+import { Divider, MenuList, MenuItem, ListItemText, ListItemIcon } from '@mui/material';
+import {
+  Search as SearchIcon,
+  Settings as SettingsIcon,
+  Help as HelpIcon,
+  Info as InfoIcon,
+} from '@mui/icons-material';
 
 import '@pages/popup/Popup.css';
 

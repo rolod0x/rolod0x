@@ -1,6 +1,5 @@
 import React, { HTMLAttributes, useCallback, useContext, useEffect, useRef, useState } from 'react';
-import Autocomplete, { AutocompleteChangeDetails } from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
+import { Autocomplete, TextField } from '@mui/material';
 
 // import { Formatter } from '@src/shared/formatter';
 import { IframeContext } from '@src/components/IframeModal';
@@ -12,6 +11,8 @@ import { AddressLabelComment, ParsedEntries } from '@src/shared/types';
 
 import { itemsFilter } from './search';
 import AddressOption from './AddressOption';
+
+import type { AutocompleteChangeDetails } from '@mui/material/Autocomplete';
 
 // const itemFormatter = new Formatter('%n (%a)');
 //

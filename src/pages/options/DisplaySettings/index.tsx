@@ -2,10 +2,7 @@ import { Fragment, useCallback, useEffect, useState } from 'react';
 // import { styled } from '@mui/material/styles';
 import { css } from '@emotion/css';
 import styled from '@emotion/styled';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
+import { Box, Stack, TextField, Typography } from '@mui/material';
 
 import { usePageTitle } from '@root/src/shared/contexts/PageTitleContext';
 import { Formatter } from '@src/shared/formatter';

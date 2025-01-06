@@ -1,17 +1,19 @@
 import { Fragment, useCallback, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
-import Link from '@mui/material/Link';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+import {
+  IconButton,
+  Link,
+  List,
+  ListItem,
+  ListItemIcon,
+  TextField,
+  Tooltip,
+  Typography,
+} from '@mui/material';
 // import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 // import ListItemText from '@mui/material/ListItemText';
 // import PublicIcon from '@mui/icons-material/Public';
-import TextField from '@mui/material/TextField';
-import Tooltip from '@mui/material/Tooltip';
-import Typography from '@mui/material/Typography';
 import 'webextension-polyfill';
 import { queryAdditionalPermissions, normalizeManifestPermissions } from 'webext-permissions';
 

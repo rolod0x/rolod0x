@@ -6,11 +6,11 @@ import {
   Box,
   Typography,
   Button,
+  useTheme,
 } from '@mui/material';
 import WarningIcon from '@mui/icons-material/Warning';
 import { useContext, useState } from 'react';
 import { JSONTree } from 'react-json-tree';
-import { useTheme } from '@mui/material/styles';
 
 import { deserializeOptions, optionsStorage } from '@src/shared/options-storage';
 import { ThemeNameContext } from '@src/components/Rolod0xThemeProvider';
