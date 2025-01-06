@@ -1,8 +1,9 @@
-import { MouseEvent } from 'react';
-import { Box, Button, AccordionSummary, styled } from '@mui/material';
-import { ExpandMore as ExpandMoreIcon, Delete as DeleteIcon } from '@mui/icons-material';
+import { useCallback } from 'react';
+import { Box, AccordionSummary, styled } from '@mui/material';
+import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 
 import EditableTitle from './EditableTitle';
+import DeleteSection from './DeleteSection';
 
 const StyledAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
   flexDirection: 'row-reverse',
@@ -17,16 +18,25 @@ const StyledAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
 interface SectionHeaderProps {
   sectionId: string;
   title: string;
-  onTitleChange: (newTitle: string) => void;
-  onDelete: (e: MouseEvent) => void;
+  updateTitle: ((title: string) => void) | undefined;
+  deleteSection: () => Promise<void>;
 }
 
 export default function SectionHeader({
   sectionId,
   title,
-  onTitleChange,
-  onDelete,
+  updateTitle,
+  deleteSection,
 }: SectionHeaderProps) {
+  const handleTitleChange = useCallback(
+    (newTitle: string) => {
+      if (updateTitle) {
+        updateTitle(newTitle);
+      }
+    },
+    [updateTitle],
+  );
+
   return (
     <StyledAccordionSummary
       expandIcon={<ExpandMoreIcon />}
@@ -41,18 +51,9 @@ export default function SectionHeader({
           justifyContent: 'space-between',
         }}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <EditableTitle title={title} onTitleChange={onTitleChange} />
+          <EditableTitle title={title} onTitleChange={handleTitleChange} />
         </Box>
-        <Button
-          className="section-delete-button"
-          variant="contained"
-          onClick={onDelete}
-          startIcon={<DeleteIcon />}
-          size="small"
-          color="warning"
-          sx={{ mr: 1 }}>
-          Delete section
-        </Button>
+        <DeleteSection deleteSection={deleteSection} />
       </Box>
     </StyledAccordionSummary>
   );

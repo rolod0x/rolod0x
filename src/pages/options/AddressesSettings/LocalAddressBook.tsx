@@ -14,7 +14,6 @@ import { useAddressBook } from '@src/shared/hooks/useAddressBook';
 
 import SectionToolbar from './SectionToolbar';
 import SectionHeader from './SectionHeader';
-import DeleteSectionDialog from './DeleteSectionDialog';
 import CodeMirrorTextAddresses from './CodeMirrorTextAddresses';
 
 import './LocalAddressBook.css';
@@ -25,7 +24,6 @@ interface LocalAddressBookProps {
 }
 
 export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
-  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [fetchUrl, setFetchUrl] = useState('');
   const {
     labels,
@@ -89,31 +87,6 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
     [setLabels, setCurrentLabelsHash, validate],
   );
 
-  const handleTitleChange = useCallback(
-    (newTitle: string) => {
-      if (updateTitle) {
-        updateTitle(newTitle);
-      }
-    },
-    [updateTitle],
-  );
-
-  const handleDeleteClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsDeleteDialogOpen(true);
-  };
-
-  const handleDeleteConfirm = async () => {
-    await deleteSection();
-    setIsDeleteDialogOpen(false);
-    // Trigger re-render of AddressesSettings
-    window.dispatchEvent(new Event('options-reset'));
-  };
-
-  const handleDeleteCancel = () => {
-    setIsDeleteDialogOpen(false);
-  };
-
   const labelsChanged = currentLabelsHash !== savedLabelsHash;
   const canRevert = labelsChanged;
   const canSave = !error && labelsChanged;
@@ -124,8 +97,8 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
         <SectionHeader
           sectionId={sectionId}
           title={title}
-          onTitleChange={handleTitleChange}
-          onDelete={handleDeleteClick}
+          updateTitle={updateTitle}
+          deleteSection={deleteSection}
         />
         <AccordionDetails sx={{ ml: '40px', mt: 0 }}>
           <SectionToolbar
@@ -151,12 +124,6 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
           </Box>
         </AccordionDetails>
       </Accordion>
-
-      <DeleteSectionDialog
-        open={isDeleteDialogOpen}
-        onClose={handleDeleteCancel}
-        onConfirm={handleDeleteConfirm}
-      />
     </>
   ) : (
     <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
