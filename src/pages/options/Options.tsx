@@ -6,7 +6,7 @@ import ErrorPage from '@src/components/ErrorPage';
 import Rolod0xThemeProvider from '@src/components/Rolod0xThemeProvider';
 import { PageTitleProvider } from '@src/shared/contexts/PageTitleContext';
 
-import ResponsiveDrawer from './ResponsiveDrawer';
+import ResponsiveDrawer from './layout/ResponsiveDrawer';
 import AddressesSettings from './AddressesSettings';
 import DisplaySettings from './DisplaySettings';
 import Donate from './Donate';
