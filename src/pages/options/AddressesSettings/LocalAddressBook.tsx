@@ -89,38 +89,6 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
     [setLabels, setCurrentLabelsHash, validate],
   );
 
-  const handlePaste = useCallback(
-    async (e: React.MouseEvent) => {
-      e.stopPropagation();
-      const clipboardContents = await window.navigator.clipboard.readText();
-      const hash = murmurhash.v3(clipboardContents);
-      setLabels(clipboardContents);
-      setCurrentLabelsHash(hash);
-      validate(clipboardContents);
-    },
-    [setLabels, setCurrentLabelsHash, validate],
-  );
-
-  const handleRevert = useCallback(
-    (e: React.MouseEvent) => {
-      e.stopPropagation();
-      getSection();
-    },
-    [getSection],
-  );
-
-  const handleSaveClick = useCallback(
-    (e: React.MouseEvent) => {
-      e.stopPropagation();
-      handleSave();
-    },
-    [handleSave],
-  );
-
-  const labelsChanged = currentLabelsHash !== savedLabelsHash;
-  const canRevert = labelsChanged;
-  const canSave = !error && labelsChanged;
-
   const handleTitleChange = useCallback(
     (newTitle: string) => {
       if (updateTitle) {
@@ -146,35 +114,9 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
     setIsDeleteDialogOpen(false);
   };
 
-  const handleFetch = useCallback(
-    async (e: React.MouseEvent) => {
-      e.stopPropagation();
-      try {
-        const response = await fetch(fetchUrl);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const content = await response.text();
-        setLabels(content);
-        const hash = murmurhash.v3(content);
-        setCurrentLabelsHash(hash);
-        validate(content);
-      } catch (error) {
-        console.error('Error fetching URL:', error);
-        validate('Error fetching URL: ' + (error instanceof Error ? error.message : String(error)));
-      }
-    },
-    [fetchUrl, setLabels, setCurrentLabelsHash, validate],
-  );
-
-  const handleUrlChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const newUrl = e.target.value;
-      setFetchUrl(newUrl);
-      updateUrl(newUrl);
-    },
-    [updateUrl],
-  );
+  const labelsChanged = currentLabelsHash !== savedLabelsHash;
+  const canRevert = labelsChanged;
+  const canSave = !error && labelsChanged;
 
   return isLoaded ? (
     <>
@@ -188,11 +130,13 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
         <AccordionDetails sx={{ ml: '40px', mt: 0 }}>
           <SectionToolbar
             fetchUrl={fetchUrl}
-            onUrlChange={handleUrlChange}
-            onFetch={handleFetch}
-            onPaste={handlePaste}
-            onRevert={handleRevert}
-            onSave={handleSaveClick}
+            setFetchUrl={setFetchUrl}
+            updateUrl={updateUrl}
+            setLabels={setLabels}
+            setCurrentLabelsHash={setCurrentLabelsHash}
+            validate={validate}
+            handleSave={handleSave}
+            getSection={getSection}
             canRevert={canRevert}
             canSave={canSave}
           />
