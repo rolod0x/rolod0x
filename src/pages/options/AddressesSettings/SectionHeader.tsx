@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { Box, AccordionSummary, styled } from '@mui/material';
+import { AccordionSummary, styled, Stack } from '@mui/material';
 import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 
 import EditableTitle from './EditableTitle';
@@ -43,18 +43,10 @@ export default function SectionHeader({
       aria-controls={`panel-${sectionId}-content`}
       id={`panel-${sectionId}-header`}
       title="Click to expand/collapse">
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          width: '100%',
-          justifyContent: 'space-between',
-        }}>
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <EditableTitle title={title} onTitleChange={handleTitleChange} />
-        </Box>
+      <Stack direction="row" justifyContent="space-between" alignItems="center" width="100%">
+        <EditableTitle title={title} onTitleChange={handleTitleChange} />
         <DeleteSection deleteSection={deleteSection} />
-      </Box>
+      </Stack>
     </StyledAccordionSummary>
   );
 }
