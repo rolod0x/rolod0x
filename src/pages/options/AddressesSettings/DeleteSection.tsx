@@ -17,22 +17,28 @@ interface DeleteSectionDialogProps {
 export default function DeleteSection({ deleteSection, triggerRefresh }: DeleteSectionDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleCancel = useCallback(() => {
+  const handleCancel = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
     setIsOpen(false);
   }, []);
 
-  const handleConfirm = useCallback(async () => {
-    await deleteSection();
-    setIsOpen(false);
-    // Trigger re-render of AddressesSettings if needed
-    if (triggerRefresh) {
-      triggerRefresh();
-    } else {
-      window.dispatchEvent(new Event('options-reset'));
-    }
-  }, [deleteSection, triggerRefresh]);
+  const handleConfirm = useCallback(
+    async (e: React.MouseEvent) => {
+      e.stopPropagation();
+      await deleteSection();
+      setIsOpen(false);
+      // Trigger re-render of AddressesSettings if needed
+      if (triggerRefresh) {
+        triggerRefresh();
+      } else {
+        window.dispatchEvent(new Event('options-reset'));
+      }
+    },
+    [deleteSection, triggerRefresh],
+  );
 
-  const openDialog = useCallback(() => {
+  const openDialog = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
     setIsOpen(true);
   }, []);
 
