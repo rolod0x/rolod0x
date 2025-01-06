@@ -8,6 +8,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
 import HelpIcon from '@mui/icons-material/Help';
+import InfoIcon from '@mui/icons-material/Info';
 
 import '@pages/popup/Popup.css';
 
@@ -58,6 +59,16 @@ const Popup = () => {
             <HelpIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText>Help</ListItemText>
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            window.open(chrome.runtime.getURL('src/pages/options/index.html#/About'));
+            window.close();
+          }}>
+          <ListItemIcon>
+            <InfoIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>About</ListItemText>
         </MenuItem>
         <Divider />
         <MenuItem disabled sx={{ '&.Mui-disabled': { opacity: 1 } }}>

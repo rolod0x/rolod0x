@@ -12,6 +12,7 @@ import Donate from './Donate';
 import SiteSettings from './SiteSettings';
 import RawOptionsDialog from './RawOptionsDialog';
 import Help from './Help';
+import About from './About';
 
 const Options = () => {
   return (
@@ -25,6 +26,7 @@ const Options = () => {
           <Route path="Sites" element={<SiteSettings />} />
           <Route path="Donate" element={<Donate />} />
           <Route path="Help" element={<Help />} />
+          <Route path="About" element={<About />} />
           <Route path="*" element={<AddressesSettings />} />
         </Route>
       </Routes>

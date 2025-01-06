@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { Box, Typography, Button, Stack } from '@mui/material';
+import { Box, Button, Link, Typography, Stack } from '@mui/material';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import { useNavigate } from 'react-router-dom';
@@ -18,7 +18,7 @@ const Help = () => {
   return (
     <Box sx={{ padding: 3 }}>
       <Typography variant="h4" gutterBottom>
-        Help
+        Documentation
       </Typography>
       <Typography paragraph>
         This section contains documentation, guides, and FAQs to help you make the most of{' '}
@@ -60,6 +60,33 @@ const Help = () => {
           Privacy Policy
         </Button>
       </Stack>
+      <Typography variant="h4" sx={{ mt: 2 }} gutterBottom>
+        Support
+      </Typography>
+      <Typography paragraph gutterBottom>
+        If you need support, please see{' '}
+        <Link href="https://rolod0x.io/CONTRIBUTING.html" target="_blank" rel="noopener noreferrer">
+          the support page
+        </Link>
+        .
+      </Typography>
+      <Typography variant="h4" sx={{ mt: 2 }} gutterBottom>
+        Development
+      </Typography>
+      <Typography paragraph gutterBottom>
+        If you need support, first please see{' '}
+        <Link href="https://rolod0x.io/CONTRIBUTING.html" target="_blank" rel="noopener noreferrer">
+          the <code>CONTRIBUTING</code> page
+        </Link>
+        , and then{' '}
+        <Link
+          href="https://rolod0x.io/docs/dev-guide.html"
+          target="_blank"
+          rel="noopener noreferrer">
+          the developer guide
+        </Link>
+        .
+      </Typography>
     </Box>
   );
 };

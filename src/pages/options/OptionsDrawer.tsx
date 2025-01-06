@@ -5,6 +5,7 @@ import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import DisplaySettingsIcon from '@mui/icons-material/DisplaySettings';
 import DomainVerificationIcon from '@mui/icons-material/DomainVerification';
 import HelpIcon from '@mui/icons-material/Help';
+import InfoIcon from '@mui/icons-material/Info';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -70,6 +71,9 @@ const OptionsDrawer = () => {
         </DrawerItem>
         <DrawerItem page="Help">
           <HelpIcon />
+        </DrawerItem>
+        <DrawerItem page="About">
+          <InfoIcon />
         </DrawerItem>
       </List>
     </div>
