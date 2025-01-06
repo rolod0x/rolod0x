@@ -19,8 +19,8 @@ import { usePageTitle } from '@root/src/shared/contexts/PageTitleContext';
 import Loading from '@src/components/Loading';
 import Rolod0xText from '@src/components/Rolod0xText';
 
-import SettingsAccordionSection from './SettingsAccordionSection';
-import SettingsPageHeader from './SettingsPageHeader';
+import SettingsAccordionSection from './shared/SettingsAccordionSection';
+import SettingsPageHeader from './shared/SettingsPageHeader';
 
 const StyledTextField = styled(TextField)(`
   .MuiOutlinedInput-input {

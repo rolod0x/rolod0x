@@ -12,7 +12,7 @@ import { Formatter } from '@src/shared/formatter';
 import { optionsStorage } from '@src/shared/options-storage';
 import Rolod0xText from '@src/components/Rolod0xText';
 
-// import SettingsPageHeader from './SettingsPageHeader';
+// import SettingsPageHeader from './shared/SettingsPageHeader';
 import SettingsSection from './shared/SettingsSection';
 import StyledCode from './shared/StyledCode';
 
