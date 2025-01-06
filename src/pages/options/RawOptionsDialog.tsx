@@ -8,7 +8,7 @@ import {
   Button,
   useTheme,
 } from '@mui/material';
-import WarningIcon from '@mui/icons-material/Warning';
+import { Warning as WarningIcon, FileDownload as FileDownloadIcon } from '@mui/icons-material';
 import { useContext, useState } from 'react';
 import { JSONTree } from 'react-json-tree';
 
@@ -45,6 +45,19 @@ const RawOptionsDialog = () => {
 
   const handleResetClick = () => {
     setShowConfirmReset(true);
+  };
+
+  const handleExport = () => {
+    const jsonString = JSON.stringify(rawOptions, null, 2);
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'rolod0x-options.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   // Theme that matches MUI dark/light mode
@@ -101,6 +114,13 @@ const RawOptionsDialog = () => {
               startIcon={<WarningIcon />}
               onClick={handleResetClick}>
               Reset to defaults
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              startIcon={<FileDownloadIcon />}
+              onClick={handleExport}>
+              Export
             </Button>
             <Button variant="contained" onClick={() => setShowRawOptions(false)}>
               Close
