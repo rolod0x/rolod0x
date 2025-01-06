@@ -79,7 +79,7 @@ describe('LocalAddressBook', () => {
 
     // Wait for the text to be visible
     await waitFor(() => {
-      expect(screen.getByDisplayValue('Personal addressbook')).toBeInTheDocument();
+      expect(screen.getByDisplayValue('Personal address book')).toBeInTheDocument();
     });
 
     expect(screen.getByRole('button', { name: 'Paste' })).toBeInTheDocument();

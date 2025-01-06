@@ -9,7 +9,7 @@ since it doesn't perform any communications with the network.  (See
 
 ## Data storage
 
-rolod0x stores your settings and addressbook data locally within an
+rolod0x stores your settings and address book data locally within an
 isolated storage area in the browser reserved for the extension.
 
 If you want to see exactly what is being stored, you can view this raw

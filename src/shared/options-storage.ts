@@ -49,7 +49,7 @@ export const deserializeOptions = (
 export const labelsToSection = (labels: string): Rolod0xAddressBookSection => {
   return {
     id: uuidv4(),
-    title: 'Personal addressbook',
+    title: 'Personal address book',
     format: 'rolod0x',
     source: 'text',
     labels,

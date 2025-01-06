@@ -31,7 +31,7 @@ describe('options-storage', () => {
         sections: [
           {
             id: '47b70315-d782-4080-afc1-6c47d0e89dfb',
-            title: 'Personal addressbook',
+            title: 'Personal address book',
             format: 'rolod0x',
             source: 'text',
             labels: dedent`
@@ -46,7 +46,7 @@ describe('options-storage', () => {
       const serialized: Rolod0xOptionsSerialized = serializeOptions(deserialized);
       const expected = {
         themeName: 'light',
-        sections: `[{"id":"47b70315-d782-4080-afc1-6c47d0e89dfb","title":"Personal addressbook","format":"rolod0x","source":"text","labels":"0xe3D82337F79306712477b642EF59B75dD62eF109 my address","url":null}]`,
+        sections: `[{"id":"47b70315-d782-4080-afc1-6c47d0e89dfb","title":"Personal address book","format":"rolod0x","source":"text","labels":"0xe3D82337F79306712477b642EF59B75dD62eF109 my address","url":null}]`,
         displayLabelFormat: '%n (0x%4l…%4r)',
         displayGuessFormat: '? %n ? (0x%4l…%4r)',
         hasSeenTour: false,
@@ -78,7 +78,7 @@ describe('options-storage', () => {
     });
 
     it('sets a default title', () => {
-      expect(section.title).toEqual('Personal addressbook');
+      expect(section.title).toEqual('Personal address book');
     });
 
     it('sets a default source', () => {
@@ -109,7 +109,7 @@ describe('options-storage', () => {
       const sections = JSON.parse(optionsToMigrate.sections);
       expect(sections).toHaveLength(1);
       expect(sections[0]).toMatchObject({
-        title: 'Personal addressbook',
+        title: 'Personal address book',
         format: 'rolod0x',
         source: 'text',
         labels: v1Options.labels,
@@ -182,7 +182,7 @@ describe('options-storage', () => {
       expect(result).toHaveProperty('sections');
       expect(result.sections).toHaveLength(1);
       expect(result.sections[0]).toMatchObject({
-        title: 'Personal addressbook',
+        title: 'Personal address book',
         format: 'rolod0x',
         source: 'text',
         labels,
@@ -353,7 +353,7 @@ describe('options-storage', () => {
 
         expect(sections).toHaveLength(1);
         expect(sections[0]).toMatchObject({
-          title: 'Personal addressbook',
+          title: 'Personal address book',
           format: 'rolod0x',
           source: 'text',
           labels: '',
