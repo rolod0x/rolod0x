@@ -78,7 +78,7 @@ export default function SiteSettings() {
   }, [setPageTitle]);
 
   const fetchSites = useCallback(async () => {
-    const manifestPermissions = await normalizeManifestPermissions();
+    const manifestPermissions = normalizeManifestPermissions();
     setManifestSites([...manifestPermissions.origins]);
 
     const newPermissions = await queryAdditionalPermissions();
