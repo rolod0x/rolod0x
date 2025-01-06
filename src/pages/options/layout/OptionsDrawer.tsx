@@ -5,6 +5,7 @@ import {
   CardGiftcard as CardGiftcardIcon,
   DisplaySettings as DisplaySettingsIcon,
   DomainVerification as DomainVerificationIcon,
+  ImportExport as ImportExportIcon,
   Help as HelpIcon,
   Info as InfoIcon,
 } from '@mui/icons-material';
@@ -72,6 +73,9 @@ const OptionsDrawer = () => {
         </DrawerItem>
         <DrawerItem page="Donate">
           <CardGiftcardIcon />
+        </DrawerItem>
+        <DrawerItem page="Manage">
+          <ImportExportIcon />
         </DrawerItem>
         <DrawerItem page="Help">
           <HelpIcon />

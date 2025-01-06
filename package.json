@@ -80,7 +80,8 @@
     "webext-options-sync": "^4.3.0",
     "webext-permission-toggle": "5.1.0",
     "webext-permissions": "^3.1.4",
-    "webextension-polyfill": "^0.12.0"
+    "webextension-polyfill": "^0.12.0",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@codemirror/language": "^6.10.7",

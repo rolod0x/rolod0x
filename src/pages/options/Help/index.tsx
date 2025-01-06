@@ -7,6 +7,8 @@ import { optionsStorage } from '@src/shared/options-storage';
 import Rolod0xText from '@root/src/components/Rolod0xText';
 import { usePageTitle } from '@root/src/shared/contexts/PageTitleContext';
 
+import SectionTitle from '../shared/SectionTitle';
+
 const Help = () => {
   const navigate = useNavigate();
   const { setPageTitle } = usePageTitle();
@@ -19,12 +21,6 @@ const Help = () => {
     await optionsStorage.set({ hasSeenTour: false });
     navigate('/settings'); // Navigate to the Settings tab
   }, [navigate]);
-
-  const SectionTitle = ({ title, first }: { title: string; first?: boolean }) => (
-    <Typography variant="h4" gutterBottom sx={{ mt: first ? 0 : 3 }}>
-      {title}
-    </Typography>
-  );
 
   return (
     <Box>

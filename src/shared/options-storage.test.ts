@@ -15,8 +15,11 @@ import {
   Rolod0xOptionsSerialized,
   Rolod0xOptionsDeserialized,
   DEFAULT_OPTIONS_SERIALIZED,
+  DEFAULT_OPTIONS_DESERIALIZED,
   migrateToSections,
   Rolod0xOptionsV1,
+  deserializeOptions,
+  validateDeserialized,
 } from './options-storage';
 
 describe('options-storage', () => {
@@ -451,6 +454,203 @@ describe('options-storage', () => {
 
         expect(mockSetAll).toHaveBeenCalledWith(DEFAULT_OPTIONS_SERIALIZED);
       });
+    });
+
+    describe('setAllDeserialized()', () => {
+      it('serializes and sets all options', async () => {
+        const newOptions: Rolod0xOptionsDeserialized = {
+          themeName: 'dark',
+          sections: [
+            {
+              id: 'test-section',
+              title: 'Test Section',
+              format: 'rolod0x',
+              source: 'text',
+              labels: 'test labels',
+              url: null,
+              expanded: true,
+            },
+          ],
+          displayLabelFormat: 'custom format',
+          displayGuessFormat: 'custom guess format',
+          hasSeenTour: true,
+        };
+
+        await optionsStorage.setAllDeserialized(newOptions);
+
+        expect(mockSetAll).toHaveBeenCalledWith(serializeOptions(newOptions));
+      });
+    });
+  });
+
+  describe('deserializeOptions()', () => {
+    it('handles invalid JSON in sections by returning default sections', () => {
+      const invalidOptions: Rolod0xOptionsSerialized = {
+        themeName: 'light',
+        sections: 'invalid json {',
+        displayLabelFormat: '%n (0x%4l…%4r)',
+        displayGuessFormat: '? %n ? (0x%4l…%4r)',
+        hasSeenTour: false,
+      };
+
+      const result = deserializeOptions(invalidOptions);
+
+      expect(result.sections).toEqual(DEFAULT_OPTIONS_DESERIALIZED.sections);
+      expect(result.themeName).toBe(invalidOptions.themeName);
+      expect(result.displayLabelFormat).toBe(invalidOptions.displayLabelFormat);
+      expect(result.displayGuessFormat).toBe(invalidOptions.displayGuessFormat);
+      expect(result.hasSeenTour).toBe(invalidOptions.hasSeenTour);
+    });
+  });
+
+  describe('validateDeserialized()', () => {
+    it('validates valid options', () => {
+      const validOptions: Rolod0xOptionsDeserialized = {
+        themeName: 'light',
+        sections: [
+          {
+            id: '47b70315-d782-4080-afc1-6c47d0e89dfb',
+            title: 'Test Section',
+            format: 'rolod0x',
+            source: 'text',
+            labels: 'test labels',
+            url: null,
+            expanded: true,
+          },
+        ],
+        displayLabelFormat: '%n (0x%4l…%4r)',
+        displayGuessFormat: '? %n ? (0x%4l…%4r)',
+        hasSeenTour: false,
+      };
+
+      const result = validateDeserialized(validOptions);
+      expect(result.success).toBe(true);
+      if (result.success) {
+        expect(result.data).toEqual(validOptions);
+      }
+    });
+
+    it('rejects invalid theme name', () => {
+      const invalidOptions = {
+        themeName: 'invalid',
+        sections: [
+          {
+            id: '47b70315-d782-4080-afc1-6c47d0e89dfb',
+            title: 'Test Section',
+            format: 'rolod0x',
+            source: 'text',
+            labels: 'test labels',
+            url: null,
+            expanded: true,
+          },
+        ],
+        displayLabelFormat: '%n (0x%4l…%4r)',
+        displayGuessFormat: '? %n ? (0x%4l…%4r)',
+        hasSeenTour: false,
+      };
+
+      const result = validateDeserialized(invalidOptions);
+      expect(result.success).toBe(false);
+      if (!result.success) {
+        expect(result.error.issues[0].path).toEqual(['themeName']);
+      }
+    });
+
+    it('rejects empty sections array', () => {
+      const invalidOptions = {
+        themeName: 'light',
+        sections: [],
+        displayLabelFormat: '%n (0x%4l…%4r)',
+        displayGuessFormat: '? %n ? (0x%4l…%4r)',
+        hasSeenTour: false,
+      };
+
+      const result = validateDeserialized(invalidOptions);
+      expect(result.success).toBe(false);
+      if (!result.success) {
+        expect(result.error.issues[0].path).toEqual(['sections']);
+        expect(result.error.issues[0].code).toBe('too_small');
+      }
+    });
+
+    it('rejects invalid section format', () => {
+      const invalidOptions = {
+        themeName: 'light',
+        sections: [
+          {
+            id: '47b70315-d782-4080-afc1-6c47d0e89dfb',
+            title: 'Test Section',
+            format: 'invalid',
+            source: 'text',
+            labels: 'test labels',
+            url: null,
+            expanded: true,
+          },
+        ],
+        displayLabelFormat: '%n (0x%4l…%4r)',
+        displayGuessFormat: '? %n ? (0x%4l…%4r)',
+        hasSeenTour: false,
+      };
+
+      const result = validateDeserialized(invalidOptions);
+      expect(result.success).toBe(false);
+      if (!result.success) {
+        expect(result.error.issues[0].path).toEqual(['sections', 0, 'format']);
+      }
+    });
+
+    it('rejects invalid UUID', () => {
+      const invalidOptions = {
+        themeName: 'light',
+        sections: [
+          {
+            id: 'not-a-uuid',
+            title: 'Test Section',
+            format: 'rolod0x',
+            source: 'text',
+            labels: 'test labels',
+            url: null,
+            expanded: true,
+          },
+        ],
+        displayLabelFormat: '%n (0x%4l…%4r)',
+        displayGuessFormat: '? %n ? (0x%4l…%4r)',
+        hasSeenTour: false,
+      };
+
+      const result = validateDeserialized(invalidOptions);
+      expect(result.success).toBe(false);
+      if (!result.success) {
+        expect(result.error.issues[0].path).toEqual(['sections', 0, 'id']);
+        expect(result.error.issues[0].code).toBe('invalid_string');
+      }
+    });
+
+    it('rejects empty title', () => {
+      const invalidOptions = {
+        themeName: 'light',
+        sections: [
+          {
+            id: '47b70315-d782-4080-afc1-6c47d0e89dfb',
+            title: '',
+            format: 'rolod0x',
+            source: 'text',
+            labels: 'test labels',
+            url: null,
+            expanded: true,
+          },
+        ],
+        displayLabelFormat: '%n (0x%4l…%4r)',
+        displayGuessFormat: '? %n ? (0x%4l…%4r)',
+        hasSeenTour: false,
+      };
+
+      const result = validateDeserialized(invalidOptions);
+      expect(result.success).toBe(false);
+      if (!result.success) {
+        expect(result.error.issues[0].path).toEqual(['sections', 0, 'title']);
+        expect(result.error.issues[0].code).toBe('too_small');
+      }
     });
   });
 });

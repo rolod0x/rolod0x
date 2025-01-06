@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD033 -->
+
 # User manual
 
 - [First steps after install](#first)
@@ -7,6 +9,7 @@
 - [Controlling which sites rolod0x is active on](#allow-list)
 - [Looking up an address](#lookup)
 - [Customizing the label display format](#display)
+- [Managing settings](#managing)
 - [Usage in other browsers](#other)
 - [Usage on the command line](#cli)
 - [Importing token lists on the command line](#import-tokenlist)
@@ -158,6 +161,51 @@ See the `Display` section of the options page which explains this in
 detail.
 
 [![Customizing display settings](./images/customize-display-format.jpg)](./images/customize-display-format.jpg)
+
+## Managing Settings <a name="managing"></a>
+
+You can manage all your rolod0x settings through the "Manage Settings"
+page in the options. This includes:
+
+### Exporting settings
+
+To back up your settings or transfer them to another computer:
+
+1. Go to the "Manage Settings" page
+2. Click the "Export" button
+3. Your settings will be downloaded as a JSON file named `rolod0x-options.json`
+
+### Importing settings
+
+To restore settings from a backup or import settings from another computer:
+
+1. Go to the "Manage Settings" page
+2. Click the "Import" button
+3. Select your previously exported `rolod0x-options.json` file
+4. Confirm that you want to overwrite your current settings
+5. Your settings will be imported and applied immediately
+
+Note: The import will fail if the file format is invalid or if it
+contains invalid settings. In this case, your existing settings will
+remain unchanged.
+
+### Resetting to defaults
+
+If you want to start fresh with default settings:
+
+1. Go to the "Manage Settings" page
+2. Click the "Reset to defaults" button
+3. Confirm that you want to reset all settings
+4. All your settings will be reset to their default values
+
+Note: This action cannot be undone. If you want to keep your current
+settings, export them before resetting.
+
+### Raw options data
+
+The "Raw options data" section shows a detailed view of all your
+current settings.  This can be helpful for debugging or understanding
+exactly what settings are stored.
 
 ## Usage in other browsers <a name="other"></a>
 

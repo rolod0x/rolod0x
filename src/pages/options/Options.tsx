@@ -11,7 +11,7 @@ import AddressesSettings from './AddressesSettings';
 import DisplaySettings from './DisplaySettings';
 import Donate from './Donate';
 import SiteSettings from './SiteSettings';
-import RawOptionsDialog from './RawOptionsDialog';
+import ManageSettings from './ManageSettings';
 import Help from './Help';
 import About from './About';
 
@@ -19,7 +19,6 @@ const Options = () => {
   return (
     <Rolod0xThemeProvider>
       <PageTitleProvider>
-        <RawOptionsDialog />
         <Routes>
           <Route path="/" element={<ResponsiveDrawer />}>
             <Route index element={<AddressesSettings />} />
@@ -27,6 +26,7 @@ const Options = () => {
             <Route path="Display" element={<DisplaySettings />} />
             <Route path="Sites" element={<SiteSettings />} />
             <Route path="Donate" element={<Donate />} />
+            <Route path="Manage" element={<ManageSettings />} />
             <Route path="Help" element={<Help />} />
             <Route path="About" element={<About />} />
             <Route path="*" element={<AddressesSettings />} />

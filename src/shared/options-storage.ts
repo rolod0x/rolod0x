@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import OptionsSync from 'webext-options-sync';
+import { z } from 'zod';
 
 export interface Rolod0xOptionsV1 {
   themeName: 'light' | 'dark';
@@ -23,6 +24,35 @@ export type Rolod0xOptionsDeserialized = Omit<Rolod0xOptionsV1, 'labels'> & {
   hasSeenTour: boolean;
 };
 
+// Zod schemas that match our TypeScript types
+export const rolod0xAddressBookSectionSchema = z
+  .object({
+    id: z.string().uuid(),
+    title: z.string().min(1),
+    format: z.literal('rolod0x'),
+    source: z.literal('text'),
+    labels: z.string(),
+    url: z.string().nullable(),
+    expanded: z.boolean(),
+  })
+  .strict();
+
+export const rolod0xOptionsDeserializedSchema = z
+  .object({
+    themeName: z.enum(['light', 'dark']),
+    sections: z.array(rolod0xAddressBookSectionSchema).nonempty(),
+    displayLabelFormat: z.string().min(1),
+    displayGuessFormat: z.string().min(1),
+    hasSeenTour: z.boolean(),
+  })
+  .strict() as z.ZodType<Rolod0xOptionsDeserialized>;
+
+export const validateDeserialized = (
+  options: unknown,
+): z.SafeParseReturnType<Rolod0xOptionsDeserialized, Rolod0xOptionsDeserialized> => {
+  return rolod0xOptionsDeserializedSchema.safeParse(options);
+};
+
 export type Rolod0xOptionsSerialized = Omit<Rolod0xOptionsDeserialized, 'sections'> & {
   sections: string;
 };
@@ -41,10 +71,19 @@ export const deserializeOptions = (
   options: Rolod0xOptionsSerialized,
 ): Rolod0xOptionsDeserialized => {
   const { sections, ...rest } = options;
-  return {
-    ...rest,
-    sections: JSON.parse(sections),
-  };
+  try {
+    return {
+      ...rest,
+      sections: JSON.parse(sections),
+    };
+  } catch (error) {
+    console.error('Failed to parse sections JSON:', error);
+    console.error('Full options JSON was:', options);
+    return {
+      ...rest,
+      sections: DEFAULT_OPTIONS_DESERIALIZED.sections,
+    };
+  }
 };
 
 export const labelsToSection = (labels: string): Rolod0xAddressBookSection => {
@@ -118,6 +157,10 @@ export class DeserializableOptionsSync extends OptionsSync<Rolod0xOptionsSeriali
       ...(sections && { sections: JSON.stringify(sections) }),
     };
     return super.set(serialized);
+  }
+
+  async setAllDeserialized(newOptions: Rolod0xOptionsDeserialized): Promise<void> {
+    return super.setAll(serializeOptions(newOptions));
   }
 
   async getSection(sectionId: string): Promise<Rolod0xAddressBookSection> {

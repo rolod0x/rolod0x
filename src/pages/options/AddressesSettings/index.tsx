@@ -192,11 +192,12 @@ export default function AddressesSettings() {
   const handleAddSection = useCallback(async () => {
     const newSection: Rolod0xAddressBookSection = {
       id: uuidv4(),
-      title: 'New Section',
+      title: 'New section',
       format: 'rolod0x',
       source: 'text',
       labels: '',
       url: '',
+      expanded: true,
     };
     const updatedSections = [...sections, newSection];
     await optionsStorage.setDeserialized({ sections: updatedSections });
