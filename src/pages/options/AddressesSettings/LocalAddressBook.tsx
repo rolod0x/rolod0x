@@ -14,21 +14,14 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  TextField,
   styled,
 } from '@mui/material';
-import {
-  ContentPaste as ContentPasteIcon,
-  RestorePage as RestorePageIcon,
-  Save as SaveIcon,
-  ExpandMore as ExpandMoreIcon,
-  Delete as DeleteIcon,
-  Download as DownloadIcon,
-} from '@mui/icons-material';
+import { ExpandMore as ExpandMoreIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import * as murmurhash from 'murmurhash';
 
 import { useAddressBook } from '@src/shared/hooks/useAddressBook';
 
+import SectionToolbar from './SectionToolbar';
 import CodeMirrorTextAddresses from './CodeMirrorTextAddresses';
 import EditableTitle from './EditableTitle';
 
@@ -232,52 +225,16 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
           </Box>
         </StyledAccordionSummary>
         <AccordionDetails sx={{ ml: '40px', mt: 0 }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-            <TextField
-              size="small"
-              placeholder="Enter URL to fetch addresses"
-              value={fetchUrl}
-              onChange={handleUrlChange}
-              sx={{ flexGrow: 1 }}
-            />
-            <Button
-              variant="contained"
-              startIcon={<DownloadIcon />}
-              size="small"
-              onClick={handleFetch}
-              disabled={!fetchUrl.trim()}>
-              Fetch
-            </Button>
-            <Button
-              className="section-paste-button"
-              variant="contained"
-              onClick={handlePaste}
-              startIcon={<ContentPasteIcon />}
-              size="small"
-              sx={{ mr: 1 }}>
-              Paste
-            </Button>
-            <Button
-              className="section-revert-button"
-              variant="contained"
-              onClick={handleRevert}
-              startIcon={<RestorePageIcon />}
-              disabled={!canRevert}
-              size="small"
-              sx={{ mr: 1 }}>
-              Discard changes
-            </Button>
-            <Button
-              className="section-save-button"
-              variant="contained"
-              onClick={handleSaveClick}
-              startIcon={<SaveIcon />}
-              disabled={!canSave}
-              size="small"
-              sx={{ mr: 1 }}>
-              Save
-            </Button>
-          </Box>
+          <SectionToolbar
+            fetchUrl={fetchUrl}
+            onUrlChange={handleUrlChange}
+            onFetch={handleFetch}
+            onPaste={handlePaste}
+            onRevert={handleRevert}
+            onSave={handleSaveClick}
+            canRevert={canRevert}
+            canSave={canSave}
+          />
           <Box>
             <Stack sx={{ width: '100%' }} spacing={2}>
               <Alert severity="warning" style={{ display: !error && 'none' }}>
