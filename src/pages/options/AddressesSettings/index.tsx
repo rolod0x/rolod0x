@@ -14,8 +14,9 @@ import { optionsStorage, Rolod0xAddressBookSection } from '@src/shared/options-s
 import Rolod0xText from '@root/src/components/Rolod0xText';
 import { usePageTitle } from '@src/shared/contexts/PageTitleContext';
 
+import StyledCode from '../StyledCode';
+
 import LocalAddressBook from './LocalAddressBook';
-import StyledCode from './StyledCode';
 
 import type { CallBackProps, Step } from 'react-joyride';
 

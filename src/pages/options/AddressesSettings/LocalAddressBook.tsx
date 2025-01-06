@@ -28,7 +28,7 @@ import { useAddressBook } from '@src/shared/hooks/useAddressBook';
 import CodeMirrorTextAddresses from './CodeMirrorTextAddresses';
 import EditableTitle from './EditableTitle';
 
-import '@pages/options/LocalAddressBook.css';
+import './LocalAddressBook.css';
 
 const StyledAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
   flexDirection: 'row-reverse',
