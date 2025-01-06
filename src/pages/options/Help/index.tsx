@@ -20,11 +20,15 @@ const Help = () => {
     navigate('/settings'); // Navigate to the Settings tab
   }, [navigate]);
 
+  const SectionTitle = ({ title, first }: { title: string; first?: boolean }) => (
+    <Typography variant="h4" gutterBottom sx={{ mt: first ? 0 : 3 }}>
+      {title}
+    </Typography>
+  );
+
   return (
-    <Box sx={{ padding: 3 }}>
-      <Typography variant="h4" gutterBottom>
-        Documentation
-      </Typography>
+    <Box>
+      <SectionTitle title="Documentation" first />
       <Typography paragraph>
         This section contains documentation, guides, and FAQs to help you make the most of{' '}
         <Rolod0xText />.
@@ -65,9 +69,8 @@ const Help = () => {
           Privacy Policy
         </Button>
       </Stack>
-      <Typography variant="h4" sx={{ mt: 2 }} gutterBottom>
-        Support
-      </Typography>
+
+      <SectionTitle title="Support" />
       <Typography paragraph gutterBottom>
         If you need support, please see{' '}
         <Link href="https://rolod0x.io/CONTRIBUTING.html" target="_blank" rel="noopener noreferrer">
@@ -75,9 +78,8 @@ const Help = () => {
         </Link>
         .
       </Typography>
-      <Typography variant="h4" sx={{ mt: 2 }} gutterBottom>
-        Development
-      </Typography>
+
+      <SectionTitle title="Development" />
       <Typography paragraph gutterBottom>
         If you need support, first please see{' '}
         <Link href="https://rolod0x.io/CONTRIBUTING.html" target="_blank" rel="noopener noreferrer">
