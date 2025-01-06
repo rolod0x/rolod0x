@@ -15,6 +15,7 @@ export interface Rolod0xAddressBookSection {
   source: 'text';
   labels: string;
   url: string | null;
+  expanded: boolean;
 }
 
 export type Rolod0xOptionsDeserialized = Omit<Rolod0xOptionsV1, 'labels'> & {
@@ -54,6 +55,7 @@ export const labelsToSection = (labels: string): Rolod0xAddressBookSection => {
     source: 'text',
     labels,
     url: null,
+    expanded: true,
   };
 };
 

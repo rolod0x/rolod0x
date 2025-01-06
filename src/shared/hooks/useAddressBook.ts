@@ -12,6 +12,7 @@ export function useAddressBook(sectionId: string) {
   const [savedLabelsHash, setSavedLabelsHash] = useState(murmurhash.v3(''));
   const [error, setError] = useState<string | null>();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
 
   const validate = useCallback(
     (labels: string): void => {
@@ -45,12 +46,13 @@ export function useAddressBook(sectionId: string) {
       source: 'text',
       labels,
       url,
+      expanded,
     };
     await optionsStorage.setSection(sectionId, updatedSection);
     const hash = murmurhash.v3(labels);
     setSavedLabelsHash(hash);
     validate(labels);
-  }, [sectionId, title, labels, url, validate]);
+  }, [sectionId, title, labels, url, validate, expanded]);
 
   const getSection = useCallback(async () => {
     const section = await optionsStorage.getSection(sectionId);
@@ -60,6 +62,7 @@ export function useAddressBook(sectionId: string) {
     setLabels(section.labels);
     setTitle(section.title);
     setUrl(section.url);
+    setExpanded(section.expanded);
     const hash = murmurhash.v3(section.labels);
     console.log(`Hydrated options from storage (hash ${hash})`);
     setCurrentLabelsHash(hash);
@@ -98,6 +101,11 @@ export function useAddressBook(sectionId: string) {
     [updateSectionField],
   );
 
+  const updateExpanded = useCallback(
+    (newExpanded: boolean) => updateSectionField('expanded', newExpanded, setExpanded),
+    [updateSectionField],
+  );
+
   const deleteSection = useCallback(async () => {
     await optionsStorage.deleteSection(sectionId);
     // Dispatch event to notify other components
@@ -121,5 +129,7 @@ export function useAddressBook(sectionId: string) {
     updateTitle,
     updateUrl,
     deleteSection,
+    expanded,
+    updateExpanded,
   };
 }

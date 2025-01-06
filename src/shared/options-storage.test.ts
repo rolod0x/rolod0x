@@ -37,6 +37,7 @@ describe('options-storage', () => {
             labels: dedent`
               0xe3D82337F79306712477b642EF59B75dD62eF109 my address`,
             url: null,
+            expanded: true,
           },
         ],
         displayLabelFormat: '%n (0x%4l…%4r)',
@@ -46,7 +47,7 @@ describe('options-storage', () => {
       const serialized: Rolod0xOptionsSerialized = serializeOptions(deserialized);
       const expected = {
         themeName: 'light',
-        sections: `[{"id":"47b70315-d782-4080-afc1-6c47d0e89dfb","title":"Personal address book","format":"rolod0x","source":"text","labels":"0xe3D82337F79306712477b642EF59B75dD62eF109 my address","url":null}]`,
+        sections: `[{"id":"47b70315-d782-4080-afc1-6c47d0e89dfb","title":"Personal address book","format":"rolod0x","source":"text","labels":"0xe3D82337F79306712477b642EF59B75dD62eF109 my address","url":null,"expanded":true}]`,
         displayLabelFormat: '%n (0x%4l…%4r)',
         displayGuessFormat: '? %n ? (0x%4l…%4r)',
         hasSeenTour: false,
@@ -114,6 +115,7 @@ describe('options-storage', () => {
         source: 'text',
         labels: v1Options.labels,
         url: null,
+        expanded: true,
       });
       expect(sections[0].id).toHaveLength(36); // UUID length
     });
@@ -143,6 +145,7 @@ describe('options-storage', () => {
             format: 'rolod0x',
             source: 'text',
             labels: 'existing labels',
+            expanded: true,
           },
         ]),
         displayLabelFormat: '%n (0x%4l…%4r)',
@@ -187,6 +190,7 @@ describe('options-storage', () => {
         source: 'text',
         labels,
         url: null,
+        expanded: true,
       });
       expect(result.sections[0].id).toHaveLength(36); // UUID length
       expect(result.themeName).toBe('dark');
@@ -205,6 +209,7 @@ describe('options-storage', () => {
             source: 'text',
             labels: '0xe3D82337F79306712477b642EF59B75dD62eF109 test address',
             url: '',
+            expanded: true,
           },
         ],
       };
@@ -239,6 +244,7 @@ describe('options-storage', () => {
         source: 'text' as const,
         labels: 'original labels',
         url: null,
+        expanded: true,
       };
 
       beforeEach(() => {
@@ -281,6 +287,7 @@ describe('options-storage', () => {
           source: 'text' as const,
           labels: 'second section labels',
           url: null,
+          expanded: true,
         };
 
         mockGetAll.mockResolvedValue({
@@ -314,6 +321,7 @@ describe('options-storage', () => {
         source: 'text' as const,
         labels: 'section 1 labels',
         url: null,
+        expanded: true,
       };
 
       const section2 = {
@@ -323,6 +331,7 @@ describe('options-storage', () => {
         source: 'text' as const,
         labels: 'section 2 labels',
         url: null,
+        expanded: true,
       };
 
       beforeEach(() => {
@@ -358,6 +367,7 @@ describe('options-storage', () => {
           source: 'text',
           labels: '',
           url: null,
+          expanded: true,
         });
         expect(sections[0].id).toHaveLength(36); // UUID length
       });
@@ -373,6 +383,7 @@ describe('options-storage', () => {
             source: 'text',
             labels: '',
             url: null,
+            expanded: true,
           },
           {
             id: 'section-2',
@@ -381,6 +392,7 @@ describe('options-storage', () => {
             source: 'text',
             labels: '',
             url: null,
+            expanded: true,
           },
         ];
         mockGetAll.mockResolvedValue({
@@ -401,6 +413,7 @@ describe('options-storage', () => {
             source: 'text',
             labels: '',
             url: null,
+            expanded: true,
           },
         ];
         mockGetAll.mockResolvedValue({
@@ -425,6 +438,7 @@ describe('options-storage', () => {
               format: 'rolod0x',
               source: 'text',
               labels: 'some labels',
+              expanded: true,
             },
           ]),
           displayLabelFormat: 'custom format',

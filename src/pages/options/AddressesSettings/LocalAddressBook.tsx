@@ -40,6 +40,8 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
     deleteSection,
     url,
     updateUrl,
+    expanded,
+    updateExpanded,
   } = useAddressBook(sectionId);
 
   useEffect(() => {
@@ -85,7 +87,7 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
 
   return isLoaded ? (
     <>
-      <Accordion defaultExpanded={true}>
+      <Accordion expanded={expanded} onChange={(_, isExpanded) => updateExpanded(isExpanded)}>
         <SectionHeader
           sectionId={sectionId}
           title={title}
