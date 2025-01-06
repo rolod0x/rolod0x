@@ -7,6 +7,7 @@ import {
   DialogTitle,
   Button,
 } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 interface DeleteSectionDialogProps {
   deleteSection: () => Promise<void>;
@@ -43,6 +44,7 @@ export default function DeleteSection({ deleteSection, triggerRefresh }: DeleteS
         onClick={openDialog}
         color="warning"
         size="small"
+        startIcon={<DeleteIcon />}
         sx={{ mr: 1 }}>
         Delete section
       </Button>
