@@ -138,7 +138,7 @@ export default function SiteSettings() {
           These are automatically enabled by rolod0x and cannot be disabled (yet, but{' '}
           <Link
             href="https://github.com/rolod0x/rolod0x/blob/main/CONTRIBUTING.md"
-            target="_noblank"
+            target="_blank"
             rel="noreferrer noopener">
             let us know
           </Link>{' '}
