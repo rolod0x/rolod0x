@@ -181,7 +181,7 @@ extremely welcome!
 
 ## Star History <a name="star-history"></a>
 
-<a href="https://star-history.com/#rolod0x/rolod0x&Date"><img src="https://api.star-history.com/svg?repos=rolod0x/rolod0x&type=Date" alt="GitHub star history chart /></a>
+<a href="https://star-history.com/#rolod0x/rolod0x&amp;type=Date"><img src="https://api.star-history.com/svg?repos=rolod0x/rolod0x&amp;type=Date" alt="GitHub star history chart" /></a>
 
 ## Thanks <a name="thanks"></a>
 
