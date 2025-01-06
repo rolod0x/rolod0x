@@ -1,16 +1,26 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 
+import { usePageTitle } from '@root/src/shared/contexts/PageTitleContext';
 import Rolod0xText from '@src/components/Rolod0xText';
 
 import SettingsPageHeader from './SettingsPageHeader';
 import StyledCode from './StyledCode';
 
 export default function Donate() {
+  const { setPageTitle } = usePageTitle();
+  useEffect(() => {
+    setPageTitle(
+      <>
+        Donate to <Rolod0xText bold />
+      </>,
+    );
+  }, [setPageTitle]);
+
   return (
     <Fragment>
       <SettingsPageHeader>
-        Support <Rolod0xText bold />!
+        Please support <Rolod0xText bold />!
       </SettingsPageHeader>
       <Typography paragraph>
         If you find this project helpful and would like to support its development, you can make a

@@ -12,6 +12,7 @@ import { tabs } from 'webextension-polyfill';
 
 import { optionsStorage, Rolod0xAddressBookSection } from '@src/shared/options-storage';
 import Rolod0xText from '@root/src/components/Rolod0xText';
+import { usePageTitle } from '@src/shared/contexts/PageTitleContext';
 
 import LocalAddressBook from './LocalAddressBook';
 import StyledCode from './StyledCode';
@@ -183,6 +184,7 @@ const tourSteps: Step[] = [
 ];
 
 export default function AddressesSettings() {
+  const { setPageTitle } = usePageTitle();
   const [sections, setSections] = useState<Rolod0xAddressBookSection[]>([]);
   const [runTour, setRunTour] = useState(false);
 
@@ -204,6 +206,10 @@ export default function AddressesSettings() {
     await optionsStorage.setDeserialized({ sections: updatedSections });
     setSections(updatedSections);
   }, [sections]);
+
+  useEffect(() => {
+    setPageTitle('address book');
+  }, [setPageTitle]);
 
   useEffect(() => {
     getOptions();

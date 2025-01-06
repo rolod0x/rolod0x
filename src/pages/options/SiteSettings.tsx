@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import 'webextension-polyfill';
 import { queryAdditionalPermissions, normalizeManifestPermissions } from 'webext-permissions';
 
+import { usePageTitle } from '@root/src/shared/contexts/PageTitleContext';
 import Loading from '@src/components/Loading';
 import Rolod0xText from '@src/components/Rolod0xText';
 
@@ -70,6 +71,11 @@ function AdditionalSiteItem(url: string, handleDelete: (string) => Promise<void>
 export default function SiteSettings() {
   const [manifestSites, setManifestSites] = useState<string[] | null>(null);
   const [additionalSites, setAdditionalSites] = useState<string[] | null>(null);
+  const { setPageTitle } = usePageTitle();
+
+  useEffect(() => {
+    setPageTitle('site settings');
+  }, [setPageTitle]);
 
   const fetchSites = useCallback(async () => {
     const manifestPermissions = await normalizeManifestPermissions();

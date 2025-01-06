@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Box, Button, Link, Typography, Stack } from '@mui/material';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
@@ -6,9 +6,15 @@ import { useNavigate } from 'react-router-dom';
 
 import { optionsStorage } from '@src/shared/options-storage';
 import Rolod0xText from '@root/src/components/Rolod0xText';
+import { usePageTitle } from '@root/src/shared/contexts/PageTitleContext';
 
 const Help = () => {
   const navigate = useNavigate();
+  const { setPageTitle } = usePageTitle();
+
+  useEffect(() => {
+    setPageTitle('help');
+  }, [setPageTitle]);
 
   const handleRestartTour = useCallback(async () => {
     await optionsStorage.set({ hasSeenTour: false });

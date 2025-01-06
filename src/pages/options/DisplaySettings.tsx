@@ -7,11 +7,12 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
+import { usePageTitle } from '@root/src/shared/contexts/PageTitleContext';
 import { Formatter } from '@src/shared/formatter';
 import { optionsStorage } from '@src/shared/options-storage';
 import Rolod0xText from '@src/components/Rolod0xText';
 
-import SettingsPageHeader from './SettingsPageHeader';
+// import SettingsPageHeader from './SettingsPageHeader';
 import SettingsSection from './SettingsSection';
 import StyledCode from './StyledCode';
 
@@ -41,6 +42,11 @@ const FORMAT_TYPE_TO_STORAGE: Record<keyof Formats, string> = {
 export default function DisplaySettings() {
   const [formats, setFormats] = useState<Formats>({});
   const [previews, setPreviews] = useState<Formats>({});
+  const { setPageTitle } = usePageTitle();
+
+  useEffect(() => {
+    setPageTitle('display settings');
+  }, [setPageTitle]);
 
   const updateLabelDisplay = useCallback(
     (formatType: keyof Formats, newFormat: string) => {
@@ -79,7 +85,7 @@ export default function DisplaySettings() {
 
   return (
     <Fragment>
-      <SettingsPageHeader title="Display settings" />
+      {/* <SettingsPageHeader title="Display settings" /> */}
 
       <SettingsSection title="Label display format for exact address matches">
         <Stack direction="row">

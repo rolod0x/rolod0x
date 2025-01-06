@@ -9,6 +9,7 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 import Rolod0xText from '@src/components/Rolod0xText';
 import { ThemeNameContext } from '@src/components/Rolod0xThemeProvider';
+import { usePageTitle } from '@src/shared/contexts/PageTitleContext';
 
 interface Props {
   drawerWidth: number;
@@ -17,6 +18,23 @@ interface Props {
 
 export default function SettingsAppBar({ drawerWidth, handleDrawerToggle }: Props) {
   const { themeName, toggleTheme } = useContext(ThemeNameContext);
+  const { pageTitle } = usePageTitle();
+
+  const getPageTitle = () => {
+    if (!pageTitle) {
+      return 'settings';
+    }
+
+    if (typeof pageTitle === 'string') {
+      return (
+        <>
+          <Rolod0xText bold /> {pageTitle}
+        </>
+      );
+    }
+
+    return pageTitle;
+  };
 
   return (
     <AppBar
@@ -41,7 +59,7 @@ export default function SettingsAppBar({ drawerWidth, handleDrawerToggle }: Prop
           <MenuIcon />
         </IconButton>
         <Typography variant="h3" component="h1" sx={{ flexGrow: 1 }}>
-          <Rolod0xText bold /> settings
+          {getPageTitle()}
         </Typography>
         <IconButton sx={{ ml: 1 }} onClick={toggleTheme} color="inherit">
           {themeName === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}

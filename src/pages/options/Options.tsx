@@ -4,6 +4,7 @@ import { withErrorBoundary } from 'react-error-boundary';
 import withSuspense from '@src/shared/hoc/withSuspense';
 import ErrorPage from '@src/components/ErrorPage';
 import Rolod0xThemeProvider from '@src/components/Rolod0xThemeProvider';
+import { PageTitleProvider } from '@src/shared/contexts/PageTitleContext';
 
 import ResponsiveDrawer from './ResponsiveDrawer';
 import AddressesSettings from './AddressesSettings';
@@ -17,19 +18,21 @@ import About from './About';
 const Options = () => {
   return (
     <Rolod0xThemeProvider>
-      <RawOptionsDialog />
-      <Routes>
-        <Route path="/" element={<ResponsiveDrawer />}>
-          <Route index element={<AddressesSettings />} />
-          <Route path="Addresses" element={<AddressesSettings />} />
-          <Route path="Display" element={<DisplaySettings />} />
-          <Route path="Sites" element={<SiteSettings />} />
-          <Route path="Donate" element={<Donate />} />
-          <Route path="Help" element={<Help />} />
-          <Route path="About" element={<About />} />
-          <Route path="*" element={<AddressesSettings />} />
-        </Route>
-      </Routes>
+      <PageTitleProvider>
+        <RawOptionsDialog />
+        <Routes>
+          <Route path="/" element={<ResponsiveDrawer />}>
+            <Route index element={<AddressesSettings />} />
+            <Route path="Addresses" element={<AddressesSettings />} />
+            <Route path="Display" element={<DisplaySettings />} />
+            <Route path="Sites" element={<SiteSettings />} />
+            <Route path="Donate" element={<Donate />} />
+            <Route path="Help" element={<Help />} />
+            <Route path="About" element={<About />} />
+            <Route path="*" element={<AddressesSettings />} />
+          </Route>
+        </Routes>
+      </PageTitleProvider>
     </Rolod0xThemeProvider>
   );
 };

@@ -1,9 +1,19 @@
+import { useEffect } from 'react';
 import { Box, Typography, Link } from '@mui/material';
 
 import Rolod0xText from '@root/src/components/Rolod0xText';
+import { usePageTitle } from '@root/src/shared/contexts/PageTitleContext';
 
 const About = () => {
   const manifest = chrome.runtime.getManifest();
+  const { setPageTitle } = usePageTitle();
+  useEffect(() => {
+    setPageTitle(
+      <>
+        About <Rolod0xText bold />
+      </>,
+    );
+  }, [setPageTitle]);
 
   return (
     <Box sx={{ padding: 3 }}>
