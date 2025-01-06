@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEvent, useCallback } from 'react';
+import { ChangeEvent, MouseEvent, useCallback, useEffect, useState } from 'react';
 import { Box, Button, TextField } from '@mui/material';
 import {
   ContentPaste as ContentPasteIcon,
@@ -9,8 +9,7 @@ import {
 import * as murmurhash from 'murmurhash';
 
 interface SectionToolbarProps {
-  fetchUrl: string;
-  setFetchUrl: (url: string) => void;
+  initialUrl?: string;
   updateUrl: (url: string) => void;
   setLabels: (labels: string) => void;
   setCurrentLabelsHash: (hash: number) => void;
@@ -22,8 +21,7 @@ interface SectionToolbarProps {
 }
 
 export default function SectionToolbar({
-  fetchUrl,
-  setFetchUrl,
+  initialUrl,
   updateUrl,
   setLabels,
   setCurrentLabelsHash,
@@ -33,13 +31,22 @@ export default function SectionToolbar({
   canRevert,
   canSave,
 }: SectionToolbarProps) {
+  const [fetchUrl, setFetchUrl] = useState('');
+
+  // Initialize fetchUrl from props
+  useEffect(() => {
+    if (initialUrl) {
+      setFetchUrl(initialUrl);
+    }
+  }, [initialUrl]);
+
   const handleUrlChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const newUrl = e.target.value;
       setFetchUrl(newUrl);
       updateUrl(newUrl);
     },
-    [setFetchUrl, updateUrl],
+    [updateUrl],
   );
 
   const handleFetch = useCallback(

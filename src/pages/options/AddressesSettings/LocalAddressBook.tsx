@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import {
   Alert,
   AlertTitle,
@@ -24,7 +24,6 @@ interface LocalAddressBookProps {
 }
 
 export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
-  const [fetchUrl, setFetchUrl] = useState('');
   const {
     labels,
     error,
@@ -58,13 +57,6 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
       window.removeEventListener('options-reset', handleOptionsReset);
     };
   }, [getSection]);
-
-  // Initialize fetchUrl from storage
-  useEffect(() => {
-    if (url) {
-      setFetchUrl(url);
-    }
-  }, [url]);
 
   const validateTimeoutRef = useRef<NodeJS.Timeout>();
 
@@ -102,8 +94,7 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
         />
         <AccordionDetails sx={{ ml: '40px', mt: 0 }}>
           <SectionToolbar
-            fetchUrl={fetchUrl}
-            setFetchUrl={setFetchUrl}
+            initialUrl={url}
             updateUrl={updateUrl}
             setLabels={setLabels}
             setCurrentLabelsHash={setCurrentLabelsHash}
