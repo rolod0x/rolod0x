@@ -33,6 +33,7 @@
 [Support](./CONTRIBUTING.md) •
 [Security](./SECURITY.md) •
 [Privacy](./docs/privacy-policy.md) •
+[Roadmap](#roadmap) •
 [Development](./docs/dev-guide.md) •
 [Star History](#star-history) •
 [Thanks](#thanks) •
@@ -160,6 +161,12 @@ Please see [the `SECURITY.md` file](./SECURITY.md).
 ## Privacy policy <a name="privacy"></a>
 
 Please see [`docs/privacy-policy.md` file](./docs/privacy-policy.md).
+
+## Project roadmap <a name="roadmap"></a>
+
+The roadmap and milestones can be seen in [this GitHub project][project].
+
+[project]: https://github.com/users/aspiers/projects/2/views/5
 
 ## Development and building from source <a name="development"></a>
 
