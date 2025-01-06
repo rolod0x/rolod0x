@@ -5,7 +5,7 @@ import { usePageTitle } from '@root/src/shared/contexts/PageTitleContext';
 import Rolod0xText from '@src/components/Rolod0xText';
 
 import SettingsPageHeader from './SettingsPageHeader';
-import StyledCode from './StyledCode';
+import StyledCode from './shared/StyledCode';
 
 export default function Donate() {
   const { setPageTitle } = usePageTitle();

@@ -14,7 +14,7 @@ import Rolod0xText from '@src/components/Rolod0xText';
 
 // import SettingsPageHeader from './SettingsPageHeader';
 import SettingsSection from './SettingsSection';
-import StyledCode from './StyledCode';
+import StyledCode from './shared/StyledCode';
 
 const StyledTextField = styled(TextField)(`
   margin: 16px;

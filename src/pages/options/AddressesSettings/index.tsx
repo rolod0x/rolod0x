@@ -14,7 +14,7 @@ import { optionsStorage, Rolod0xAddressBookSection } from '@src/shared/options-s
 import Rolod0xText from '@root/src/components/Rolod0xText';
 import { usePageTitle } from '@src/shared/contexts/PageTitleContext';
 
-import StyledCode from '../StyledCode';
+import StyledCode from '../shared/StyledCode';
 
 import LocalAddressBook from './LocalAddressBook';
 
