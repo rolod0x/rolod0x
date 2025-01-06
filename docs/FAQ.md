@@ -45,6 +45,9 @@ It's a combination of three ideas:
 
 [0x]: https://stackoverflow.com/questions/2670639/why-are-hexadecimal-numbers-prefixed-with-0x
 
+Perhaps this is trying to be a bit too clever and it should be called
+rolodox.  Time will tell!
+
 ## Why does web3 need private address books? <a name="why"></a>
 
 Many websites in web3 use long undecipherable blockchain addresses like
