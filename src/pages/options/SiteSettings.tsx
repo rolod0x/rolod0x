@@ -19,7 +19,7 @@ import { usePageTitle } from '@root/src/shared/contexts/PageTitleContext';
 import Loading from '@src/components/Loading';
 import Rolod0xText from '@src/components/Rolod0xText';
 
-import SettingsSection from './SettingsSection';
+import SettingsAccordionSection from './SettingsAccordionSection';
 import SettingsPageHeader from './SettingsPageHeader';
 
 const StyledTextField = styled(TextField)(`
@@ -135,11 +135,11 @@ export default function SiteSettings() {
         <Rolod0xText /> will only activate on the sites listed below.
       </Typography>
 
-      <SettingsSection title="Your sites">
+      <SettingsAccordionSection title="Your sites">
         <AdditionalSites />
-      </SettingsSection>
+      </SettingsAccordionSection>
 
-      <SettingsSection title="Built-in sites">
+      <SettingsAccordionSection title="Built-in sites">
         <Typography paragraph>
           These are automatically enabled by rolod0x and cannot be disabled (yet, but{' '}
           <Link
@@ -157,7 +157,7 @@ export default function SiteSettings() {
         ) : (
           <Loading />
         )}
-      </SettingsSection>
+      </SettingsAccordionSection>
     </Fragment>
   );
 }
