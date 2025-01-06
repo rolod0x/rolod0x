@@ -13,7 +13,7 @@ import { optionsStorage } from '@src/shared/options-storage';
 import Rolod0xText from '@src/components/Rolod0xText';
 
 // import SettingsPageHeader from './SettingsPageHeader';
-import SettingsSection from './SettingsSection';
+import SettingsSection from './shared/SettingsSection';
 import StyledCode from './shared/StyledCode';
 
 const StyledTextField = styled(TextField)(`
