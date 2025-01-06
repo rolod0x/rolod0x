@@ -7,12 +7,6 @@ import {
   Accordion,
   AccordionDetails,
   CircularProgress,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Button,
 } from '@mui/material';
 import * as murmurhash from 'murmurhash';
 
@@ -20,6 +14,7 @@ import { useAddressBook } from '@src/shared/hooks/useAddressBook';
 
 import SectionToolbar from './SectionToolbar';
 import SectionHeader from './SectionHeader';
+import DeleteSectionDialog from './DeleteSectionDialog';
 import CodeMirrorTextAddresses from './CodeMirrorTextAddresses';
 
 import './LocalAddressBook.css';
@@ -213,24 +208,11 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
         </AccordionDetails>
       </Accordion>
 
-      <Dialog
+      <DeleteSectionDialog
         open={isDeleteDialogOpen}
         onClose={handleDeleteCancel}
-        aria-labelledby="delete-dialog-title"
-        aria-describedby="delete-dialog-description">
-        <DialogTitle id="delete-dialog-title">Delete Section?</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="delete-dialog-description">
-            Are you sure you want to delete this section? This action cannot be undone.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleDeleteCancel}>Cancel</Button>
-          <Button onClick={handleDeleteConfirm} color="error" variant="contained">
-            Delete
-          </Button>
-        </DialogActions>
-      </Dialog>
+        onConfirm={handleDeleteConfirm}
+      />
     </>
   ) : (
     <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
