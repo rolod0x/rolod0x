@@ -13,8 +13,8 @@ import { optionsStorage } from '@src/shared/options-storage';
 import Rolod0xText from '@src/components/Rolod0xText';
 
 // import SettingsPageHeader from './shared/SettingsPageHeader';
-import SettingsSection from './shared/SettingsSection';
-import StyledCode from './shared/StyledCode';
+import SettingsSection from '../shared/SettingsSection';
+import StyledCode from '../shared/StyledCode';
 
 const StyledTextField = styled(TextField)(`
   margin: 16px;
