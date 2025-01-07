@@ -10,7 +10,7 @@ const IFRAME_URL = 'src/pages/content/contextMenu/index.html';
 let clickedEl: HTMLElement = null;
 
 async function addLabelForClickedElement(): Promise<void> {
-  // const options: Rolod0xOptions = await optionsStorage.getAll();
+  // const options: Rolod0xOptionsDeserialized = await optionsStorage.getAllDeserialized();
   console.debug('rolod0x: Right-clicked on', clickedEl);
 
   let url = IFRAME_URL;

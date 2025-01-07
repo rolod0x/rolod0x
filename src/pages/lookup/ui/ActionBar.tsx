@@ -1,17 +1,18 @@
 import React, { HTMLAttributes, useCallback, useContext, useEffect, useRef, useState } from 'react';
-import Autocomplete, { AutocompleteChangeDetails } from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
+import { Autocomplete, TextField } from '@mui/material';
 
 // import { Formatter } from '@src/shared/formatter';
 import { IframeContext } from '@src/components/IframeModal';
-import { Rolod0xOptions, optionsStorage } from '@src/shared/options-storage';
+import { getParser } from '@src/shared/address-book';
+import { optionsStorage, Rolod0xOptionsDeserialized } from '@src/shared/options-storage';
 import { delayedFocusInput } from '@src/shared/focus';
 import { AddressLabelComment, ParsedEntries } from '@src/shared/types';
-import { Parser, ParseError } from '@src/shared/parser';
 // import Loading from '@src/components/Loading';
 
 import { itemsFilter } from './search';
 import AddressOption from './AddressOption';
+
+import type { AutocompleteChangeDetails } from '@mui/material/Autocomplete';
 
 // const itemFormatter = new Formatter('%n (%a)');
 //
@@ -25,18 +26,9 @@ export default function ActionBar() {
   const { handleClose } = useContext(IframeContext);
 
   const getLabels = useCallback(async (): Promise<ParsedEntries> => {
-    const options: Rolod0xOptions = await optionsStorage.getAll();
-    const parser = new Parser();
-    try {
-      parser.parseMultiline(options.labels);
-      return parser.parsedEntries;
-    } catch (err: unknown) {
-      if (err instanceof ParseError) {
-        console.log('rolod0x:', err);
-      } else {
-        console.error('rolod0x:', err);
-      }
-    }
+    const options: Rolod0xOptionsDeserialized = await optionsStorage.getAllDeserialized();
+    const parser = getParser(options);
+    return parser.parsedEntries;
   }, []);
 
   const focusTextField = useCallback(() => delayedFocusInput(textFieldRef), [textFieldRef]);

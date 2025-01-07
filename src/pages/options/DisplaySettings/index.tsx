@@ -2,18 +2,16 @@ import { Fragment, useCallback, useEffect, useState } from 'react';
 // import { styled } from '@mui/material/styles';
 import { css } from '@emotion/css';
 import styled from '@emotion/styled';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
+import { Box, Stack, TextField, Typography } from '@mui/material';
 
+import { usePageTitle } from '@root/src/shared/contexts/PageTitleContext';
 import { Formatter } from '@src/shared/formatter';
 import { optionsStorage } from '@src/shared/options-storage';
 import Rolod0xText from '@src/components/Rolod0xText';
 
-import SettingsPageHeader from './SettingsPageHeader';
-import SettingsSection from './SettingsSection';
-import StyledCode from './StyledCode';
+// import SettingsPageHeader from './shared/SettingsPageHeader';
+import SettingsSection from '../shared/SettingsSection';
+import StyledCode from '../shared/StyledCode';
 
 const StyledTextField = styled(TextField)(`
   margin: 16px;
@@ -41,6 +39,11 @@ const FORMAT_TYPE_TO_STORAGE: Record<keyof Formats, string> = {
 export default function DisplaySettings() {
   const [formats, setFormats] = useState<Formats>({});
   const [previews, setPreviews] = useState<Formats>({});
+  const { setPageTitle } = usePageTitle();
+
+  useEffect(() => {
+    setPageTitle('display settings');
+  }, [setPageTitle]);
 
   const updateLabelDisplay = useCallback(
     (formatType: keyof Formats, newFormat: string) => {
@@ -66,7 +69,7 @@ export default function DisplaySettings() {
 
   useEffect(() => {
     async function hydrateOptions() {
-      const options = await optionsStorage.getAll();
+      const options = await optionsStorage.getAllDeserialized();
       if (options.displayLabelFormat) {
         updateLabelDisplay('exact', options.displayLabelFormat);
       }
@@ -79,7 +82,7 @@ export default function DisplaySettings() {
 
   return (
     <Fragment>
-      <SettingsPageHeader title="Display settings" />
+      {/* <SettingsPageHeader title="Display settings" /> */}
 
       <SettingsSection title="Label display format for exact address matches">
         <Stack direction="row">

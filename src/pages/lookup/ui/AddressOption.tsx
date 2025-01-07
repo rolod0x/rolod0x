@@ -1,8 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope -- Unaware of jsxImportSource */
 /** @jsxImportSource @emotion/react */
 import { HTMLAttributes } from 'react';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import { Stack, Typography } from '@mui/material';
 // import styled from '@emotion/styled';
 // import { css } from '@emotion/react';
 

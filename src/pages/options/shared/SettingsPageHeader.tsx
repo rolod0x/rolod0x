@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import Typography from '@mui/material/Typography';
+import { Typography } from '@mui/material';
 
 export default function SettingsPageHeader({
   title,

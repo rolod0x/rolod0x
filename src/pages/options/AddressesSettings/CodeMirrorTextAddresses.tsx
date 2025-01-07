@@ -36,18 +36,21 @@ export default function CodeMirrorTextAddresses(props: Props) {
     }
   `;
 
+  const placeholder = '0x6B175474E89094C44Da98b954EedeAC495271d0F DAI    // Dai Stablecoin';
+
   return (
     <CodeMirror
       data-testid="codeMirror-editor"
+      data-joyride-target="codeMirror-editor"
       value={props.value}
       onChange={props.onChange}
       minWidth="800px"
-      minHeight="100px"
+      minHeight="50px"
       maxHeight="800px"
       theme={cmTheme.extension}
       className={style}
       extensions={extensions}
-      placeholder="0x6B175474E89094C44Da98b954EedeAC495271d0F DAI    // Dai Stablecoin"
+      placeholder={placeholder}
       basicSetup={{ lineNumbers: true, autocompletion: false }}
     />
   );

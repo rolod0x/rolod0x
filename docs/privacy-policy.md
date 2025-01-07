@@ -9,13 +9,12 @@ since it doesn't perform any communications with the network.  (See
 
 ## Data storage
 
-rolod0x stores your settings and addressbook data locally within an
+rolod0x stores your settings and address book data locally within an
 isolated storage area in the browser reserved for the extension.
 
 If you want to see exactly what is being stored, you can view this raw
 data by [going to the extension settings
-page](user-guide.md#reopening) and clicking near to the top left
-corner of the page.
+page](user-guide.md#reopening) and selecting the `Manage` section.
 
 ### Addresses and labels
 

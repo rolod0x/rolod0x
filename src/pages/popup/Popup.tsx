@@ -1,12 +1,12 @@
 import React from 'react';
 import { withErrorBoundary } from 'react-error-boundary';
-import Divider from '@mui/material/Divider';
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import SearchIcon from '@mui/icons-material/Search';
-import SettingsIcon from '@mui/icons-material/Settings';
+import { Divider, MenuList, MenuItem, ListItemText, ListItemIcon } from '@mui/material';
+import {
+  Search as SearchIcon,
+  Settings as SettingsIcon,
+  Help as HelpIcon,
+  Info as InfoIcon,
+} from '@mui/icons-material';
 
 import '@pages/popup/Popup.css';
 
@@ -47,6 +47,26 @@ const Popup = () => {
             <SearchIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText>Search</ListItemText>
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            window.open(chrome.runtime.getURL('src/pages/options/index.html#/Help'));
+            window.close();
+          }}>
+          <ListItemIcon>
+            <HelpIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Help</ListItemText>
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            window.open(chrome.runtime.getURL('src/pages/options/index.html#/About'));
+            window.close();
+          }}>
+          <ListItemIcon>
+            <InfoIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>About</ListItemText>
         </MenuItem>
         <Divider />
         <MenuItem disabled sx={{ '&.Mui-disabled': { opacity: 1 } }}>

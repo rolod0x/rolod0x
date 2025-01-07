@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD033 -->
 # Security analysis
 
 Since security is paramount in web3, every effort has been made to eliminate
@@ -46,7 +47,7 @@ However, there are still some minor risks which need to be considered:
    and can be mitigated much more easily by virtue of the fact that the code
    is Free and Open Source and can be easily audited and rebuilt from
    source.  If this makes you nervous, you should consider that web3 wallet
-   extensions are in general a *far* more lucrative target for this type of attack.
+   extensions are in general a _far_ more lucrative target for this type of attack.
 
 3. The browser could be compromised via a bug, which could allow attackers
    access to the extension's local storage.  Again, this risk applies to

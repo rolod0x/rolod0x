@@ -1,16 +1,23 @@
 import { useCallback, ReactNode } from 'react';
 import { useLocation, NavLink } from 'react-router-dom';
-import ContactsIcon from '@mui/icons-material/Contacts';
-import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
-import DisplaySettingsIcon from '@mui/icons-material/DisplaySettings';
-import DomainVerificationIcon from '@mui/icons-material/DomainVerification';
-import Divider from '@mui/material/Divider';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Toolbar from '@mui/material/Toolbar';
+import {
+  Contacts as ContactsIcon,
+  CardGiftcard as CardGiftcardIcon,
+  DisplaySettings as DisplaySettingsIcon,
+  DomainVerification as DomainVerificationIcon,
+  ImportExport as ImportExportIcon,
+  Help as HelpIcon,
+  Info as InfoIcon,
+} from '@mui/icons-material';
+import {
+  Divider,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Toolbar,
+} from '@mui/material';
 
 interface DrawerItemProps {
   page: string;
@@ -24,7 +31,9 @@ const OptionsDrawer = () => {
     ({ page, children }: DrawerItemProps) => {
       const path = '/' + page;
       const selected =
-        location.pathname === path || (location.key === 'default' && page === 'Addresses');
+        location.pathname === path ||
+        location.hash === '#' + path ||
+        (location.pathname === '/' && location.hash === '' && page === 'Addresses');
       // console.log('OptionsDrawer page', page, 'selected', selected);
       return (
         <NavLink to={path} style={{ textDecoration: 'none' }}>
@@ -64,6 +73,15 @@ const OptionsDrawer = () => {
         </DrawerItem>
         <DrawerItem page="Donate">
           <CardGiftcardIcon />
+        </DrawerItem>
+        <DrawerItem page="Manage">
+          <ImportExportIcon />
+        </DrawerItem>
+        <DrawerItem page="Help">
+          <HelpIcon />
+        </DrawerItem>
+        <DrawerItem page="About">
+          <InfoIcon />
         </DrawerItem>
       </List>
     </div>

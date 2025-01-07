@@ -1,52 +1,23 @@
 import { act, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { EditorView } from '@codemirror/view';
-import { useEffect } from 'react';
 
+import {
+  mockGetAll,
+  mockSet,
+  mockGetSection,
+  resetOptionsMocks,
+} from '@root/test-utils/mocks/options-storage';
 import Rolod0xThemeProvider from '@src/components/Rolod0xThemeProvider';
-import { optionsStorage } from '@src/shared/options-storage';
-import { useAddressBook } from '@src/shared/hooks/useAddressBook';
+import { DEFAULT_OPTIONS_DESERIALIZED } from '@src/shared/options-storage';
 
 import LocalAddressBook from './LocalAddressBook';
 
-// Mock the options storage
-vi.mock('@src/shared/options-storage', () => ({
-  optionsStorage: {
-    getAll: vi.fn().mockResolvedValue({ labels: '', themeName: 'light' }),
-    set: vi.fn().mockResolvedValue(undefined),
-  },
-}));
+// Mock the uuid used for the default section
+const DEFAULT_SECTION_ID = DEFAULT_OPTIONS_DESERIALIZED.sections[0].id;
 
 function LocalAddressBookWrapper() {
-  const {
-    labels,
-    error,
-    currentLabelsHash,
-    savedLabelsHash,
-    setLabels,
-    setCurrentLabelsHash,
-    handleSave,
-    getOptions,
-    validate,
-  } = useAddressBook();
-
-  useEffect(() => {
-    getOptions();
-  }, [getOptions]);
-
-  return (
-    <LocalAddressBook
-      labels={labels}
-      error={error}
-      currentLabelsHash={currentLabelsHash}
-      savedLabelsHash={savedLabelsHash}
-      onLabelsChange={setLabels}
-      onCurrentLabelsHashChange={setCurrentLabelsHash}
-      onSave={handleSave}
-      onGetOptions={getOptions}
-      validate={validate}
-    />
-  );
+  return <LocalAddressBook sectionId={DEFAULT_SECTION_ID} index={0} />;
 }
 
 const renderLocalAddressBook = async () => {
@@ -99,7 +70,7 @@ const setCodeMirrorValue = async (value: string) => {
 
 describe('LocalAddressBook', () => {
   beforeEach(async () => {
-    vi.clearAllMocks();
+    resetOptionsMocks();
   });
 
   it('should render the LocalAddressBook component', async () => {
@@ -108,14 +79,9 @@ describe('LocalAddressBook', () => {
 
     // Wait for the text to be visible
     await waitFor(() => {
-      expect(
-        screen.getByText(
-          'Enter your address labels here, one on each line. Each entry should look something like:',
-        ),
-      ).toBeInTheDocument();
+      expect(screen.getByDisplayValue('Personal address book')).toBeInTheDocument();
     });
 
-    expect(screen.getByText('0xaddress Label for address')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Paste' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Discard changes' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Save' })).toBeInTheDocument();
@@ -188,7 +154,14 @@ describe('LocalAddressBook', () => {
     // Verify the save was successful
     await waitFor(() => {
       expect(saveButton).toBeDisabled();
-      expect(optionsStorage.set).toHaveBeenCalledWith({ labels: testInput });
+      expect(mockSet).toHaveBeenCalledWith({
+        sections: JSON.stringify([
+          {
+            ...DEFAULT_OPTIONS_DESERIALIZED.sections[0],
+            labels: testInput,
+          },
+        ]),
+      });
     });
 
     // Verify the content is still there after save
@@ -197,7 +170,26 @@ describe('LocalAddressBook', () => {
   });
 
   it('should discard changes after clicking the Discard button', async () => {
+    // Set up initial storage state
+    const initialLabels = '0x1234567890123456789012345678901234567890 Initial Address';
+    // We can't use labelsToSection here because it creates a new section with a new id,
+    // and the only delta from the defaults we want in order to test discarding is the labels.
+    // The section id needs to remain constant within the component under test.
+    const initialSection = DEFAULT_OPTIONS_DESERIALIZED.sections[0];
+    initialSection.labels = initialLabels;
+    mockGetAll.mockResolvedValue({
+      ...DEFAULT_OPTIONS_DESERIALIZED,
+      sections: JSON.stringify([initialSection]),
+    });
+    mockGetSection.mockResolvedValue(initialSection);
+
     await renderLocalAddressBook();
+
+    // Wait for initial content to be loaded
+    await waitFor(async () => {
+      const view = await getCodeMirrorView();
+      expect(view.state.doc.toString()).toBe(initialLabels);
+    });
 
     const testInput = '0xe3D82337F79306712477b642EF59B75dD62eF109 different address';
     await setCodeMirrorValue(testInput);
@@ -218,10 +210,10 @@ describe('LocalAddressBook', () => {
       discardButton.click();
     });
 
-    // Wait for the editor content to be reverted
+    // Wait for the editor content to be reverted to initial state
     await waitFor(async () => {
       const view = await getCodeMirrorView();
-      expect(view.state.doc.toString()).toBe('');
+      expect(view.state.doc.toString()).toBe(initialLabels);
       expect(discardButton).toBeDisabled();
       const saveButton = screen.getByRole('button', { name: 'Save' });
       expect(saveButton).toBeDisabled();

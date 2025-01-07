@@ -22,20 +22,21 @@
 <!-- /auto-remove-section-for-jekyll -->
 
 <!-- auto-replace-line-for-jekyll: {: .text-center} -->
-[Overview](#overview) •
-[Features](#features) •
-[Video](https://youtu.be/AoWeASmnrPc) •
-[Installation](./docs/install.md) •
-[Usage](./docs/user-manual.md) •
-[Telegram](https://t.me/rolod0x) •
-[FAQ](./docs/FAQ.md) •
-[Donations](#donations) •
-[Support](./CONTRIBUTING.md) •
-[Security](./SECURITY.md) •
-[Privacy](./docs/privacy-policy.md) •
-[Development](./docs/dev-guide.md) •
-[Star History](#star-history) •
-[Thanks](#thanks) •
+[Overview](#overview)&nbsp;•
+[Features](#features)&nbsp;•
+[Video](https://youtu.be/AoWeASmnrPc)&nbsp;•
+[Installation](./docs/install.md)&nbsp;•
+[Usage](./docs/user-manual.md)&nbsp;•
+[Telegram](https://t.me/rolod0x)&nbsp;•
+[FAQ](./docs/FAQ.md)&nbsp;•
+[Donations](#donations)&nbsp;•
+[Support](./CONTRIBUTING.md)&nbsp;•
+[Security](./SECURITY.md)&nbsp;•
+[Privacy](./docs/privacy-policy.md)&nbsp;•
+[Roadmap](#roadmap)&nbsp;•
+[Development](./docs/dev-guide.md)&nbsp;•
+[Star History](#star-history)&nbsp;•
+[Thanks](#thanks)&nbsp;•
 [License](#license)
 
 <p align="center">
@@ -161,6 +162,12 @@ Please see [the `SECURITY.md` file](./SECURITY.md).
 
 Please see [`docs/privacy-policy.md` file](./docs/privacy-policy.md).
 
+## Project roadmap <a name="roadmap"></a>
+
+The roadmap and milestones can be seen in [this GitHub project][project].
+
+[project]: https://github.com/users/aspiers/projects/2/views/5
+
 ## Development and building from source <a name="development"></a>
 
 For information on how to get started with development, please see
@@ -174,7 +181,7 @@ extremely welcome!
 
 ## Star History <a name="star-history"></a>
 
-<a href="https://star-history.com/#rolod0x/rolod0x&Date"><img src="https://api.star-history.com/svg?repos=rolod0x/rolod0x&type=Date" alt="GitHub star history chart /></a>
+<a href="https://star-history.com/#rolod0x/rolod0x&amp;type=Date"><img src="https://api.star-history.com/svg?repos=rolod0x/rolod0x&amp;type=Date" alt="GitHub star history chart" /></a>
 
 ## Thanks <a name="thanks"></a>
 

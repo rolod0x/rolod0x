@@ -1,5 +1,7 @@
 # User manual
 
+<!-- markdownlint-disable MD033 -->
+
 - [First steps after install](#first)
 - [Adding labels to the address book](#adding)
 - [Editing the address book](#editing)
@@ -7,6 +9,7 @@
 - [Controlling which sites rolod0x is active on](#allow-list)
 - [Looking up an address](#lookup)
 - [Customizing the label display format](#display)
+- [Managing settings](#managing)
 - [Usage in other browsers](#other)
 - [Usage on the command line](#cli)
 - [Importing token lists on the command line](#import-tokenlist)
@@ -68,21 +71,21 @@ also how you can edit existing entries:
 
 [![Editing the address book](./images/edit-as-text.jpg)](./images/edit-as-text.jpg)
 
-1.  Add or edit addresses to your address book as directed by the help
-    text.
+1. Add or edit addresses to your address book as directed by the help
+   text.
 
-2.  Click the `Save` button.
+2. Click the `Save` button.
 
-3.  Visit a web page where those addresses are displayed.
+3. Visit a web page where those addresses are displayed.
 
-4.  You will now need to make sure that rolod0x is enabled for that
-    website, unless it's one of the built-in sites listed under the
-    "Sites" section of the settings.  See [the below
-    section](#allow-list) for how to do that.
+4. You will now need to make sure that rolod0x is enabled for that
+   website, unless it's one of the built-in sites listed under the
+   "Sites" section of the settings.  See [the below
+   section](#allow-list) for how to do that.
 
-5.  At this point, you should see that the addresses on the web page
-    have been replaced with the labels you provided in the extension
-    options.  If not, try simply reloading the web page.
+5. At this point, you should see that the addresses on the web page
+   have been replaced with the labels you provided in the extension
+   options.  If not, try simply reloading the web page.
 
 ## Handling of duplicate labels <a name="duplicates"></a>
 
@@ -115,13 +118,16 @@ section of the options page:
 [![Controlling which sites rolod0x is enabled for](./images/enable-per-site.jpg)](./images/enable-per-site.jpg)
 
 At this time it is not possible to disable rolod0x on the built-in
-sites, however if you need that functionality, please upvote [issue
-#215](https://github.com/rolod0x/rolod0x/issues/215).
+sites, however if you need that functionality, please upvote
+[issue #215][215].
 
-There is also [issue
-#74](https://github.com/rolod0x/rolod0x/issues/74) which is an idea
+[215]: https://github.com/rolod0x/rolod0x/issues/215
+
+There is also [issue #74][74] which is an idea
 for a future feature to allow temporarily disabling of rolod0x for the
 current tab.
+
+[74]: https://github.com/rolod0x/rolod0x/issues/74
 
 ## Looking up an address <a name="lookup"></a>
 
@@ -158,6 +164,51 @@ See the `Display` section of the options page which explains this in
 detail.
 
 [![Customizing display settings](./images/customize-display-format.jpg)](./images/customize-display-format.jpg)
+
+## Managing Settings <a name="managing"></a>
+
+You can manage all your rolod0x settings through the "Manage Settings"
+page in the options. This includes:
+
+### Exporting settings
+
+To back up your settings or transfer them to another computer:
+
+1. Go to the "Manage Settings" page
+2. Click the "Export" button
+3. Your settings will be downloaded as a JSON file named `rolod0x-options.json`
+
+### Importing settings
+
+To restore settings from a backup or import settings from another computer:
+
+1. Go to the "Manage Settings" page
+2. Click the "Import" button
+3. Select your previously exported `rolod0x-options.json` file
+4. Confirm that you want to overwrite your current settings
+5. Your settings will be imported and applied immediately
+
+Note: The import will fail if the file format is invalid or if it
+contains invalid settings. In this case, your existing settings will
+remain unchanged.
+
+### Resetting to defaults
+
+If you want to start fresh with default settings:
+
+1. Go to the "Manage Settings" page
+2. Click the "Reset to defaults" button
+3. Confirm that you want to reset all settings
+4. All your settings will be reset to their default values
+
+Note: This action cannot be undone. If you want to keep your current
+settings, export them before resetting.
+
+### Raw options data
+
+The "Raw options data" section shows a detailed view of all your
+current settings.  This can be helpful for debugging or understanding
+exactly what settings are stored.
 
 ## Usage in other browsers <a name="other"></a>
 
@@ -205,7 +256,7 @@ create a global alias:
 
     alias -g 0x='|& rx'
 
-Then you can just append ` 0x` to the end of any command and it will
+Then you can just append `0x` to the end of any command and it will
 pipe STDOUT and STDERR through rolod0x.
 
 ### Listing duplicate labels
@@ -217,7 +268,7 @@ book file which have duplicate labels.
 ## Importing token lists on the command line <a name="import-tokenlist"></a>
 
 If you want to augment your private address book with some well-known
-public addresses, take a look at https://tokenlists.org/ has a nice
+public addresses, take a look at <https://tokenlists.org/> has a nice
 list of public token lists.
 
 You can of course copy any of these into your address book manually,
