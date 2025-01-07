@@ -9,7 +9,7 @@ import { delayedFocusInput } from '@src/shared/focus';
 import { AddressLabelComment, ParsedEntries } from '@src/shared/types';
 // import Loading from '@src/components/Loading';
 
-import { itemsFilter } from './search';
+import { addressBookItemsFilter } from './search';
 import AddressOption from './AddressOption';
 
 import type { AutocompleteChangeDetails } from '@mui/material/Autocomplete';
@@ -99,7 +99,7 @@ export default function ActionBar() {
           maxHeight: '70vh',
         },
       }}
-      filterOptions={itemsFilter}
+      filterOptions={addressBookItemsFilter}
       loading={items.length == 0}
       onChange={handleChange}
       // This would break Escape closing the dropdown and then a second escape

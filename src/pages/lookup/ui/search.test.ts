@@ -1,8 +1,8 @@
 import { ParsedEntries } from '@src/shared/types';
 
-import { itemsFilter } from './search';
+import { addressBookItemsFilter } from './search';
 
-describe('itemsFilter', () => {
+describe('addressBookItemsFilter', () => {
   const ITEMS: ParsedEntries = [
     {
       address: '0x9991a3369B4292Dc12286c24b596AE0F77Bf841b',
@@ -40,7 +40,9 @@ describe('itemsFilter', () => {
   TEST_CASES.forEach(testcase => {
     const [search, indices] = testcase;
     it(`finds ${indices.length} match(es) containing "${search}"'`, () => {
-      expect(itemsFilter(ITEMS, { inputValue: search })).toEqual(indices.map(i => ITEMS[i]));
+      expect(
+        addressBookItemsFilter(ITEMS, { inputValue: search, getOptionLabel: item => item.label }),
+      ).toEqual(indices.map(i => ITEMS[i]));
     });
   });
 });
