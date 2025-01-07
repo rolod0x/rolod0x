@@ -36,7 +36,10 @@ const OptionsDrawer = () => {
         (location.pathname === '/' && location.hash === '' && page === 'Addresses');
       // console.log('OptionsDrawer page', page, 'selected', selected);
       return (
-        <NavLink to={path} style={{ textDecoration: 'none' }}>
+        <NavLink
+          to={path}
+          style={{ textDecoration: 'none' }}
+          className={`${page.toLowerCase()}-navlink`}>
           <ListItem
             key={page}
             disablePadding
