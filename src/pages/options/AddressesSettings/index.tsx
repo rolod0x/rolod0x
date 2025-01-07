@@ -141,20 +141,56 @@ const tourSteps: Step[] = [
     },
     content: (
       <Box>
-        <Typography>
+        <LeftTypography>
           Your addresses and labels go here, one on each line. Each entry should look something
           like:
-        </Typography>
+        </LeftTypography>
         <Box p={2}>
           <StyledCode>
             0x6B175474E89094C44Da98b954EedeAC495271d0F My label for this address
           </StyledCode>
         </Box>
-        <Typography>
+        <LeftTypography>
           You can optionally add{' '}
           <StyledCode className="example-comment">{'//'} a comment</StyledCode> after the address to
           provide more information.
-        </Typography>
+        </LeftTypography>
+      </Box>
+    ),
+  },
+  {
+    target: '.display-navlink',
+    disableBeacon: true,
+    styles: {
+      options: {
+        width: '800px',
+      },
+    },
+    content: (
+      <Box>
+        <LeftTypography paragraph>
+          When <Rolod0xText /> detects an <em>abbreviated</em> address, it will try to guess what
+          the address corresponds to. For example, if your address book has an entry for
+        </LeftTypography>
+        <Box p={2}>
+          <StyledCode>0x186bA87Ee6C3B4B25318c0f521C45b482d7f2dC3</StyledCode>
+        </Box>
+        <LeftTypography paragraph>
+          then if <Rolod0xText /> detects a string like <StyledCode>0x186b...2dC3</StyledCode> in a
+          webpage, it will guess with high confidence that it's referring to the entry in your
+          address book.
+        </LeftTypography>
+        <LeftTypography paragraph sx={{ mt: 1 }}>
+          However, there's still a small chance this guess could be wrong, so to make this clear,
+          guesses are displayed like this:
+        </LeftTypography>
+        <Box p={2}>
+          <StyledCode>? some label ? (0x186b...2d7f)</StyledCode>
+        </Box>
+        <LeftTypography paragraph>
+          You can change the way these guesses (and non-guesses) are displayed in the Display
+          section.
+        </LeftTypography>
       </Box>
     ),
   },
