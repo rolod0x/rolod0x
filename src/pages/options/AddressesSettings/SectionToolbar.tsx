@@ -139,7 +139,7 @@ export default function SectionToolbar({
         variant="contained"
         className="section-save-button"
         startIcon={<SaveIcon />}
-        title="Click to save changes"
+        title="Click or type Ctrl+S to save changes"
         onClick={handleSaveClick}
         disabled={!canSave}>
         Save
