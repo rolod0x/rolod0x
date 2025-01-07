@@ -12,7 +12,7 @@ import AddressOption from './AddressOption';
 import FocusedAutocomplete from './FocusedAutocomplete';
 
 export default function AddressChooser() {
-  const [items, setItems] = useState<ParsedEntries>([]);
+  const [items, setItems] = useState<ParsedEntries | null>(null);
   const [selectedItem, setSelectedItem] = useState<AddressLabel | null>(null);
   const [actionChooserVisible, setActionChooserVisible] = useState(false);
   const { handleClose: closeIframe } = useContext(IframeContext);
@@ -91,7 +91,8 @@ export default function AddressChooser() {
           },
         }}
         filterOptions={addressBookItemsFilter}
-        loading={items.length == 0}
+        loading={items === null}
+        noOptionsText="Address book is empty"
         onChange={handleAddressSelected}
         onClose={handleClose}
         label="Search terms"
