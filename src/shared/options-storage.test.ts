@@ -501,6 +501,25 @@ describe('options-storage', () => {
       expect(result.displayGuessFormat).toBe(invalidOptions.displayGuessFormat);
       expect(result.hasSeenTour).toBe(invalidOptions.hasSeenTour);
     });
+
+    it('logs error details when JSON parsing fails', () => {
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+      const invalidOptions: Rolod0xOptionsSerialized = {
+        themeName: 'light',
+        sections: '{not valid json',
+        displayLabelFormat: '%n (0x%4l…%4r)',
+        displayGuessFormat: '? %n ? (0x%4l…%4r)',
+        hasSeenTour: false,
+      };
+
+      deserializeOptions(invalidOptions);
+
+      expect(consoleSpy).toHaveBeenCalledTimes(2);
+      expect(consoleSpy).toHaveBeenCalledWith('Failed to parse sections JSON:', expect.any(Error));
+      expect(consoleSpy).toHaveBeenCalledWith('Full options JSON was:', invalidOptions);
+
+      consoleSpy.mockRestore();
+    });
   });
 
   describe('validateDeserialized()', () => {
