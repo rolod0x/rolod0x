@@ -95,6 +95,7 @@ they will now be labelled in this human-readable way!
 - Automatically translates blockchain addresses to human-readable labels.
 - Add entries directly from within a web page, by right-clicking on an address.
 - Instantly look up an address via a hotkey.
+- Quick actions to copy addresses, search, or view on block explorers.
 - Works on any website.
 - Works on any EVM-based blockchain (and could easily support other
   chains in the future).

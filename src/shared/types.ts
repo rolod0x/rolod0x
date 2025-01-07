@@ -2,6 +2,11 @@ export type Label = string;
 export type Address = string;
 export type Comment = string;
 
+export interface AddressLabel {
+  address: Address;
+  label: Label;
+}
+
 export interface LabelComment {
   label: Label;
   comment?: Comment;

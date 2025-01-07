@@ -13,12 +13,4 @@ export function focusInput(ref: RefObject<HTMLInputElement>): void {
   input.focus();
   input.click();
   input.focus();
-
-  // const input = input.querySelector('#action-bar');
-  // if (!input) {
-  //   console.warn("rolod0x: Couldn't find #action-bar input to focus");
-  //   return;
-  // }
-  // input.focus();
-  // console.debug('focused', input);
 }
