@@ -227,4 +227,45 @@ describe('LocalAddressBook', () => {
       expect(saveButton).toBeDisabled();
     });
   });
+
+  it('should save changes when pressing Ctrl+S or Cmd+S', async () => {
+    await renderLocalAddressBook();
+
+    const testInput = '0xe3D82337F79306712477b642EF59B75dD62eF109 different address';
+    await setCodeMirrorValue(testInput);
+
+    // Wait for the save button to be enabled after valid input
+    const saveButton = screen.getByRole('button', { name: 'Save' });
+    await waitFor(() => {
+      expect(saveButton).not.toBeDisabled();
+    });
+
+    // Simulate Ctrl+S
+    await act(async () => {
+      window.dispatchEvent(
+        new KeyboardEvent('keydown', {
+          key: 's',
+          ctrlKey: true,
+          bubbles: true,
+        }),
+      );
+    });
+
+    // Verify the save was successful
+    await waitFor(() => {
+      expect(saveButton).toBeDisabled();
+      expect(mockSet).toHaveBeenCalledWith({
+        sections: JSON.stringify([
+          {
+            ...DEFAULT_OPTIONS_DESERIALIZED.sections[0],
+            labels: testInput,
+          },
+        ]),
+      });
+    });
+
+    // Verify the content is still there after save
+    const view = await getCodeMirrorView();
+    expect(view.state.doc.toString()).toBe(testInput);
+  });
 });

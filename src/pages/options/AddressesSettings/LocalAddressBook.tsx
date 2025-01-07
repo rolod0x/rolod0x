@@ -86,6 +86,22 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
   const canRevert = labelsChanged;
   const canSave = !error && labelsChanged;
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if ((event.ctrlKey || event.metaKey) && event.key === 's') {
+        event.preventDefault();
+        if (canSave) {
+          handleSave();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [canSave, handleSave]);
+
   useBeforeUnload(
     useCallback(
       event => {
