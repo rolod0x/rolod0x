@@ -102,7 +102,7 @@ export default function SectionToolbar({
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
       <TextField
         size="small"
-        placeholder="Enter URL to fetch addresses"
+        placeholder="Enter URL to fetch addresses from (optional)"
         value={fetchUrl}
         onChange={handleUrlChange}
         sx={{ flexGrow: 1 }}

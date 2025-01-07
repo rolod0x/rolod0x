@@ -35,7 +35,7 @@ const Help = () => {
           color="primary"
           onClick={handleRestartTour}
           startIcon={<RestartAltIcon />}>
-          Restart Interactive Tour
+          Restart Tour
         </Button>
         <Button
           variant="contained"

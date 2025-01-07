@@ -213,6 +213,11 @@ const tourSteps: Step[] = [
   //   disableBeacon: true,
   //   content: 'When you have multiple sections, click here to expand or collapse a section.',
   // },
+  {
+    target: '.help-navlink',
+    disableBeacon: true,
+    content: `That's it! You can revisit this tour at any time by clicking the "Restart Tour" button in this Help section.`,
+  },
 ];
 
 export default function AddressesSettings() {
