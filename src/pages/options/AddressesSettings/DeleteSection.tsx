@@ -49,7 +49,7 @@ export default function DeleteSection({ deleteSection, triggerRefresh }: DeleteS
         variant="contained"
         onClick={openDialog}
         color="warning"
-        size="small"
+        title="Click to delete this section"
         startIcon={<DeleteIcon />}
         sx={{ mr: 1 }}>
         Delete section

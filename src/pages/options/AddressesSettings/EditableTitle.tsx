@@ -118,6 +118,7 @@ export default function EditableTitle({ title, onTitleChange }: EditableTitlePro
           '&:hover': {
             backgroundColor: 'action.hover',
           },
+          title: 'Click to edit the section title',
         }}>
         <HiddenTextField className="shadowTextField" ref={hiddenInputRef}>
           {editedTitle}
@@ -138,7 +139,6 @@ export default function EditableTitle({ title, onTitleChange }: EditableTitlePro
         <EditIcon
           fontSize="small"
           sx={{ opacity: isEditing ? 0 : 0.5, ml: 1 }}
-          titleAccess="Click to edit"
           onClick={handleIconClick}
         />
       </Stack>

@@ -109,39 +109,39 @@ export default function SectionToolbar({
       />
       <Button
         variant="contained"
+        className="section-fetch-button"
         startIcon={<DownloadIcon />}
-        size="small"
+        title="Click to fetch addresses from the URL"
+        disabled={!fetchUrl.trim()}
         onClick={handleFetch}
-        disabled={!fetchUrl.trim()}>
+        sx={{ mr: 1 }}>
         Fetch
       </Button>
       <Button
-        className="section-paste-button"
         variant="contained"
-        onClick={handlePaste}
+        className="section-paste-button"
         startIcon={<ContentPasteIcon />}
-        size="small"
-        sx={{ mr: 1 }}>
+        title="Click to import addresses from the clipboard"
+        onClick={handlePaste}
+        sx={{ mr: 2 }}>
         Paste
       </Button>
       <Button
-        className="section-revert-button"
         variant="contained"
-        onClick={handleRevert}
+        className="section-revert-button"
         startIcon={<RestorePageIcon />}
-        disabled={!canRevert}
-        size="small"
-        sx={{ mr: 1 }}>
+        title="Click to discard changes"
+        onClick={handleRevert}
+        disabled={!canRevert}>
         Discard changes
       </Button>
       <Button
-        className="section-save-button"
         variant="contained"
-        onClick={handleSaveClick}
+        className="section-save-button"
         startIcon={<SaveIcon />}
-        disabled={!canSave}
-        size="small"
-        sx={{ mr: 1 }}>
+        title="Click to save changes"
+        onClick={handleSaveClick}
+        disabled={!canSave}>
         Save
       </Button>
     </Box>
