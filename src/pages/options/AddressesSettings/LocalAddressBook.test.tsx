@@ -1,6 +1,7 @@
 import { act, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { EditorView } from '@codemirror/view';
+import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 
 import {
   mockGetAll,
@@ -21,11 +22,18 @@ function LocalAddressBookWrapper() {
 }
 
 const renderLocalAddressBook = async () => {
+  const router = createMemoryRouter([
+    {
+      path: '/',
+      element: <LocalAddressBookWrapper />,
+    },
+  ]);
+
   let container: HTMLElement;
   await act(async () => {
     ({ container } = render(
       <Rolod0xThemeProvider initialTheme="light">
-        <LocalAddressBookWrapper />
+        <RouterProvider router={router} />
       </Rolod0xThemeProvider>,
     ));
   });

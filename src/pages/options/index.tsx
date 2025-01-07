@@ -23,13 +23,20 @@
 
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { HashRouter } from 'react-router-dom';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 
 import '@src/shared/fonts';
 import Options from '@pages/options/Options';
 import refreshOnUpdate from 'virtual:reload-on-update-in-view';
 
 refreshOnUpdate('pages/options');
+
+const router = createHashRouter([
+  {
+    path: '*',
+    element: <Options />,
+  },
+]);
 
 function init() {
   const appContainer = document.querySelector('#app-container');
@@ -40,9 +47,7 @@ function init() {
   const root = createRoot(appContainer);
   root.render(
     <StrictMode>
-      <HashRouter>
-        <Options />
-      </HashRouter>
+      <RouterProvider router={router} />
     </StrictMode>,
   );
 }
