@@ -8,6 +8,7 @@
 - [Handling of duplicate labels](#duplicates)
 - [Controlling which sites rolod0x is active on](#allow-list)
 - [Looking up an address](#lookup)
+- [Actions on addresses](#actions)
 - [Customizing the label display format](#display)
 - [Managing settings](#managing)
 - [Usage in other browsers](#other)
@@ -157,6 +158,16 @@ Similarly, in Firefox go to the extensions page and then check that
 the keyboard shortcut is set up correctly:
 
 [![Configuring Firefox extension keyboard shortcuts](./images/firefox-keyboard-shortcuts.png)](./images/firefox-keyboard-shortcuts.png)
+
+### Actions on addresses <a name="actions"></a>
+
+After selecting an address from the lookup, you'll be presented with a searchable list of actions you can perform on that address:
+
+- Copy the address to your clipboard
+- Search for the address on search engines (DuckDuckGo, Google)
+- View the address on various block explorers
+
+You can quickly filter these actions by typing parts of the action name.
 
 ## Customizing the label display format <a name="display"></a>
 

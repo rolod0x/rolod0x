@@ -7,13 +7,15 @@ taken into account.
 If you see a reason for changes which fall under the following
 categories:
 
+- removal of existing comments
+
 - additional changes that weren't asked for (e.g. minor cleanups
   or refactorings)
 
 - significant strategy changes to the code or tests
   (such as introducing or removing mocking of a component)
 
-then don't directly apply them to the files, but instead first
+then DO NOT directly apply them to the files, but instead first
 suggest them to check that's OK.
 
 ## Project overview

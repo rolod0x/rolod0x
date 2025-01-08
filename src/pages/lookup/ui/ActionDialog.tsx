@@ -1,10 +1,9 @@
 import { Fragment } from 'react';
-import { DialogContentText } from '@mui/material';
 
 import IframeModal from '@src/components/IframeModal';
 import Rolod0xText from '@src/components/Rolod0xText';
 
-import ActionBar from './ActionBar';
+import AddressChooser from './AddressChooser';
 
 export default function ActionDialog() {
   const title = (
@@ -15,10 +14,7 @@ export default function ActionDialog() {
 
   return (
     <IframeModal id="lookup" title={title}>
-      <DialogContentText sx={{ pb: 2 }}>
-        Enter one or more search terms, space-separated:
-      </DialogContentText>
-      <ActionBar />
+      <AddressChooser />
     </IframeModal>
   );
 }
