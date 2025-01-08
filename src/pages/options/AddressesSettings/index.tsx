@@ -289,6 +289,7 @@ export default function AddressesSettings() {
         steps={tourSteps}
         run={runTour}
         continuous
+        hideCloseButton
         showSkipButton
         showProgress
         disableScrolling={false}
