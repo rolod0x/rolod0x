@@ -37,6 +37,7 @@ const defaultSites = [
   'https://cointracker.io/*',
   'https://coinstats.app/*',
   'https://accointing.com/*',
+  'https://debank.com/*',
 
   // Other services
   'https://app.disco.xyz/*',
