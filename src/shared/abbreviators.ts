@@ -18,6 +18,10 @@ const ABBREVIATION_LENGTHS = [
   // abbreviated in the form 0x1234...1234
   [4, 4],
 
+  // On Binance, addresses are sometimes abbreviated in
+  // the form 0x1234...123456
+  [4, 6],
+
   // On Kraken, addresses are sometimes abbreviated in
   // the form 0x123456...12345
   [6, 5],
