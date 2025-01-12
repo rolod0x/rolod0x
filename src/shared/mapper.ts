@@ -16,9 +16,14 @@ export class Mapper {
   }
 
   importParsed(parsed: ParsedEntries) {
+    const start = new Date();
+    let i = 0;
     for (const entry of parsed) {
       this.addEntry(entry);
+      i++;
     }
+    const duration = new Date().getTime() - start.getTime();
+    console.ldebug(`rolod0x: imported ${i} parsed entries in ${duration}ms`);
   }
 
   addEntry(data: AddressLabelComment) {
