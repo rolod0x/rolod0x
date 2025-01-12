@@ -122,18 +122,18 @@ export const migrateToSections = (
   options: Rolod0xRawOptions,
   _currentDefaults: Rolod0xOptionsSerialized,
 ) => {
-  console.log('Checking migration to sections');
+  console.llog('Checking migration to sections');
   // Check if sections exist and are valid JSON
   if ('sections' in options) {
-    console.log('ℹ️ Already migrated old labels to section');
+    console.llog('ℹ️ Already migrated old labels to section');
     return;
   }
 
   // We must still have v1 options
-  console.log('🚧 Migrating old labels to default section; before:', options);
+  console.llog('🚧 Migrating old labels to default section; before:', options);
   try {
     mutateV1ToV2(options);
-    console.log('✅ Migrated old labels to default section; after:', options);
+    console.llog('✅ Migrated old labels to default section; after:', options);
   } catch (error) {
     console.error('❌ Error during migration, resetting to defaults:', error);
   }

@@ -19,9 +19,9 @@ export function useAddressBook(sectionId: string) {
       if (!labels) return;
 
       try {
-        console.log(`Parsing: ${labels.slice(0, 30)}...`);
+        console.llog(`Parsing: ${labels.slice(0, 30)}...`);
         const parser = new Parser(labels);
-        console.log(`Parsed ${parser.parsedEntries.length} entries`);
+        console.llog(`Parsed ${parser.parsedEntries.length} entries`);
         setError(null);
       } catch (err: unknown) {
         if (err instanceof ParseError) {
@@ -64,7 +64,7 @@ export function useAddressBook(sectionId: string) {
     setUrl(section.url);
     setExpanded(section.expanded);
     const hash = murmurhash.v3(section.labels);
-    console.log(`Hydrated options from storage (hash ${hash})`);
+    console.llog(`Hydrated options from storage (hash ${hash})`);
     setCurrentLabelsHash(hash);
     setSavedLabelsHash(hash);
     validate(section.labels);

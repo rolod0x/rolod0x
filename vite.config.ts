@@ -12,6 +12,9 @@ import watchRebuild from './utils/plugins/watch-rebuild';
 // import inlineVitePreloadScript from './utils/plugins/inline-vite-preload-script';
 import muteWarningsPlugin from './utils/plugins/mute-warnings';
 
+// Load console extensions
+import './src/shared/console';
+
 const rootDir = resolve(__dirname);
 const srcDir = resolve(rootDir, 'src');
 const pagesDir = resolve(srcDir, 'pages');

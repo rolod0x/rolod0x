@@ -26,6 +26,7 @@ import { createRoot } from 'react-dom/client';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 
 import '@src/shared/fonts';
+import '@src/shared/console';
 import Options from '@pages/options/Options';
 import refreshOnUpdate from 'virtual:reload-on-update-in-view';
 

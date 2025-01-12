@@ -2,6 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 import '@src/shared/fonts';
+import '@src/shared/console';
 import Rolod0xThemeProvider from '@src/components/Rolod0xThemeProvider';
 import '@pages/popup/index.css';
 import Popup from '@pages/popup/Popup';
