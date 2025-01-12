@@ -485,6 +485,7 @@ describe('options-storage', () => {
 
   describe('deserializeOptions()', () => {
     it('handles invalid JSON in sections by returning default sections', () => {
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
       const invalidOptions: Rolod0xOptionsSerialized = {
         themeName: 'light',
         sections: 'invalid json {',
@@ -500,6 +501,10 @@ describe('options-storage', () => {
       expect(result.displayLabelFormat).toBe(invalidOptions.displayLabelFormat);
       expect(result.displayGuessFormat).toBe(invalidOptions.displayGuessFormat);
       expect(result.hasSeenTour).toBe(invalidOptions.hasSeenTour);
+
+      expect(consoleSpy).toHaveBeenCalledTimes(2);
+      expect(consoleSpy).toHaveBeenCalledWith('Failed to parse sections JSON:', expect.any(Error));
+      expect(consoleSpy).toHaveBeenCalledWith('Full options JSON was:', invalidOptions);
     });
 
     it('logs error details when JSON parsing fails', () => {
