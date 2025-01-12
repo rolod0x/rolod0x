@@ -18,6 +18,10 @@ const ABBREVIATION_LENGTHS = [
   // abbreviated in the form 0x1234...1234
   [4, 4],
 
+  // On Kraken, addresses are sometimes abbreviated in
+  // the form 0x123456...12345
+  [6, 5],
+
   // On etherscan and clones, addresses are _mostly_ abbreviated in
   // the form 0x123456...12345678
   [6, 8],
