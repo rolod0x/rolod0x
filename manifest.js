@@ -31,6 +31,11 @@ const defaultSites = [
   'https://dashboard.tenderly.co/*',
   'https://defender.openzeppelin.com/*',
 
+  // Exchanges
+  'https://*.kraken.com/*',
+  'https://*.binance.com/*',
+  'https://*.gemini.com/*',
+
   // Portfolio trackers
   'https://coinshift.xyz/*',
   'https://*.koinly.io/*',
