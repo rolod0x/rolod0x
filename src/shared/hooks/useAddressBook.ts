@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import * as murmurhash from 'murmurhash';
 
+import '@src/shared/console';
 import { Parser, ParseError } from '@src/shared/parser';
 import { optionsStorage, Rolod0xAddressBookSection } from '@src/shared/options-storage';
 
