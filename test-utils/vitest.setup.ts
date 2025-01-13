@@ -1,4 +1,5 @@
 import { chrome } from 'vitest-chrome';
+import '../src/shared/console';
 
 // Mock the browser globally to keep webextension-polyfill happy
 // global.chrome = global.browser = chrome;
