@@ -2,6 +2,8 @@ import { v4 as uuidv4 } from 'uuid';
 import OptionsSync from 'webext-options-sync';
 import { z } from 'zod';
 
+import '@src/shared/console';
+
 export interface Rolod0xOptionsV1 {
   themeName: 'light' | 'dark';
   labels: string;

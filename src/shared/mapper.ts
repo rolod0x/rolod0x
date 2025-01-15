@@ -2,6 +2,7 @@ import { ABBREVIATION_FUNCTIONS } from './abbreviators';
 import { TRANSFORMER_FUNCTIONS } from './transformers';
 import { Formatter } from './formatter';
 import { Address, AddressLabelComment, LabelComment, LabelMap, ParsedEntries } from './types';
+import './console';
 
 export class Mapper {
   exactFormatter: Formatter;
