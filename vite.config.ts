@@ -53,6 +53,23 @@ const viteConfig = defineViteConfig({
       // ),
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        charset: false,
+        // https://github.com/vitejs/vite/issues/18164#issuecomment-2365310242
+        api: 'modern-compiler',
+        sassOptions: {
+          outputStyle: 'expanded',
+          // silenceDeprecations: ['legacy-js-api'],
+        },
+      },
+    },
+    devSourcemap: true,
+    modules: {
+      localsConvention: 'camelCase',
+    },
+  },
   plugins: [
     checker({
       typescript: true,
