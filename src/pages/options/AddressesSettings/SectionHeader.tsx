@@ -18,8 +18,9 @@ const StyledAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
 interface SectionHeaderProps {
   sectionId: string;
   title: string;
-  updateTitle: ((title: string) => void) | undefined;
+  updateTitle: (newTitle: string) => Promise<void>;
   deleteSection: () => Promise<void>;
+  hasUnsavedChanges: boolean;
 }
 
 export default function SectionHeader({
@@ -27,6 +28,7 @@ export default function SectionHeader({
   title,
   updateTitle,
   deleteSection,
+  hasUnsavedChanges,
 }: SectionHeaderProps) {
   const handleTitleChange = useCallback(
     (newTitle: string) => {
@@ -45,7 +47,7 @@ export default function SectionHeader({
       title="Click to expand/collapse">
       <Stack direction="row" justifyContent="space-between" alignItems="center" width="100%">
         <EditableTitle title={title} onTitleChange={handleTitleChange} />
-        <DeleteSection deleteSection={deleteSection} />
+        <DeleteSection deleteSection={deleteSection} hasUnsavedChanges={hasUnsavedChanges} />
       </Stack>
     </StyledAccordionSummary>
   );

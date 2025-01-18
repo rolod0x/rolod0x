@@ -12,9 +12,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 interface DeleteSectionDialogProps {
   deleteSection: () => Promise<void>;
   triggerRefresh?: () => void;
+  hasUnsavedChanges: boolean;
 }
 
-export default function DeleteSection({ deleteSection, triggerRefresh }: DeleteSectionDialogProps) {
+export default function DeleteSection({
+  deleteSection,
+  triggerRefresh,
+  hasUnsavedChanges,
+}: DeleteSectionDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleCancel = useCallback((e: React.MouseEvent) => {
@@ -25,16 +30,28 @@ export default function DeleteSection({ deleteSection, triggerRefresh }: DeleteS
   const handleConfirm = useCallback(
     async (e: React.MouseEvent) => {
       e.stopPropagation();
+
+      // Check for unsaved changes in this section
+      if (hasUnsavedChanges) {
+        const shouldProceed = window.confirm(
+          'This section has unsaved changes. Are you sure you want to delete it and lose these changes?',
+        );
+        if (!shouldProceed) {
+          setIsOpen(false);
+          return;
+        }
+      }
+
       await deleteSection();
       setIsOpen(false);
       // Trigger re-render of AddressesSettings if needed
       if (triggerRefresh) {
         triggerRefresh();
       } else {
-        window.dispatchEvent(new Event('options-reset'));
+        window.dispatchEvent(new Event('delete-section'));
       }
     },
-    [deleteSection, triggerRefresh],
+    [deleteSection, triggerRefresh, hasUnsavedChanges],
   );
 
   const openDialog = useCallback((e: React.MouseEvent) => {

@@ -18,7 +18,9 @@ import LocalAddressBook from './LocalAddressBook';
 const DEFAULT_SECTION_ID = DEFAULT_OPTIONS_DESERIALIZED.sections[0].id;
 
 function LocalAddressBookWrapper() {
-  return <LocalAddressBook sectionId={DEFAULT_SECTION_ID} index={0} />;
+  return (
+    <LocalAddressBook sectionId={DEFAULT_SECTION_ID} _index={0} onUnsavedChanges={async () => {}} />
+  );
 }
 
 const renderLocalAddressBook = async () => {
@@ -267,5 +269,112 @@ describe('LocalAddressBook', () => {
     // Verify the content is still there after save
     const view = await getCodeMirrorView();
     expect(view.state.doc.toString()).toBe(testInput);
+  });
+});
+
+describe('LocalAddressBook section deletion', () => {
+  beforeEach(async () => {
+    resetOptionsMocks();
+  });
+
+  it('should show delete confirmation dialog when delete button is clicked', async () => {
+    await renderLocalAddressBook();
+
+    // Click the delete button
+    const deleteButton = screen.getByRole('button', { name: 'Delete section' });
+    await act(async () => {
+      deleteButton.click();
+    });
+
+    // Check if confirmation dialog is shown
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    expect(screen.getByText('Delete Section?')).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        'Are you sure you want to delete this section? This action cannot be undone.',
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it('should show additional warning when deleting section with unsaved changes', async () => {
+    await renderLocalAddressBook();
+
+    // Make some changes to trigger unsaved state
+    const testInput = '0x1234567890123456789012345678901234567890 Test Address';
+    await setCodeMirrorValue(testInput);
+
+    // Click the delete button
+    const deleteButton = screen.getByRole('button', { name: 'Delete section' });
+    await act(async () => {
+      deleteButton.click();
+    });
+
+    // Mock window.confirm to capture the warning message
+    const confirmSpy = vi.spyOn(window, 'confirm');
+    confirmSpy.mockReturnValue(true);
+
+    // Click the confirm delete button
+    const confirmDeleteButton = screen.getByRole('button', { name: 'Delete' });
+    await act(async () => {
+      confirmDeleteButton.click();
+    });
+
+    // Verify the warning about unsaved changes was shown
+    expect(confirmSpy).toHaveBeenCalledWith(
+      'This section has unsaved changes. Are you sure you want to delete it and lose these changes?',
+    );
+  });
+
+  it('should cancel deletion when Cancel button is clicked', async () => {
+    await renderLocalAddressBook();
+
+    // Click the delete button
+    const deleteButton = screen.getByRole('button', { name: 'Delete section' });
+    await act(async () => {
+      deleteButton.click();
+    });
+
+    // Click the cancel button
+    const cancelButton = screen.getByRole('button', { name: 'Cancel' });
+    await act(async () => {
+      cancelButton.click();
+    });
+
+    // Wait for the dialog to close
+    await waitFor(() => {
+      expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    });
+
+    // Verify section still exists
+    expect(screen.getByRole('button', { name: 'Delete section' })).toBeInTheDocument();
+  });
+
+  it('should delete section when confirmed', async () => {
+    await renderLocalAddressBook();
+
+    // Set up spy before any actions
+    const dispatchEventSpy = vi.spyOn(window, 'dispatchEvent');
+
+    // Click the delete button
+    const deleteButton = screen.getByRole('button', { name: 'Delete section' });
+    await act(async () => {
+      deleteButton.click();
+    });
+
+    // Click the confirm delete button
+    const confirmDeleteButton = screen.getByRole('button', { name: 'Delete' });
+    await act(async () => {
+      confirmDeleteButton.click();
+    });
+
+    // Wait for and verify delete event was dispatched
+    await waitFor(() => {
+      expect(dispatchEventSpy).toHaveBeenCalledWith(expect.any(Event));
+    });
+    const event = dispatchEventSpy.mock.calls[0][0] as Event;
+    expect(event.type).toBe('section-deleted');
+
+    // Clean up spy
+    dispatchEventSpy.mockRestore();
   });
 });
