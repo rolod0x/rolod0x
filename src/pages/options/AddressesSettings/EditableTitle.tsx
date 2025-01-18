@@ -62,17 +62,30 @@ export default function EditableTitle({ title, onTitleChange }: EditableTitlePro
     updateEditedTitle(title);
   }, [title, updateEditedTitle]);
 
-  const handleClick = useCallback((event: MouseEvent<HTMLDivElement | HTMLInputElement>) => {
-    event.stopPropagation();
-    setIsEditing(true);
-  }, []);
+  const handleClick = useCallback(
+    (event: MouseEvent<HTMLDivElement | HTMLInputElement>) => {
+      event.stopPropagation(); // Don't collapse/expand
+      if (isEditing) return;
+      setIsEditing(true);
+      // Select text on next tick after the readOnly prop is removed
+      setTimeout(() => inputRef.current?.select(), 0);
+    },
+    [isEditing],
+  );
 
-  const handleIconClick = useCallback((event: React.MouseEvent) => {
-    event.stopPropagation();
-    setIsEditing(true);
-    // Focus the input on next tick after the readOnly prop is removed
-    setTimeout(() => inputRef.current?.focus(), 0);
-  }, []);
+  const handleIconClick = useCallback(
+    (event: React.MouseEvent) => {
+      event.stopPropagation(); // Don't collapse/expand
+      if (isEditing) return;
+      setIsEditing(true);
+      // Focus and select the input on next tick after the readOnly prop is removed
+      setTimeout(() => {
+        inputRef.current?.focus();
+        inputRef.current?.select();
+      }, 0);
+    },
+    [isEditing],
+  );
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -90,6 +103,7 @@ export default function EditableTitle({ title, onTitleChange }: EditableTitlePro
     } else {
       setEditedTitle(title); // discard changes
     }
+    inputRef.current?.blur();
   }, [isEditing, editedTitle, title, onTitleChange]);
 
   const handleKeyDown = useCallback(
@@ -100,13 +114,15 @@ export default function EditableTitle({ title, onTitleChange }: EditableTitlePro
         event.key === 'Tab' ||
         ((event.ctrlKey || event.metaKey) && event.key === 's')
       ) {
+        setIsEditing(false);
+        inputRef.current?.setSelectionRange(0, 0);
         if (editedTitle !== title && editedTitle.length > 0) {
-          setIsEditing(false);
           onTitleChange(editedTitle);
         }
       } else if (event.key === 'Escape') {
         setIsEditing(false);
         setEditedTitle(title); // discard changes
+        inputRef.current?.setSelectionRange(0, 0);
       }
     },
     [editedTitle, title, onTitleChange, isEditing],
