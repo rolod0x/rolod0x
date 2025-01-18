@@ -95,7 +95,11 @@ export default function EditableTitle({ title, onTitleChange }: EditableTitlePro
   const handleKeyDown = useCallback(
     (event: KeyboardEvent<HTMLInputElement>) => {
       if (!isEditing) return;
-      if (event.key === 'Enter') {
+      if (
+        event.key === 'Enter' ||
+        event.key === 'Tab' ||
+        ((event.ctrlKey || event.metaKey) && event.key === 's')
+      ) {
         if (editedTitle !== title && editedTitle.length > 0) {
           setIsEditing(false);
           onTitleChange(editedTitle);
