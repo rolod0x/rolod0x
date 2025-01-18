@@ -26,7 +26,7 @@ export function useAddressBook(sectionId: string) {
         setError(null);
       } catch (err: unknown) {
         if (err instanceof ParseError) {
-          console.log(err.message);
+          console.llog(err.message);
           setError(`Please check that line ${err.lineNumber} is in the correct format.`);
         } else if (err instanceof Error) {
           console.error(err.message);
