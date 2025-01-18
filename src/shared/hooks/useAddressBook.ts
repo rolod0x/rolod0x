@@ -56,10 +56,19 @@ export function useAddressBook(sectionId: string) {
   }, [sectionId, title, labels, url, validate, expanded]);
 
   const getSection = useCallback(async () => {
-    const section = await optionsStorage.getSection(sectionId);
-    if (!section) {
-      throw new Error(`Section with id ${sectionId} not found`);
+    let section;
+    try {
+      section = await optionsStorage.getSection(sectionId);
+    } catch (error) {
+      console.warn(`Error from getSection(${sectionId}):`, error);
     }
+
+    if (!section) {
+      console.warn(`Section ${sectionId} not found; it was likely deleted`);
+      setIsLoaded(false);
+      return;
+    }
+
     setLabels(section.labels);
     setTitle(section.title);
     setUrl(section.url);
