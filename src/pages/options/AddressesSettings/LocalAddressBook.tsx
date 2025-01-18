@@ -21,10 +21,15 @@ import './LocalAddressBook.css';
 
 interface LocalAddressBookProps {
   sectionId: string;
-  index: number;
+  _index: number;
+  onUnsavedChanges: (sectionId: string, hasChanges: boolean) => void;
 }
 
-export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
+export default function LocalAddressBook({
+  sectionId,
+  _index,
+  onUnsavedChanges,
+}: LocalAddressBookProps) {
   const {
     labels,
     error,
@@ -50,7 +55,8 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
   }, [getSection]);
 
   useEffect(() => {
-    const handleOptionsReset = () => {
+    const handleOptionsReset = (_event: Event) => {
+      // For options-reset events, confirmation is handled by the parent component
       getSection();
     };
 
@@ -60,6 +66,11 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
       window.removeEventListener('options-reset', handleOptionsReset);
     };
   }, [getSection]);
+
+  useEffect(() => {
+    const labelsChanged = currentLabelsHash !== savedLabelsHash;
+    onUnsavedChanges(sectionId, labelsChanged);
+  }, [currentLabelsHash, savedLabelsHash, sectionId, onUnsavedChanges]);
 
   const validateTimeoutRef = useRef<NodeJS.Timeout>();
 
@@ -105,22 +116,22 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
   useBeforeUnload(
     useCallback(
       event => {
-        if (canSave) {
+        if (labelsChanged) {
           event.preventDefault();
           return 'You have unsaved changes, are you sure you want to leave?';
         }
       },
-      [canSave],
+      [labelsChanged],
     ),
   );
 
   useBlocker(
     useCallback(() => {
-      if (canSave) {
+      if (labelsChanged) {
         return !window.confirm('You have unsaved changes, are you sure you want to leave?');
       }
       return false;
-    }, [canSave]),
+    }, [labelsChanged]),
   );
 
   return isLoaded ? (
@@ -131,6 +142,7 @@ export default function LocalAddressBook({ sectionId }: LocalAddressBookProps) {
           title={title}
           updateTitle={updateTitle}
           deleteSection={deleteSection}
+          hasUnsavedChanges={labelsChanged}
         />
         <AccordionDetails sx={{ ml: '40px', mt: 0 }}>
           <SectionToolbar
