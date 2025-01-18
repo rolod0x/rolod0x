@@ -4,6 +4,7 @@ import 'webext-dynamic-content-scripts';
 
 import { displayLookup } from '@src/shared/lookup';
 import { checkPermissions } from '@src/shared/permissions';
+import { optionsStorage } from '@src/shared/options-storage';
 import reloadOnUpdate from 'virtual:reload-on-update-in-background-script';
 
 import { initContextMenu } from './contextMenu';
@@ -24,15 +25,21 @@ reloadOnUpdate('pages/background');
  */
 reloadOnUpdate('pages/content/style.scss');
 
-browser.runtime.onInstalled.addListener(details => {
+browser.runtime.onInstalled.addListener(async details => {
   // FIXME: Figure out how to use this totally undocumented enum
   // in a cross-platform way with webextension-polyfill:
   //
   //if (details.reason === chrome.runtime.OnInstalledReason.INSTALL) {
   //
   // In the meantime, just hardcode the value:
-  if (details.reason === 'install') {
-    browser.tabs.create({ url: browser.runtime.getURL('src/pages/options/index.html') });
+  if (details.reason === 'install' || details.reason === 'update') {
+    // N.B. This code will run with details.reason when running from
+    // an unpacked extension and manually reloading it, even if the
+    // version number doesn't change.  So this makes it easier to test.
+    const options = await optionsStorage.getAllDeserialized();
+    if (!options.hasSeenTour) {
+      browser.tabs.create({ url: browser.runtime.getURL('src/pages/options/index.html') });
+    }
   }
 });
 
