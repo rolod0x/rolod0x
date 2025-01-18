@@ -257,7 +257,7 @@ importers:
         version: 2.1.8(@types/node@22.10.2)(jsdom@25.0.1)(sass@1.83.0)
       vitest-chrome:
         specifier: github:aspiers/vitest-chrome#fix-esm
-        version: https://codeload.github.com/aspiers/vitest-chrome/tar.gz/68bb7fb64559b0f391d687b4c73bdd7ee16194ee
+        version: https://codeload.github.com/aspiers/vitest-chrome/tar.gz/b98e2677af9ca91f4b74afbf10b7ac00ee369148
       web-ext:
         specifier: ^8.3.0
         version: 8.3.0(node-fetch@3.3.2)
@@ -4979,8 +4979,8 @@ packages:
       terser:
         optional: true
 
-  vitest-chrome@https://codeload.github.com/aspiers/vitest-chrome/tar.gz/68bb7fb64559b0f391d687b4c73bdd7ee16194ee:
-    resolution: {tarball: https://codeload.github.com/aspiers/vitest-chrome/tar.gz/68bb7fb64559b0f391d687b4c73bdd7ee16194ee}
+  vitest-chrome@https://codeload.github.com/aspiers/vitest-chrome/tar.gz/b98e2677af9ca91f4b74afbf10b7ac00ee369148:
+    resolution: {tarball: https://codeload.github.com/aspiers/vitest-chrome/tar.gz/b98e2677af9ca91f4b74afbf10b7ac00ee369148}
     version: 0.1.0
 
   vitest@2.1.8:
@@ -10339,7 +10339,7 @@ snapshots:
       fsevents: 2.3.3
       sass: 1.83.0
 
-  vitest-chrome@https://codeload.github.com/aspiers/vitest-chrome/tar.gz/68bb7fb64559b0f391d687b4c73bdd7ee16194ee:
+  vitest-chrome@https://codeload.github.com/aspiers/vitest-chrome/tar.gz/b98e2677af9ca91f4b74afbf10b7ac00ee369148:
     dependencies:
       '@types/chrome': 0.0.114
 
