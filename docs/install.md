@@ -52,8 +52,11 @@ You can download a `.zip` file from one of three places:
 [main]: https://github.com/rolod0x/rolod0x/actions/workflows/build-zip.yml?query=branch%3Amain
 [zip workflow]: https://github.com/rolod0x/rolod0x/actions/workflows/build-zip.yml
 
-Then unpack the `.zip` file into a fresh folder anywhere on your machine,
-remembering the location.
+Then unpack the `.zip` file into a fresh folder anywhere on your
+machine, remembering the location.  **NOTE:** In the Firefox .zip, the
+files are not all in a subdirectory, so be careful when unpacking it
+to extract into a new subdirectory in order to avoid making a mess on
+your filesystem.
 
 Then follow the relevant installation steps below for your browser:
 

@@ -34,7 +34,7 @@ class ManifestParser {
     manifestCopy.browser_specific_settings = {
       gecko: {
         id: 'gecko-id-1@rolod0x.io',
-        strict_min_version: '109.0',
+        strict_min_version: '128.0',
       },
     };
 
