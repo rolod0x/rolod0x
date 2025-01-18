@@ -37,7 +37,7 @@
     "lint:eslint:fix": "pnpm eslint --fix",
     "lint:prettier": "prettier --check .",
     "lint:prettier:fix": "prettier --write .",
-    "lint:ext": "web-ext lint -s dist/firefox",
+    "lint:ext": "web-ext lint -s dist/firefox --config=.web-ext-config.mjs",
     "tokenlist:import": "pnpm exec tsx ./src/import-tokenlist.ts",
     "prepare": "husky install",
     "rolod0x": "pnpm exec tsx ./src/cli.ts",
