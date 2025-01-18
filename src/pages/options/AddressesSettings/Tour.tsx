@@ -77,7 +77,7 @@ const UsabilityHints = () => {
       </LeftTypography>
 
       <LeftTypography>
-        The following can be quicker and easier:
+        Here is the quickest and easiest way to use <Rolod0xText />:
         <ul>
           <li>
             Label addresses by{' '}
