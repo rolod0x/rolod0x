@@ -74,22 +74,21 @@ export const ABBREVIATION_FUNCTIONS = [
   (addr: string) => [krakenAbbreviation(addr)],
 ];
 
-export function isAbbreviation(abbreviation: string, fullAddress: string): boolean {
-  // First try matching Kraken-style format with spaces
+const isKrakenAbbreviation = (abbreviation: string, fullAddress: string): boolean => {
   const krakenMatch = abbreviation.match(
     /^(0x[0-9a-f]{2})\s+([0-9a-f]{4})\s+\.\.\.\s+([0-9a-f]{4})\s+([0-9a-f]{4})$/i,
   );
-  if (krakenMatch) {
-    const [, prefix, middle, end1, end2] = krakenMatch;
-    const fullWithoutPrefix = fullAddress.replace(/^0x/, '');
-    return (
-      fullAddress.startsWith(prefix) &&
-      fullWithoutPrefix.startsWith(middle, 2) &&
-      fullWithoutPrefix.endsWith(end1 + end2)
-    );
-  }
+  if (!krakenMatch) return false;
+  const [, prefix, middle, end1, end2] = krakenMatch;
+  const fullWithoutPrefix = fullAddress.replace(/^0x/, '');
+  return (
+    fullAddress.startsWith(prefix) &&
+    fullWithoutPrefix.startsWith(middle, 2) &&
+    fullWithoutPrefix.endsWith(end1 + end2)
+  );
+};
 
-  // Then try standard format
+const isStandardEVMAbbreviation = (abbreviation: string, fullAddress: string): boolean => {
   const standardMatch = abbreviation.match(/^(0x[0-9a-f]+)(?:\.\.\.([0-9a-f]+))?$/i);
   if (!standardMatch) return false;
   const [, start, end] = standardMatch;
@@ -97,4 +96,13 @@ export function isAbbreviation(abbreviation: string, fullAddress: string): boole
   // capitalization is preserved, OR if it was never there in
   // the first place.
   return fullAddress.startsWith(start) && fullAddress.endsWith(end || '');
+};
+
+const ABBREVIATION_MATCHERS = [isKrakenAbbreviation, isStandardEVMAbbreviation];
+
+export function isAbbreviation(abbreviation: string, fullAddress: string): boolean {
+  for (const fn of ABBREVIATION_MATCHERS) {
+    if (fn(abbreviation, fullAddress)) return true;
+  }
+  return false;
 }
