@@ -1,6 +1,10 @@
 export type Label = string;
 export type Address = string;
 export type Comment = string;
+export enum AddressType {
+  EVM = 'EVM',
+  Solana = 'Solana',
+}
 
 export interface AddressLabel {
   address: Address;

@@ -11,6 +11,7 @@ describe('Mapper', () => {
     const parser = new Parser(dedent`
       0xe3D82337F79306712477b642EF59B75dD62eF109 my label       // ERC-55
       0x1803982898d6a8e832177fca8fd763b9060c3b5d another label  // all lowercase
+      DYw8jCTfwHNRJhhmFcbXvVDTqWMEVFBX6ZKUmG5CNSKK solana label  // Solana
     `);
     const exact = new Formatter('%n | %4r');
     const guess = new Formatter('?%n? %4r');
@@ -90,5 +91,27 @@ describe('Mapper', () => {
       label: '?another label? 3B5d',
       comment: 'all lowercase',
     });
+  });
+
+  it('maps a Solana address', () => {
+    expect(mapper.get('DYw8jCTfwHNRJhhmFcbXvVDTqWMEVFBX6ZKUmG5CNSKK')).toEqual({
+      label: 'solana label | NSKK',
+      comment: 'Solana',
+    });
+  });
+
+  it("doesn't map a lowercased Solana address", () => {
+    expect(mapper.get('dyw8jctfwhnrjhhmfcbxvvdtqwmevfbx6zkumg5cnskk')).toBe(undefined);
+  });
+
+  it('maps a Solana address abbreviated 4/4', () => {
+    expect(mapper.get('DYw8...NSKK')).toEqual({
+      label: '?solana label? NSKK',
+      comment: 'Solana',
+    });
+  });
+
+  it("doesn't map a lowercased Solana address abbreviated 4/4", () => {
+    expect(mapper.get('dyw8...nskk')).toBe(undefined);
   });
 });

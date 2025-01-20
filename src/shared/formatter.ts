@@ -12,8 +12,10 @@ export class Formatter {
   }
 
   format(label: Label, address: Address): string {
+    const prefix = address.startsWith('0x') ? '0x' : '';
     const trimmed = address.replace(/^0x/, '');
     return this.formatString
+      .replace('%p', prefix)
       .replace('%n', label)
       .replace('%a', address)
       .replace(/%(\d+)l/, (_match, digits) => trimmed.slice(0, Number(digits)))

@@ -21,6 +21,7 @@ const defaultSites = [
   'https://explorer.bitquery.io/*',
   'https://*.oklink.com/*',
   'https://*.metasleuth.io/*',
+  'https://solscan.io/*',
 
   // Multisig management services
   'https://app.safe.global/*',

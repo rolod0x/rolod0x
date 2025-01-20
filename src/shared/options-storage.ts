@@ -103,8 +103,8 @@ export const labelsToSection = (labels: string): Rolod0xAddressBookSection => {
 export const DEFAULT_OPTIONS_DESERIALIZED: Rolod0xOptionsDeserialized = {
   themeName: 'light',
   sections: [labelsToSection('')],
-  displayLabelFormat: '%n (0x%4l…%4r)',
-  displayGuessFormat: '? %n ? (0x%4l…%4r)',
+  displayLabelFormat: '%n (%p%4l…%4r)',
+  displayGuessFormat: '? %n ? (%p%4l…%4r)',
   hasSeenTour: false,
 };
 
@@ -138,6 +138,19 @@ export const migrateToSections = (
     console.llog('✅ Migrated old labels to default section; after:', options);
   } catch (error) {
     console.error('❌ Error during migration, resetting to defaults:', error);
+  }
+};
+
+// Replace a 0x prefix hard-coded in front of %Nl with %p, so that non-EVM
+// addresses aren't displayed with a 0x prefix.
+export const migrateDisplayFormatPrefixes = (
+  options: Pick<Rolod0xRawOptions, 'displayLabelFormat' | 'displayGuessFormat'>,
+  _currentDefaults: Rolod0xOptionsSerialized,
+) => {
+  for (const key of ['displayLabelFormat', 'displayGuessFormat'] as const) {
+    if (options[key]) {
+      options[key] = options[key].replace(/0x(%\d+l)/g, '%p$1');
+    }
   }
 };
 
@@ -216,7 +229,11 @@ export class DeserializableOptionsSync extends OptionsSync<Rolod0xOptionsSeriali
 
 export const optionsStorage = new DeserializableOptionsSync({
   defaults: DEFAULT_OPTIONS_SERIALIZED,
-  migrations: [migrateToSections, OptionsSync.migrations.removeUnused],
+  migrations: [
+    migrateToSections,
+    migrateDisplayFormatPrefixes,
+    OptionsSync.migrations.removeUnused,
+  ],
   logging: true,
   storageType: 'local',
 });
