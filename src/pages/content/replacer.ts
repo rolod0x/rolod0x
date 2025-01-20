@@ -1,7 +1,7 @@
 import * as browser from 'webextension-polyfill';
 
 import { isAbbreviation } from '@src/shared/abbreviators';
-import { RE_ADDRESS } from '@src/shared/regexps';
+import { RE_ADDRESS_FORMATS } from '@src/shared/regexps';
 import { LabelComment, LabelMap } from '@src/shared/types';
 
 type ReplacementData = [textToLookup: string, before: string, data: LabelComment, after: string];
@@ -19,7 +19,7 @@ function getAddressFromAttribute(
   const value = element.getAttribute(attributeName);
   if (!value) return null;
 
-  const m = value.match(RE_ADDRESS);
+  const m = value.match(RE_ADDRESS_FORMATS);
   return m ? m[0] : null;
 }
 

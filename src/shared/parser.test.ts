@@ -252,4 +252,67 @@ describe('Parser', () => {
     ]);
     expect(parser.duplicates).toEqual(['0xe3D82337F79306712477b642EF59B75dD62eF109']);
   });
+
+  it('parses a single Solana address', () => {
+    const parser = new Parser(
+      'DYw8jCTfwHNRJhhmFcbXvVDTqWMEVFBX6ZKUmG5CNSKK my solana label // comment',
+    );
+    expect(parser.parsedEntries).toEqual([
+      {
+        address: 'DYw8jCTfwHNRJhhmFcbXvVDTqWMEVFBX6ZKUmG5CNSKK',
+        label: 'my solana label',
+        comment: 'comment',
+      },
+    ]);
+  });
+
+  it('parses mixed EVM and Solana addresses', () => {
+    const parser = new Parser(dedent`
+      0x1803982898d6a8E832177Fca8fD763B9060C3050 evm label // evm comment
+      DYw8jCTfwHNRJhhmFcbXvVDTqWMEVFBX6ZKUmG5CNSKK solana label // sol comment
+    `);
+    expect(parser.parsedEntries).toEqual([
+      {
+        address: '0x1803982898d6a8E832177Fca8fD763B9060C3050',
+        label: 'evm label',
+        comment: 'evm comment',
+      },
+      {
+        address: 'DYw8jCTfwHNRJhhmFcbXvVDTqWMEVFBX6ZKUmG5CNSKK',
+        label: 'solana label',
+        comment: 'sol comment',
+      },
+    ]);
+  });
+
+  it('parses multiple Solana addresses of various types', () => {
+    const parser = new Parser(dedent`
+      7vJ3mSPgKnnHSyHx5JKnwqL4gYbEuGBJ4KXJGE9kBUkj wallet address // personal wallet
+      5TeGDBFiXs3YtGzg5MQKp7PVxgpm5TxqHMxGsiBKp5dB program v1
+      TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA token program // SPL token
+      ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL associated token // ATA program
+    `);
+    expect(parser.parsedEntries).toEqual([
+      {
+        address: '7vJ3mSPgKnnHSyHx5JKnwqL4gYbEuGBJ4KXJGE9kBUkj',
+        label: 'wallet address',
+        comment: 'personal wallet',
+      },
+      {
+        address: '5TeGDBFiXs3YtGzg5MQKp7PVxgpm5TxqHMxGsiBKp5dB',
+        label: 'program v1',
+        comment: undefined,
+      },
+      {
+        address: 'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA',
+        label: 'token program',
+        comment: 'SPL token',
+      },
+      {
+        address: 'ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL',
+        label: 'associated token',
+        comment: 'ATA program',
+      },
+    ]);
+  });
 });

@@ -1,4 +1,5 @@
 import { getAddress } from 'ethers';
+import { isAddress } from '@solana/addresses';
 
 import { Address, Label, Comment, ParsedEntries } from './types';
 
@@ -48,6 +49,11 @@ export class Parser {
       return;
     }
 
+    const isSolana = this.parseSolanaLine(line, lineIndex);
+    if (isSolana) {
+      return;
+    }
+
     throw new ParseError(lineIndex + 1);
   }
 
@@ -80,6 +86,28 @@ export class Parser {
 
     this.addEntry(canonical, label, comment);
     return true;
+  }
+
+  private parseSolanaLine(line: string, lineIndex: number): boolean {
+    const labelLineRe = /^([1-9A-HJ-NP-Za-km-z]{32,44})\s+(.+?)(?:\s+\/\/\s*(.*?)\s*)?$/;
+    const m = labelLineRe.exec(line);
+    if (!m) {
+      return false;
+    }
+
+    const [_all, address, label, comment] = m;
+    if (!address || !label) {
+      throw new Error(
+        `BUG: parsing issue with line ${lineIndex + 1}; ` +
+          `address=${address ?? 'undefined'}, ` +
+          `label=${label ?? 'undefined'}:\n` +
+          line,
+      );
+    }
+
+    const isSolanaAddress = isAddress(address);
+    this.addEntry(address, label, comment);
+    return isSolanaAddress;
   }
 
   addEntry(address: Address, label: Label, comment?: Comment): void {

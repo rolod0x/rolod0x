@@ -1,4 +1,4 @@
-import { RE_ADDRESS, RE_BYTES32, RE_ADDRESS_OR_BYTES32 } from './regexps';
+import { RE_ADDRESS, RE_BYTES32, RE_ADDRESS_OR_BYTES32, RE_SOLANA_ADDRESS } from './regexps';
 
 const ADDRESS_MATCHES = [
   ['0x6b175474e89094c44da98b954eedeac495271d0f', 'a lowercase address'],
@@ -87,6 +87,22 @@ const BYTES32_NON_MATCHES = [
   ],
 ];
 
+const SOLANA_MATCHES = [
+  ['DYw8jCTfwHNRJhhmFcbXvVDTqWMEVFBX6ZKUmG5CNSKK', 'a standard Solana address'],
+  ['foo DYw8jCTfwHNRJhhmFcbXvVDTqWMEVFBX6ZKUmG5CNSKK bar', 'a surrounded Solana address'],
+  ['TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA', 'the SPL token program ID'],
+  ['ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL', 'the ATA program ID'],
+];
+
+const SOLANA_NON_MATCHES = [
+  ['abcd', 'too short'],
+  ['DYw8jCTfwHNRJhhmFcbXvVDTqWMEVFBX6ZKUmG5CNSKK1', 'too long'],
+  ['DYw8jCTfwHNRJhhmFcbXvVDTqWMEVFBX6ZKUmG5CNSK0', 'contains invalid character 0'],
+  ['DYw8jCTfwHNRJhhmFcbXvVDTqWMEVFBX6ZKUmG5CNSKl', 'contains invalid character l'],
+  ['DYw8jCTfwHNRJhhmFcbXvVDTqWMEVFBX6ZKUmG5CNSKI', 'contains invalid character I'],
+  ['DYw8jCTfwHNRJhhmFcbXvVDTqWMEVFBX6ZKUmG5CNSKOO', 'contains invalid character O'],
+];
+
 describe('RE_ADDRESS', () => {
   for (const [input, descr] of ADDRESS_MATCHES) {
     it(`matches ${descr}`, () => {
@@ -111,6 +127,20 @@ describe('RE_BYTES32', () => {
   for (const [input, descr] of BYTES32_NON_MATCHES) {
     it(`doesn't match ${descr}`, () => {
       expect(input).not.toMatch(RE_BYTES32);
+    });
+  }
+});
+
+describe('RE_SOLANA_ADDRESS', () => {
+  for (const [input, descr] of SOLANA_MATCHES) {
+    it(`matches ${descr}`, () => {
+      expect(input).toMatch(RE_SOLANA_ADDRESS);
+    });
+  }
+
+  for (const [input, descr] of SOLANA_NON_MATCHES) {
+    it(`doesn't match ${descr}`, () => {
+      expect(input).not.toMatch(RE_SOLANA_ADDRESS);
     });
   }
 });
