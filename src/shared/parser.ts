@@ -57,13 +57,11 @@ export class Parser {
     throw new ParseError(lineIndex + 1);
   }
 
-  private parseEVMLine(line: string, lineIndex: number): boolean {
-    const labelLineRe = /^s*(0x[\da-f]{40})\s+(.+?)(?:\s+\/\/\s*(.*?)\s*)?$/i;
-    const m = labelLineRe.exec(line);
-    if (!m) {
-      return false;
-    }
-
+  private parseLineParts(
+    m: RegExpExecArray,
+    line: string,
+    lineIndex: number,
+  ): [string, string, string | undefined] {
     const [_all, address, label, comment] = m;
     if (!address || !label) {
       throw new Error(
@@ -73,6 +71,17 @@ export class Parser {
           line,
       );
     }
+    return [address, label, comment];
+  }
+
+  private parseEVMLine(line: string, lineIndex: number): boolean {
+    const labelLineRe = /^s*(0x[\da-f]{40})\s+(.+?)(?:\s+\/\/\s*(.*?)\s*)?$/i;
+    const m = labelLineRe.exec(line);
+    if (!m) {
+      return false;
+    }
+
+    const [address, label, comment] = this.parseLineParts(m, line, lineIndex);
 
     let canonical: string;
     try {
@@ -95,15 +104,7 @@ export class Parser {
       return false;
     }
 
-    const [_all, address, label, comment] = m;
-    if (!address || !label) {
-      throw new Error(
-        `BUG: parsing issue with line ${lineIndex + 1}; ` +
-          `address=${address ?? 'undefined'}, ` +
-          `label=${label ?? 'undefined'}:\n` +
-          line,
-      );
-    }
+    const [address, label, comment] = this.parseLineParts(m, line, lineIndex);
 
     const isSolanaAddress = isAddress(address);
     this.addEntry(address, label, comment);
