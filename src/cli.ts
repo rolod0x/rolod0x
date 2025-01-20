@@ -7,7 +7,7 @@ import * as readline from 'readline';
 import { Command } from '@commander-js/extra-typings';
 
 import { Formatter } from './shared/formatter';
-import { RE_ADDRESS_OR_BYTES32 } from './shared/regexps';
+import { RE_ADDRESSES_OR_BYTES32 } from './shared/regexps';
 import { Mapper } from './shared/mapper';
 import { Parser } from './shared/parser';
 
@@ -79,7 +79,7 @@ function getParser(addressesFile: string): Parser {
 function replaceStdin(addressesFile: string, options: CLIOptions): void {
   const mapper = getMapper(addressesFile, options);
   const rl = readline.createInterface({ input: process.stdin });
-  const regexp = new RegExp(RE_ADDRESS_OR_BYTES32.source, 'gi');
+  const regexp = new RegExp(RE_ADDRESSES_OR_BYTES32.source, 'gi');
   rl.on('line', (line: string) => {
     const mapped = line.replace(regexp, (match: string) => replacer(mapper, match));
     console.log(mapped);

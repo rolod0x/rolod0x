@@ -11,3 +11,7 @@ export const RE_ADDRESS_FORMATS = new RegExp(
   `(${RE_ADDRESS.source}|${RE_SOLANA_ADDRESS.source})`,
   'i',
 );
+export const RE_ADDRESSES_OR_BYTES32 = new RegExp(
+  `(${RE_ADDRESS.source}|${RE_BYTES32.source}|${RE_SOLANA_ADDRESS.source})`,
+  'i',
+);
