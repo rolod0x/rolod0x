@@ -43,24 +43,23 @@ export class Parser {
       return;
     }
 
+    const isEVM = this.parseEVMLine(line, lineIndex);
+    if (isEVM) {
+      return;
+    }
+
+    throw new ParseError(lineIndex + 1);
+  }
+
+  private parseEVMLine(line: string, lineIndex: number): boolean {
     const labelLineRe = /^s*(0x[\da-f]{40})\s+(.+?)(?:\s+\/\/\s*(.*?)\s*)?$/i;
     const m = labelLineRe.exec(line);
-    if (m) {
-      const [_all, address, label, comment] = m;
-      if (address && label) {
-        let canonical: string;
-        try {
-          canonical = getAddress(address);
-        } catch (err: unknown) {
-          if (err instanceof Error && err.message.match(/bad address checksum/)) {
-            throw new ParseError(lineIndex + 1, `Bad address checksum`);
-          }
-          throw err;
-        }
-        this.addEntry(canonical, label, comment);
-        return;
-      }
+    if (!m) {
+      return false;
+    }
 
+    const [_all, address, label, comment] = m;
+    if (!address || !label) {
       throw new Error(
         `BUG: parsing issue with line ${lineIndex + 1}; ` +
           `address=${address ?? 'undefined'}, ` +
@@ -69,7 +68,18 @@ export class Parser {
       );
     }
 
-    throw new ParseError(lineIndex + 1);
+    let canonical: string;
+    try {
+      canonical = getAddress(address);
+    } catch (err: unknown) {
+      if (err instanceof Error && err.message.match(/bad address checksum/)) {
+        throw new ParseError(lineIndex + 1, `Bad address checksum`);
+      }
+      throw err;
+    }
+
+    this.addEntry(canonical, label, comment);
+    return true;
   }
 
   addEntry(address: Address, label: Label, comment?: Comment): void {
