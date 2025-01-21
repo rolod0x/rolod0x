@@ -9,7 +9,6 @@ import {
   CircularProgress,
 } from '@mui/material';
 import * as murmurhash from 'murmurhash';
-import { useBeforeUnload, useBlocker } from 'react-router-dom';
 
 import { useAddressBook } from '@src/shared/hooks/useAddressBook';
 
@@ -112,27 +111,6 @@ export default function LocalAddressBook({
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [canSave, handleSave]);
-
-  useBeforeUnload(
-    useCallback(
-      event => {
-        if (labelsChanged) {
-          event.preventDefault();
-          return 'You have unsaved changes, are you sure you want to leave?';
-        }
-      },
-      [labelsChanged],
-    ),
-  );
-
-  useBlocker(
-    useCallback(() => {
-      if (labelsChanged) {
-        return !window.confirm('You have unsaved changes, are you sure you want to leave?');
-      }
-      return false;
-    }, [labelsChanged]),
-  );
 
   return isLoaded ? (
     <>

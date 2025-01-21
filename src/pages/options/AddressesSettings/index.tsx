@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState, useRef } from 'react';
 import { Alert, Box, Button } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
+import { useBlocker, useBeforeUnload, Location } from 'react-router-dom';
 
 import { optionsStorage, Rolod0xAddressBookSection } from '@src/shared/options-storage';
 import { usePageTitle } from '@src/shared/contexts/PageTitleContext';
@@ -10,6 +11,12 @@ import { Tour } from './Tour';
 
 interface UnsavedChangesMap {
   [sectionId: string]: boolean;
+}
+
+interface BlockerArgs {
+  currentLocation: Location;
+  nextLocation: Location | null;
+  historyAction: string;
 }
 
 export default function AddressesSettings() {
@@ -45,6 +52,40 @@ export default function AddressesSettings() {
   const updateUnsavedChanges = useCallback((sectionId: string, hasChanges: boolean) => {
     unsavedChangesRef.current[sectionId] = hasChanges;
   }, []);
+
+  // Handle tab/browser closing
+  useBeforeUnload(
+    useCallback(
+      event => {
+        if (hasUnsavedChanges()) {
+          event.preventDefault();
+          return 'You have unsaved changes. Are you sure you want to leave?';
+        }
+      },
+      [hasUnsavedChanges],
+    ),
+  );
+
+  // Handle in-app navigation
+  useBlocker(
+    useCallback(
+      ({ currentLocation, nextLocation, historyAction: _historyAction }: BlockerArgs) => {
+        if (!hasUnsavedChanges()) {
+          return false;
+        }
+
+        // Only handle in-app navigation
+        if (nextLocation && currentLocation.pathname !== nextLocation.pathname) {
+          return !window.confirm(
+            'You have unsaved changes in one or more sections. Are you sure you want to leave?',
+          );
+        }
+
+        return false; // Don't block if not navigating or closing
+      },
+      [hasUnsavedChanges],
+    ),
+  );
 
   useEffect(() => {
     setPageTitle('address book');
