@@ -23,7 +23,7 @@
 
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { createMemoryRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 
 import '@src/shared/fonts';
 import '@src/shared/console';
@@ -32,7 +32,7 @@ import refreshOnUpdate from 'virtual:reload-on-update-in-view';
 
 refreshOnUpdate('pages/options');
 
-const router = createMemoryRouter([
+const router = createHashRouter([
   {
     path: '*',
     element: <Options />,
