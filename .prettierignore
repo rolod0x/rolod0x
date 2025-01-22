@@ -12,5 +12,6 @@ LICENSE
 *.md
 pnpm-lock.yaml
 _site/
+playground/
 test-results/
 website/vendor/
