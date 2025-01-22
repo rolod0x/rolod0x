@@ -3,7 +3,8 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 
-import { mockGetAll, mockSet, resetOptionsMocks } from '@root/test-utils/mocks/options-storage';
+import { mockGetAll, mockSet, resetOptionsMocks } from '@test-utils/mocks/options-storage';
+import { setCodeMirrorValue } from '@test-utils/codemirror';
 import Rolod0xThemeProvider from '@src/components/Rolod0xThemeProvider';
 import { PageTitleProvider } from '@src/shared/contexts/PageTitleContext';
 import { DEFAULT_OPTIONS_DESERIALIZED } from '@src/shared/options-storage';
@@ -15,29 +16,6 @@ import type { Rolod0xAddressBookSection } from '@src/shared/options-storage';
 // Mock uuid to return fixed values
 vi.mock('uuid', () => ({
   v4: () => 'new-section-uuid',
-}));
-
-// Mock LocalAddressBook component
-vi.mock('./LocalAddressBook', () => ({
-  default: ({
-    sectionId,
-    onUnsavedChanges,
-  }: {
-    sectionId: string;
-    onUnsavedChanges: (sectionId: string, hasChanges: boolean) => void;
-  }) => {
-    // Call onUnsavedChanges with false initially
-    onUnsavedChanges(sectionId, false);
-    return (
-      <button
-        data-testid="local-address-book"
-        data-section-id={sectionId}
-        onClick={() => onUnsavedChanges(sectionId, true)}
-        onKeyDown={e => e.key === 'Enter' && onUnsavedChanges(sectionId, true)}>
-        Mocked LocalAddressBook
-      </button>
-    );
-  },
 }));
 
 const defaultSection: Rolod0xAddressBookSection = {
@@ -170,18 +148,32 @@ describe('AddressesSettings', () => {
     confirmSpy.mockRestore();
   });
 
+  it('should prevent tab closing when there are unsaved changes', async () => {
+    await renderAddressesSettings();
+
+    // Get the editor and simulate entering text
+    const testInput = '0x1234567890123456789012345678901234567890 Test Address';
+    await setCodeMirrorValue(testInput);
+
+    // Create a beforeunload event
+    const event = new Event('beforeunload', { cancelable: true }) as BeforeUnloadEvent;
+    event.preventDefault = vi.fn();
+
+    // Simulate tab/window closing
+    window.dispatchEvent(event);
+
+    expect(event.preventDefault).toHaveBeenCalled();
+  });
+
   it('should prompt for unsaved changes when resetting options', async () => {
     await renderAddressesSettings();
 
     const confirmSpy = vi.spyOn(window, 'confirm');
     confirmSpy.mockImplementation(() => true);
 
-    // Get the onUnsavedChanges prop from the mocked component
-    const localAddressBook = screen.getByTestId('local-address-book');
-    const user = userEvent.setup();
-
-    // Simulate having unsaved changes by clicking the component
-    await user.click(localAddressBook);
+    // Get the editor and simulate entering text
+    const testInput = '0x1234567890123456789012345678901234567890 Test Address';
+    await setCodeMirrorValue(testInput);
 
     // Simulate options reset event
     await act(async () => {
@@ -216,12 +208,9 @@ describe('AddressesSettings', () => {
       );
     });
 
-    // Get the onUnsavedChanges prop from the mocked component
-    const localAddressBook = screen.getByTestId('local-address-book');
-    const user = userEvent.setup();
-
-    // Simulate having unsaved changes by clicking the component
-    await user.click(localAddressBook);
+    // Get the editor and simulate entering text
+    const testInput = '0x1234567890123456789012345678901234567890 Test Address';
+    await setCodeMirrorValue(testInput);
 
     const confirmSpy = vi.spyOn(window, 'confirm');
     confirmSpy.mockImplementation(() => false);
@@ -237,5 +226,18 @@ describe('AddressesSettings', () => {
     expect(router.state.location.pathname).toBe('/'); // Should stay on current page
 
     confirmSpy.mockRestore();
+  });
+
+  it('should allow tab closing when there are no unsaved changes', async () => {
+    await renderAddressesSettings();
+
+    // Create a beforeunload event
+    const event = new Event('beforeunload', { cancelable: true }) as BeforeUnloadEvent;
+    event.preventDefault = vi.fn();
+
+    // Simulate tab/window closing
+    window.dispatchEvent(event);
+
+    expect(event.preventDefault).not.toHaveBeenCalled();
   });
 });
