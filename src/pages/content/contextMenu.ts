@@ -1,7 +1,7 @@
 import { getCanonicalAddress } from '@src/shared/address';
 import { getMapper, isNewAddress } from '@src/shared/address-book';
 // import { getBadgeText } from '@src/shared/badge';
-import { RE_ADDRESS } from '@src/shared/regexps';
+import { RE_EVM_ADDRESS } from '@src/shared/regexps';
 
 import { replaceInNodeAndCount } from './replacer';
 
@@ -15,7 +15,7 @@ async function addLabelForClickedElement(): Promise<void> {
 
   let url = IFRAME_URL;
 
-  const match = clickedEl.outerHTML?.match(RE_ADDRESS);
+  const match = clickedEl.outerHTML?.match(RE_EVM_ADDRESS);
   if (match) {
     const address = match[0];
     const canonical = getCanonicalAddress(address);

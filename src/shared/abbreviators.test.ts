@@ -1,5 +1,5 @@
 import {
-  abbreviatedAddresses,
+  abbreviatedEVMAddresses,
   abbreviatedSolanaAddresses,
   isAbbreviation,
   krakenAbbreviation,
@@ -61,9 +61,9 @@ const INVALID_SOLANA_ABBREVIATIONS = [
   'foobar',
 ];
 
-describe('abbreviatedAddresses()', () => {
+describe('abbreviatedEVMAddresses()', () => {
   it('outputs an array of abbreviated addresses', () => {
-    const abbrevs = abbreviatedAddresses(FULL_ADDRESS);
+    const abbrevs = abbreviatedEVMAddresses(FULL_ADDRESS);
     expect(abbrevs).toEqual(EXPECTED_ETH_ABBREVIATIONS);
   });
 });

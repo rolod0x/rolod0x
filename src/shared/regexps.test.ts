@@ -1,6 +1,11 @@
-import { RE_ADDRESS, RE_BYTES32, RE_ADDRESS_OR_BYTES32, RE_SOLANA_ADDRESS } from './regexps';
+import {
+  RE_EVM_ADDRESS,
+  RE_EVM_BYTES32,
+  RE_EVM_ADDRESS_OR_BYTES32,
+  RE_SOLANA_ADDRESS,
+} from './regexps';
 
-const ADDRESS_MATCHES = [
+const EVM_ADDRESS_MATCHES = [
   ['0x6b175474e89094c44da98b954eedeac495271d0f', 'a lowercase address'],
   ['foo 0x6b175474e89094c44da98b954eedeac495271d0f bar', 'a surrounded lowercase address'],
 
@@ -8,7 +13,7 @@ const ADDRESS_MATCHES = [
   ['foo 0x6B175474E89094C44Da98b954EedeAC495271d0F bar', 'matches a mixed case address'],
 ];
 
-const ADDRESS_NON_MATCHES = [
+const EVM_ADDRESS_NON_MATCHES = [
   [
     'foo0x6B175474E89094C44Da98b954EedeAC495271d0',
     "doesn't match an address immediately following alphanumerics",
@@ -25,7 +30,7 @@ const ADDRESS_NON_MATCHES = [
   ['foo 0x6B175474E89094C44Da98b954EedeAC495271d0F1 bar', "doesn't match an extended address"],
 ];
 
-const BYTES32_MATCHES = [
+const EVM_BYTES32_MATCHES = [
   [
     '0x6b175474e89094c44da98b954eedeac495271d0f012345678901234567890123',
     'a lowercase 32-byte value',
@@ -61,7 +66,7 @@ const BYTES32_MATCHES = [
   ],
 ];
 
-const BYTES32_NON_MATCHES = [
+const EVM_BYTES32_NON_MATCHES = [
   [
     'foo0x6B175474E89094C44Da98b954EedeAC495271d0F012345678901234567890123 bar',
     "doesn't match a 32-byte value immediately following alphanumerics",
@@ -103,30 +108,30 @@ const SOLANA_NON_MATCHES = [
   ['DYw8jCTfwHNRJhhmFcbXvVDTqWMEVFBX6ZKUmG5CNSKOO', 'contains invalid character O'],
 ];
 
-describe('RE_ADDRESS', () => {
-  for (const [input, descr] of ADDRESS_MATCHES) {
+describe('RE_EVM_ADDRESS', () => {
+  for (const [input, descr] of EVM_ADDRESS_MATCHES) {
     it(`matches ${descr}`, () => {
-      expect(input).toMatch(RE_ADDRESS);
+      expect(input).toMatch(RE_EVM_ADDRESS);
     });
   }
 
-  for (const [input, descr] of ADDRESS_NON_MATCHES) {
+  for (const [input, descr] of EVM_ADDRESS_NON_MATCHES) {
     it(`doesn't match ${descr}`, () => {
-      expect(input).not.toMatch(RE_ADDRESS);
+      expect(input).not.toMatch(RE_EVM_ADDRESS);
     });
   }
 });
 
-describe('RE_BYTES32', () => {
-  for (const [input, descr] of BYTES32_MATCHES) {
+describe('RE_EVM_BYTES32', () => {
+  for (const [input, descr] of EVM_BYTES32_MATCHES) {
     it(`matches ${descr}`, () => {
-      expect(input).toMatch(RE_BYTES32);
+      expect(input).toMatch(RE_EVM_BYTES32);
     });
   }
 
-  for (const [input, descr] of BYTES32_NON_MATCHES) {
+  for (const [input, descr] of EVM_BYTES32_NON_MATCHES) {
     it(`doesn't match ${descr}`, () => {
-      expect(input).not.toMatch(RE_BYTES32);
+      expect(input).not.toMatch(RE_EVM_BYTES32);
     });
   }
 });
@@ -145,16 +150,16 @@ describe('RE_SOLANA_ADDRESS', () => {
   }
 });
 
-describe('RE_ADDRESS_OR_BYTES32', () => {
-  for (const [input, descr] of [...ADDRESS_MATCHES, ...BYTES32_MATCHES]) {
+describe('RE_EVM_ADDRESS_OR_BYTES32', () => {
+  for (const [input, descr] of [...EVM_ADDRESS_MATCHES, ...EVM_BYTES32_MATCHES]) {
     it(`matches ${descr}`, () => {
-      expect(input).toMatch(RE_ADDRESS_OR_BYTES32);
+      expect(input).toMatch(RE_EVM_ADDRESS_OR_BYTES32);
     });
   }
 
-  for (const [input, descr] of [...ADDRESS_NON_MATCHES, ...BYTES32_NON_MATCHES]) {
+  for (const [input, descr] of [...EVM_ADDRESS_NON_MATCHES, ...EVM_BYTES32_NON_MATCHES]) {
     it(`doesn't match ${descr}`, () => {
-      expect(input).not.toMatch(RE_ADDRESS_OR_BYTES32);
+      expect(input).not.toMatch(RE_EVM_ADDRESS_OR_BYTES32);
     });
   }
 });

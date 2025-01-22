@@ -1,4 +1,4 @@
-const ABBREVIATION_LENGTHS = [
+const ABBREVIATION_LENGTHS_EVM = [
   // On many sites (e.g. Tenderly, defender.openzeppelin.com, Gnosis
   // Safe), addresses are abbreviated in the form 0x12345678...1234
   [8, 4],
@@ -75,8 +75,8 @@ const ABBREVIATION_LENGTHS_SOLANA = [
   [4, 4],
 ];
 
-export function abbreviatedAddresses(address: string): string[] {
-  return ABBREVIATION_LENGTHS.map(
+export function abbreviatedEVMAddresses(address: string): string[] {
+  return ABBREVIATION_LENGTHS_EVM.map(
     ([left, right]: [number, number]) =>
       address.slice(0, left + 2) + (right === 0 ? '' : '...' + address.slice(-right)),
   );
@@ -95,7 +95,7 @@ export function abbreviatedSolanaAddresses(address: string): string[] {
 }
 
 export const ABBREVIATION_FUNCTIONS = [
-  abbreviatedAddresses,
+  abbreviatedEVMAddresses,
   (addr: string) => [krakenAbbreviation(addr)],
   abbreviatedSolanaAddresses,
 ];
