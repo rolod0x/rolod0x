@@ -1,5 +1,6 @@
-<!-- markdownlint-disable MD033 -->
 # Security analysis
+
+<!-- markdownlint-disable MD033 -->
 
 Since security is paramount in web3, every effort has been made to eliminate
 any risk caused by using rolod0x.
@@ -25,8 +26,10 @@ rolod0x's design is inherently low risk since:
   installed, the extension doesn't rely on internet access _at all_;
   it just inspects and alters web pages locally in the browser.
 
-- The data is stored locally within an isolated storage area in the
-  browser reserved for the extension.
+- The data is [stored locally][local] within an isolated storage area
+  in the browser reserved for the extension.
+
+[local]: https://github.com/rolod0x/rolod0x/blob/v1.5.0/src/shared/options-storage.ts#L221
 
 - Even though the address lookup feature writes to the clipboard, it only
   writes addresses which the user provided themself.
@@ -65,21 +68,21 @@ The following chrome API permissions are requested by the extension manifest:
   mechanism also requires the `scripting` permission listed below.
   The code executing the script is here:
 
-  <https://github.com/rolod0x/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/background/index.ts#L49-L52>
+  <https://github.com/rolod0x/rolod0x/blob/v1.5.0/src/shared/lookup.ts#L3-L11>
 
 - `clipboardRead`: Required to paste the contents of the clipboard
   into the address book.  The call can be seen here:
 
-  <https://github.com/rolod0x/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/lookup/ui/ActionBar.tsx#L81>
+  <https://github.com/rolod0x/rolod0x/blob/v1.5.0/src/pages/options/AddressesSettings/SectionToolbar.tsx#L76>
 
 - `clipboardWrite`: Required to copy the selected address to the
   clipboard, when the user completes their search of the address book.
   This happens within an `<iframe>` inserted by a content script into
   a shadow root element inside the DOM.  The call can be seen here:
 
-  <https://github.com/rolod0x/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/lookup/ui/ActionBar.tsx#L81>
+  <https://github.com/rolod0x/rolod0x/blob/v1.5.0/src/pages/lookup/ui/ActionChooser.tsx#L52>
 
-- `contextMenus`: Required in order to items to two context menus:
+- `contextMenus`: Required in order to add items to two context menus:
 
   1. Add an item "Enable rolod0x on this domain" to the context menu
      when right-clicking on the extension icon.  This is the mechanism
@@ -88,13 +91,13 @@ The following chrome API permissions are requested by the extension manifest:
      <https://github.com/fregante/webext-permission-toggle>, and
      activated here:
 
-     <https://github.com/rolod0x/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/background/index.ts#L16>
+     <https://github.com/rolod0x/rolod0x/blob/v1.5.0/src/pages/background/index.ts#L18>
 
   2. Add an item "rolod0x: add entry to address book" to the context
      menu when right-clicking within a web page.  This is activated
      here:
 
-     <https://github.com/rolod0x/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/background/contextMenu.ts#L49-L52>
+     <https://github.com/rolod0x/rolod0x/blob/v1.5.0/src/pages/background/contextMenu.ts#L51-L60>
 
 - `scripting`: Required when the user presses the search hotkey, to
   execute the content script which displays the modal dialog for
@@ -103,13 +106,13 @@ The following chrome API permissions are requested by the extension manifest:
   DOM.  The same mechanism also requires the `activeTab` permission
   listed above.  The code executing the script is here:
 
-  <https://github.com/rolod0x/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/pages/background/index.ts#L49-L52>
+  <https://github.com/rolod0x/rolod0x/blob/v1.5.0/src/shared/lookup.ts#L3-L11>
 
 - `storage`: Required to store the user's address book and settings
   locally.  The storage-handling code can be found
   here:
 
-  <https://github.com/rolod0x/rolod0x/blob/372582fdfe534ea51907be362e782008b75c559c/src/shared/options-storage.ts#L19-L24>
+  <https://github.com/rolod0x/rolod0x/blob/v1.5.0/src/shared/options-storage.ts#L217-L222>
 
   and it depends on the npm module <https://github.com/fregante/webext-options-sync/>.
 
