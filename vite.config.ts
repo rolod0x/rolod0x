@@ -19,6 +19,7 @@ const rootDir = resolve(__dirname);
 const srcDir = resolve(rootDir, 'src');
 const pagesDir = resolve(srcDir, 'pages');
 const assetsDir = resolve(srcDir, 'assets');
+const testUtilsDir = resolve(rootDir, 'test-utils');
 const outDir = resolve(rootDir, 'dist', process.env.__FIREFOX__ ? 'firefox' : 'chrome');
 const publicDir = resolve(rootDir, 'public');
 
@@ -42,6 +43,7 @@ const viteConfig = defineViteConfig({
       '@src': srcDir,
       '@assets': assetsDir,
       '@pages': pagesDir,
+      '@test-utils': testUtilsDir,
       // Work around https://github.com/uiwjs/react-codemirror/issues/680
       // No longer needed since 4.23.7; see:
       // - https://github.com/uiwjs/react-codemirror/issues/613#issuecomment-2544272857

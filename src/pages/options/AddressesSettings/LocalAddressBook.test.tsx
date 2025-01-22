@@ -8,7 +8,8 @@ import {
   mockSet,
   mockGetSection,
   resetOptionsMocks,
-} from '@root/test-utils/mocks/options-storage';
+} from '@test-utils/mocks/options-storage';
+import { getCodeMirrorView, setCodeMirrorValue } from '@test-utils/codemirror';
 import Rolod0xThemeProvider from '@src/components/Rolod0xThemeProvider';
 import { DEFAULT_OPTIONS_DESERIALIZED } from '@src/shared/options-storage';
 
@@ -52,30 +53,6 @@ const renderLocalAddressBook = async () => {
   expect(view).toBeTruthy();
 
   return container;
-};
-
-// Helper function to get the CodeMirror view instance
-const getCodeMirrorView = async (): Promise<EditorView> => {
-  const editor = await screen.findByTestId('codeMirror-editor');
-  const view = EditorView.findFromDOM(editor as HTMLElement);
-  if (!view) {
-    throw new Error('CodeMirror view not found');
-  }
-  return view;
-};
-
-// Helper function to simulate text input in CodeMirror
-const setCodeMirrorValue = async (value: string) => {
-  await act(async () => {
-    const view = await getCodeMirrorView();
-    view.dispatch({
-      changes: {
-        from: 0,
-        to: view.state.doc.length,
-        insert: value,
-      },
-    });
-  });
 };
 
 describe('LocalAddressBook', () => {
