@@ -1,5 +1,6 @@
-<!-- markdownlint-disable MD033 -->
 # Security analysis
+
+<!-- markdownlint-disable MD033 -->
 
 Since security is paramount in web3, every effort has been made to eliminate
 any risk caused by using rolod0x.
