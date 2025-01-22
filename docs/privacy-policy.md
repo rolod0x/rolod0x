@@ -5,7 +5,7 @@ permission.**
 
 In fact, at the moment it can't share your data in any way at all,
 since it doesn't perform any communications with the network.  (See
-[the security policy](../SECURITY.md) for the technical details.)
+[the security analysis](../SECURITY.md) for the technical details.)
 
 ## Data storage
 
