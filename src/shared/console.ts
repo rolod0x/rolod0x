@@ -10,6 +10,7 @@ declare global {
   interface Console {
     llog(message?: unknown, ...optionalParams: unknown[]): void;
     ldebug(message?: unknown, ...optionalParams: unknown[]): void;
+    lwarn(message?: unknown, ...optionalParams: unknown[]): void;
     lerror(message?: unknown, ...optionalParams: unknown[]): void;
   }
 }
@@ -23,6 +24,12 @@ console.llog = (...args: Parameters<typeof console.log>) => {
 console.ldebug = (...args: Parameters<typeof console.debug>) => {
   if (typeof process === 'undefined' || !process.env.VITEST) {
     console.debug(...args);
+  }
+};
+
+console.lwarn = (...args: Parameters<typeof console.warn>) => {
+  if (typeof process === 'undefined' || !process.env.VITEST) {
+    console.warn(...args);
   }
 };
 
