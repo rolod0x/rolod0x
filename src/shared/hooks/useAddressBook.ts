@@ -64,7 +64,7 @@ export function useAddressBook(sectionId: string) {
     }
 
     if (!section) {
-      console.warn(`Section ${sectionId} not found; it was likely deleted`);
+      console.lwarn(`Section ${sectionId} not found; it was likely deleted`);
       setIsLoaded(false);
       return;
     }
