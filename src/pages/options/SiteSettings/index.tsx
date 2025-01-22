@@ -80,6 +80,7 @@ export default function SiteSettings() {
   }, [setPageTitle]);
 
   const fetchSites = useCallback(async () => {
+    // N.B. This function automatically drops any overlapping permissions.
     const manifestPermissions = normalizeManifestPermissions();
     setManifestSites([...manifestPermissions.origins]);
 
