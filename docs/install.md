@@ -115,6 +115,10 @@ have done `pnpm install` then in theory it should be enough to run:
 
 and this should install a `rolod0x` executable within a
 pnpm-controlled directory on your `$PATH`.  However, it seems that
-`pnpm` still has issues installing scripts in some cases, so if you
-run into problems with this, please follow the guidelines in
-[`CONTRIBUTING.md`](../CONTRIBUTING.md).
+`pnpm` still has issues installing scripts in some cases, so you may
+also need something like:
+
+    pnpm install tsx --global
+
+If you still run into problems with this, please follow the guidelines
+in [`CONTRIBUTING.md`](../CONTRIBUTING.md).
