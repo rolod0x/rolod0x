@@ -1,5 +1,5 @@
 import { ChangeEvent, MouseEvent, useCallback, useEffect, useState } from 'react';
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button, TextField, Snackbar, Alert } from '@mui/material';
 import {
   ContentPaste as ContentPasteIcon,
   RestorePage as RestorePageIcon,
@@ -32,6 +32,8 @@ export default function SectionToolbar({
   canSave,
 }: SectionToolbarProps) {
   const [fetchUrl, setFetchUrl] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
 
   // Initialize fetchUrl from props
   useEffect(() => {
@@ -52,20 +54,25 @@ export default function SectionToolbar({
   const handleFetch = useCallback(
     async (e: MouseEvent) => {
       e.stopPropagation();
+      let response;
       try {
-        const response = await fetch(fetchUrl);
+        response = await fetch(fetchUrl);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const content = await response.text();
-        setLabels(content);
-        const hash = murmurhash.v3(content);
-        setCurrentLabelsHash(hash);
-        validate(content);
       } catch (error) {
         console.error('Error fetching URL:', error);
-        validate('Error fetching URL: ' + (error instanceof Error ? error.message : String(error)));
+        setErrorMessage(error instanceof Error ? error.message : String(error));
+        setIsSnackbarOpen(true);
+        return;
       }
+      console.log('response', response);
+      const content = await response.text();
+      console.log('content', content);
+      setLabels(content);
+      const hash = murmurhash.v3(content);
+      setCurrentLabelsHash(hash);
+      validate(content);
     },
     [fetchUrl, setLabels, setCurrentLabelsHash, validate],
   );
@@ -98,52 +105,74 @@ export default function SectionToolbar({
     [handleSave],
   );
 
+  const handleCloseError = useCallback(() => {
+    setIsSnackbarOpen(false);
+  }, []);
+
+  const handleExited = useCallback(() => {
+    setErrorMessage(null);
+  }, []);
+
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-      <TextField
-        size="small"
-        placeholder="Enter URL to fetch addresses from (optional)"
-        value={fetchUrl}
-        onChange={handleUrlChange}
-        sx={{ flexGrow: 1 }}
-      />
-      <Button
-        variant="contained"
-        className="section-fetch-button"
-        startIcon={<DownloadIcon />}
-        title="Click to fetch addresses from the URL"
-        disabled={!fetchUrl.trim()}
-        onClick={handleFetch}
-        sx={{ mr: 1 }}>
-        Fetch
-      </Button>
-      <Button
-        variant="contained"
-        className="section-paste-button"
-        startIcon={<ContentPasteIcon />}
-        title="Click to import addresses from the clipboard"
-        onClick={handlePaste}
-        sx={{ mr: 2 }}>
-        Paste
-      </Button>
-      <Button
-        variant="contained"
-        className="section-revert-button"
-        startIcon={<RestorePageIcon />}
-        title="Click to discard changes"
-        onClick={handleRevert}
-        disabled={!canRevert}>
-        Discard changes
-      </Button>
-      <Button
-        variant="contained"
-        className="section-save-button"
-        startIcon={<SaveIcon />}
-        title="Click or type Ctrl+S to save changes"
-        onClick={handleSaveClick}
-        disabled={!canSave}>
-        Save
-      </Button>
-    </Box>
+    <>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+        <TextField
+          size="small"
+          placeholder="Enter URL to fetch addresses from (optional)"
+          value={fetchUrl}
+          onChange={handleUrlChange}
+          sx={{ flexGrow: 1 }}
+        />
+        <Button
+          variant="contained"
+          className="section-fetch-button"
+          startIcon={<DownloadIcon />}
+          title="Click to fetch addresses from the URL"
+          disabled={!fetchUrl.trim()}
+          onClick={handleFetch}
+          sx={{ mr: 1 }}>
+          Fetch
+        </Button>
+        <Button
+          variant="contained"
+          className="section-paste-button"
+          startIcon={<ContentPasteIcon />}
+          title="Click to import addresses from the clipboard"
+          onClick={handlePaste}
+          sx={{ mr: 2 }}>
+          Paste
+        </Button>
+        <Button
+          variant="contained"
+          className="section-revert-button"
+          startIcon={<RestorePageIcon />}
+          title="Click to discard changes"
+          onClick={handleRevert}
+          disabled={!canRevert}>
+          Discard changes
+        </Button>
+        <Button
+          variant="contained"
+          className="section-save-button"
+          startIcon={<SaveIcon />}
+          title="Click or type Ctrl+S to save changes"
+          onClick={handleSaveClick}
+          disabled={!canSave}>
+          Save
+        </Button>
+      </Box>
+      <Snackbar
+        open={isSnackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleCloseError}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        TransitionProps={{
+          onExited: handleExited,
+        }}>
+        <Alert onClose={handleCloseError} severity="error" sx={{ width: '100%' }}>
+          Error fetching URL: {errorMessage}
+        </Alert>
+      </Snackbar>
+    </>
   );
 }
