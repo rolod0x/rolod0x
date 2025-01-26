@@ -97,14 +97,9 @@ each label.  The same applies for comments.
 
 ## Controlling which sites rolod0x is active on <a name="allow-list"></a>
 
-On Chrome, rolod0x is enabled by default on a bunch of well-known
-block explorers and other sites.
-
-On Firefox, rolod0x is **not** enabled by default on any site (see
-[issue #275](https://github.com/rolod0x/rolod0x/issues/275)).
-
-On all browsers, you can manually enable rolod0x on any site as
-follows:
+rolod0x is enabled by default on a bunch of well-known block explorers
+and other sites.  However you can also manually enable rolod0x on any
+site as follows:
 
 - If you have pinned the extension to the toolbar, you can right-click
   the extension icon and make sure that `Enable rolod0x on this domain`
