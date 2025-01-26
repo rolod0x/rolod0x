@@ -22,6 +22,10 @@ const ABBREVIATION_LENGTHS = [
   // the form 0x1234...123456
   [4, 6],
 
+  // On Binance, whitelist addresses are abbreviated in
+  // the form 0x12345678...1234567890
+  [8, 10],
+
   // On Kraken, addresses are sometimes abbreviated in
   // the form 0x123456...12345
   [6, 5],
