@@ -117,14 +117,7 @@ const manifest = {
   },
   content_scripts: [
     {
-      matches: [
-        // We need at least one host here otherwise the extension won't load,
-        // as per https://github.com/fregante/webext-dynamic-content-scripts#usage
-        'https://*.etherscan.io/*',
-
-        // But we don't need the rest:
-        // ...defaultSites,
-      ],
+      matches: defaultSites,
       all_frames: true,
       js: ['src/pages/content/index.js'],
       // KEY for cache invalidation
