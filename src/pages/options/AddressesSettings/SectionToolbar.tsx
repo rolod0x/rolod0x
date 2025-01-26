@@ -8,6 +8,8 @@ import {
 } from '@mui/icons-material';
 import * as murmurhash from 'murmurhash';
 
+import '@src/shared/console';
+
 interface SectionToolbarProps {
   initialUrl?: string;
   updateUrl: (url: string) => void;
@@ -61,14 +63,12 @@ export default function SectionToolbar({
           throw new Error(`HTTP error! status: ${response.status}`);
         }
       } catch (error) {
-        console.error('Error fetching URL:', error);
         setErrorMessage(error instanceof Error ? error.message : String(error));
         setIsSnackbarOpen(true);
         return;
       }
-      console.log('response', response);
+
       const content = await response.text();
-      console.log('content', content);
       setLabels(content);
       const hash = murmurhash.v3(content);
       setCurrentLabelsHash(hash);
