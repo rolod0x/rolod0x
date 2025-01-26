@@ -126,7 +126,7 @@ export const migrateToSections = (
 ) => {
   console.llog('Checking migration to sections');
   // Check if sections exist and are valid JSON
-  if ('sections' in options) {
+  if (!isV1Options(options)) {
     console.llog('ℹ️ Already migrated old labels to section');
     return;
   }
@@ -216,7 +216,7 @@ export class DeserializableOptionsSync extends OptionsSync<Rolod0xOptionsSeriali
 
 export const optionsStorage = new DeserializableOptionsSync({
   defaults: DEFAULT_OPTIONS_SERIALIZED,
-  migrations: [OptionsSync.migrations.removeUnused, migrateToSections],
+  migrations: [migrateToSections, OptionsSync.migrations.removeUnused],
   logging: true,
   storageType: 'local',
 });
