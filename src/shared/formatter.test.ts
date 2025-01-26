@@ -33,4 +33,10 @@ describe('Formatter', () => {
     const formatter = new Formatter('%n (%a)');
     expect(formatter.format(label, addr)).toEqual(`${label} (${addr})`);
   });
+
+  it('formats a label combining internal digits with other formats', () => {
+    // Test the format used by Kraken
+    const formatter = new Formatter('0x%2l %2i4 ... %-8i4 %4r');
+    expect(formatter.format(label, addr)).toEqual('0xe3 D823 ... D62e F109');
+  });
 });

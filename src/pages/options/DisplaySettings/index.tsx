@@ -124,6 +124,12 @@ export default function DisplaySettings() {
             <StyledCode>%Nr</StyledCode> will be substituted for the right-most{' '}
             <StyledCode>N</StyledCode> digits of the address.
           </li>
+          <li>
+            <StyledCode>%XiN</StyledCode> will be substituted for
+            <StyledCode>N</StyledCode> digits of the address starting at index{' '}
+            <StyledCode>X</StyledCode>. If <StyledCode>X</StyledCode> is negative, it will be
+            counted from the end of the address.
+          </li>
         </ul>
       </SettingsSection>
 
