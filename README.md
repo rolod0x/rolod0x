@@ -94,7 +94,7 @@ they will now be labelled in this human-readable way!
 - Completely private local-only web3 address book.
 - Automatically translates blockchain addresses to human-readable labels.
 - Add entries directly from within a web page, by right-clicking on an address.
-- Instantly look up an address via a hotkey.
+- Instantly look up an address via a keyboard shortcut.
 - Quick actions to copy addresses, search, or view on block explorers.
 - Works on any website.
 - Works on any EVM-based blockchain (and could easily support other

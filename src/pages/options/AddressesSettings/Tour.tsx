@@ -93,7 +93,7 @@ const UsabilityHints = () => {
               href="https://rolod0x.io/docs/user-manual.html#lookup"
               target="_blank"
               rel="noreferrer noopener">
-              Quickly look up addresses via a hotkey
+              Quickly look up addresses via a keyboard shortcut
             </Link>
             &nbsp;— by default it's {hotkey}, but you can customize it in your {shortcutsElement}.
           </li>

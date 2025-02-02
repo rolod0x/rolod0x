@@ -60,13 +60,13 @@ However, there are still some minor risks which need to be considered:
 
 The following chrome API permissions are requested by the extension manifest:
 
-- `activeTab`: Required when the user presses the search hotkey, to
-  execute the content script which displays the modal dialog allowing
-  them to quickly and easily search their address book from the
-  current tab.  This happens within an `<iframe>` inserted by a
-  content script into a shadow root element inside the DOM.  The same
-  mechanism also requires the `scripting` permission listed below.
-  The code executing the script is here:
+- `activeTab`: Required when the user presses the search keyboard
+  shortcut, to execute the content script which displays the modal
+  dialog allowing them to quickly and easily search their address book
+  from the current tab.  This happens within an `<iframe>` inserted by
+  a content script into a shadow root element inside the DOM.  The
+  same mechanism also requires the `scripting` permission listed
+  below.  The code executing the script is here:
 
   <https://github.com/rolod0x/rolod0x/blob/v1.5.0/src/shared/lookup.ts#L3-L11>
 
@@ -99,12 +99,12 @@ The following chrome API permissions are requested by the extension manifest:
 
      <https://github.com/rolod0x/rolod0x/blob/v1.5.0/src/pages/background/contextMenu.ts#L51-L60>
 
-- `scripting`: Required when the user presses the search hotkey, to
-  execute the content script which displays the modal dialog for
-  searching the address book.  This happens within an `<iframe>`
-  inserted by a content script into a shadow root element inside the
-  DOM.  The same mechanism also requires the `activeTab` permission
-  listed above.  The code executing the script is here:
+- `scripting`: Required when the user presses the search keyboard
+  shortcut, to execute the content script which displays the modal
+  dialog for searching the address book.  This happens within an
+  `<iframe>` inserted by a content script into a shadow root element
+  inside the DOM.  The same mechanism also requires the `activeTab`
+  permission listed above.  The code executing the script is here:
 
   <https://github.com/rolod0x/rolod0x/blob/v1.5.0/src/shared/lookup.ts#L3-L11>
 

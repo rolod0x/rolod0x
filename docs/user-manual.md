@@ -131,7 +131,7 @@ If you want to quickly obtain an address, you can click the extension
 icon and select the `Search` menu item.
 
 Alternatively you can press a keyboard shortcut to launch a popup
-window to do a lookup.  By default, this hotkey is
+window to do a lookup.  By default, this keyboard shortcut is
 `Shift`-`Alt`-`Space` on Windows and Linux, and
 `Shift`-`Command`-`Space` on MacOS, but you can customize this by
 visiting <chrome://extensions/> and then clicking on `Keyboard
@@ -139,15 +139,15 @@ shortcuts`.
 
 [![Looking up an address](./images/hotkey-lookup.jpg)](./images/hotkey-lookup.jpg)
 
-This hotkey should work on any regular website, even ones on which
-rolod0x has not yet been enabled.  However it will not work on
-"special" pages, such as browser settings pages or local files (even
-if `Allow access to file URLs` is enabled).  Unfortunately this is a
-browser limitation which probably can't be bypassed.
+This keyboard shortcut should work on any regular website, even ones
+on which rolod0x has not yet been enabled.  However it will not work
+on "special" pages, such as browser settings pages or local files
+(even if `Allow access to file URLs` is enabled).  Unfortunately this
+is a browser limitation which probably can't be bypassed.
 
 If it's not working on normal pages in Chrome, then visit
-<chrome://extensions/shortcuts> and make sure that you have the hotkey
-set up correctly.
+<chrome://extensions/shortcuts> and make sure that you have the
+keyboard shortcut set up correctly.
 
 Similarly, in Firefox go to the extensions page and then check that
 the keyboard shortcut is set up correctly:

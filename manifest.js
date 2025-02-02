@@ -67,8 +67,8 @@ const manifest = {
     // but doesn't seem to be required on Chrome with MV2 or MV3.
     // See https://github.com/fregante/webext-permission-toggle/issues/50
     //
-    // In any case, it's definitely required in order for the hotkey to
-    // be able to popup the search modal dialog.
+    // In any case, it's definitely required in order for the keyboard
+    // shortcut to be able to popup the search modal dialog.
     'activeTab',
     //
     // See also https://github.com/rolod0x/rolod0x/issues/216
