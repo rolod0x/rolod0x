@@ -23,8 +23,8 @@ export function run(): void {
     .name('rolod0x')
     .description('CLI for mapping blockchain addresses to labels')
     .version('0.1.0')
-    .option('-f, --format <FORMAT>', 'Label format for exact address matches', '%n (0x%4l…%4r)')
-    .option('-p, --partial <FORMAT>', 'Label format for partial address matches', '[0x%4l…%n?…%4r]')
+    .option('-f, --format <FORMAT>', 'Label format for exact address matches', '%n (%4l…%4r)')
+    .option('-p, --partial <FORMAT>', 'Label format for partial address matches', '[%4l…%n?…%4r]')
     .option('-d, --duplicates', 'Show duplicates')
     .argument('<ADDRESS-FILE>', 'path to address book file')
     .action((addressesFile: string, options: CLIOptions) => {

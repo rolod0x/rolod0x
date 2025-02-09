@@ -61,6 +61,7 @@ describe('Parser', () => {
     expect(parser.parsedEntries).toEqual([
       {
         address: '0x1803982898d6a8E832177Fca8fD763B9060C3050',
+        addressType: 'EVM',
         label: 'my label',
         comment: undefined,
       },
@@ -75,6 +76,7 @@ describe('Parser', () => {
     expect(parser.parsedEntries).toEqual([
       {
         address: '0x1803982898d6a8E832177Fca8fD763B9060C3050',
+        addressType: 'EVM',
         label: 'my label',
         comment: undefined,
       },
@@ -107,11 +109,13 @@ describe('Parser', () => {
     expect(parser.parsedEntries).toEqual([
       {
         address: '0x1803982898d6a8E832177Fca8fD763B9060C3050',
+        addressType: 'EVM',
         label: 'my label',
         comment: 'extra comment here',
       },
       {
         address: '0xe3D82337F79306712477b642EF59B75dD62eF109',
+        addressType: 'EVM',
         label: '/ another label, no comment /',
         comment: undefined,
       },
@@ -130,11 +134,13 @@ describe('Parser', () => {
     expect(parser.parsedEntries).toEqual([
       {
         address: '0xe3D82337F79306712477b642EF59B75dD62eF109',
+        addressType: 'EVM',
         label: 'first / duplicate 1 / duplicate 2',
         comment: undefined,
       },
       {
         address: '0x1803982898d6a8E832177Fca8fD763B9060C3050',
+        addressType: 'EVM',
         label: 'another address',
         comment: undefined,
       },
@@ -154,11 +160,13 @@ describe('Parser', () => {
     expect(parser.parsedEntries).toEqual([
       {
         address: '0xe3D82337F79306712477b642EF59B75dD62eF109',
+        addressType: 'EVM',
         label: 'first / duplicate 1',
         comment: undefined,
       },
       {
         address: '0x1803982898d6a8E832177Fca8fD763B9060C3050',
+        addressType: 'EVM',
         label: 'another address',
         comment: undefined,
       },
@@ -178,16 +186,19 @@ describe('Parser', () => {
     expect(parser.parsedEntries).toEqual([
       {
         address: '0x14dC79964da2C08b23698B3D3cc7Ca32193d9955',
+        addressType: 'EVM',
         label: 'a lowercase address',
         comment: undefined,
       },
       {
         address: '0xe3D82337F79306712477b642EF59B75dD62eF109',
+        addressType: 'EVM',
         label: 'label one / label two for same address',
         comment: 'comment on first',
       },
       {
         address: '0x1803982898d6a8E832177Fca8fD763B9060C3050',
+        addressType: 'EVM',
         label: 'another address',
         comment: undefined,
       },
@@ -207,16 +218,19 @@ describe('Parser', () => {
     expect(parser.parsedEntries).toEqual([
       {
         address: '0x14dC79964da2C08b23698B3D3cc7Ca32193d9955',
+        addressType: 'EVM',
         label: 'a lowercase address',
         comment: undefined,
       },
       {
         address: '0xe3D82337F79306712477b642EF59B75dD62eF109',
+        addressType: 'EVM',
         label: 'label one / label two',
         comment: '1st comment / 2nd comment',
       },
       {
         address: '0x1803982898d6a8E832177Fca8fD763B9060C3050',
+        addressType: 'EVM',
         label: 'another address',
         comment: undefined,
       },
@@ -236,16 +250,19 @@ describe('Parser', () => {
     expect(parser.parsedEntries).toEqual([
       {
         address: '0x14dC79964da2C08b23698B3D3cc7Ca32193d9955',
+        addressType: 'EVM',
         label: 'a lowercase address',
         comment: undefined,
       },
       {
         address: '0xe3D82337F79306712477b642EF59B75dD62eF109',
+        addressType: 'EVM',
         label: 'label one / label two',
         comment: 'comment',
       },
       {
         address: '0x1803982898d6a8E832177Fca8fD763B9060C3050',
+        addressType: 'EVM',
         label: 'another address',
         comment: undefined,
       },
@@ -260,6 +277,7 @@ describe('Parser', () => {
     expect(parser.parsedEntries).toEqual([
       {
         address: 'DYw8jCTfwHNRJhhmFcbXvVDTqWMEVFBX6ZKUmG5CNSKK',
+        addressType: 'Solana',
         label: 'my solana label',
         comment: 'comment',
       },
@@ -274,11 +292,13 @@ describe('Parser', () => {
     expect(parser.parsedEntries).toEqual([
       {
         address: '0x1803982898d6a8E832177Fca8fD763B9060C3050',
+        addressType: 'EVM',
         label: 'evm label',
         comment: 'evm comment',
       },
       {
         address: 'DYw8jCTfwHNRJhhmFcbXvVDTqWMEVFBX6ZKUmG5CNSKK',
+        addressType: 'Solana',
         label: 'solana label',
         comment: 'sol comment',
       },
@@ -295,21 +315,25 @@ describe('Parser', () => {
     expect(parser.parsedEntries).toEqual([
       {
         address: '7vJ3mSPgKnnHSyHx5JKnwqL4gYbEuGBJ4KXJGE9kBUkj',
+        addressType: 'Solana',
         label: 'wallet address',
         comment: 'personal wallet',
       },
       {
         address: '5TeGDBFiXs3YtGzg5MQKp7PVxgpm5TxqHMxGsiBKp5dB',
+        addressType: 'Solana',
         label: 'program v1',
         comment: undefined,
       },
       {
         address: 'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA',
+        addressType: 'Solana',
         label: 'token program',
         comment: 'SPL token',
       },
       {
         address: 'ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL',
+        addressType: 'Solana',
         label: 'associated token',
         comment: 'ATA program',
       },

@@ -1,7 +1,7 @@
 import { getAddress } from 'ethers';
 import { isAddress } from '@solana/addresses';
 
-import { Address, Label, Comment, ParsedEntries } from './types';
+import { Address, Label, Comment, ParsedEntries, AddressType } from './types';
 
 export class ParseError extends Error {
   lineNumber: number;
@@ -23,6 +23,7 @@ export class Parser {
   addresses: Address[] = [];
   labels: Record<Address, Label[]> = {};
   comments: Record<Address, Comment[]> = {};
+  addressTypes: Record<Address, AddressType> = {};
 
   constructor(unparsedLabels?: string) {
     if (unparsedLabels) {
@@ -93,7 +94,7 @@ export class Parser {
       throw err;
     }
 
-    this.addEntry(canonical, label, comment);
+    this.addEntry(canonical, 'EVM', label, comment);
     return true;
   }
 
@@ -107,14 +108,16 @@ export class Parser {
     const [address, label, comment] = this.parseLineParts(m, line, lineIndex);
 
     const isSolanaAddress = isAddress(address);
-    this.addEntry(address, label, comment);
+    if (isSolanaAddress) this.addEntry(address, 'Solana', label, comment);
     return isSolanaAddress;
   }
 
-  addEntry(address: Address, label: Label, comment?: Comment): void {
+  addEntry(address: Address, addressType: AddressType, label: Label, comment?: Comment): void {
     if (!this.labels[address]) {
       this.addresses.push(address);
     }
+
+    this.addressTypes[address] = addressType;
 
     this.labels[address] ||= [];
     // The O(n) inclusion check here is suboptimal, but n should be tiny so it's not worth
@@ -136,6 +139,7 @@ export class Parser {
     return this.addresses.map(address => {
       return {
         address,
+        addressType: this.addressTypes[address],
         label: this.labels[address].join(' / '),
         comment: this.comments[address]?.join(' / '),
       };

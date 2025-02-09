@@ -1,3 +1,5 @@
+import { AddressType } from './types';
+
 const ABBREVIATION_LENGTHS_EVM = [
   // On many sites (e.g. Tenderly, defender.openzeppelin.com, Gnosis
   // Safe), addresses are abbreviated in the form 0x12345678...1234
@@ -94,11 +96,12 @@ export function abbreviatedSolanaAddresses(address: string): string[] {
   );
 }
 
-export const ABBREVIATION_FUNCTIONS = [
-  abbreviatedEVMAddresses,
-  (addr: string) => [krakenAbbreviation(addr)],
-  abbreviatedSolanaAddresses,
-];
+export type AbbreviationFunc = (address: string) => string[];
+
+export const ABBREVIATION_FUNCTIONS: Record<AddressType, AbbreviationFunc[]> = {
+  EVM: [abbreviatedEVMAddresses, (addr: string) => [krakenAbbreviation(addr)]],
+  Solana: [abbreviatedSolanaAddresses],
+};
 
 const isKrakenAbbreviation = (abbreviation: string, fullAddress: string): boolean => {
   const krakenMatch = abbreviation.match(

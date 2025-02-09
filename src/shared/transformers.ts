@@ -1,9 +1,9 @@
-import { getCanonicalAddress } from './address';
+import { AddressType } from './types';
 
 // Spot addresses embedded into EVM 256 bit words.  This is typically
 // seen in event data.
-export function zeroPaddedAddress(address: string): string[] {
-  if (!getCanonicalAddress(address)) {
+export function zeroPaddedAddress(address: string, addressType: AddressType): string[] {
+  if (addressType !== 'EVM') {
     return [];
   }
   // Addresses are 20 bytes, so to pad to 32 bytes we need an extra
