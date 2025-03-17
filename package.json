@@ -125,7 +125,7 @@
     "sass": "^1.83.0",
     "tslib": "^2.8.1",
     "typescript": "^5.7.2",
-    "vite": "^5.4.11",
+    "vite": "^6.2.2",
     "vite-plugin-checker": "^0.8.0",
     "vitest": "^2.1.8",
     "vitest-chrome": "github:aspiers/vitest-chrome#fix-esm",
