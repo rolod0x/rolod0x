@@ -51,6 +51,7 @@ export default function DisplaySettings() {
       const preview = formatter.format(
         'my address label',
         '0xe3D82337F79306712477b642EF59B75dD62eF109',
+        'EVM',
       );
       setFormats(oldFormats => ({ ...oldFormats, [formatType]: newFormat }));
       setPreviews(oldPreviews => ({ ...oldPreviews, [formatType]: preview }));

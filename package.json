@@ -59,6 +59,7 @@
     "@mui/icons-material": "^5.16.11",
     "@mui/material": "^5.16.11",
     "@mui/system": "^5.16.8",
+    "@solana/addresses": "^2.0.0",
     "@types/lodash": "^4.17.13",
     "@types/webextension-polyfill": "^0.10.7",
     "@uiw/codemirror-themes": "^4.23.7",

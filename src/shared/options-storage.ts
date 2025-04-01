@@ -103,8 +103,8 @@ export const labelsToSection = (labels: string): Rolod0xAddressBookSection => {
 export const DEFAULT_OPTIONS_DESERIALIZED: Rolod0xOptionsDeserialized = {
   themeName: 'light',
   sections: [labelsToSection('')],
-  displayLabelFormat: '%n (0x%4l…%4r)',
-  displayGuessFormat: '? %n ? (0x%4l…%4r)',
+  displayLabelFormat: '%n (%4l…%4r)',
+  displayGuessFormat: '? %n ? (%4l…%4r)',
   hasSeenTour: false,
 };
 

@@ -56,6 +56,7 @@ describe('replacer', () => {
   const parser = new Parser(dedent`
     0xe3D82337F79306712477b642EF59B75dD62eF109 my label       // ERC-55
     0x1803982898d6a8e832177fca8fd763b9060c3b5d another label  // all lowercase
+    DYw8jCTfwHNRJhhmFcbXvVDTqWMEVFBX6ZKUmG5CNSKK Solana label // Solana
   `);
   const exact = new Formatter('%n | %4r');
   const guess = new Formatter('?%n? %4r');
@@ -201,6 +202,26 @@ describe('replacer', () => {
 
   it("doesn't replace abbreviations linked to invalid addresses", () => {
     expectNoLinkReplacement('0xe3D800000000000000000000000000000000F109', '0xe3d8...f109');
+  });
+
+  it('replaces a full Solana address', () => {
+    expectSpanReplacement('DYw8jCTfwHNRJhhmFcbXvVDTqWMEVFBX6ZKUmG5CNSKK', 'Solana label | NSKK');
+  });
+
+  it('replaces Solana abbreviation with a guess', () => {
+    expectSpanReplacement('DYw8jCTfwH...KUmG5CNSKK', '?Solana label? NSKK');
+  });
+
+  it('replaces Solana abbreviation linked to known Solana address with exact match', () => {
+    expectLinkReplacement(
+      'DYw8jCTfwHNRJhhmFcbXvVDTqWMEVFBX6ZKUmG5CNSKK',
+      'DYw8jCTfwH...KUmG5CNSKK',
+      'Solana label | NSKK',
+    );
+  });
+
+  it("doesn't replace an unknown Solana address", () => {
+    expectNoSpanReplacement('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA');
   });
 
   const HTML_ORIG = dedent`
