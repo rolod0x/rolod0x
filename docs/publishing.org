@@ -2,6 +2,34 @@ This file tracks the work required to publish rolod0x in a variety of
 places.  Being able to reuse previous work should make future
 submissions easier.
 
+* [2025-04-10 Thu] KarmaGAP update
+*** Activity Name
+    Summary of recent releases
+*** Description
+    #+begin_src markdown
+      Lots has been happening with rolod0x since the last update, but if you weren't following [our GitHub](https://github.com/rolod0x/rolod0x/) you might have missed it, so here's a quick summary!
+
+      [Version 1.5.0](https://github.com/rolod0x/rolod0x/releases/tag/v1.5.0) was a major release introducing lots of handy new features and improvements:
+
+      - an onboarding tour for new users
+      - support for multiple address book sections
+      - support for fetching address book sections from a URL
+      - a Paste button for more easily importing from the clipboard
+      - import/export of settings
+      - enhanced list of built-in sites
+      - numerous minor UI/UX improvements
+      - doc updates
+
+      [Version 1.5.1](https://github.com/rolod0x/rolod0x/releases/tag/v1.5.1) followed up on this with some bugfixes.
+
+      The next version in preparation already has additional built-in support for Kraken, Binance, and Gemini, with lots of other work planned - see [the roadmap](https://github.com/users/aspiers/projects/2/views/5) for the gory details.
+
+      Currently we are participating in [Kernel](https://www.kernel.community/) Block X and doing [research on how to solve the address book problem more generally across the whole of web3](https://github.com/rolod0x/rolod0x/issues/244).
+    #+end_src
+*** Outputs
+***** Deliverables
+      v1.5.0 https://github.com/rolod0x/rolod0x/releases/tag/v1.5.0 Release 1.5.0
+      v1.5.1 https://github.com/rolod0x/rolod0x/releases/tag/v1.5.1 Release 1.5.1
 * YouTube promo video
 *** voiceover script
 ***** overview
