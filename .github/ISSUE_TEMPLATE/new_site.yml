@@ -1,0 +1,30 @@
+name: Site support
+description: Request built-in support for a new website.
+title: "[Site] "
+labels: ["enhancement", "site", "easy"]
+projects: ["aspiers/2", "rolod0x/1"]
+assignees:
+  - aspiers
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to request support for a new website!
+  - type: input
+    id: contact
+    attributes:
+      label: Website URL
+      description: |
+        What is the URL of a webpage which isn't already supported by rolod0x?
+        If possible, please link directly to the part of the site where rolod0x
+        should be active.
+      placeholder: https://dapp.coolproject.xyz
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Extra information
+      description: Is there any special information you'd like to share relating to this request?
+    validations:
+      required: false
