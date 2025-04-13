@@ -156,7 +156,10 @@ export default function ActionChooser({
     <>
       <DialogContentText sx={{ pb: 2 }}>
         Choose an action to perform on{' '}
-        <strong>{formatter.format(selectedItem.label, selectedItem.address)}</strong>:
+        <strong>
+          {formatter.format(selectedItem.label, selectedItem.address, selectedItem.addressType)}
+        </strong>
+        :
       </DialogContentText>
       <FocusedAutocomplete<ActionTuple, false, false, false>
         id="action-chooser"
