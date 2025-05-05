@@ -48,6 +48,7 @@ const defaultSites = [
   'https://app.disco.xyz/*',
   'https://dashboard.redefine.net/*',
   'https://bankless.com/*',
+  'https://opensea.io/*',
 ];
 
 const manifest = {
