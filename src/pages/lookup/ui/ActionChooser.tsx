@@ -92,6 +92,12 @@ export default function ActionChooser({
     return (inputs: ActionInputs): string =>
       `https://explorer.celo.org/${network}/address/${inputs.address}`;
   };
+  const openSeaActionFactory = (): Action => {
+    const openSeaUrlGenerator = (inputs: ActionInputs): string => {
+      return `https://opensea.io/${inputs.address}`;
+    };
+    return urlActionFactory(openSeaUrlGenerator);
+  };
 
   const actionItemMatcher = (action: ActionTuple, word: string): boolean => {
     const [label] = action;
@@ -148,6 +154,7 @@ export default function ActionChooser({
       'View on explorer.celo.org/alfajores',
       urlActionFactory(celoExplorerUrlGenerator('alfajores')),
     ],
+    ['View on OpenSea', openSeaActionFactory()],
   ] as const;
 
   const formatter = new Formatter(displayFormat);
