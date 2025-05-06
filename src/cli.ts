@@ -7,7 +7,7 @@ import * as readline from 'readline';
 import { Command } from '@commander-js/extra-typings';
 
 import { Formatter } from './shared/formatter';
-import { RE_ADDRESS_OR_BYTES32 } from './shared/regexps';
+import { RE_ADDRESSES_OR_BYTES32 } from './shared/regexps';
 import { Mapper } from './shared/mapper';
 import { Parser } from './shared/parser';
 
@@ -23,8 +23,8 @@ export function run(): void {
     .name('rolod0x')
     .description('CLI for mapping blockchain addresses to labels')
     .version('0.1.0')
-    .option('-f, --format <FORMAT>', 'Label format for exact address matches', '%n (0x%4l…%4r)')
-    .option('-p, --partial <FORMAT>', 'Label format for partial address matches', '[0x%4l…%n?…%4r]')
+    .option('-f, --format <FORMAT>', 'Label format for exact address matches', '%n (%4l…%4r)')
+    .option('-p, --partial <FORMAT>', 'Label format for partial address matches', '[%4l…%n?…%4r]')
     .option('-d, --duplicates', 'Show duplicates')
     .argument('<ADDRESS-FILE>', 'path to address book file')
     .action((addressesFile: string, options: CLIOptions) => {
@@ -79,7 +79,7 @@ function getParser(addressesFile: string): Parser {
 function replaceStdin(addressesFile: string, options: CLIOptions): void {
   const mapper = getMapper(addressesFile, options);
   const rl = readline.createInterface({ input: process.stdin });
-  const regexp = new RegExp(RE_ADDRESS_OR_BYTES32.source, 'gi');
+  const regexp = new RegExp(RE_ADDRESSES_OR_BYTES32.source, 'gi');
   rl.on('line', (line: string) => {
     const mapped = line.replace(regexp, (match: string) => replacer(mapper, match));
     console.log(mapped);

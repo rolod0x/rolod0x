@@ -41,6 +41,7 @@ export default function AddressChooser() {
       setSelectedItem({
         address: value.address,
         label: value.label,
+        addressType: value.addressType,
       });
       setActionChooserVisible(true);
     },

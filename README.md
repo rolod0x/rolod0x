@@ -97,7 +97,7 @@ they will now be labelled in this human-readable way!
 - Instantly look up an address via a keyboard shortcut.
 - Quick actions to copy addresses, search, or view on block explorers.
 - Works on any website.
-- Works on any EVM-based blockchain (and could easily support other
+- Works on any EVM-based blockchain and Solana (and could easily support other
   chains in the future).
 - Should work on Chrome, Chromium, Brave, or any other browser in the Chrome family.
 - Should work on Firefox (see <https://github.com/rolod0x/rolod0x/issues/19>).

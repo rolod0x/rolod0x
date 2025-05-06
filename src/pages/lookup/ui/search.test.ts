@@ -7,14 +7,17 @@ describe('addressBookItemsFilter', () => {
     {
       address: '0x9991a3369B4292Dc12286c24b596AE0F77Bf841b',
       label: '__My Address__',
+      addressType: 'EVM',
     },
     {
       address: '0xA0A89B847819c2989ad5171Bb6c5D4F16E61A5b0',
       label: "someone else's address",
+      addressType: 'EVM',
     },
     {
       address: '0x05594919ac646e6fF9f704edb9910Cb310841739',
       label: 'my multisig',
+      addressType: 'EVM',
     },
   ];
 

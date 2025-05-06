@@ -1,4 +1,6 @@
-const ABBREVIATION_LENGTHS = [
+import { AddressType } from './types';
+
+const ABBREVIATION_LENGTHS_EVM = [
   // On many sites (e.g. Tenderly, defender.openzeppelin.com, Gnosis
   // Safe), addresses are abbreviated in the form 0x12345678...1234
   [8, 4],
@@ -57,8 +59,26 @@ const ABBREVIATION_LENGTHS = [
   [30, 0],
 ];
 
-export function abbreviatedAddresses(address: string): string[] {
-  return ABBREVIATION_LENGTHS.map(
+const ABBREVIATION_LENGTHS_SOLANA = [
+  // On solscan.io, addresses are abbreviated in the form
+  // 1234567890...1234567890
+  [10, 10],
+
+  // On raydium.io, addresses in the token selection modal are abbreviated
+  // in the form 123456...123456
+  [6, 6],
+
+  // On jup.ag, addresses in the token selection modal are abbreviated
+  // in the form 12345...12345
+  [5, 5],
+
+  // On meteora.ag, addresses in the pool creation page are abbreviated
+  // in the form 1234...1234
+  [4, 4],
+];
+
+export function abbreviatedEVMAddresses(address: string): string[] {
+  return ABBREVIATION_LENGTHS_EVM.map(
     ([left, right]: [number, number]) =>
       address.slice(0, left + 2) + (right === 0 ? '' : '...' + address.slice(-right)),
   );
@@ -69,27 +89,35 @@ export function krakenAbbreviation(address: string): string {
   return `0x${trimmed.slice(0, 2)} ${trimmed.slice(2, 6)} ... ${trimmed.slice(-8, -4)} ${trimmed.slice(-4)}`;
 }
 
-export const ABBREVIATION_FUNCTIONS = [
-  abbreviatedAddresses,
-  (addr: string) => [krakenAbbreviation(addr)],
-];
+export function abbreviatedSolanaAddresses(address: string): string[] {
+  return ABBREVIATION_LENGTHS_SOLANA.map(
+    ([left, right]: [number, number]) =>
+      address.slice(0, left) + (right === 0 ? '' : '...' + address.slice(-right)),
+  );
+}
 
-export function isAbbreviation(abbreviation: string, fullAddress: string): boolean {
-  // First try matching Kraken-style format with spaces
+export type AbbreviationFunc = (address: string) => string[];
+
+export const ABBREVIATION_FUNCTIONS: Record<AddressType, AbbreviationFunc[]> = {
+  EVM: [abbreviatedEVMAddresses, (addr: string) => [krakenAbbreviation(addr)]],
+  Solana: [abbreviatedSolanaAddresses],
+};
+
+const isKrakenAbbreviation = (abbreviation: string, fullAddress: string): boolean => {
   const krakenMatch = abbreviation.match(
     /^(0x[0-9a-f]{2})\s+([0-9a-f]{4})\s+\.\.\.\s+([0-9a-f]{4})\s+([0-9a-f]{4})$/i,
   );
-  if (krakenMatch) {
-    const [, prefix, middle, end1, end2] = krakenMatch;
-    const fullWithoutPrefix = fullAddress.replace(/^0x/, '');
-    return (
-      fullAddress.startsWith(prefix) &&
-      fullWithoutPrefix.startsWith(middle, 2) &&
-      fullWithoutPrefix.endsWith(end1 + end2)
-    );
-  }
+  if (!krakenMatch) return false;
+  const [, prefix, middle, end1, end2] = krakenMatch;
+  const fullWithoutPrefix = fullAddress.replace(/^0x/, '');
+  return (
+    fullAddress.startsWith(prefix) &&
+    fullWithoutPrefix.startsWith(middle, 2) &&
+    fullWithoutPrefix.endsWith(end1 + end2)
+  );
+};
 
-  // Then try standard format
+const isStandardEVMAbbreviation = (abbreviation: string, fullAddress: string): boolean => {
   const standardMatch = abbreviation.match(/^(0x[0-9a-f]+)(?:\.\.\.([0-9a-f]+))?$/i);
   if (!standardMatch) return false;
   const [, start, end] = standardMatch;
@@ -97,4 +125,26 @@ export function isAbbreviation(abbreviation: string, fullAddress: string): boole
   // capitalization is preserved, OR if it was never there in
   // the first place.
   return fullAddress.startsWith(start) && fullAddress.endsWith(end || '');
+};
+
+const isSolanaAbbreviation = (abbreviation: string, fullAddress: string): boolean => {
+  const solanaMatch = abbreviation.match(
+    /^([1-9A-HJ-NP-Za-km-z]+)(?:\.\.\.([1-9A-HJ-NP-Za-km-z]+))?$/i,
+  );
+  if (!solanaMatch) return false;
+  const [, start, end] = solanaMatch;
+  return fullAddress.startsWith(start) && fullAddress.endsWith(end || '');
+};
+
+const ABBREVIATION_MATCHERS = [
+  isKrakenAbbreviation,
+  isStandardEVMAbbreviation,
+  isSolanaAbbreviation,
+];
+
+export function isAbbreviation(abbreviation: string, fullAddress: string): boolean {
+  for (const fn of ABBREVIATION_MATCHERS) {
+    if (fn(abbreviation, fullAddress)) return true;
+  }
+  return false;
 }
