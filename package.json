@@ -40,7 +40,7 @@
     "lint:ext": "web-ext lint -s dist/firefox",
     "tokenlist:import": "pnpm exec tsx ./src/import-tokenlist.ts",
     "prepare": "husky install",
-    "rolod0x": "pnpm exec tsx ./src/cli.ts",
+    "rolod0x": "pnpm exec tsx ./src/cli/index.ts",
     "website:prepare": "./scripts/website-prepare.sh"
   },
   "type": "module",
