@@ -265,11 +265,42 @@ create a global alias:
 Then you can just append `0x` to the end of any command and it will
 pipe STDOUT and STDERR through rolod0x.
 
-### Listing duplicate labels
+### Finding duplicate addresses across files
 
-If you specify the `-d` or `--duplicates` option, then instead of
-filtering `STDIN`, it will list all addresses in the given address
-book file which have duplicate labels.
+The `--duplicates` option allows you to find addresses that appear in multiple address book files, which is useful for:
+
+- Identifying potential conflicts between different address books
+- Finding addresses with different labels across files
+- Discovering addresses that appear in multiple files with identical labels
+
+#### Basic usage
+
+To find duplicates across multiple files:
+
+    rolod0x --duplicates file1.txt file2.txt file3.txt
+
+This will show all addresses that appear in more than one file, along with their labels and which files contain them. For example:
+
+    0x1234...5678
+        Alice (~/addresses-personal.txt)
+        Alice Work Account (~/addresses-work.txt)
+        // My friend Alice (~/addresses-personal.txt)
+        // Different label for same person (~/addresses-work.txt)
+
+#### Filtering by file
+
+You can use `--dup-files-filter` (or `-D`) to only show duplicates where at least one label comes from a file matching a substring:
+
+    rolod0x --duplicates --dup-files-filter "work" *.txt
+
+This would only show duplicates that have at least one label from a file whose path contains "work".
+
+#### Case sensitivity handling
+
+The duplicate detection automatically handles case sensitivity by normalizing all addresses to EIP-55 checksum format, so these would be detected as the same address:
+
+- `0xe32bb999851587b53d170c0a130cce7f542c754d` (lowercase)
+- `0xE32bb999851587b53d170C0A130cCE7f542c754d` (mixed case)
 
 ## Importing token lists on the command line <a name="import-tokenlist"></a>
 

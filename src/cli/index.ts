@@ -6,15 +6,19 @@ import * as readline from 'readline';
 
 import { Command } from '@commander-js/extra-typings';
 
-import { Formatter } from './shared/formatter';
-import { RE_ADDRESS_OR_BYTES32 } from './shared/regexps';
-import { Mapper } from './shared/mapper';
-import { Parser } from './shared/parser';
+import { Formatter } from '../shared/formatter';
+import { RE_ADDRESS_OR_BYTES32 } from '../shared/regexps';
+import { Mapper } from '../shared/mapper';
+import { Parser } from '../shared/parser';
+import { fatal } from '../shared/utils';
+
+import { listDuplicates } from './duplicates';
 
 interface CLIOptions {
   duplicates?: boolean;
   format?: string;
   partial?: string;
+  dupFilesFilter?: string;
 }
 
 export function run(): void {
@@ -25,45 +29,32 @@ export function run(): void {
     .version('0.1.0')
     .option('-f, --format <FORMAT>', 'Label format for exact address matches', '%n (0x%4l…%4r)')
     .option('-p, --partial <FORMAT>', 'Label format for partial address matches', '[0x%4l…%n?…%4r]')
-    .option('-d, --duplicates', 'Show duplicates')
-    .argument('<ADDRESS-FILE>', 'path to address book file')
-    .action((addressesFile: string, options: CLIOptions) => {
-      main(addressesFile, options);
+    .option('-d, --duplicates', 'Show duplicates (supports multiple files for cross-file analysis)')
+    .option(
+      '-D, --dup-files-filter <FILTER>',
+      'Only show duplicates with at least one label from a file matching this substring',
+    )
+    .argument('<ADDRESS-FILES...>', 'path(s) to address book file(s)')
+    .action((addressFiles: string[], options: CLIOptions) => {
+      main(addressFiles, options);
     })
     .showHelpAfterError();
 
   program.parse();
 }
 
-function fatal(msg: string): void {
-  console.error(msg + '\n');
-  process.exit(1);
-}
-
-function main(addressesFile: string, options: CLIOptions): void {
-  if (options.duplicates) {
-    listDuplicates(addressesFile);
-  } else {
-    replaceStdin(addressesFile, options);
+function main(addressFiles: string[], options: CLIOptions): void {
+  if (options.dupFilesFilter && !options.duplicates) {
+    fatal('--dup-files-filter can only be used with --duplicates option');
   }
-}
 
-function listDuplicates(addressesFile: string): void {
-  const parser = getParser(addressesFile);
-  let first = true;
-  for (const address of parser.duplicates) {
-    if (first) {
-      first = false;
-    } else {
-      console.log('');
+  if (options.duplicates) {
+    listDuplicates(addressFiles, options.dupFilesFilter);
+  } else {
+    if (addressFiles.length > 1) {
+      fatal('Multiple files only supported with --duplicates option');
     }
-    console.log(address);
-    for (const label of parser.labels[address]) {
-      console.log('    ' + label);
-    }
-    for (const comment of parser.comments[address] || []) {
-      console.log('    // ' + comment);
-    }
+    replaceStdin(addressFiles[0], options);
   }
 }
 
