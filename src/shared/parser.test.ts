@@ -67,6 +67,20 @@ describe('Parser', () => {
     ]);
   });
 
+  it('parses an EVM entry with leading whitespace', () => {
+    const parser = new Parser(dedent`
+      // foo bar
+            0x1803982898d6a8E832177Fca8fD763B9060C3050 my label
+    `);
+    expect(parser.parsedEntries).toEqual([
+      {
+        address: '0x1803982898d6a8E832177Fca8fD763B9060C3050',
+        label: 'my label',
+        comment: undefined,
+      },
+    ]);
+  });
+
   it('parses a single lowercase entry', () => {
     const parser = new Parser(dedent`
       // foo bar

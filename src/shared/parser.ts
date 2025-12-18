@@ -75,7 +75,7 @@ export class Parser {
   }
 
   private parseEVMLine(line: string, lineIndex: number): boolean {
-    const labelLineRe = /^s*(0x[\da-f]{40})\s+(.+?)(?:\s+\/\/\s*(.*?)\s*)?$/i;
+    const labelLineRe = /^\s*(0x[\da-f]{40})\s+(.+?)(?:\s+\/\/\s*(.*?)\s*)?$/i;
     const m = labelLineRe.exec(line);
     if (!m) {
       return false;
