@@ -22,10 +22,15 @@ const defaultSites = [
   'https://*.oklink.com/*',
   'https://*.metasleuth.io/*',
   'https://solscan.io/*',
+  'https://solana.fm/*',
+  'https://explorer.solana.com/*',
+  'https://orbmarkets.io/*',
 
   // Multisig management services
   'https://app.safe.global/*',
   'https://safe.celo.org/*',
+  'https://app.squads.so/*',
+  'https://safe.snowflake.so/*',
 
   // Developer services
   'https://bugs.immunefi.com/*',
