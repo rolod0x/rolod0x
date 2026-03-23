@@ -1,5 +1,6 @@
 import * as browser from 'webextension-polyfill';
 
+import { getAddressTypeOrThrow, isAddressTypeCaseSensitive } from '@src/shared/address-type';
 import { isAbbreviation } from '@src/shared/abbreviators';
 import { RE_ADDRESS_FORMATS } from '@src/shared/regexps';
 import { LabelComment, LabelMap } from '@src/shared/types';
@@ -134,6 +135,15 @@ export function getTextNodeReplacementData(node: Node, labelMap: LabelMap): Repl
   return [textToLookup, before, data, after];
 }
 
+function textMatchesLinkedAddress(textToLookup: string, hrefAddr: string): boolean {
+  const addressType = getAddressTypeOrThrow(hrefAddr);
+  if (isAddressTypeCaseSensitive(addressType)) {
+    return isAbbreviation(textToLookup, hrefAddr);
+  }
+
+  return isAbbreviation(textToLookup.toLowerCase(), hrefAddr.toLowerCase());
+}
+
 // Check whether the text node or its parent (if an <a href="...">) has
 // a full address.  If they both do, ensure that they match otherwise
 // warn the user that something fishy is probably going on.
@@ -154,7 +164,7 @@ export function replaceOnTextNode(node: Node, labelMap: LabelMap): number {
     return replaceText(node, data.label, before, after);
   }
 
-  if (!isAbbreviation(textToLookup.toLowerCase(), hrefAddr.toLowerCase())) {
+  if (!textMatchesLinkedAddress(textToLookup, hrefAddr)) {
     // They didn't match, so just ignore the href address
     return replaceText(node, data.label, before, after);
   }

@@ -220,6 +220,14 @@ describe('replacer', () => {
     );
   });
 
+  it("falls back to the text node for Solana when the linked address case doesn't match", () => {
+    expectLinkReplacement(
+      'dyw8jctfwhnrjhhmfcbxvvdtqwmevfbx6zkumg5cnskk',
+      'DYw8jCTfwH...KUmG5CNSKK',
+      '?Solana label? NSKK',
+    );
+  });
+
   it("doesn't replace an unknown Solana address", () => {
     expectNoSpanReplacement('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA');
   });

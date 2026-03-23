@@ -17,6 +17,9 @@ import {
   DEFAULT_OPTIONS_SERIALIZED,
   DEFAULT_OPTIONS_DESERIALIZED,
   migrateToSections,
+  migrateLegacyDisplayFormats,
+  LEGACY_DISPLAY_LABEL_FORMAT,
+  LEGACY_DISPLAY_GUESS_FORMAT,
   Rolod0xOptionsV1,
   deserializeOptions,
   validateDeserialized,
@@ -163,6 +166,36 @@ describe('options-storage', () => {
     });
   });
 
+  describe('migrateLegacyDisplayFormats', () => {
+    it('updates only the legacy default formats', () => {
+      const options = {
+        displayLabelFormat: LEGACY_DISPLAY_LABEL_FORMAT,
+        displayGuessFormat: LEGACY_DISPLAY_GUESS_FORMAT,
+      };
+
+      migrateLegacyDisplayFormats(options, DEFAULT_OPTIONS_SERIALIZED);
+
+      expect(options).toEqual({
+        displayLabelFormat: DEFAULT_OPTIONS_DESERIALIZED.displayLabelFormat,
+        displayGuessFormat: DEFAULT_OPTIONS_DESERIALIZED.displayGuessFormat,
+      });
+    });
+
+    it('preserves custom formats', () => {
+      const options = {
+        displayLabelFormat: '%n (%6l...%4r)',
+        displayGuessFormat: '[custom guess]',
+      };
+
+      migrateLegacyDisplayFormats(options, DEFAULT_OPTIONS_SERIALIZED);
+
+      expect(options).toEqual({
+        displayLabelFormat: '%n (%6l...%4r)',
+        displayGuessFormat: '[custom guess]',
+      });
+    });
+  });
+
   describe('DeserializableOptionsSync', () => {
     beforeEach(() => {
       mockGetAll.mockClear();
@@ -176,8 +209,8 @@ describe('options-storage', () => {
       const v1Options: Rolod0xOptionsV1 = {
         themeName: 'dark',
         labels,
-        displayLabelFormat: '%n (0x%4l…%4r)',
-        displayGuessFormat: '? %n ? (0x%4l…%4r)',
+        displayLabelFormat: LEGACY_DISPLAY_LABEL_FORMAT,
+        displayGuessFormat: LEGACY_DISPLAY_GUESS_FORMAT,
       };
       // Mock what getAll would actually return - a serialized version of the options
       mockGetAll.mockResolvedValue(v1Options);
@@ -197,8 +230,24 @@ describe('options-storage', () => {
       });
       expect(result.sections[0].id).toHaveLength(36); // UUID length
       expect(result.themeName).toBe('dark');
-      expect(result.displayLabelFormat).toBe('%n (0x%4l…%4r)');
-      expect(result.displayGuessFormat).toBe('? %n ? (0x%4l…%4r)');
+      expect(result.displayLabelFormat).toBe(DEFAULT_OPTIONS_DESERIALIZED.displayLabelFormat);
+      expect(result.displayGuessFormat).toBe(DEFAULT_OPTIONS_DESERIALIZED.displayGuessFormat);
+    });
+
+    it('preserves custom display formats during deserialization', async () => {
+      const customOptions: Rolod0xOptionsV1 = {
+        themeName: 'dark',
+        labels: '0xD3159eC8ABb2114812E65A87a5c28DA3841C7FD7 test address',
+        displayLabelFormat: '%n (%6l...%4r)',
+        displayGuessFormat: '[%n]',
+      };
+
+      mockGetAll.mockResolvedValue(customOptions);
+
+      const result = await optionsStorage.getAllDeserialized();
+
+      expect(result.displayLabelFormat).toBe(customOptions.displayLabelFormat);
+      expect(result.displayGuessFormat).toBe(customOptions.displayGuessFormat);
     });
 
     it('correctly serializes sections when setting options', async () => {

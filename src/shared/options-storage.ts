@@ -61,6 +61,9 @@ export type Rolod0xOptionsSerialized = Omit<Rolod0xOptionsDeserialized, 'section
 
 type Rolod0xRawOptions = Rolod0xOptionsV1 | Rolod0xOptionsSerialized;
 
+export const LEGACY_DISPLAY_LABEL_FORMAT = '%n (0x%4l…%4r)';
+export const LEGACY_DISPLAY_GUESS_FORMAT = '? %n ? (0x%4l…%4r)';
+
 export const serializeOptions = (options: Rolod0xOptionsDeserialized): Rolod0xOptionsSerialized => {
   const { sections, ...rest } = options;
   return {
@@ -141,6 +144,19 @@ export const migrateToSections = (
   }
 };
 
+export const migrateLegacyDisplayFormats = (
+  options: Pick<Rolod0xRawOptions, 'displayLabelFormat' | 'displayGuessFormat'>,
+  _currentDefaults: Rolod0xOptionsSerialized,
+) => {
+  if (options.displayLabelFormat === LEGACY_DISPLAY_LABEL_FORMAT) {
+    options.displayLabelFormat = DEFAULT_OPTIONS_DESERIALIZED.displayLabelFormat;
+  }
+
+  if (options.displayGuessFormat === LEGACY_DISPLAY_GUESS_FORMAT) {
+    options.displayGuessFormat = DEFAULT_OPTIONS_DESERIALIZED.displayGuessFormat;
+  }
+};
+
 const isV1Options = (options: Rolod0xRawOptions): options is Rolod0xOptionsV1 => {
   return 'labels' in options;
 };
@@ -149,6 +165,7 @@ export class DeserializableOptionsSync extends OptionsSync<Rolod0xOptionsSeriali
   async getAllDeserialized(): Promise<Rolod0xOptionsDeserialized> {
     const raw = await this.getAll();
     const v2 = isV1Options(raw) ? mutateV1ToV2(raw) : raw;
+    migrateLegacyDisplayFormats(v2, DEFAULT_OPTIONS_SERIALIZED);
     return deserializeOptions(v2);
   }
 
@@ -216,7 +233,7 @@ export class DeserializableOptionsSync extends OptionsSync<Rolod0xOptionsSeriali
 
 export const optionsStorage = new DeserializableOptionsSync({
   defaults: DEFAULT_OPTIONS_SERIALIZED,
-  migrations: [migrateToSections, OptionsSync.migrations.removeUnused],
+  migrations: [migrateToSections, migrateLegacyDisplayFormats, OptionsSync.migrations.removeUnused],
   logging: true,
   storageType: 'local',
 });
