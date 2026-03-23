@@ -16,11 +16,23 @@ export class Formatter {
     return this.formatString
       .replace('%n', label)
       .replace('%a', address)
-      .replace(/%(\d+)l/, (_match, digits) => trimmed.slice(0, Number(digits)))
+      .replace(/%(\d+)l/, (_match, digits) => this.sliceAddressStart(address, Number(digits)))
       .replace(/%(\d+)r/, (_match, digits) => trimmed.slice(-Number(digits)))
       .replaceAll(/%(-?\d+)i(\d+)/g, (_match, offset, length) => {
         const startAt = Number(offset) < 0 ? trimmed.length + Number(offset) : Number(offset);
         return trimmed.slice(startAt, startAt + Number(length));
       });
+  }
+
+  // Slice the address from the start to the given number of digits.
+  // If the address starts with 0x, add it back to the sliced address.
+  sliceAddressStart(address: Address, digits: number): string {
+    let addressString = address.replace(/^0x/, '').slice(0, digits);
+
+    if (address.startsWith('0x')) {
+      addressString = '0x' + addressString;
+    }
+
+    return addressString;
   }
 }
