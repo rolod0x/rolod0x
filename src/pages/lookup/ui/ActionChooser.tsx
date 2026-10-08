@@ -2,7 +2,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { DialogContentText, FilterOptionsState } from '@mui/material';
 
 import { Formatter } from '@root/src/shared/formatter';
-import { AddressLabel } from '@src/shared/types';
+import { getAddressType } from '@src/shared/address-type';
+import { AddressLabel, AddressType } from '@src/shared/types';
 import { optionsStorage, DEFAULT_OPTIONS_DESERIALIZED } from '@src/shared/options-storage';
 
 import { itemsFilter } from './search';
@@ -111,10 +112,20 @@ export default function ActionChooser({
     return itemsFilter<ActionTuple>(items, searchString, actionItemMatcher);
   };
 
-  const actionTuples: ActionTuple[] = [
-    ['Copy address to clipboard', clipboardWriteAction],
-    ['Search via DuckDuckGo', searchEngineActionFactory(duckduckgoSearchUrlGenerator)],
-    ['Search via Google', searchEngineActionFactory(googleSearchUrlGenerator)],
+  const solanaExplorerActionFactory = (urlPrefix: string): Action =>
+    urlActionFactory((inputs: ActionInputs) => `${urlPrefix}${inputs.address}`);
+
+  const solanaExplorerActionTuples: ActionTuple[] = [
+    ['View on solscan.io', solanaExplorerActionFactory('https://solscan.io/account/')],
+    [
+      'View on explorer.solana.com',
+      solanaExplorerActionFactory('https://explorer.solana.com/address/'),
+    ],
+    ['View on solana.fm', solanaExplorerActionFactory('https://solana.fm/address/')],
+    ['View on orbmarkets.io', solanaExplorerActionFactory('https://orbmarkets.io/address/')],
+  ];
+
+  const evmExplorerActionTuples: ActionTuple[] = [
     ['View on blockscan.com', blockExplorerActionFactory('blockscan.com')],
 
     ['View on etherscan.io', blockExplorerActionFactory('etherscan.io')],
@@ -154,6 +165,15 @@ export default function ActionChooser({
       'View on explorer.celo.org/alfajores',
       urlActionFactory(celoExplorerUrlGenerator('alfajores')),
     ],
+  ];
+
+  const actionTuples: ActionTuple[] = [
+    ['Copy address to clipboard', clipboardWriteAction],
+    ['Search via DuckDuckGo', searchEngineActionFactory(duckduckgoSearchUrlGenerator)],
+    ['Search via Google', searchEngineActionFactory(googleSearchUrlGenerator)],
+    ...(getAddressType(selectedItem.address) === AddressType.Solana
+      ? solanaExplorerActionTuples
+      : evmExplorerActionTuples),
     ['View on OpenSea', openSeaActionFactory()],
   ] as const;
 
