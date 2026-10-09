@@ -116,6 +116,10 @@ export default function DisplaySettings() {
             <StyledCode>%n</StyledCode> will be substituted for the label.
           </li>
           <li>
+            <StyledCode>%p</StyledCode> will be substituted for the address prefix, i.e.{' '}
+            <StyledCode>0x</StyledCode> for EVM addresses, and nothing for Solana addresses.
+          </li>
+          <li>
             <StyledCode>%Nl</StyledCode> will be substituted for the left-most{' '}
             <StyledCode>N</StyledCode> digits of the address, e.g. <StyledCode>%4l</StyledCode>{' '}
             would be substituted for something like <StyledCode>e3D8</StyledCode>.

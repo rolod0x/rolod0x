@@ -17,6 +17,7 @@ import {
   DEFAULT_OPTIONS_SERIALIZED,
   DEFAULT_OPTIONS_DESERIALIZED,
   migrateToSections,
+  migrateDisplayFormatPrefixes,
   Rolod0xOptionsV1,
   deserializeOptions,
   validateDeserialized,
@@ -160,6 +161,36 @@ describe('options-storage', () => {
       migrateToSections(optionsToMigrate, DEFAULT_OPTIONS_SERIALIZED);
 
       expect(optionsToMigrate.sections).toBe(existingOptions.sections);
+    });
+  });
+
+  describe('migrateDisplayFormatPrefixes', () => {
+    it('replaces a hard-coded 0x prefix in front of %Nl with %p', () => {
+      const options = {
+        displayLabelFormat: '%n (0x%4l…%4r)',
+        displayGuessFormat: '0x%2l %2i4 ... %-8i4 %4r 0x%6l',
+      };
+
+      migrateDisplayFormatPrefixes(options, DEFAULT_OPTIONS_SERIALIZED);
+
+      expect(options).toEqual({
+        displayLabelFormat: '%n (%p%4l…%4r)',
+        displayGuessFormat: '%p%2l %2i4 ... %-8i4 %4r %p%6l',
+      });
+    });
+
+    it('leaves other formats unchanged', () => {
+      const options = {
+        displayLabelFormat: '%n (%p%4l…%4r)',
+        displayGuessFormat: '[0x %n %4l 0x%4r]',
+      };
+
+      migrateDisplayFormatPrefixes(options, DEFAULT_OPTIONS_SERIALIZED);
+
+      expect(options).toEqual({
+        displayLabelFormat: '%n (%p%4l…%4r)',
+        displayGuessFormat: '[0x %n %4l 0x%4r]',
+      });
     });
   });
 
