@@ -68,4 +68,28 @@ describe('Formatter', () => {
     const formatter = new Formatter('%n (%p%4l…%4r)');
     expect(formatter.format('100%profit', address)).toEqual(`100%profit (${abbreviated})`);
   });
+
+  it('does not substitute format codes that appear in a label', () => {
+    const formatter = new Formatter('%n (%p%4l…%4r)');
+    expect(formatter.format('USDC %n %a %4l %4r %2i4', addr)).toEqual(
+      'USDC %n %a %4l %4r %2i4 (0xe3D8…F109)',
+    );
+  });
+
+  it('keeps a format code in a label from taking the place of the same code in the format', () => {
+    const formatter = new Formatter('%n (%a)');
+    expect(formatter.format('the %a label', addr)).toEqual(`the %a label (${addr})`);
+  });
+
+  it('inserts a label that contains $ replacement patterns verbatim', () => {
+    const formatter = new Formatter('%n (%p%4l…%4r)');
+    expect(formatter.format("$& $1 $$ $` $'", addr)).toEqual("$& $1 $$ $` $' (0xe3D8…F109)");
+  });
+
+  it('substitutes every occurrence of a format code', () => {
+    const formatter = new Formatter('%n | %n | %4l %4l | %4r %4r | %a %a');
+    expect(formatter.format(label, addr)).toEqual(
+      `${label} | ${label} | e3D8 e3D8 | F109 F109 | ${addr} ${addr}`,
+    );
+  });
 });
